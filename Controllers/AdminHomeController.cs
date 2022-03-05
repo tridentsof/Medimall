@@ -4,14 +4,17 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Web;
 using System.Web.Mvc;
+using Medimall.Infrastructure;
 
 namespace Medimall.Controllers
 {
+    //[CustomAuthenticationAdminFilter]
     public class AdminHomeController : Controller
     {
         private MedimallEntities db = new MedimallEntities();
         // GET: AdminHome
 
+        [HttpGet]
         public ActionResult Login()
         {
             return View();
@@ -38,6 +41,15 @@ namespace Medimall.Controllers
             }
             else
                 return View(model);
+        }
+
+        [HttpPost]
+        [ValidateAntiForgeryToken]
+        public ActionResult LogOff()
+        {
+            Session["UserName"] = string.Empty;
+
+            return RedirectToAction("Login", "AdminHome");
         }
 
         public ActionResult Index()

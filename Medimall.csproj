@@ -129,11 +129,11 @@
     <Compile Include="App_Start\BundleConfig2.cs" />
     <Compile Include="App_Start\FilterConfig.cs" />
     <Compile Include="App_Start\RouteConfig.cs" />
-    <Compile Include="Controllers\AdminAccountsController.cs" />
     <Compile Include="Controllers\AdminHomeController.cs" />
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
+    <Compile Include="Infrastructure\CustomAuthenticationAdminFilter.cs" />
     <Compile Include="Models\Account.cs">
       <DependentUpon>DbContext.tt</DependentUpon>
     </Compile>
@@ -2077,12 +2077,8 @@
     <Content Include="Vendor\vendor\jquery\jquery.min.map" />
     <Content Include="Vendor\vendor\jquery\jquery.slim.min.map" />
     <Content Include="Views\AdminHome\Index.cshtml" />
-    <Content Include="Views\AdminAccounts\Create.cshtml" />
-    <Content Include="Views\AdminAccounts\Delete.cshtml" />
-    <Content Include="Views\AdminAccounts\Details.cshtml" />
-    <Content Include="Views\AdminAccounts\Edit.cshtml" />
-    <Content Include="Views\AdminAccounts\Index.cshtml" />
     <Content Include="Views\AdminHome\Login.cshtml" />
+    <Content Include="Views\Shared\_LoginPartial.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
