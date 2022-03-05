@@ -1,0 +1,34 @@
+<?xml version="1.0" encoding="utf-8"?>
+<edmx:Edmx Version="3.0" xmlns:edmx="http://schemas.microsoft.com/ado/2009/11/edmx">
+ <!-- EF Designer content (DO NOT EDIT MANUALLY BELOW HERE) -->
+  <edmx:Designer xmlns="http://schemas.microsoft.com/ado/2009/11/edmx">
+    <!-- Diagram content (shape and connector positions) -->
+    <edmx:Diagrams>
+      <Diagram DiagramId="c298fe7ed8fb4652a0fcc9854249bcfc" Name="Diagram1" ZoomLevel="95">
+        <EntityTypeShape EntityType="MedimallModel.Account" Width="1.5" PointX="0.75" PointY="5.25" IsExpanded="true" />
+        <EntityTypeShape EntityType="MedimallModel.Admin" Width="1.5" PointX="8.75" PointY="2" IsExpanded="true" />
+        <EntityTypeShape EntityType="MedimallModel.BillDetail" Width="1.5" PointX="8.25" PointY="5.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="MedimallModel.Billing" Width="1.5" PointX="3" PointY="5.5" IsExpanded="true" />
+        <EntityTypeShape EntityType="MedimallModel.Category" Width="1.5" PointX="1.5" PointY="2.625" IsExpanded="true" />
+        <EntityTypeShape EntityType="MedimallModel.Delivery" Width="1.5" PointX="0.75" PointY="11.125" IsExpanded="true" />
+        <EntityTypeShape EntityType="MedimallModel.HealthBook" Width="1.5" PointX="3" PointY="10" IsExpanded="true" />
+        <EntityTypeShape EntityType="MedimallModel.ListDrug" Width="1.5" PointX="6" PointY="6.25" IsExpanded="true" />
+        <EntityTypeShape EntityType="MedimallModel.News" Width="1.5" PointX="5.75" PointY="10" IsExpanded="true" />
+        <EntityTypeShape EntityType="MedimallModel.Payment" Width="1.5" PointX="0.75" PointY="13.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="MedimallModel.Product" Width="1.5" PointX="3.75" PointY="0.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="MedimallModel.sysdiagram" Width="1.5" PointX="7.75" PointY="10" IsExpanded="true" />
+        <EntityTypeShape EntityType="MedimallModel.Voucher" Width="1.5" PointX="6" PointY="3.375" IsExpanded="true" />
+        <AssociationConnector Association="MedimallModel.FK_Acc" ManuallyRouted="false" />
+        <AssociationConnector Association="MedimallModel.FK_Acc1" ManuallyRouted="false" />
+        <AssociationConnector Association="MedimallModel.FK_kh" ManuallyRouted="false" />
+        <AssociationConnector Association="MedimallModel.FK_HD" ManuallyRouted="false" />
+        <AssociationConnector Association="MedimallModel.FK_SP" ManuallyRouted="false" />
+        <AssociationConnector Association="MedimallModel.FK_VC" ManuallyRouted="false" />
+        <AssociationConnector Association="MedimallModel.FK_DVVC" ManuallyRouted="false" />
+        <AssociationConnector Association="MedimallModel.FK_tt" ManuallyRouted="false" />
+        <AssociationConnector Association="MedimallModel.FK_Category" ManuallyRouted="false" />
+        <AssociationConnector Association="MedimallModel.FK_Pro" ManuallyRouted="false" />
+      </Diagram>
+    </edmx:Diagrams>
+  </edmx:Designer>
+</edmx:Edmx>
