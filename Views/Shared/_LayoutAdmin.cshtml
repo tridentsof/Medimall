@@ -18,6 +18,11 @@
 
     <!-- Custom styles for this template-->
     <link href="~/Vendor/css/sb-admin-2.min.css" rel="stylesheet">
+    <link href="~/Content/alertifyjs/alertify.min.css" rel="stylesheet" />
+    <link href="~/Content/alertifyjs/themes/default.min.css" rel="stylesheet" />
+
+    @Scripts.Render("~/bundles/modernizr")
+    @Scripts.Render("~/bundles/jquery")
 
 </head>
 
@@ -338,7 +343,7 @@
                 <!-- Begin Page Content -->
                 <div class="container-fluid">
 
-                   @RenderBody()
+                    @RenderBody()
 
                 </div>
                 <!-- /.container-fluid -->
@@ -346,6 +351,8 @@
             </div>
             <!-- End of Main Content -->
             <!-- Footer -->
+
+
             <footer class="sticky-footer bg-white">
                 <div class="container my-auto">
                     <div class="copyright text-center my-auto">
@@ -402,6 +409,9 @@
     <script src="~/Vendor/js/demo/chart-area-demo.js"></script>
     <script src="~/Vendor/js/demo/chart-pie-demo.js"></script>
 
+    <script src="~/Scripts/alertify.min.js"></script>
+    
+    @RenderSection("scripts", required: false)
 </body>
 
 </html>
