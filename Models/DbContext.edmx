@@ -4,7 +4,7 @@
   <edmx:Runtime>
     <!-- SSDL content -->
     <edmx:StorageModels>
-    <Schema Namespace="MedimallModel.Store" Provider="System.Data.SqlClient" ProviderManifestToken="2012" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
+      <Schema Namespace="MedimallModel.Store" Provider="System.Data.SqlClient" ProviderManifestToken="2012" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
         <EntityType Name="Account">
           <Key>
             <PropertyRef Name="AccountId" />
@@ -59,7 +59,7 @@
           <Key>
             <PropertyRef Name="CategoryId" />
           </Key>
-          <Property Name="CategoryId" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="CategoryId" Type="nvarchar" MaxLength="100" Nullable="false" />
           <Property Name="CategoryName" Type="nvarchar" MaxLength="100" />
         </EntityType>
         <EntityType Name="Delivery">
@@ -110,23 +110,14 @@
             <PropertyRef Name="ProductId" />
           </Key>
           <Property Name="ProductId" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
-          <Property Name="CategoryId" Type="int" />
+          <Property Name="CategoryId" Type="nvarchar" MaxLength="100" />
           <Property Name="ProductName" Type="nvarchar" MaxLength="100" />
-          <Property Name="UsesFor" Type="nvarchar" MaxLength="200" />
+          <Property Name="ProductImg" Type="nvarchar" MaxLength="200" />
+          <Property Name="UsesFor" Type="nvarchar(max)" />
           <Property Name="Ingredient" Type="nvarchar" MaxLength="200" />
           <Property Name="Price" Type="decimal" Precision="18" Scale="0" />
           <Property Name="Quantity" Type="int" />
           <Property Name="QuantitySold" Type="int" />
-        </EntityType>
-        <EntityType Name="sysdiagrams">
-          <Key>
-            <PropertyRef Name="diagram_id" />
-          </Key>
-          <Property Name="name" Type="nvarchar" MaxLength="128" Nullable="false" />
-          <Property Name="principal_id" Type="int" Nullable="false" />
-          <Property Name="diagram_id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
-          <Property Name="version" Type="int" />
-          <Property Name="definition" Type="varbinary(max)" />
         </EntityType>
         <EntityType Name="Voucher">
           <Key>
@@ -268,7 +259,6 @@
           <EntitySet Name="News" EntityType="Self.News" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="Payment" EntityType="Self.Payment" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="Product" EntityType="Self.Product" Schema="dbo" store:Type="Tables" />
-          <EntitySet Name="sysdiagrams" EntityType="Self.sysdiagrams" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="Voucher" EntityType="Self.Voucher" Schema="dbo" store:Type="Tables" />
           <AssociationSet Name="FK_Acc" Association="Self.FK_Acc">
             <End Role="Account" EntitySet="Account" />
@@ -311,7 +301,8 @@
             <End Role="BillDetail" EntitySet="BillDetail" />
           </AssociationSet>
         </EntityContainer>
-      </Schema></edmx:StorageModels>
+      </Schema>
+    </edmx:StorageModels>
     <!-- CSDL content -->
     <edmx:ConceptualModels>
       <Schema Namespace="MedimallModel" Alias="Self" annotation:UseStrongSpatialTypes="false" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm">
@@ -379,7 +370,7 @@
           <Key>
             <PropertyRef Name="CategoryId" />
           </Key>
-          <Property Name="CategoryId" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="CategoryId" Type="String" MaxLength="100" FixedLength="false" Unicode="true" Nullable="false" />
           <Property Name="CategoryName" Type="String" MaxLength="100" FixedLength="false" Unicode="true" />
           <NavigationProperty Name="Products" Relationship="Self.FK_Category" FromRole="Category" ToRole="Product" />
         </EntityType>
@@ -436,26 +427,17 @@
             <PropertyRef Name="ProductId" />
           </Key>
           <Property Name="ProductId" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
-          <Property Name="CategoryId" Type="Int32" />
+          <Property Name="CategoryId" Type="String" MaxLength="100" FixedLength="false" Unicode="true" />
           <Property Name="ProductName" Type="String" MaxLength="100" FixedLength="false" Unicode="true" />
-          <Property Name="UsesFor" Type="String" MaxLength="200" FixedLength="false" Unicode="true" />
+          <Property Name="ProductImg" Type="String" MaxLength="200" FixedLength="false" Unicode="true" />
+          <Property Name="UsesFor" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
           <Property Name="Ingredient" Type="String" MaxLength="200" FixedLength="false" Unicode="true" />
           <Property Name="Price" Type="Decimal" Precision="18" Scale="0" />
           <Property Name="Quantity" Type="Int32" />
+          <Property Name="QuantitySold" Type="Int32" />
           <NavigationProperty Name="BillDetails" Relationship="Self.FK_SP" FromRole="Product" ToRole="BillDetail" />
           <NavigationProperty Name="Category" Relationship="Self.FK_Category" FromRole="Product" ToRole="Category" />
           <NavigationProperty Name="ListDrugs" Relationship="Self.FK_Pro" FromRole="Product" ToRole="ListDrug" />
-          <Property Name="QuantitySold" Type="Int32" />
-        </EntityType>
-        <EntityType Name="sysdiagram">
-          <Key>
-            <PropertyRef Name="diagram_id" />
-          </Key>
-          <Property Name="name" Type="String" MaxLength="128" FixedLength="false" Unicode="true" Nullable="false" />
-          <Property Name="principal_id" Type="Int32" Nullable="false" />
-          <Property Name="diagram_id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
-          <Property Name="version" Type="Int32" />
-          <Property Name="definition" Type="Binary" MaxLength="Max" FixedLength="false" />
         </EntityType>
         <EntityType Name="Voucher">
           <Key>
@@ -598,7 +580,6 @@
           <EntitySet Name="News" EntityType="Self.News" />
           <EntitySet Name="Payments" EntityType="Self.Payment" />
           <EntitySet Name="Products" EntityType="Self.Product" />
-          <EntitySet Name="sysdiagrams" EntityType="Self.sysdiagram" />
           <EntitySet Name="Vouchers" EntityType="Self.Voucher" />
           <AssociationSet Name="FK_Acc" Association="Self.FK_Acc">
             <End Role="Account" EntitySet="Accounts" />
@@ -760,25 +741,15 @@
           <EntitySetMapping Name="Products">
             <EntityTypeMapping TypeName="MedimallModel.Product">
               <MappingFragment StoreEntitySet="Product">
-                <ScalarProperty Name="QuantitySold" ColumnName="QuantitySold" />
                 <ScalarProperty Name="ProductId" ColumnName="ProductId" />
                 <ScalarProperty Name="CategoryId" ColumnName="CategoryId" />
                 <ScalarProperty Name="ProductName" ColumnName="ProductName" />
+                <ScalarProperty Name="ProductImg" ColumnName="ProductImg" />
                 <ScalarProperty Name="UsesFor" ColumnName="UsesFor" />
                 <ScalarProperty Name="Ingredient" ColumnName="Ingredient" />
                 <ScalarProperty Name="Price" ColumnName="Price" />
                 <ScalarProperty Name="Quantity" ColumnName="Quantity" />
-              </MappingFragment>
-            </EntityTypeMapping>
-          </EntitySetMapping>
-          <EntitySetMapping Name="sysdiagrams">
-            <EntityTypeMapping TypeName="MedimallModel.sysdiagram">
-              <MappingFragment StoreEntitySet="sysdiagrams">
-                <ScalarProperty Name="name" ColumnName="name" />
-                <ScalarProperty Name="principal_id" ColumnName="principal_id" />
-                <ScalarProperty Name="diagram_id" ColumnName="diagram_id" />
-                <ScalarProperty Name="version" ColumnName="version" />
-                <ScalarProperty Name="definition" ColumnName="definition" />
+                <ScalarProperty Name="QuantitySold" ColumnName="QuantitySold" />
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>

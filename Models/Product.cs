@@ -22,8 +22,9 @@ namespace Medimall.Models
         }
     
         public int ProductId { get; set; }
-        public Nullable<int> CategoryId { get; set; }
+        public string CategoryId { get; set; }
         public string ProductName { get; set; }
+        public string ProductImg { get; set; }
         public string UsesFor { get; set; }
         public string Ingredient { get; set; }
         public Nullable<decimal> Price { get; set; }
