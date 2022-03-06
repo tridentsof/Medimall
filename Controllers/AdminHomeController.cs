@@ -21,11 +21,11 @@ namespace Medimall.Controllers
         }
 
         [HttpPost]
-        public ActionResult Login(Account model)
+        public ActionResult Login(Admin model)
         {
             if (ModelState.IsValid)
             {
-                Account account = db.Accounts.Where(a => a.UserName == model.UserName && a.Password == model.Password).FirstOrDefault();
+                Admin account = db.Admins.Where(a => a.UserName == model.UserName && a.Password == model.Password).FirstOrDefault();
 
                 if (account != null)
                 {
