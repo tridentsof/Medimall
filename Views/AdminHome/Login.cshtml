@@ -1,4 +1,4 @@
-﻿@model Medimall.Models.Account
+﻿@model Medimall.Models.Admin
 
 @{ Layout = null; }
 <!DOCTYPE html>
@@ -45,7 +45,7 @@
                                     </div>
                                     @using (Html.BeginForm("Login", "AdminHome", FormMethod.Post, new { @class = "user" }))
                                     {
-                                @Html.AntiForgeryToken()
+                              
                                                 @Html.ValidationSummary(true, "", new { @class = "text-danger" })
                                                                 <div class="form-group">
                                                                     @Html.TextBoxFor(model => model.UserName, new { @class = "form-control form-control-user", placeholder = "Tên đăng nhập..." })
