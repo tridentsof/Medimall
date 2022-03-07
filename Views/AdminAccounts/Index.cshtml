@@ -5,7 +5,7 @@
     Layout = "~/Views/Shared/_LayoutAdmin.cshtml";
 }
 
-<h2>Quản lý tài khoản</h2>
+<h2 class="text-center">Quản lý tài khoản</h2>
 
 <p>
     @Html.ActionLink("Tạo mới", "Create", "AdminAccounts", new { @class = "d-none d-sm-inline-block btn btn-sm btn-primary shadow-sm" })
@@ -64,7 +64,6 @@
         });
 
     function GetPageData(pageNum, pageSize) {
-        //After every trigger remove previous data and paging
         $("#tblData").empty();
         $("#paged").empty();
         $.getJSON("/AdminAccounts/GetPaggedData", { pageNumber: pageNum, pageSize: pageSize }, function (response) {
@@ -80,7 +79,7 @@
                     '<td>' + response.Data[i].Status + '</td>' +
                     '<td>' + response.Data[i].PowerPoint + '</td>' +
                     '<td>' + '<a onclick = "EditAccount(' + response.Data[i].AccountId + ')" class="d-none d-sm-inline-block btn btn-sm btn btn-info">' + 'Sửa <i class="fas fa-edit"></i></a>' + '</td>' +
-                    '<td>' + '<a onclick = "DeleteAccount(' + response.Data[i].AccountId + ')" class="d-none d-sm-inline-block btn btn-sm btn btn-danger ">' + 'Xóa <i class="fas fa-minus-circle"></i></a>' + '</td>' +
+                    '<td>' + '<a onclick = "DeleteAccountt(' + response.Data[i].AccountId + ')" class="d-none d-sm-inline-block btn btn-sm btn btn-danger ">' + 'Xóa <i class="fas fa-minus-circle"></i></a>' + '</td>' +
                     '</tr>';
 
             }
@@ -99,9 +98,19 @@
         },null);
     }
 
+    function DeleteAccountt(id) {
+        alertify.confirm("Xóa", "Bạn có muốn xóa không?", function () {
+            $.ajax({
+                type: "POST",
+                url: "/AdminAccounts/DeleteAccount/" + id,
+                data: id,
+                success: function (result) {
+                    window.location.href = '@Url.Action("Index","AdminAccounts")';
+                }
+            })
+        },null);
+    }
 
-
-    //This is paging temlpate ,you should just copy paste
     function PaggingTemplate(totalPage, currentPage) {
         var template = "";
         var TotalPages = totalPage;
@@ -129,7 +138,7 @@
         }
 
         template = "<p>Trang " + CurrentPage + " trong " + TotalPages + " trang</p>"
-        template = template + '<ul style="list-style-type:none;display:flex;margin-left:36%" class="pager">' +
+        template = template + '<ul style="list-style-type:none;display:flex;margin-left:-3%" class="pager">' +
             '<li class="previous"><a href="#" onclick="GetPageData(' + FirstPage + ')"><i class="fa fa-fast-backward"></i>&nbsp;Đầu</a></li>' +
             '<li><a href="#" onclick="GetPageData(' + BackwardOne + ')"><i class="glyphicon glyphicon-backward"></i></a>';
 

@@ -18,6 +18,8 @@ namespace Medimall
                 url: "{controller}/{action}/{id}",
                 defaults: new { controller = "AdminHome", action = "Login", id = UrlParameter.Optional }
             );
+
+            routes.RouteExistingFiles = true;
         }
     }
 }

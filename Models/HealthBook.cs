@@ -11,15 +11,22 @@ namespace Medimall.Models
 {
     using System;
     using System.Collections.Generic;
-    
+    using System.ComponentModel.DataAnnotations;
+
     public partial class HealthBook
     {
         public int BookId { get; set; }
         public Nullable<int> AccountId { get; set; }
         public Nullable<bool> IsVaccinated { get; set; }
         public Nullable<bool> IsCovid { get; set; }
+        [DataType(DataType.Date)]
+        [DisplayFormat(DataFormatString = "{0:yyyy-MM-dd}", ApplyFormatInEditMode = true)]
         public Nullable<System.DateTime> DoseOne { get; set; }
+        [DataType(DataType.Date)]
+        [DisplayFormat(DataFormatString = "{0:yyyy-MM-dd}", ApplyFormatInEditMode = true)]
         public Nullable<System.DateTime> DoseTwo { get; set; }
+        [DataType(DataType.Date)]
+        [DisplayFormat(DataFormatString = "{0:yyyy-MM-dd}", ApplyFormatInEditMode = true)]
         public Nullable<System.DateTime> DoseThree { get; set; }
     
         public virtual Account Account { get; set; }
