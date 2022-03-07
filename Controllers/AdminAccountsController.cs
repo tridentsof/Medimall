@@ -62,6 +62,7 @@ namespace Medimall.Controllers
             {
                 db.Accounts.Add(account);
                 db.SaveChanges();
+                TempData["SuccessMess"] = "Tạo thành công!";
                 return RedirectToAction("Index");
             }
 
@@ -122,30 +123,20 @@ namespace Medimall.Controllers
             return View(account);
         }
 
-        // GET: AdminAccounts/Delete/5
-        public ActionResult Delete(int? id)
+        public JsonResult DeleteAccount(int id)
         {
-            if (id == null)
-            {
-                return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
-            }
-            Account account = db.Accounts.Find(id);
-            if (account == null)
-            {
-                return HttpNotFound();
-            }
-            return View(account);
-        }
+            bool result = false;
+            Account account = db.Accounts.Where(a => a.AccountId == id).SingleOrDefault();
 
-        // POST: AdminAccounts/Delete/5
-        [HttpPost, ActionName("Delete")]
-        [ValidateAntiForgeryToken]
-        public ActionResult DeleteConfirmed(int id)
-        {
-            Account account = db.Accounts.Find(id);
-            db.Accounts.Remove(account);
-            db.SaveChanges();
-            return RedirectToAction("Index");
+            if(account != null)
+            {
+                db.Accounts.Remove(account);
+                TempData["SuccessMess"] = "Xóa thành công!";
+                db.SaveChanges();
+                result = true;
+            }
+
+            return Json(result, JsonRequestBehavior.AllowGet);
         }
 
         protected override void Dispose(bool disposing)
