@@ -10,11 +10,11 @@
 <p>
     @Html.ActionLink("Tạo mới", "Create", "AdminAccounts", new { @class = "d-none d-sm-inline-block btn btn-sm btn-primary shadow-sm" })
 </p>
-<table class="table">
+<table class="table table-bordered">
     <thead>
 
         <tr>
-            <th>
+            <th >
                 @Html.DisplayNameFor(model => model.UserName)
             </th>
             <th>
@@ -23,23 +23,12 @@
             <th>
                 @Html.DisplayNameFor(model => model.Phone)
             </th>
-            <th>
-                @Html.DisplayNameFor(model => model.Email)
-            </th>
-            <th>
-                @Html.DisplayNameFor(model => model.Address)
-            </th>
-            <th>
-                @Html.DisplayNameFor(model => model.BirthDay)
-            </th>
+            
             <th>
                 @Html.DisplayNameFor(model => model.Status)
             </th>
             <th>
-                @Html.DisplayNameFor(model => model.PowerPoint)
-            </th>
-            <th>
-                Action
+                Tùy chỉnh
             </th>
         </tr>
     </thead>
@@ -69,17 +58,22 @@
         $.getJSON("/AdminAccounts/GetPaggedData", { pageNumber: pageNum, pageSize: pageSize }, function (response) {
             var rowData = "";
             for (var i = 0; i < response.Data.length; i++) {
+                //var convertStatus = function () {
+                //    if (response.Data[i].Status == 1)
+                //        return 'Mở'
+                //    else {
+                //        return 'Đóng'
+                //    }
+                //}
+
                 rowData = rowData +
                     '<tr><td>' + response.Data[i].UserName + '</td>'
                     + '<td>' + response.Data[i].FullName + '</td>' +
                     '<td>' + response.Data[i].Phone + '</td>' +
-                    '<td>' + response.Data[i].Email + '</td>' +
-                    '<td>' + response.Data[i].Address + '</td>' +
-                    '<td>' + response.Data[i].BirthDay + '</td>' +
                     '<td>' + response.Data[i].Status + '</td>' +
-                    '<td>' + response.Data[i].PowerPoint + '</td>' +
-                    '<td>' + '<a onclick = "EditAccount(' + response.Data[i].AccountId + ')" class="d-none d-sm-inline-block btn btn-sm btn btn-info">' + 'Sửa <i class="fas fa-edit"></i></a>' + '</td>' +
-                    '<td>' + '<a onclick = "DeleteAccountt(' + response.Data[i].AccountId + ')" class="d-none d-sm-inline-block btn btn-sm btn btn-danger ">' + 'Xóa <i class="fas fa-minus-circle"></i></a>' + '</td>' +
+                    '<td>' + '<a onclick = "EditAccount(' + response.Data[i].AccountId + ')" class="d-none d-sm-inline-block btn btn-sm btn btn-info">' + 'Sửa <i class="fas fa-edit"></i></a>' +
+                    '<a style="margin-left:15px" onclick = "DeleteAccountt(' + response.Data[i].AccountId + ')" class="d-none d-sm-inline-block btn btn-sm btn btn-danger ">' + 'Xóa <i class="fas fa-minus-circle"></i></a>' +
+                    '</td>' +
                     '</tr>';
 
             }

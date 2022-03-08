@@ -20,14 +20,14 @@ namespace Medimall.Models
         {
             this.Billings = new HashSet<Billing>();
         }
-          
+
         [Display(Name = "Mã đơn vị vận chuyển")]
         public int DeliveryId { get; set; }
         [Required(ErrorMessage = "Không được để trống")]
         [Display(Name = "Tên đơn vị vận chuyển")]
         public string DeliveryName { get; set; }
         public Nullable<decimal> DeliveryPrice { get; set; }
-    
+
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
         public virtual ICollection<Billing> Billings { get; set; }
     }

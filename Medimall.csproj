@@ -139,6 +139,7 @@
     </Compile>
     <Compile Include="Helper\PagedData.cs" />
     <Compile Include="Helper\Pagination.cs" />
+    <Compile Include="Helper\ValidateFileAttribute.cs" />
     <Compile Include="Infrastructure\CustomAuthenticationAdminFilter.cs" />
     <Compile Include="Models\Account.cs">
       <DependentUpon>DbContext.tt</DependentUpon>
@@ -192,6 +193,7 @@
       <DependentUpon>DbContext.tt</DependentUpon>
     </Compile>
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="ViewModels\AccountViewModel.cs" />
   </ItemGroup>
   <ItemGroup>
     <Content Include="Content\alertifyjs\alertify.css" />
@@ -240,6 +242,7 @@
       <DependentUpon>DbContext.edmx</DependentUpon>
     </Content>
     <None Include="Scripts\jquery-3.4.1.intellisense.js" />
+    <Content Include="Scripts\importImage.js" />
     <Content Include="Scripts\jquery-3.4.1.js" />
     <Content Include="Scripts\jquery-3.4.1.min.js" />
     <Content Include="Scripts\jquery-3.4.1.slim.js" />
@@ -251,6 +254,7 @@
     <Content Include="Scripts\jquery.validate.unobtrusive.min.js" />
     <Content Include="Scripts\lazyLoadAccounts.js" />
     <Content Include="Scripts\modernizr-2.8.3.js" />
+    <Content Include="Scripts\onload.js" />
     <Content Include="Vendor\css\sb-admin-2.css" />
     <Content Include="Vendor\css\sb-admin-2.min.css" />
     <Content Include="Vendor\img\dots_2.gif" />
@@ -2111,6 +2115,7 @@
   <ItemGroup>
     <Folder Include="App_Data\" />
     <Folder Include="Data\" />
+    <Folder Include="Images\avatar\" />
     <Folder Include="img\avatar\" />
     <Folder Include="img\banner\" />
     <Folder Include="img\icon\" />

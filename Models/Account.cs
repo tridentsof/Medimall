@@ -9,9 +9,12 @@
 
 namespace Medimall.Models
 {
+    using Medimall.Helper;
     using System;
     using System.Collections.Generic;
     using System.ComponentModel.DataAnnotations;
+    using System.ComponentModel.DataAnnotations.Schema;
+    using System.Web;
 
     public partial class Account
     {
@@ -22,10 +25,10 @@ namespace Medimall.Models
             this.ListDrugs = new HashSet<ListDrug>();
             this.Billings = new HashSet<Billing>();
         }
-    
+
         public int AccountId { get; set; }
         [Required(ErrorMessage = "Không được để trống")]
-        [Display(Name ="Tên đăng nhập")]
+        [Display(Name = "Tên đăng nhập")]
         public string UserName { get; set; }
         [Required(ErrorMessage = "Không được để trống")]
         [Display(Name = "Mật khẩu")]
@@ -33,7 +36,6 @@ namespace Medimall.Models
         [Required(ErrorMessage = "Không được để trống")]
         [Display(Name = "Họ tên")]
         public string FullName { get; set; }
-        public string Avatar { get; set; }
         [Display(Name = "Số điện thoại")]
         public string Phone { get; set; }
         [Display(Name = "Email")]
@@ -52,12 +54,19 @@ namespace Medimall.Models
         public string ActiveCode { get; set; }
         [Display(Name = "Điểm thưởng")]
         public Nullable<int> PowerPoint { get; set; }
-    
+
+        [Display(Name = "Avatar")]
+        [NotMapped]
+        [ValidateFile]
+        public HttpPostedFileBase Photo { get; set; }
+
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
         public virtual ICollection<HealthBook> HealthBooks { get; set; }
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
         public virtual ICollection<ListDrug> ListDrugs { get; set; }
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
         public virtual ICollection<Billing> Billings { get; set; }
+
+        
     }
 }

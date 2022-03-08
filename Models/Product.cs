@@ -43,7 +43,7 @@ namespace Medimall.Models
         public Nullable<int> Quantity { get; set; }
         [Display(Name = "Số lượng đã bán")]
         public Nullable<int> QuantitySold { get; set; }
-    
+
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
         public virtual ICollection<BillDetail> BillDetails { get; set; }
         public virtual Category Category { get; set; }
