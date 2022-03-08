@@ -25,8 +25,8 @@ namespace Medimall.Infrastructure
                 filterContext.Result = new RedirectToRouteResult(
                 new RouteValueDictionary
                 {
-                     { "controller", "AdminHome" },
-                     { "action", "Login" }
+                     { "controller", "AdminHome"},
+                     { "action", "Login"}
                 });
             }
         }

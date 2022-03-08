@@ -14,7 +14,6 @@ namespace Medimall.Controllers
         private MedimallEntities db = new MedimallEntities();
         // GET: AdminHome
 
-        [HttpGet]
         public ActionResult Login()
         {
             return View();

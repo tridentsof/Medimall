@@ -28,7 +28,7 @@ namespace Medimall.Models
         [DataType(DataType.Date)]
         [DisplayFormat(DataFormatString = "{0:yyyy-MM-dd}", ApplyFormatInEditMode = true)]
         public Nullable<System.DateTime> DoseThree { get; set; }
-    
+
         public virtual Account Account { get; set; }
     }
 }

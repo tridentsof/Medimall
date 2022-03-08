@@ -20,7 +20,7 @@ namespace Medimall.Models
         {
             this.BillDetails = new HashSet<BillDetail>();
         }
-    
+
         public int BillId { get; set; }
         [Display(Name = "Mã tài khoản")]
         public Nullable<int> AccountId { get; set; }
@@ -38,7 +38,7 @@ namespace Medimall.Models
         public Nullable<int> PayId { get; set; }
         [Display(Name = "Trạng thái")]
         public Nullable<int> Status { get; set; }
-    
+
         public virtual Account Account { get; set; }
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
         public virtual ICollection<BillDetail> BillDetails { get; set; }

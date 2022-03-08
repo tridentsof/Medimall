@@ -9,6 +9,8 @@ using System.Web.Mvc;
 using Medimall.Models;
 using System.Linq.Dynamic;
 using Medimall.Helper;
+using System.IO;
+using Medimall.ViewModels;
 
 namespace Medimall.Controllers
 {
@@ -25,6 +27,7 @@ namespace Medimall.Controllers
         public ActionResult GetPaggedData(int pageNumber = 1, int pageSize = 6)
         {
             List<Account> listData = db.Accounts.ToList();
+
             var pagedData = Pagination.PagedResult(listData, pageNumber, pageSize);
             return Json(pagedData, JsonRequestBehavior.AllowGet);
         }
@@ -56,17 +59,27 @@ namespace Medimall.Controllers
         // more details see https://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult Create([Bind(Include = "AccountId,UserName,Password,FullName,Avatar,Phone,Email,Address,BirthDay,Status,ActiveCode,PowerPoint")] Account account)
+        public ActionResult Create([Bind(Include = "AccountId,UserName,Password,FullName,Phone,Email,Address,BirthDay,Status,ActiveCode,PowerPoint,Photo")] Account account)
         {
             if (ModelState.IsValid)
             {
                 db.Accounts.Add(account);
                 db.SaveChanges();
                 TempData["SuccessMess"] = "Tạo thành công!";
+
+                var extension = Path.GetExtension(account.Photo.FileName);
+                var path = Path.Combine(Server.MapPath("~/Images/avatar/"));
+
+                if (!Directory.Exists(path))
+                    Directory.CreateDirectory(path);
+                account.Photo.SaveAs(path + account.AccountId + extension);
+
+                ModelState.Clear();
+
                 return RedirectToAction("Index");
             }
-
-            return View(account);
+            else
+                return View(account);
         }
 
         // GET: AdminAccounts/Edit/5
@@ -78,7 +91,7 @@ namespace Medimall.Controllers
             }
             Account account = db.Accounts.Find(id);
 
-            if(account.Status == 1)
+            if (account.Status == 1)
             {
                 ViewBag.Status = "Mở";
                 ViewBag.Icon = "fas fa-toggle-on";
@@ -90,12 +103,12 @@ namespace Medimall.Controllers
                 ViewBag.Status = "Đóng";
                 ViewBag.Icon = "fas fa-toggle-off";
             }
-                
+
 
             ViewBag.AccountName = account.FullName;
             ViewBag.Point = account.PowerPoint;
             ViewBag.Phone = account.Phone;
-            
+
 
             if (account == null)
             {
@@ -109,7 +122,7 @@ namespace Medimall.Controllers
         // more details see https://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult Edit([Bind(Include = "AccountId,UserName,Password,FullName,Avatar,Phone,Email,Address,BirthDay,Status,ActiveCode,PowerPoint")] Account account)
+        public ActionResult Edit([Bind(Include = "AccountId,UserName,Password,FullName,Phone,Email,Address,BirthDay,Status,ActiveCode,PowerPoint,Photo")] Account account)
         {
             if (ModelState.IsValid)
             {
@@ -128,7 +141,7 @@ namespace Medimall.Controllers
             bool result = false;
             Account account = db.Accounts.Where(a => a.AccountId == id).SingleOrDefault();
 
-            if(account != null)
+            if (account != null)
             {
                 db.Accounts.Remove(account);
                 TempData["SuccessMess"] = "Xóa thành công!";

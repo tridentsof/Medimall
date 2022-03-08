@@ -26,7 +26,7 @@ namespace Medimall.Models
         [Required(ErrorMessage = "Không được để trống")]
         [Display(Name = "Phương thức thanh toán")]
         public string PayMethod { get; set; }
-    
+
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
         public virtual ICollection<Billing> Billings { get; set; }
     }

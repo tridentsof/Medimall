@@ -22,7 +22,7 @@ namespace Medimall.Models
         [Required(ErrorMessage = "Không được để trống")]
         [Display(Name = "Mã khách hàng")]
         public Nullable<int> AccountId { get; set; }
-    
+
         public virtual Account Account { get; set; }
         public virtual Product Product { get; set; }
     }

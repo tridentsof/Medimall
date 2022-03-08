@@ -28,7 +28,7 @@ namespace Medimall.Models
         public Nullable<int> VoucherId { get; set; }
         [Display(Name = "Tổng tiền")]
         public Nullable<decimal> Total { get; set; }
-    
+
         public virtual Billing Billing { get; set; }
         public virtual Product Product { get; set; }
         public virtual Voucher Voucher { get; set; }
