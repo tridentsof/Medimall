@@ -65,7 +65,10 @@ namespace Medimall.Controllers
             {
                 db.Accounts.Add(account);
                 db.SaveChanges();
-                TempData["SuccessMess"] = "Tạo thành công!";
+                if(account != null)
+                {
+                    TempData["SuccessMess"] = "Tạo thành công!";
+                }
 
                 var extension = Path.GetExtension(account.Photo.FileName);
                 var path = Path.Combine(Server.MapPath("~/Images/avatar/"));
