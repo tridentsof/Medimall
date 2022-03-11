@@ -14,7 +14,7 @@
     <thead>
 
         <tr>
-            <th >
+            <th>
                 @Html.DisplayNameFor(model => model.UserName)
             </th>
             <th>
@@ -23,7 +23,7 @@
             <th>
                 @Html.DisplayNameFor(model => model.Phone)
             </th>
-            
+
             <th>
                 @Html.DisplayNameFor(model => model.Status)
             </th>
@@ -48,8 +48,11 @@
 
     $(function() {
             var successMess = '@TempData["SuccessMess"]'
-            if (successMess != '')
-                alertify.success(successMess);
+        if (successMess != '') {
+            alertify.success(successMess);
+            successMess = '';
+        }
+
         });
 
     function GetPageData(pageNum, pageSize) {

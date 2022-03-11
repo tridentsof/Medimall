@@ -134,6 +134,7 @@
     <Compile Include="App_Start\RouteConfig.cs" />
     <Compile Include="Controllers\AdminAccountsController.cs" />
     <Compile Include="Controllers\AdminHomeController.cs" />
+    <Compile Include="Controllers\ProductsController.cs" />
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
@@ -2111,16 +2112,16 @@
     <Content Include="Views\AdminAccounts\Details.cshtml" />
     <Content Include="Views\AdminAccounts\Edit.cshtml" />
     <Content Include="Views\AdminAccounts\Index.cshtml" />
+    <Content Include="Views\Products\Create.cshtml" />
+    <Content Include="Views\Products\Delete.cshtml" />
+    <Content Include="Views\Products\Details.cshtml" />
+    <Content Include="Views\Products\Edit.cshtml" />
+    <Content Include="Views\Products\Index.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
     <Folder Include="Data\" />
     <Folder Include="Images\avatar\" />
-    <Folder Include="img\avatar\" />
-    <Folder Include="img\banner\" />
-    <Folder Include="img\icon\" />
-    <Folder Include="img\logo\" />
-    <Folder Include="img\products\" />
   </ItemGroup>
   <ItemGroup>
     <Content Include="fonts\glyphicons-halflings-regular.woff2" />

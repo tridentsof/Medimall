@@ -32,11 +32,13 @@ namespace Medimall.Models
         public string UserName { get; set; }
         [Required(ErrorMessage = "Không được để trống")]
         [Display(Name = "Mật khẩu")]
+        [MinLength(6, ErrorMessage = "{0} phải chứa ít nhất 6 kí tự")]
         public string Password { get; set; }
         [Required(ErrorMessage = "Không được để trống")]
         [Display(Name = "Họ tên")]
         public string FullName { get; set; }
         [Display(Name = "Số điện thoại")]
+        [Required(ErrorMessage = "Không được để trống")]
         public string Phone { get; set; }
         [Display(Name = "Email")]
         [Required(ErrorMessage = "Không được để trống")]
