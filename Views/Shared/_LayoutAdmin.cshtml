@@ -53,7 +53,7 @@
             <hr class="sidebar-divider my-0">
 
             <!-- Nav Item - Dashboard -->
-            <li class="nav-item active">
+            <li id="li-insligt" class="nav-item active">
                 <a class="nav-link" href="index.html">
                     <i class="fas fa-fw fa-tachometer-alt"></i>
                     <span>Thống kê</span>
@@ -71,8 +71,8 @@
             </div>
 
             <!-- Nav Item - Pages Collapse Menu -->
-            <li class="nav-item">
-                <a class="nav-link collapsed" href="#" data-toggle="collapse" data-target="#collapsePages"
+            <li id="li-function" class="nav-item">
+                <a class="nav-link collapsed" href="javascript:void(0)" data-toggle="collapse" data-target="#collapsePages"
                    aria-expanded="true" aria-controls="collapsePages">
                     <i class="fas fa-fw fa-folder"></i>
                     <span>Chức năng</span>
@@ -81,7 +81,7 @@
                     <div class="bg-white py-2 collapse-inner rounded">
                         <h6 class="collapse-header">Quản lý:</h6>
                         <a class="collapse-item" href="@Url.Action("Index","AdminAccounts")">Người dùng</a>
-                        <a class="collapse-item" href="#">Sản phẩm</a>
+                        <a class="collapse-item" href="@Url.Action("Index","Products")">Sản phẩm</a>
                         <a class="collapse-item" href="#">Danh mục</a>
                         <a class="collapse-item" href="#">Đơn vị vận chuyển</a>
                         <a class="collapse-item" href="#">Banner</a>
@@ -95,15 +95,15 @@
             </li>
 
             <!-- Nav Item - Charts -->
-            <li class="nav-item">
-                <a class="nav-link" href="charts.html">
+            <li id="li-chat" class="nav-item">
+                <a class="nav-link" href="@Url.Action("Index","Products")">
                     <i class="fas fa-fw fa-chart-area"></i>
                     <span>Chat</span>
                 </a>
             </li>
 
             <!-- Nav Item - Tables -->
-            <li class="nav-item">
+            <li id="li-table" class="nav-item">
                 <a class="nav-link" href="tables.html">
                     <i class="fas fa-fw fa-table"></i>
                     <span>Tables</span>
@@ -375,6 +375,13 @@
             </div>
         </div>
     </div>
+
+    <script>
+        $('#wrapper ul li a').click(function () {
+            $('#wrapper ul li').removeClass('active');
+            $(this).parent('li').addClass('active');
+        });
+    </script>
 
     <!-- Bootstrap core JavaScript-->
     <script src="~/Vendor/vendor/jquery/jquery.min.js"></script>
