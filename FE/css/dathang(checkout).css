@@ -18,6 +18,7 @@ h5 {
 
 body {
   background: var(--gray);
+  font-family: Tahoma, sans-serif;
 }
 
 .container-body {
