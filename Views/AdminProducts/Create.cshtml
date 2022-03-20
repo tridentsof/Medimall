@@ -1,24 +1,20 @@
 ﻿@model Medimall.Models.Product
 
 @{
-    ViewBag.Title = "Edit";
+    ViewBag.Title = "Create";
     Layout = "~/Views/Shared/_LayoutAdmin.cshtml";
 }
+<script src="~/Scripts/importImage.js"></script>
+<h2>Thêm sản phẩm</h2>
 
-<h2>Edit</h2>
-
-@using (Html.BeginForm())
+@using (Html.BeginForm("Create", "AdminProducts", FormMethod.Post, new { enctype = "multipart/form-data" }))
 {
     @Html.AntiForgeryToken()
-    
-    <div class="form-horizontal">
-        <h4>Product</h4>
-        <hr />
-        @Html.ValidationSummary(true, "", new { @class = "text-danger" })
-        @Html.HiddenFor(model => model.ProductId)
 
+    <div class="form-horizontal">
+        @Html.ValidationSummary(true, "", new { @class = "text-danger" })
         <div class="form-group">
-            @Html.LabelFor(model => model.CategoryId, "CategoryId", htmlAttributes: new { @class = "control-label col-md-2" })
+            @Html.LabelFor(model => model.CategoryId, "Mã danh mục", htmlAttributes: new { @class = "control-label col-md-2" })
             <div class="col-md-10">
                 @Html.DropDownList("CategoryId", null, htmlAttributes: new { @class = "form-control" })
                 @Html.ValidationMessageFor(model => model.CategoryId, "", new { @class = "text-danger" })
@@ -34,10 +30,10 @@
         </div>
 
         <div class="form-group">
-            @Html.LabelFor(model => model.ProductImg, htmlAttributes: new { @class = "control-label col-md-2" })
+            @Html.LabelFor(model => model.Photo, htmlAttributes: new { @class = "control-label col-md-2" })
             <div class="col-md-10">
-                @Html.EditorFor(model => model.ProductImg, new { htmlAttributes = new { @class = "form-control" } })
-                @Html.ValidationMessageFor(model => model.ProductImg, "", new { @class = "text-danger" })
+                @Html.TextBoxFor(model => model.Photo, new { @class = "form-control", type = "file", name = "Photo" })
+                @Html.ValidationMessageFor(model => model.Photo, "", new { @class = "text-danger", id = "validationTxt" })
             </div>
         </div>
 
@@ -81,14 +77,11 @@
             </div>
         </div>
 
-        <div class="form-group">
-            <div class="col-md-offset-2 col-md-10">
-                <input type="submit" value="Save" class="btn btn-default" />
-            </div>
+        <div class="col-md-offset-2 col-md-10">
+            <input type="submit" value="Lưu" class="d-none d-sm-inline-block btn btn-sm btn-danger shadow-sm" />
+            @Html.ActionLink("Trở về", "Index", null, new { @class = "d-none d-sm-inline-block btn btn-sm btn-outline-danger shadow-sm" })
         </div>
     </div>
 }
 
-<div>
-    @Html.ActionLink("Back to List", "Index")
-</div>
+<script src="~/Scripts/onload-crud.js"></script>

@@ -1,0 +1,22 @@
+﻿@model IEnumerable<Medimall.Models.Voucher>
+
+<div class="content-4">
+    <img src="~/Vendor/img/banners/voucher-banner.png" />
+    <div class="ct4-vc-wrap">
+        @foreach (var item in Model)
+        {
+            <div class="ct4-voucher">
+                <div>
+                    <h1>@item.VoucherCode</h1>
+                    <h4>@item.VoucherDetail</h4>
+                    <p>*Số lượng có hạn</p>
+                </div>
+                <div>
+                    <img src="~/Vendor/img/icon/clock.png" />
+                    <button>Lưu lại</button>
+                    <p>@(item.StartDate.ToString("dd")).@(item.StartDate.ToString("MM")) - @(item.EndDate.ToString("dd")).@(item.EndDate .ToString("MM"))  </p>
+                </div>
+            </div>
+        }
+    </div>
+</div>

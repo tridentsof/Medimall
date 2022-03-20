@@ -4,7 +4,7 @@
   <edmx:Runtime>
     <!-- SSDL content -->
     <edmx:StorageModels>
-    <Schema Namespace="MedimallModel.Store" Provider="System.Data.SqlClient" ProviderManifestToken="2012" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
+      <Schema Namespace="MedimallModel.Store" Provider="System.Data.SqlClient" ProviderManifestToken="2012" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
         <EntityType Name="Account">
           <Key>
             <PropertyRef Name="AccountId" />
@@ -117,6 +117,17 @@
           <Property Name="Price" Type="decimal" Precision="18" Scale="0" />
           <Property Name="Quantity" Type="int" />
           <Property Name="QuantitySold" Type="int" />
+          <Property Name="IsForCovid" Type="bit"/>
+        </EntityType>
+        <EntityType Name="sysdiagrams">
+          <Key>
+            <PropertyRef Name="diagram_id" />
+          </Key>
+          <Property Name="name" Type="nvarchar" MaxLength="128" Nullable="false" />
+          <Property Name="principal_id" Type="int" Nullable="false" />
+          <Property Name="diagram_id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="version" Type="int" />
+          <Property Name="definition" Type="varbinary(max)" />
         </EntityType>
         <EntityType Name="Voucher">
           <Key>
@@ -125,6 +136,9 @@
           <Property Name="VoucherId" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
           <Property Name="VoucherCode" Type="nvarchar" MaxLength="20" />
           <Property Name="Percent" Type="int" />
+          <Property Name="VoucherDetail" Type="nvarchar" MaxLength="200" />
+          <Property Name="StartDate" Type="datetime"/>
+          <Property Name="EndDate" Type="datetime" />
         </EntityType>
         <Association Name="FK_Acc">
           <End Role="Account" Type="Self.Account" Multiplicity="0..1" />
@@ -258,6 +272,7 @@
           <EntitySet Name="News" EntityType="Self.News" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="Payment" EntityType="Self.Payment" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="Product" EntityType="Self.Product" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="sysdiagrams" EntityType="Self.sysdiagrams" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="Voucher" EntityType="Self.Voucher" Schema="dbo" store:Type="Tables" />
           <AssociationSet Name="FK_Acc" Association="Self.FK_Acc">
             <End Role="Account" EntitySet="Account" />
@@ -300,7 +315,8 @@
             <End Role="BillDetail" EntitySet="BillDetail" />
           </AssociationSet>
         </EntityContainer>
-      </Schema></edmx:StorageModels>
+      </Schema>
+    </edmx:StorageModels>
     <!-- CSDL content -->
     <edmx:ConceptualModels>
       <Schema Namespace="MedimallModel" Alias="Self" annotation:UseStrongSpatialTypes="false" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm">
@@ -432,9 +448,20 @@
           <Property Name="Price" Type="Decimal" Precision="18" Scale="0" />
           <Property Name="Quantity" Type="Int32" />
           <Property Name="QuantitySold" Type="Int32" />
+          <Property Name="IsForCovid" Type="Boolean"/>
           <NavigationProperty Name="BillDetails" Relationship="Self.FK_SP" FromRole="Product" ToRole="BillDetail" />
           <NavigationProperty Name="Category" Relationship="Self.FK_Category" FromRole="Product" ToRole="Category" />
           <NavigationProperty Name="ListDrugs" Relationship="Self.FK_Pro" FromRole="Product" ToRole="ListDrug" />
+        </EntityType>
+        <EntityType Name="sysdiagram">
+          <Key>
+            <PropertyRef Name="diagram_id" />
+          </Key>
+          <Property Name="name" Type="String" MaxLength="128" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="principal_id" Type="Int32" Nullable="false" />
+          <Property Name="diagram_id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="version" Type="Int32" />
+          <Property Name="definition" Type="Binary" MaxLength="Max" FixedLength="false" />
         </EntityType>
         <EntityType Name="Voucher">
           <Key>
@@ -443,6 +470,9 @@
           <Property Name="VoucherId" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
           <Property Name="VoucherCode" Type="String" MaxLength="20" FixedLength="false" Unicode="true" />
           <Property Name="Percent" Type="Int32" />
+          <Property Name="VoucherDetail" Type="String" MaxLength="200" FixedLength="false" Unicode="true" />
+          <Property Name="StartDate" Type="DateTime" Precision="3" />
+          <Property Name="EndDate" Type="DateTime" Precision="3" />
           <NavigationProperty Name="BillDetails" Relationship="Self.FK_VC" FromRole="Voucher" ToRole="BillDetail" />
         </EntityType>
         <Association Name="FK_Acc">
@@ -577,6 +607,7 @@
           <EntitySet Name="News" EntityType="Self.News" />
           <EntitySet Name="Payments" EntityType="Self.Payment" />
           <EntitySet Name="Products" EntityType="Self.Product" />
+          <EntitySet Name="sysdiagrams" EntityType="Self.sysdiagram" />
           <EntitySet Name="Vouchers" EntityType="Self.Voucher" />
           <AssociationSet Name="FK_Acc" Association="Self.FK_Acc">
             <End Role="Account" EntitySet="Accounts" />
@@ -746,6 +777,18 @@
                 <ScalarProperty Name="Price" ColumnName="Price" />
                 <ScalarProperty Name="Quantity" ColumnName="Quantity" />
                 <ScalarProperty Name="QuantitySold" ColumnName="QuantitySold" />
+                <ScalarProperty Name="IsForCovid" ColumnName="IsForCovid" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="sysdiagrams">
+            <EntityTypeMapping TypeName="MedimallModel.sysdiagram">
+              <MappingFragment StoreEntitySet="sysdiagrams">
+                <ScalarProperty Name="name" ColumnName="name" />
+                <ScalarProperty Name="principal_id" ColumnName="principal_id" />
+                <ScalarProperty Name="diagram_id" ColumnName="diagram_id" />
+                <ScalarProperty Name="version" ColumnName="version" />
+                <ScalarProperty Name="definition" ColumnName="definition" />
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>
@@ -755,6 +798,9 @@
                 <ScalarProperty Name="VoucherId" ColumnName="VoucherId" />
                 <ScalarProperty Name="VoucherCode" ColumnName="VoucherCode" />
                 <ScalarProperty Name="Percent" ColumnName="Percent" />
+                <ScalarProperty Name="VoucherDetail" ColumnName="VoucherDetail" />
+                <ScalarProperty Name="StartDate" ColumnName="StartDate" />
+                <ScalarProperty Name="EndDate" ColumnName="EndDate" />
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>

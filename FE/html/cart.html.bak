@@ -10,7 +10,7 @@
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Varela+Round&display=swap" rel="stylesheet">
-    <link href="../css/cart.css" rel="stylesheet" />
+    <link rel="stylesheet" href="~/css/cart.css">
 </head>
 <body>
     <div class="cart-page">
@@ -84,7 +84,7 @@
         </form>
         </div>
     </div>
-        <script type="text/javascript" src="../js/cart.js">  
+        <script type="text/javascript" src="/FE/js/cart.js">  
         </script>
         <script>
              function myFunction(){

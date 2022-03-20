@@ -9,9 +9,12 @@
 
 namespace Medimall.Models
 {
+    using Medimall.Helper;
     using System;
     using System.Collections.Generic;
     using System.ComponentModel.DataAnnotations;
+    using System.ComponentModel.DataAnnotations.Schema;
+    using System.Web;
 
     public partial class Product
     {
@@ -43,6 +46,13 @@ namespace Medimall.Models
         public Nullable<int> Quantity { get; set; }
         [Display(Name = "Số lượng đã bán")]
         public Nullable<int> QuantitySold { get; set; }
+        [Display(Name = "Dành cho covid")]
+        public Nullable<bool> IsForCovid { get; set; }
+
+        [Display(Name = "Picture")]
+        [NotMapped]
+        [ValidateFile]
+        public HttpPostedFileBase Photo { get; set; }
 
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
         public virtual ICollection<BillDetail> BillDetails { get; set; }

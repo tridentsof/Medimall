@@ -28,6 +28,11 @@ namespace Medimall.Models
         [Required(ErrorMessage = "Không được để trống")]
         [Display(Name = "Phần trăm khuyến mãi")]
         public Nullable<int> Percent { get; set; }
+        [Required(ErrorMessage = "Không được để trống")]
+        [Display(Name = "Nội dung")]
+        public string VoucherDetail { get; set; }
+        public DateTime StartDate { get; set; }
+        public DateTime EndDate { get; set; }
 
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
         public virtual ICollection<BillDetail> BillDetails { get; set; }

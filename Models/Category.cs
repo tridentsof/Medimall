@@ -9,9 +9,12 @@
 
 namespace Medimall.Models
 {
+    using Medimall.Helper;
     using System;
     using System.Collections.Generic;
     using System.ComponentModel.DataAnnotations;
+    using System.ComponentModel.DataAnnotations.Schema;
+    using System.Web;
 
     public partial class Category
     {
@@ -26,6 +29,11 @@ namespace Medimall.Models
         [Required(ErrorMessage = "Không được để trống")]
         [Display(Name = "Tên danh mục")]
         public string CategoryName { get; set; }
+
+        [Display(Name = "Picture")]
+        [NotMapped]
+        [ValidateFile]
+        public HttpPostedFileBase Photo { get; set; }
 
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
         public virtual ICollection<Product> Products { get; set; }

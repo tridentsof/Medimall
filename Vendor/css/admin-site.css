@@ -1,0 +1,67 @@
+﻿.pager {
+    display: flex;
+    text-align: center;
+
+}
+
+    .pager li {
+        margin: 0 auto;
+        list-style: none;
+    }
+
+        .pager li a {
+            color: #858796;
+        }
+
+            .pager li a:hover {
+                text-decoration: none;
+            }
+
+.page-number {
+    transition: 0.5s;
+    padding-left: 10px;
+    border-radius: 3px;
+    padding-top: 6px;
+    padding-bottom: 6px;
+    color: white!important;
+    background-color: #4e73df;
+    margin-left:3px;
+}
+
+    .page-number:hover {
+        color: white;
+        background-color: #4e73df;
+    }
+
+.previous {
+    border-radius:4px;
+    padding: 5px 5px 5px 5px;
+    transition: 0.5s;
+}
+
+    .previous:hover {
+        background: #4e73df;
+    }
+
+        .previous:hover a {
+            color: white !important;
+        }
+
+.next {
+    border-radius: 4px;
+    padding: 5px 5px 5px 5px;
+    transition: 0.5s;
+}
+
+    .next:hover {
+        background: #4e73df;
+    }
+
+        .next:hover a {
+            color: white !important;
+        }
+
+#paged-product p{
+    margin-left:3%;
+    text-align:center;
+}
