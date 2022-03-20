@@ -117,6 +117,7 @@
           <Property Name="Price" Type="decimal" Precision="18" Scale="0" />
           <Property Name="Quantity" Type="int" />
           <Property Name="QuantitySold" Type="int" />
+          <Property Name="IsForCovid" Type="bit"/>
         </EntityType>
         <EntityType Name="sysdiagrams">
           <Key>
@@ -135,6 +136,9 @@
           <Property Name="VoucherId" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
           <Property Name="VoucherCode" Type="nvarchar" MaxLength="20" />
           <Property Name="Percent" Type="int" />
+          <Property Name="VoucherDetail" Type="nvarchar" MaxLength="200" />
+          <Property Name="StartDate" Type="datetime"/>
+          <Property Name="EndDate" Type="datetime" />
         </EntityType>
         <Association Name="FK_Acc">
           <End Role="Account" Type="Self.Account" Multiplicity="0..1" />
@@ -444,6 +448,7 @@
           <Property Name="Price" Type="Decimal" Precision="18" Scale="0" />
           <Property Name="Quantity" Type="Int32" />
           <Property Name="QuantitySold" Type="Int32" />
+          <Property Name="IsForCovid" Type="Boolean"/>
           <NavigationProperty Name="BillDetails" Relationship="Self.FK_SP" FromRole="Product" ToRole="BillDetail" />
           <NavigationProperty Name="Category" Relationship="Self.FK_Category" FromRole="Product" ToRole="Category" />
           <NavigationProperty Name="ListDrugs" Relationship="Self.FK_Pro" FromRole="Product" ToRole="ListDrug" />
@@ -465,6 +470,9 @@
           <Property Name="VoucherId" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
           <Property Name="VoucherCode" Type="String" MaxLength="20" FixedLength="false" Unicode="true" />
           <Property Name="Percent" Type="Int32" />
+          <Property Name="VoucherDetail" Type="String" MaxLength="200" FixedLength="false" Unicode="true" />
+          <Property Name="StartDate" Type="DateTime" Precision="3" />
+          <Property Name="EndDate" Type="DateTime" Precision="3" />
           <NavigationProperty Name="BillDetails" Relationship="Self.FK_VC" FromRole="Voucher" ToRole="BillDetail" />
         </EntityType>
         <Association Name="FK_Acc">
@@ -769,6 +777,7 @@
                 <ScalarProperty Name="Price" ColumnName="Price" />
                 <ScalarProperty Name="Quantity" ColumnName="Quantity" />
                 <ScalarProperty Name="QuantitySold" ColumnName="QuantitySold" />
+                <ScalarProperty Name="IsForCovid" ColumnName="IsForCovid" />
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>
@@ -789,6 +798,9 @@
                 <ScalarProperty Name="VoucherId" ColumnName="VoucherId" />
                 <ScalarProperty Name="VoucherCode" ColumnName="VoucherCode" />
                 <ScalarProperty Name="Percent" ColumnName="Percent" />
+                <ScalarProperty Name="VoucherDetail" ColumnName="VoucherDetail" />
+                <ScalarProperty Name="StartDate" ColumnName="StartDate" />
+                <ScalarProperty Name="EndDate" ColumnName="EndDate" />
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>

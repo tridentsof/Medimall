@@ -71,7 +71,7 @@ namespace Medimall.Controllers
                 }
 
                 var extension = Path.GetExtension(account.Photo.FileName);
-                var path = Path.Combine(Server.MapPath("~/Images/avatar/"));
+                var path = Path.Combine(Server.MapPath("~/Vendor/img/avatar"));
 
                 if (!Directory.Exists(path))
                     Directory.CreateDirectory(path);

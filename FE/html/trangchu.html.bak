@@ -1,0 +1,2079 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Medimall</title>
+
+  <!-- Icon -->
+  <link rel="stylesheet" href="../fontawesome-free-5.15.4-web/css/all.min.css">
+  <!-- Reset css -->
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/normalize/8.0.1/normalize.min.css"
+    integrity="sha512-NhSC1YmyruXifcj/KFRWoC561YpHpc5Jtzgvbuzx5VozKpWvQ+4nXhPdFgmx8xqexRcpAglTj9sIBWINXa8x5w=="
+    crossorigin="anonymous" referrerpolicy="no-referrer" />
+  <!-- Bootstrap4, FontAwesome -->
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.6.1/dist/css/bootstrap.min.css">
+  <script src="https://cdn.jsdelivr.net/npm/jquery@3.5.1/dist/jquery.slim.min.js"></script>
+  <script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.1/dist/umd/popper.min.js"></script>
+  <script src="https://cdn.jsdelivr.net/npm/bootstrap@4.6.1/dist/js/bootstrap.bundle.min.js"></script>
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css
+  ">
+  <!-- Font -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Dosis:wght@200;300;400;500;600;700;800&display=swap"
+    rel="stylesheet">
+
+  <link rel="shortcut icon" type="image/png" href="../img/Icon.png" />
+  <link rel="stylesheet" href="../css/trangchu.css">
+</head>
+
+<body>
+  <header>
+    <div class="container-header">
+      <div class="header-top">
+        <div class="header-top-left">
+          <p>Hotline Đặt hàng (Miễn phí)</p>
+          <p><i class="fas fa-phone-alt fa-fw fa-xs"></i>1800 6821</p>
+        </div>
+        <div class="header-top-right">
+          <p>Sống Khoẻ</p>
+          <p>Nhãn hàng Medimall</p>
+          <p><i class="fas fa-map-marker-alt fa-fw fa-xs"></i>863 cửa hàng</p>
+          <div class="dropdown">
+            <button type="button" class="language-btn" data-toggle="dropdown">
+              <i class="fas fa-star fa-fw fa-xs"></i>Tiếng Việt&emsp;<i class="fas fa-chevron-down"></i></i>
+            </button>
+            <div class="dropdown-menu">
+              <div class="dropdown-item">
+                <img src="../img/england-flag.png">
+                <div>
+                  <p>Tiếng Anh</p>
+                  <p>Coming soon</p>
+                </div>
+              </div>
+            </div>
+          </div>
+          <button type="button" class="login-btn" data-toggle="modal" data-target="#myModal">
+            Đăng nhập&ensp;<i class="far fa-user fa-fw fa-lg"></i>
+          </button>
+          <!-- Đăng nhập -->
+          <div id="myModal" class="modal fade " role="dialog">
+            <div class="modal-dialog modal-dialog-centered modal-lg">
+              <!-- Đăng nhập content-->
+              <div class="modal-content center">
+                <div class="modal-body">
+                  <div class="modal-left">
+                    <img src="../img/banner.png">
+                    <div class="modal-left-text">
+                      <h2>Medimall xin chào !</h2>
+                      <p>Hãy đăng nhập để được hưởng các đặc quyền riêng dành cho thành viên
+                      </p>
+                      <div>
+                        Bạn đã là thành viên Medicall vui lòng nhấp <a href="#">tạo mật khẩu</a> để tiếp tục sử dụng.
+                        Tất cả thông tin tài khoản và điểm tích lũy đều không thay đổi
+                      </div>
+                    </div>
+                  </div>
+                  <div class="form-login">
+                    <h1>Đăng nhập</h1>
+                    <form action="/action_page.php" class="needs-validation" novalidate>
+                      <div class="form-group">
+                        <input type="text" class="form-control" id="uname" placeholder="Số điện thoại của bạn"
+                          name="uname" required>
+                        <div class="valid-feedback">Hợp lệ.</div>
+                        <div class="invalid-feedback">Vui lòng điền vào trường này.</div>
+                      </div>
+                      <div class="form-group">
+                        <input type="password" class="form-control" id="pwd" placeholder="Mật khẩu" name="pswd"
+                          required>
+                        <div class="valid-feedback">Hợp lệ.</div>
+                        <div class="invalid-feedback">Vui lòng điền vào trường này.</div>
+                      </div>
+                      <h2><a href="#">Quên mật khẩu?</a></h2>
+                      <button type="submit" class="btn">Đăng Nhập</button>
+                      <h3>Bạn chưa có tài khoản Pharmacity?</h3>
+                      <a href="#">Đăng ký ngay</a>
+                    </form>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+      <div class="header-main">
+        <div class="logo">
+          <div><img src="../img/Logo.png"></div>
+          <p>Nhà thuốc tiện lợi</p>
+        </div>
+        <div class="dropdown-category">
+          <button class="dropbtn">
+            <i class="fas fa-bars fa-fw"></i>Danh mục<i class="fas fa-chevron-down fa-fw"></i>
+          </button>
+          <div class="dropdown-content">
+            <a href="#">Link 1</a>
+            <a href="#">Link 2</a>
+            <a href="#">Link 3</a>
+          </div>
+        </div>
+        <div class="search">
+          <input type="text" placeholder="Bạn đang tìm gì hôm nay...">
+        </div>
+        <div class="cart">
+          Giỏ hàng
+          <img src="../img/shopping-cart.png" alt="">
+        </div>
+      </div>
+    </div>
+  </header>
+
+  <div class="container-body">
+    <div class="content-1">
+      <div id="carousel1" class="carousel slide" data-ride="carousel">
+        <ol class="carousel-indicators">
+          <li data-target="#carousel1" data-slide-to="0" class="active"></li>
+          <li data-target="#carousel1" data-slide-to="1"></li>
+          <li data-target="#carousel1" data-slide-to="2"></li>
+        </ol>
+        <div class="carousel-inner">
+          <div class="carousel-item active">
+            <img class="d-block w-100" src="../img/1.png" alt="First slide">
+          </div>
+          <div class="carousel-item">
+            <img class="d-block w-100" src="../img/2.png" alt="Second slide">
+          </div>
+          <div class="carousel-item">
+            <img class="d-block w-100" src="../img/3.png" alt="Third slide">
+          </div>
+          <div class="carousel-item">
+            <img class="d-block w-100" src="../img/4.png" alt="Third slide">
+          </div>
+          <div class="carousel-item">
+            <img class="d-block w-100" src="../img/5.png" alt="Third slide">
+          </div>
+          <div class="carousel-item">
+            <img class="d-block w-100" src="../img/6.png" alt="Third slide">
+          </div>
+        </div>
+        <a class="carousel-control-prev" href="#carousel1" role="button" data-slide="prev">
+          <span class="carousel-control-prev-icon" aria-hidden="true">
+            <img src="../img/left-arrow.png" alt="">
+          </span>
+          <span class="sr-only">Previous</span>
+        </a>
+        <a class="carousel-control-next" href="#carousel1" role="button" data-slide="next">
+          <span class="carousel-control-next-icon" aria-hidden="true">
+            <img src="../img/right-arrow.png" alt="">
+          </span>
+          <span class="sr-only">Next</span>
+        </a>
+      </div>
+      <div class="ct1-right">
+        <img src="../img/7.png" alt="">
+        <img src="../img/8.png" alt="">
+      </div>
+    </div>
+
+    <div class="content-2">
+      <h1>Danh mục sản phẩm</h1>
+      <div class="ct2-wrap">
+        <div class="ct2-item">
+          <img src="../img/sp (1).png" alt="">
+          <p>Dược phẩm</p>
+        </div>
+        <div class="ct2-item">
+          <img src="../img/sp (2).png" alt="">
+          <p>Chăm sóc sức khoẻ</p>
+        </div>
+        <div class="ct2-item">
+          <img src="../img/sp (3).png" alt="">
+          <p>Chăm sóc cá nhân</p>
+        </div>
+        <div class="ct2-item">
+          <img src="../img/sp (4).png" alt="">
+          <p>Sản phẩm tiện lợi</p>
+        </div>
+        <div class="ct2-item">
+          <img src="../img/sp (5).png" alt="">
+          <p>Thực phẩm chức năng</p>
+        </div>
+        <div class="ct2-item">
+          <img src="../img/sp (6).png" alt="">
+          <p>Mẹ và bé</p>
+        </div>
+        <div class="ct2-item">
+          <img src="../img/sp (7).png" alt="">
+          <p>Chăm sóc sắc đẹp</p>
+        </div>
+        <div class="ct2-item">
+          <img src="../img/sp (8).png" alt="">
+          <p>Thiết bị y tế</p>
+        </div>
+      </div>
+    </div>
+
+    <div class="content-3">
+      <div class="ct3-main">
+        <h1>Chuyên mục covid-19</h1>
+        <div>
+          <div class="ct3-item">
+            <img src="../img/icon-1.png">
+            <p>TRIỆU CHỨNG COVID-19</p>
+            <a href="#">Tìm hiểu thêm</a>
+          </div>
+          <div class="ct3-item">
+            <img src="../img/icon-2.png">
+            <p>BỆNH NHÂN COVID-19</p>
+            <a href="#">Tìm hiểu thêm</a>
+          </div>
+          <div class="ct3-item">
+            <img src="../img/icon-3.png">
+            <p>CHĂM SÓC BỆNH NHÂN COVID-19</p>
+            <a href="#">Tìm hiểu thêm</a>
+          </div>
+          <div class="ct3-item">
+            <img src="../img/icon-4.png">
+            <p>THUỐC ĐIỀU TRỊ COVID-19</p>
+            <a href="#">Tìm hiểu thêm</a>
+          </div>
+          <div class="ct3-item">
+            <img src="../img/icon-5.png">
+            <p>THIẾT BỊ ĐO SPO2</p>
+            <a href="#">Tìm hiểu thêm</a>
+          </div>
+          <div class="ct3-item">
+            <img src="../img/icon-6.png">
+            <p>ĐƯỜNG DÂY NÓNG</p>
+            <a href="#">Tìm hiểu thêm</a>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <div class="content-4">
+      <img src="../img/voucher-banner.png" alt="">
+      <div class="ct4-vc-wrap">
+        <div class="ct4-voucher">
+          <div>
+            <h1>Voucher 33k</h1>
+            <h4>Áp dụng cho đơn hàng Online từ <br>220.000đ trở lên</h4>
+            <p>*Số lượng có hạn</p>
+          </div>
+          <div>
+            <img src="../img/clock.png" alt="">
+            <button>Lưu lại</button>
+            <p>01.03-08.03</p>
+          </div>
+        </div>
+        <div class="ct4-voucher">
+          <div>
+            <h1>Voucher 33k</h1>
+            <h4>Áp dụng cho đơn hàng Online từ 220.000đ trở lên</h4>
+            <p>*Số lượng có hạn</p>
+          </div>
+          <div>
+            <img src="../img/clock.png" alt="">
+            <button>Lưu lại</button>
+            <p>01.03-08.03</p>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <div class="main-content">
+      <div class="ct5-wrap">
+        <div class="title">
+          <h1>TOP SẢN PHẨM PHÒNG DỊCH</h1>
+          <a href="#">Xem tất cả ></a>
+        </div>
+        <div id="carousel2" class="carousel slide" data-ride="carousel">
+          <ol class="carousel-indicators">
+            <li data-target="#carousel2" data-slide-to="0" class="active"></li>
+            <li data-target="#carousel2" data-slide-to="1"></li>
+            <li data-target="#carousel2" data-slide-to="2"></li>
+          </ol>
+          <div class="carousel-inner">
+            <div class="carousel-item active">
+              <div class="item">
+                <img src="../img/item.png" alt="">
+                <div>
+                  <p>Găng tay cao su y tế size M Vglove (100 chiếc/hộp)</p>
+                  <h4>140.000 VND/Hộp</h4>
+                </div>
+                <button>Thêm vào giỏ hàng</button>
+              </div>
+              <div class="item">
+                <img src="../img/item.png" alt="">
+                <div>
+                  <p>Găng tay cao su y tế size M Vglove (100 chiếc/hộp)</p>
+                  <h4>140.000 VND/Hộp</h4>
+                </div>
+                <button>Thêm vào giỏ hàng</button>
+              </div>
+              <div class="item">
+                <img src="../img/item.png" alt="">
+                <div>
+                  <p>Găng tay cao su y tế size M Vglove (100 chiếc/hộp)</p>
+                  <h4>140.000 VND/Hộp</h4>
+                </div>
+                <button>Thêm vào giỏ hàng</button>
+              </div>
+              <div class="item">
+                <img src="../img/item.png" alt="">
+                <div>
+                  <p>Găng tay cao su y tế size M Vglove (100 chiếc/hộp)</p>
+                  <h4>140.000 VND/Hộp</h4>
+                </div>
+                <button>Thêm vào giỏ hàng</button>
+              </div>
+              <div class="item">
+                <img src="../img/item.png" alt="">
+                <div>
+                  <p>Găng tay cao su y tế size M Vglove (100 chiếc/hộp)</p>
+                  <h4>140.000 VND/Hộp</h4>
+                </div>
+                <button>Thêm vào giỏ hàng</button>
+              </div>
+            </div>
+            <div class="carousel-item">
+              <div class="item">
+                <img src="../img/3.png" alt="">
+                <div>
+                  <p>Găng tay cao su y tế size M Vglove (100 chiếc/hộp)</p>
+                  <h4>140.000 VND/Hộp</h4>
+                </div>
+                <button>Thêm vào giỏ hàng</button>
+              </div>
+              <div class="item">
+                <img src="../img/item.png" alt="">
+                <div>
+                  <p>Găng tay cao su y tế size M Vglove (100 chiếc/hộp)</p>
+                  <h4>140.000 VND/Hộp</h4>
+                </div>
+                <button>Thêm vào giỏ hàng</button>
+              </div>
+              <div class="item">
+                <img src="../img/item.png" alt="">
+                <div>
+                  <p>Găng tay cao su y tế size M Vglove (100 chiếc/hộp)</p>
+                  <h4>140.000 VND/Hộp</h4>
+                </div>
+                <button>Thêm vào giỏ hàng</button>
+              </div>
+              <div class="item">
+                <img src="../img/item.png" alt="">
+                <div>
+                  <p>Găng tay cao su y tế size M Vglove (100 chiếc/hộp)</p>
+                  <h4>140.000 VND/Hộp</h4>
+                </div>
+                <button>Thêm vào giỏ hàng</button>
+              </div>
+              <div class="item">
+                <img src="../img/item.png" alt="">
+                <div>
+                  <p>Găng tay cao su y tế size M Vglove (100 chiếc/hộp)</p>
+                  <h4>140.000 VND/Hộp</h4>
+                </div>
+                <button>Thêm vào giỏ hàng</button>
+              </div>
+            </div>
+            <div class="carousel-item">
+              <div class="item">
+                <img src="../img/item.png" alt="">
+                <div>
+                  <p>Găng tay cao su y tế size M Vglove (100 chiếc/hộp)</p>
+                  <h4>140.000 VND/Hộp</h4>
+                </div>
+                <button>Thêm vào giỏ hàng</button>
+              </div>
+              <div class="item">
+                <img src="../img/item.png" alt="">
+                <div>
+                  <p>Găng tay cao su y tế size M Vglove (100 chiếc/hộp)</p>
+                  <h4>140.000 VND/Hộp</h4>
+                </div>
+                <button>Thêm vào giỏ hàng</button>
+              </div>
+              <div class="item">
+                <img src="../img/item.png" alt="">
+                <div>
+                  <p>Găng tay cao su y tế size M Vglove (100 chiếc/hộp)</p>
+                  <h4>140.000 VND/Hộp</h4>
+                </div>
+                <button>Thêm vào giỏ hàng</button>
+              </div>
+              <div class="item">
+                <img src="../img/item.png" alt="">
+                <div>
+                  <p>Găng tay cao su y tế size M Vglove (100 chiếc/hộp)</p>
+                  <h4>140.000 VND/Hộp</h4>
+                </div>
+                <button>Thêm vào giỏ hàng</button>
+              </div>
+              <div class="item">
+                <img src="../img/item.png" alt="">
+                <div>
+                  <p>Găng tay cao su y tế size M Vglove (100 chiếc/hộp)</p>
+                  <h4>140.000 VND/Hộp</h4>
+                </div>
+                <button>Thêm vào giỏ hàng</button>
+              </div>
+            </div>
+          </div>
+          <a class="carousel-control-prev" href="#carousel2" role="button" data-slide="prev">
+            <span class="carousel-control-prev-icon" aria-hidden="true">
+              <img src="../img//left-arrow.png" alt="">
+            </span>
+            <span class="sr-only">Previous</span>
+          </a>
+          <a class="carousel-control-next" href="#carousel2" role="button" data-slide="next">
+            <span class="carousel-control-next-icon" aria-hidden="true">
+              <img src="../img//right-arrow.png" alt="">
+            </span>
+            <span class="sr-only">Next</span>
+          </a>
+        </div>
+      </div>
+      <div class="ct5-wrap">
+        <div class="title">
+          <h1>An toàn cho trẻ đến trường</h1>
+          <a href="#">Xem tất cả ></a>
+        </div>
+        <div id="carousel3" class="carousel slide" data-ride="carousel">
+          <ol class="carousel-indicators">
+            <li data-target="#carousel3" data-slide-to="0" class="active"></li>
+            <li data-target="#carousel3" data-slide-to="1"></li>
+            <li data-target="#carousel3" data-slide-to="2"></li>
+          </ol>
+          <div class="carousel-inner">
+            <div class="carousel-item active">
+              <div class="item">
+                <img src="../img/item.png" alt="">
+                <div>
+                  <p>Găng tay cao su y tế size M Vglove (100 chiếc/hộp)</p>
+                  <h4>140.000 VND/Hộp</h4>
+                </div>
+                <button>Thêm vào giỏ hàng</button>
+              </div>
+              <div class="item">
+                <img src="../img/item.png" alt="">
+                <div>
+                  <p>Găng tay cao su y tế size M Vglove (100 chiếc/hộp)</p>
+                  <h4>140.000 VND/Hộp</h4>
+                </div>
+                <button>Thêm vào giỏ hàng</button>
+              </div>
+              <div class="item">
+                <img src="../img/item.png" alt="">
+                <div>
+                  <p>Găng tay cao su y tế size M Vglove (100 chiếc/hộp)</p>
+                  <h4>140.000 VND/Hộp</h4>
+                </div>
+                <button>Thêm vào giỏ hàng</button>
+              </div>
+              <div class="item">
+                <img src="../img/item.png" alt="">
+                <div>
+                  <p>Găng tay cao su y tế size M Vglove (100 chiếc/hộp)</p>
+                  <h4>140.000 VND/Hộp</h4>
+                </div>
+                <button>Thêm vào giỏ hàng</button>
+              </div>
+              <div class="item">
+                <img src="../img/item.png" alt="">
+                <div>
+                  <p>Găng tay cao su y tế size M Vglove (100 chiếc/hộp)</p>
+                  <h4>140.000 VND/Hộp</h4>
+                </div>
+                <button>Thêm vào giỏ hàng</button>
+              </div>
+            </div>
+            <div class="carousel-item">
+              <div class="item">
+                <img src="../img/3.png" alt="">
+                <div>
+                  <p>Găng tay cao su y tế size M Vglove (100 chiếc/hộp)</p>
+                  <h4>140.000 VND/Hộp</h4>
+                </div>
+                <button>Thêm vào giỏ hàng</button>
+              </div>
+              <div class="item">
+                <img src="../img/item.png" alt="">
+                <div>
+                  <p>Găng tay cao su y tế size M Vglove (100 chiếc/hộp)</p>
+                  <h4>140.000 VND/Hộp</h4>
+                </div>
+                <button>Thêm vào giỏ hàng</button>
+              </div>
+              <div class="item">
+                <img src="../img/item.png" alt="">
+                <div>
+                  <p>Găng tay cao su y tế size M Vglove (100 chiếc/hộp)</p>
+                  <h4>140.000 VND/Hộp</h4>
+                </div>
+                <button>Thêm vào giỏ hàng</button>
+              </div>
+              <div class="item">
+                <img src="../img/item.png" alt="">
+                <div>
+                  <p>Găng tay cao su y tế size M Vglove (100 chiếc/hộp)</p>
+                  <h4>140.000 VND/Hộp</h4>
+                </div>
+                <button>Thêm vào giỏ hàng</button>
+              </div>
+              <div class="item">
+                <img src="../img/item.png" alt="">
+                <div>
+                  <p>Găng tay cao su y tế size M Vglove (100 chiếc/hộp)</p>
+                  <h4>140.000 VND/Hộp</h4>
+                </div>
+                <button>Thêm vào giỏ hàng</button>
+              </div>
+            </div>
+            <div class="carousel-item">
+              <div class="item">
+                <img src="../img/item.png" alt="">
+                <div>
+                  <p>Găng tay cao su y tế size M Vglove (100 chiếc/hộp)</p>
+                  <h4>140.000 VND/Hộp</h4>
+                </div>
+                <button>Thêm vào giỏ hàng</button>
+              </div>
+              <div class="item">
+                <img src="../img/item.png" alt="">
+                <div>
+                  <p>Găng tay cao su y tế size M Vglove (100 chiếc/hộp)</p>
+                  <h4>140.000 VND/Hộp</h4>
+                </div>
+                <button>Thêm vào giỏ hàng</button>
+              </div>
+              <div class="item">
+                <img src="../img/item.png" alt="">
+                <div>
+                  <p>Găng tay cao su y tế size M Vglove (100 chiếc/hộp)</p>
+                  <h4>140.000 VND/Hộp</h4>
+                </div>
+                <button>Thêm vào giỏ hàng</button>
+              </div>
+              <div class="item">
+                <img src="../img/item.png" alt="">
+                <div>
+                  <p>Găng tay cao su y tế size M Vglove (100 chiếc/hộp)</p>
+                  <h4>140.000 VND/Hộp</h4>
+                </div>
+                <button>Thêm vào giỏ hàng</button>
+              </div>
+              <div class="item">
+                <img src="../img/item.png" alt="">
+                <div>
+                  <p>Găng tay cao su y tế size M Vglove (100 chiếc/hộp)</p>
+                  <h4>140.000 VND/Hộp</h4>
+                </div>
+                <button>Thêm vào giỏ hàng</button>
+              </div>
+            </div>
+          </div>
+          <a class="carousel-control-prev" href="#carousel3" role="button" data-slide="prev">
+            <span class="carousel-control-prev-icon" aria-hidden="true">
+              <img src="../img//left-arrow.png" alt="">
+            </span>
+            <span class="sr-only">Previous</span>
+          </a>
+          <a class="carousel-control-next" href="#carousel3" role="button" data-slide="next">
+            <span class="carousel-control-next-icon" aria-hidden="true">
+              <img src="../img//right-arrow.png" alt="">
+            </span>
+            <span class="sr-only">Next</span>
+          </a>
+        </div>
+      </div>
+      <div class="ct5-wrap">
+        <div class="title">
+          <h1>Bừng sắc tươi trẻ</h1>
+          <a href="#">Xem tất cả ></a>
+        </div>
+        <div id="carousel4" class="carousel slide" data-ride="carousel">
+          <ol class="carousel-indicators">
+            <li data-target="#carousel4" data-slide-to="0" class="active"></li>
+            <li data-target="#carousel4" data-slide-to="1"></li>
+            <li data-target="#carousel4" data-slide-to="2"></li>
+          </ol>
+          <div class="carousel-inner">
+            <div class="carousel-item active">
+              <div class="item">
+                <img src="../img/item.png" alt="">
+                <div>
+                  <p>Găng tay cao su y tế size M Vglove (100 chiếc/hộp)</p>
+                  <h4>140.000 VND/Hộp</h4>
+                </div>
+                <button>Thêm vào giỏ hàng</button>
+              </div>
+              <div class="item">
+                <img src="../img/item.png" alt="">
+                <div>
+                  <p>Găng tay cao su y tế size M Vglove (100 chiếc/hộp)</p>
+                  <h4>140.000 VND/Hộp</h4>
+                </div>
+                <button>Thêm vào giỏ hàng</button>
+              </div>
+              <div class="item">
+                <img src="../img/item.png" alt="">
+                <div>
+                  <p>Găng tay cao su y tế size M Vglove (100 chiếc/hộp)</p>
+                  <h4>140.000 VND/Hộp</h4>
+                </div>
+                <button>Thêm vào giỏ hàng</button>
+              </div>
+              <div class="item">
+                <img src="../img/item.png" alt="">
+                <div>
+                  <p>Găng tay cao su y tế size M Vglove (100 chiếc/hộp)</p>
+                  <h4>140.000 VND/Hộp</h4>
+                </div>
+                <button>Thêm vào giỏ hàng</button>
+              </div>
+              <div class="item">
+                <img src="../img/item.png" alt="">
+                <div>
+                  <p>Găng tay cao su y tế size M Vglove (100 chiếc/hộp)</p>
+                  <h4>140.000 VND/Hộp</h4>
+                </div>
+                <button>Thêm vào giỏ hàng</button>
+              </div>
+            </div>
+            <div class="carousel-item">
+              <div class="item">
+                <img src="../img/3.png" alt="">
+                <div>
+                  <p>Găng tay cao su y tế size M Vglove (100 chiếc/hộp)</p>
+                  <h4>140.000 VND/Hộp</h4>
+                </div>
+                <button>Thêm vào giỏ hàng</button>
+              </div>
+              <div class="item">
+                <img src="../img/item.png" alt="">
+                <div>
+                  <p>Găng tay cao su y tế size M Vglove (100 chiếc/hộp)</p>
+                  <h4>140.000 VND/Hộp</h4>
+                </div>
+                <button>Thêm vào giỏ hàng</button>
+              </div>
+              <div class="item">
+                <img src="../img/item.png" alt="">
+                <div>
+                  <p>Găng tay cao su y tế size M Vglove (100 chiếc/hộp)</p>
+                  <h4>140.000 VND/Hộp</h4>
+                </div>
+                <button>Thêm vào giỏ hàng</button>
+              </div>
+              <div class="item">
+                <img src="../img/item.png" alt="">
+                <div>
+                  <p>Găng tay cao su y tế size M Vglove (100 chiếc/hộp)</p>
+                  <h4>140.000 VND/Hộp</h4>
+                </div>
+                <button>Thêm vào giỏ hàng</button>
+              </div>
+              <div class="item">
+                <img src="../img/item.png" alt="">
+                <div>
+                  <p>Găng tay cao su y tế size M Vglove (100 chiếc/hộp)</p>
+                  <h4>140.000 VND/Hộp</h4>
+                </div>
+                <button>Thêm vào giỏ hàng</button>
+              </div>
+            </div>
+            <div class="carousel-item">
+              <div class="item">
+                <img src="../img/item.png" alt="">
+                <div>
+                  <p>Găng tay cao su y tế size M Vglove (100 chiếc/hộp)</p>
+                  <h4>140.000 VND/Hộp</h4>
+                </div>
+                <button>Thêm vào giỏ hàng</button>
+              </div>
+              <div class="item">
+                <img src="../img/item.png" alt="">
+                <div>
+                  <p>Găng tay cao su y tế size M Vglove (100 chiếc/hộp)</p>
+                  <h4>140.000 VND/Hộp</h4>
+                </div>
+                <button>Thêm vào giỏ hàng</button>
+              </div>
+              <div class="item">
+                <img src="../img/item.png" alt="">
+                <div>
+                  <p>Găng tay cao su y tế size M Vglove (100 chiếc/hộp)</p>
+                  <h4>140.000 VND/Hộp</h4>
+                </div>
+                <button>Thêm vào giỏ hàng</button>
+              </div>
+              <div class="item">
+                <img src="../img/item.png" alt="">
+                <div>
+                  <p>Găng tay cao su y tế size M Vglove (100 chiếc/hộp)</p>
+                  <h4>140.000 VND/Hộp</h4>
+                </div>
+                <button>Thêm vào giỏ hàng</button>
+              </div>
+              <div class="item">
+                <img src="../img/item.png" alt="">
+                <div>
+                  <p>Găng tay cao su y tế size M Vglove (100 chiếc/hộp)</p>
+                  <h4>140.000 VND/Hộp</h4>
+                </div>
+                <button>Thêm vào giỏ hàng</button>
+              </div>
+            </div>
+          </div>
+          <a class="carousel-control-prev" href="#carousel4" role="button" data-slide="prev">
+            <span class="carousel-control-prev-icon" aria-hidden="true">
+              <img src="../img//left-arrow.png" alt="">
+            </span>
+            <span class="sr-only">Previous</span>
+          </a>
+          <a class="carousel-control-next" href="#carousel4" role="button" data-slide="next">
+            <span class="carousel-control-next-icon" aria-hidden="true">
+              <img src="../img//right-arrow.png" alt="">
+            </span>
+            <span class="sr-only">Next</span>
+          </a>
+        </div>
+      </div>
+      <div class="ct5-wrap">
+        <div class="title">
+          <h1>Mua sản phẩm thứ 2 với giá 1.000</h1>
+          <a href="#">Xem tất cả ></a>
+        </div>
+        <div id="carousel5" class="carousel slide" data-ride="carousel">
+          <ol class="carousel-indicators">
+            <li data-target="#carousel5" data-slide-to="0" class="active"></li>
+            <li data-target="#carousel5" data-slide-to="1"></li>
+            <li data-target="#carousel5" data-slide-to="2"></li>
+          </ol>
+          <div class="carousel-inner">
+            <div class="carousel-item active">
+              <div class="item">
+                <img src="../img/item.png" alt="">
+                <div>
+                  <p>Găng tay cao su y tế size M Vglove (100 chiếc/hộp)</p>
+                  <h4>140.000 VND/Hộp</h4>
+                </div>
+                <button>Thêm vào giỏ hàng</button>
+              </div>
+              <div class="item">
+                <img src="../img/item.png" alt="">
+                <div>
+                  <p>Găng tay cao su y tế size M Vglove (100 chiếc/hộp)</p>
+                  <h4>140.000 VND/Hộp</h4>
+                </div>
+                <button>Thêm vào giỏ hàng</button>
+              </div>
+              <div class="item">
+                <img src="../img/item.png" alt="">
+                <div>
+                  <p>Găng tay cao su y tế size M Vglove (100 chiếc/hộp)</p>
+                  <h4>140.000 VND/Hộp</h4>
+                </div>
+                <button>Thêm vào giỏ hàng</button>
+              </div>
+              <div class="item">
+                <img src="../img/item.png" alt="">
+                <div>
+                  <p>Găng tay cao su y tế size M Vglove (100 chiếc/hộp)</p>
+                  <h4>140.000 VND/Hộp</h4>
+                </div>
+                <button>Thêm vào giỏ hàng</button>
+              </div>
+              <div class="item">
+                <img src="../img/item.png" alt="">
+                <div>
+                  <p>Găng tay cao su y tế size M Vglove (100 chiếc/hộp)</p>
+                  <h4>140.000 VND/Hộp</h4>
+                </div>
+                <button>Thêm vào giỏ hàng</button>
+              </div>
+            </div>
+            <div class="carousel-item">
+              <div class="item">
+                <img src="../img/3.png" alt="">
+                <div>
+                  <p>Găng tay cao su y tế size M Vglove (100 chiếc/hộp)</p>
+                  <h4>140.000 VND/Hộp</h4>
+                </div>
+                <button>Thêm vào giỏ hàng</button>
+              </div>
+              <div class="item">
+                <img src="../img/item.png" alt="">
+                <div>
+                  <p>Găng tay cao su y tế size M Vglove (100 chiếc/hộp)</p>
+                  <h4>140.000 VND/Hộp</h4>
+                </div>
+                <button>Thêm vào giỏ hàng</button>
+              </div>
+              <div class="item">
+                <img src="../img/item.png" alt="">
+                <div>
+                  <p>Găng tay cao su y tế size M Vglove (100 chiếc/hộp)</p>
+                  <h4>140.000 VND/Hộp</h4>
+                </div>
+                <button>Thêm vào giỏ hàng</button>
+              </div>
+              <div class="item">
+                <img src="../img/item.png" alt="">
+                <div>
+                  <p>Găng tay cao su y tế size M Vglove (100 chiếc/hộp)</p>
+                  <h4>140.000 VND/Hộp</h4>
+                </div>
+                <button>Thêm vào giỏ hàng</button>
+              </div>
+              <div class="item">
+                <img src="../img/item.png" alt="">
+                <div>
+                  <p>Găng tay cao su y tế size M Vglove (100 chiếc/hộp)</p>
+                  <h4>140.000 VND/Hộp</h4>
+                </div>
+                <button>Thêm vào giỏ hàng</button>
+              </div>
+            </div>
+            <div class="carousel-item">
+              <div class="item">
+                <img src="../img/item.png" alt="">
+                <div>
+                  <p>Găng tay cao su y tế size M Vglove (100 chiếc/hộp)</p>
+                  <h4>140.000 VND/Hộp</h4>
+                </div>
+                <button>Thêm vào giỏ hàng</button>
+              </div>
+              <div class="item">
+                <img src="../img/item.png" alt="">
+                <div>
+                  <p>Găng tay cao su y tế size M Vglove (100 chiếc/hộp)</p>
+                  <h4>140.000 VND/Hộp</h4>
+                </div>
+                <button>Thêm vào giỏ hàng</button>
+              </div>
+              <div class="item">
+                <img src="../img/item.png" alt="">
+                <div>
+                  <p>Găng tay cao su y tế size M Vglove (100 chiếc/hộp)</p>
+                  <h4>140.000 VND/Hộp</h4>
+                </div>
+                <button>Thêm vào giỏ hàng</button>
+              </div>
+              <div class="item">
+                <img src="../img/item.png" alt="">
+                <div>
+                  <p>Găng tay cao su y tế size M Vglove (100 chiếc/hộp)</p>
+                  <h4>140.000 VND/Hộp</h4>
+                </div>
+                <button>Thêm vào giỏ hàng</button>
+              </div>
+              <div class="item">
+                <img src="../img/item.png" alt="">
+                <div>
+                  <p>Găng tay cao su y tế size M Vglove (100 chiếc/hộp)</p>
+                  <h4>140.000 VND/Hộp</h4>
+                </div>
+                <button>Thêm vào giỏ hàng</button>
+              </div>
+            </div>
+          </div>
+          <a class="carousel-control-prev" href="#carousel5" role="button" data-slide="prev">
+            <span class="carousel-control-prev-icon" aria-hidden="true">
+              <img src="../img//left-arrow.png" alt="">
+            </span>
+            <span class="sr-only">Previous</span>
+          </a>
+          <a class="carousel-control-next" href="#carousel5" role="button" data-slide="next">
+            <span class="carousel-control-next-icon" aria-hidden="true">
+              <img src="../img//right-arrow.png" alt="">
+            </span>
+            <span class="sr-only">Next</span>
+          </a>
+        </div>
+      </div>
+      <div class="ct5-wrap">
+        <div class="title">
+          <h1>SẢN PHẨM MỚI</h1>
+          <a href="#">Xem tất cả ></a>
+        </div>
+        <div id="carousel6" class="carousel slide" data-ride="carousel">
+          <ol class="carousel-indicators">
+            <li data-target="#carousel6" data-slide-to="0" class="active"></li>
+            <li data-target="#carousel6" data-slide-to="1"></li>
+            <li data-target="#carousel6" data-slide-to="2"></li>
+          </ol>
+          <div class="carousel-inner">
+            <div class="carousel-item active">
+              <div class="item">
+                <img src="../img/item.png" alt="">
+                <div>
+                  <p>Găng tay cao su y tế size M Vglove (100 chiếc/hộp)</p>
+                  <h4>140.000 VND/Hộp</h4>
+                </div>
+                <button>Thêm vào giỏ hàng</button>
+              </div>
+              <div class="item">
+                <img src="../img/item.png" alt="">
+                <div>
+                  <p>Găng tay cao su y tế size M Vglove (100 chiếc/hộp)</p>
+                  <h4>140.000 VND/Hộp</h4>
+                </div>
+                <button>Thêm vào giỏ hàng</button>
+              </div>
+              <div class="item">
+                <img src="../img/item.png" alt="">
+                <div>
+                  <p>Găng tay cao su y tế size M Vglove (100 chiếc/hộp)</p>
+                  <h4>140.000 VND/Hộp</h4>
+                </div>
+                <button>Thêm vào giỏ hàng</button>
+              </div>
+              <div class="item">
+                <img src="../img/item.png" alt="">
+                <div>
+                  <p>Găng tay cao su y tế size M Vglove (100 chiếc/hộp)</p>
+                  <h4>140.000 VND/Hộp</h4>
+                </div>
+                <button>Thêm vào giỏ hàng</button>
+              </div>
+              <div class="item">
+                <img src="../img/item.png" alt="">
+                <div>
+                  <p>Găng tay cao su y tế size M Vglove (100 chiếc/hộp)</p>
+                  <h4>140.000 VND/Hộp</h4>
+                </div>
+                <button>Thêm vào giỏ hàng</button>
+              </div>
+            </div>
+            <div class="carousel-item">
+              <div class="item">
+                <img src="../img/3.png" alt="">
+                <div>
+                  <p>Găng tay cao su y tế size M Vglove (100 chiếc/hộp)</p>
+                  <h4>140.000 VND/Hộp</h4>
+                </div>
+                <button>Thêm vào giỏ hàng</button>
+              </div>
+              <div class="item">
+                <img src="../img/item.png" alt="">
+                <div>
+                  <p>Găng tay cao su y tế size M Vglove (100 chiếc/hộp)</p>
+                  <h4>140.000 VND/Hộp</h4>
+                </div>
+                <button>Thêm vào giỏ hàng</button>
+              </div>
+              <div class="item">
+                <img src="../img/item.png" alt="">
+                <div>
+                  <p>Găng tay cao su y tế size M Vglove (100 chiếc/hộp)</p>
+                  <h4>140.000 VND/Hộp</h4>
+                </div>
+                <button>Thêm vào giỏ hàng</button>
+              </div>
+              <div class="item">
+                <img src="../img/item.png" alt="">
+                <div>
+                  <p>Găng tay cao su y tế size M Vglove (100 chiếc/hộp)</p>
+                  <h4>140.000 VND/Hộp</h4>
+                </div>
+                <button>Thêm vào giỏ hàng</button>
+              </div>
+              <div class="item">
+                <img src="../img/item.png" alt="">
+                <div>
+                  <p>Găng tay cao su y tế size M Vglove (100 chiếc/hộp)</p>
+                  <h4>140.000 VND/Hộp</h4>
+                </div>
+                <button>Thêm vào giỏ hàng</button>
+              </div>
+            </div>
+            <div class="carousel-item">
+              <div class="item">
+                <img src="../img/item.png" alt="">
+                <div>
+                  <p>Găng tay cao su y tế size M Vglove (100 chiếc/hộp)</p>
+                  <h4>140.000 VND/Hộp</h4>
+                </div>
+                <button>Thêm vào giỏ hàng</button>
+              </div>
+              <div class="item">
+                <img src="../img/item.png" alt="">
+                <div>
+                  <p>Găng tay cao su y tế size M Vglove (100 chiếc/hộp)</p>
+                  <h4>140.000 VND/Hộp</h4>
+                </div>
+                <button>Thêm vào giỏ hàng</button>
+              </div>
+              <div class="item">
+                <img src="../img/item.png" alt="">
+                <div>
+                  <p>Găng tay cao su y tế size M Vglove (100 chiếc/hộp)</p>
+                  <h4>140.000 VND/Hộp</h4>
+                </div>
+                <button>Thêm vào giỏ hàng</button>
+              </div>
+              <div class="item">
+                <img src="../img/item.png" alt="">
+                <div>
+                  <p>Găng tay cao su y tế size M Vglove (100 chiếc/hộp)</p>
+                  <h4>140.000 VND/Hộp</h4>
+                </div>
+                <button>Thêm vào giỏ hàng</button>
+              </div>
+              <div class="item">
+                <img src="../img/item.png" alt="">
+                <div>
+                  <p>Găng tay cao su y tế size M Vglove (100 chiếc/hộp)</p>
+                  <h4>140.000 VND/Hộp</h4>
+                </div>
+                <button>Thêm vào giỏ hàng</button>
+              </div>
+            </div>
+          </div>
+          <a class="carousel-control-prev" href="#carousel6" role="button" data-slide="prev">
+            <span class="carousel-control-prev-icon" aria-hidden="true">
+              <img src="../img//left-arrow.png" alt="">
+            </span>
+            <span class="sr-only">Previous</span>
+          </a>
+          <a class="carousel-control-next" href="#carousel6" role="button" data-slide="next">
+            <span class="carousel-control-next-icon" aria-hidden="true">
+              <img src="../img//right-arrow.png" alt="">
+            </span>
+            <span class="sr-only">Next</span>
+          </a>
+        </div>
+      </div>
+      <div class="ct5-wrap">
+        <div class="title">
+          <h1>SẢN PHẨM BÁN CHẠY</h1>
+          <a href="#">Xem tất cả ></a>
+        </div>
+        <div id="carousel7" class="carousel slide" data-ride="carousel">
+          <ol class="carousel-indicators">
+            <li data-target="#carousel7" data-slide-to="0" class="active"></li>
+            <li data-target="#carousel7" data-slide-to="1"></li>
+            <li data-target="#carousel7" data-slide-to="2"></li>
+          </ol>
+          <div class="carousel-inner">
+            <div class="carousel-item active">
+              <div class="item">
+                <img src="../img/item.png" alt="">
+                <div>
+                  <p>Găng tay cao su y tế size M Vglove (100 chiếc/hộp)</p>
+                  <h4>140.000 VND/Hộp</h4>
+                </div>
+                <button>Thêm vào giỏ hàng</button>
+              </div>
+              <div class="item">
+                <img src="../img/item.png" alt="">
+                <div>
+                  <p>Găng tay cao su y tế size M Vglove (100 chiếc/hộp)</p>
+                  <h4>140.000 VND/Hộp</h4>
+                </div>
+                <button>Thêm vào giỏ hàng</button>
+              </div>
+              <div class="item">
+                <img src="../img/item.png" alt="">
+                <div>
+                  <p>Găng tay cao su y tế size M Vglove (100 chiếc/hộp)</p>
+                  <h4>140.000 VND/Hộp</h4>
+                </div>
+                <button>Thêm vào giỏ hàng</button>
+              </div>
+              <div class="item">
+                <img src="../img/item.png" alt="">
+                <div>
+                  <p>Găng tay cao su y tế size M Vglove (100 chiếc/hộp)</p>
+                  <h4>140.000 VND/Hộp</h4>
+                </div>
+                <button>Thêm vào giỏ hàng</button>
+              </div>
+              <div class="item">
+                <img src="../img/item.png" alt="">
+                <div>
+                  <p>Găng tay cao su y tế size M Vglove (100 chiếc/hộp)</p>
+                  <h4>140.000 VND/Hộp</h4>
+                </div>
+                <button>Thêm vào giỏ hàng</button>
+              </div>
+            </div>
+            <div class="carousel-item">
+              <div class="item">
+                <img src="../img/3.png" alt="">
+                <div>
+                  <p>Găng tay cao su y tế size M Vglove (100 chiếc/hộp)</p>
+                  <h4>140.000 VND/Hộp</h4>
+                </div>
+                <button>Thêm vào giỏ hàng</button>
+              </div>
+              <div class="item">
+                <img src="../img/item.png" alt="">
+                <div>
+                  <p>Găng tay cao su y tế size M Vglove (100 chiếc/hộp)</p>
+                  <h4>140.000 VND/Hộp</h4>
+                </div>
+                <button>Thêm vào giỏ hàng</button>
+              </div>
+              <div class="item">
+                <img src="../img/item.png" alt="">
+                <div>
+                  <p>Găng tay cao su y tế size M Vglove (100 chiếc/hộp)</p>
+                  <h4>140.000 VND/Hộp</h4>
+                </div>
+                <button>Thêm vào giỏ hàng</button>
+              </div>
+              <div class="item">
+                <img src="../img/item.png" alt="">
+                <div>
+                  <p>Găng tay cao su y tế size M Vglove (100 chiếc/hộp)</p>
+                  <h4>140.000 VND/Hộp</h4>
+                </div>
+                <button>Thêm vào giỏ hàng</button>
+              </div>
+              <div class="item">
+                <img src="../img/item.png" alt="">
+                <div>
+                  <p>Găng tay cao su y tế size M Vglove (100 chiếc/hộp)</p>
+                  <h4>140.000 VND/Hộp</h4>
+                </div>
+                <button>Thêm vào giỏ hàng</button>
+              </div>
+            </div>
+            <div class="carousel-item">
+              <div class="item">
+                <img src="../img/item.png" alt="">
+                <div>
+                  <p>Găng tay cao su y tế size M Vglove (100 chiếc/hộp)</p>
+                  <h4>140.000 VND/Hộp</h4>
+                </div>
+                <button>Thêm vào giỏ hàng</button>
+              </div>
+              <div class="item">
+                <img src="../img/item.png" alt="">
+                <div>
+                  <p>Găng tay cao su y tế size M Vglove (100 chiếc/hộp)</p>
+                  <h4>140.000 VND/Hộp</h4>
+                </div>
+                <button>Thêm vào giỏ hàng</button>
+              </div>
+              <div class="item">
+                <img src="../img/item.png" alt="">
+                <div>
+                  <p>Găng tay cao su y tế size M Vglove (100 chiếc/hộp)</p>
+                  <h4>140.000 VND/Hộp</h4>
+                </div>
+                <button>Thêm vào giỏ hàng</button>
+              </div>
+              <div class="item">
+                <img src="../img/item.png" alt="">
+                <div>
+                  <p>Găng tay cao su y tế size M Vglove (100 chiếc/hộp)</p>
+                  <h4>140.000 VND/Hộp</h4>
+                </div>
+                <button>Thêm vào giỏ hàng</button>
+              </div>
+              <div class="item">
+                <img src="../img/item.png" alt="">
+                <div>
+                  <p>Găng tay cao su y tế size M Vglove (100 chiếc/hộp)</p>
+                  <h4>140.000 VND/Hộp</h4>
+                </div>
+                <button>Thêm vào giỏ hàng</button>
+              </div>
+            </div>
+          </div>
+          <a class="carousel-control-prev" href="#carousel7" role="button" data-slide="prev">
+            <span class="carousel-control-prev-icon" aria-hidden="true">
+              <img src="../img//left-arrow.png" alt="">
+            </span>
+            <span class="sr-only">Previous</span>
+          </a>
+          <a class="carousel-control-next" href="#carousel7" role="button" data-slide="next">
+            <span class="carousel-control-next-icon" aria-hidden="true">
+              <img src="../img//right-arrow.png" alt="">
+            </span>
+            <span class="sr-only">Next</span>
+          </a>
+        </div>
+      </div>
+      <div class="ct5-wrap">
+        <div class="title">
+          <h1>Chăm sóc da mỗi ngày</h1>
+          <a href="#">Xem tất cả ></a>
+        </div>
+        <div id="carousel8" class="carousel slide" data-ride="carousel">
+          <ol class="carousel-indicators">
+            <li data-target="#carousel8" data-slide-to="0" class="active"></li>
+            <li data-target="#carousel8" data-slide-to="1"></li>
+            <li data-target="#carousel8" data-slide-to="2"></li>
+          </ol>
+          <div class="carousel-inner">
+            <div class="carousel-item active">
+              <div class="item">
+                <img src="../img/item.png" alt="">
+                <div>
+                  <p>Găng tay cao su y tế size M Vglove (100 chiếc/hộp)</p>
+                  <h4>140.000 VND/Hộp</h4>
+                </div>
+                <button>Thêm vào giỏ hàng</button>
+              </div>
+              <div class="item">
+                <img src="../img/item.png" alt="">
+                <div>
+                  <p>Găng tay cao su y tế size M Vglove (100 chiếc/hộp)</p>
+                  <h4>140.000 VND/Hộp</h4>
+                </div>
+                <button>Thêm vào giỏ hàng</button>
+              </div>
+              <div class="item">
+                <img src="../img/item.png" alt="">
+                <div>
+                  <p>Găng tay cao su y tế size M Vglove (100 chiếc/hộp)</p>
+                  <h4>140.000 VND/Hộp</h4>
+                </div>
+                <button>Thêm vào giỏ hàng</button>
+              </div>
+              <div class="item">
+                <img src="../img/item.png" alt="">
+                <div>
+                  <p>Găng tay cao su y tế size M Vglove (100 chiếc/hộp)</p>
+                  <h4>140.000 VND/Hộp</h4>
+                </div>
+                <button>Thêm vào giỏ hàng</button>
+              </div>
+              <div class="item">
+                <img src="../img/item.png" alt="">
+                <div>
+                  <p>Găng tay cao su y tế size M Vglove (100 chiếc/hộp)</p>
+                  <h4>140.000 VND/Hộp</h4>
+                </div>
+                <button>Thêm vào giỏ hàng</button>
+              </div>
+            </div>
+            <div class="carousel-item">
+              <div class="item">
+                <img src="../img/3.png" alt="">
+                <div>
+                  <p>Găng tay cao su y tế size M Vglove (100 chiếc/hộp)</p>
+                  <h4>140.000 VND/Hộp</h4>
+                </div>
+                <button>Thêm vào giỏ hàng</button>
+              </div>
+              <div class="item">
+                <img src="../img/item.png" alt="">
+                <div>
+                  <p>Găng tay cao su y tế size M Vglove (100 chiếc/hộp)</p>
+                  <h4>140.000 VND/Hộp</h4>
+                </div>
+                <button>Thêm vào giỏ hàng</button>
+              </div>
+              <div class="item">
+                <img src="../img/item.png" alt="">
+                <div>
+                  <p>Găng tay cao su y tế size M Vglove (100 chiếc/hộp)</p>
+                  <h4>140.000 VND/Hộp</h4>
+                </div>
+                <button>Thêm vào giỏ hàng</button>
+              </div>
+              <div class="item">
+                <img src="../img/item.png" alt="">
+                <div>
+                  <p>Găng tay cao su y tế size M Vglove (100 chiếc/hộp)</p>
+                  <h4>140.000 VND/Hộp</h4>
+                </div>
+                <button>Thêm vào giỏ hàng</button>
+              </div>
+              <div class="item">
+                <img src="../img/item.png" alt="">
+                <div>
+                  <p>Găng tay cao su y tế size M Vglove (100 chiếc/hộp)</p>
+                  <h4>140.000 VND/Hộp</h4>
+                </div>
+                <button>Thêm vào giỏ hàng</button>
+              </div>
+            </div>
+            <div class="carousel-item">
+              <div class="item">
+                <img src="../img/item.png" alt="">
+                <div>
+                  <p>Găng tay cao su y tế size M Vglove (100 chiếc/hộp)</p>
+                  <h4>140.000 VND/Hộp</h4>
+                </div>
+                <button>Thêm vào giỏ hàng</button>
+              </div>
+              <div class="item">
+                <img src="../img/item.png" alt="">
+                <div>
+                  <p>Găng tay cao su y tế size M Vglove (100 chiếc/hộp)</p>
+                  <h4>140.000 VND/Hộp</h4>
+                </div>
+                <button>Thêm vào giỏ hàng</button>
+              </div>
+              <div class="item">
+                <img src="../img/item.png" alt="">
+                <div>
+                  <p>Găng tay cao su y tế size M Vglove (100 chiếc/hộp)</p>
+                  <h4>140.000 VND/Hộp</h4>
+                </div>
+                <button>Thêm vào giỏ hàng</button>
+              </div>
+              <div class="item">
+                <img src="../img/item.png" alt="">
+                <div>
+                  <p>Găng tay cao su y tế size M Vglove (100 chiếc/hộp)</p>
+                  <h4>140.000 VND/Hộp</h4>
+                </div>
+                <button>Thêm vào giỏ hàng</button>
+              </div>
+              <div class="item">
+                <img src="../img/item.png" alt="">
+                <div>
+                  <p>Găng tay cao su y tế size M Vglove (100 chiếc/hộp)</p>
+                  <h4>140.000 VND/Hộp</h4>
+                </div>
+                <button>Thêm vào giỏ hàng</button>
+              </div>
+            </div>
+          </div>
+          <a class="carousel-control-prev" href="#carousel8" role="button" data-slide="prev">
+            <span class="carousel-control-prev-icon" aria-hidden="true">
+              <img src="../img//left-arrow.png" alt="">
+            </span>
+            <span class="sr-only">Previous</span>
+          </a>
+          <a class="carousel-control-next" href="#carousel8" role="button" data-slide="next">
+            <span class="carousel-control-next-icon" aria-hidden="true">
+              <img src="../img//right-arrow.png" alt="">
+            </span>
+            <span class="sr-only">Next</span>
+          </a>
+        </div>
+      </div>
+      <div class="ct5-wrap">
+        <div class="title">
+          <h1>CHỈ CÓ TẠI MEDIMALL</h1>
+          <a href="#">Xem tất cả ></a>
+        </div>
+        <div id="carousel9" class="carousel slide" data-ride="carousel">
+          <ol class="carousel-indicators">
+            <li data-target="#carousel9" data-slide-to="0" class="active"></li>
+            <li data-target="#carousel9" data-slide-to="1"></li>
+            <li data-target="#carousel9" data-slide-to="2"></li>
+          </ol>
+          <div class="carousel-inner">
+            <div class="carousel-item active">
+              <div class="item">
+                <img src="../img/item.png" alt="">
+                <div>
+                  <p>Găng tay cao su y tế size M Vglove (100 chiếc/hộp)</p>
+                  <h4>140.000 VND/Hộp</h4>
+                </div>
+                <button>Thêm vào giỏ hàng</button>
+              </div>
+              <div class="item">
+                <img src="../img/item.png" alt="">
+                <div>
+                  <p>Găng tay cao su y tế size M Vglove (100 chiếc/hộp)</p>
+                  <h4>140.000 VND/Hộp</h4>
+                </div>
+                <button>Thêm vào giỏ hàng</button>
+              </div>
+              <div class="item">
+                <img src="../img/item.png" alt="">
+                <div>
+                  <p>Găng tay cao su y tế size M Vglove (100 chiếc/hộp)</p>
+                  <h4>140.000 VND/Hộp</h4>
+                </div>
+                <button>Thêm vào giỏ hàng</button>
+              </div>
+              <div class="item">
+                <img src="../img/item.png" alt="">
+                <div>
+                  <p>Găng tay cao su y tế size M Vglove (100 chiếc/hộp)</p>
+                  <h4>140.000 VND/Hộp</h4>
+                </div>
+                <button>Thêm vào giỏ hàng</button>
+              </div>
+              <div class="item">
+                <img src="../img/item.png" alt="">
+                <div>
+                  <p>Găng tay cao su y tế size M Vglove (100 chiếc/hộp)</p>
+                  <h4>140.000 VND/Hộp</h4>
+                </div>
+                <button>Thêm vào giỏ hàng</button>
+              </div>
+            </div>
+            <div class="carousel-item">
+              <div class="item">
+                <img src="../img/3.png" alt="">
+                <div>
+                  <p>Găng tay cao su y tế size M Vglove (100 chiếc/hộp)</p>
+                  <h4>140.000 VND/Hộp</h4>
+                </div>
+                <button>Thêm vào giỏ hàng</button>
+              </div>
+              <div class="item">
+                <img src="../img/item.png" alt="">
+                <div>
+                  <p>Găng tay cao su y tế size M Vglove (100 chiếc/hộp)</p>
+                  <h4>140.000 VND/Hộp</h4>
+                </div>
+                <button>Thêm vào giỏ hàng</button>
+              </div>
+              <div class="item">
+                <img src="../img/item.png" alt="">
+                <div>
+                  <p>Găng tay cao su y tế size M Vglove (100 chiếc/hộp)</p>
+                  <h4>140.000 VND/Hộp</h4>
+                </div>
+                <button>Thêm vào giỏ hàng</button>
+              </div>
+              <div class="item">
+                <img src="../img/item.png" alt="">
+                <div>
+                  <p>Găng tay cao su y tế size M Vglove (100 chiếc/hộp)</p>
+                  <h4>140.000 VND/Hộp</h4>
+                </div>
+                <button>Thêm vào giỏ hàng</button>
+              </div>
+              <div class="item">
+                <img src="../img/item.png" alt="">
+                <div>
+                  <p>Găng tay cao su y tế size M Vglove (100 chiếc/hộp)</p>
+                  <h4>140.000 VND/Hộp</h4>
+                </div>
+                <button>Thêm vào giỏ hàng</button>
+              </div>
+            </div>
+            <div class="carousel-item">
+              <div class="item">
+                <img src="../img/item.png" alt="">
+                <div>
+                  <p>Găng tay cao su y tế size M Vglove (100 chiếc/hộp)</p>
+                  <h4>140.000 VND/Hộp</h4>
+                </div>
+                <button>Thêm vào giỏ hàng</button>
+              </div>
+              <div class="item">
+                <img src="../img/item.png" alt="">
+                <div>
+                  <p>Găng tay cao su y tế size M Vglove (100 chiếc/hộp)</p>
+                  <h4>140.000 VND/Hộp</h4>
+                </div>
+                <button>Thêm vào giỏ hàng</button>
+              </div>
+              <div class="item">
+                <img src="../img/item.png" alt="">
+                <div>
+                  <p>Găng tay cao su y tế size M Vglove (100 chiếc/hộp)</p>
+                  <h4>140.000 VND/Hộp</h4>
+                </div>
+                <button>Thêm vào giỏ hàng</button>
+              </div>
+              <div class="item">
+                <img src="../img/item.png" alt="">
+                <div>
+                  <p>Găng tay cao su y tế size M Vglove (100 chiếc/hộp)</p>
+                  <h4>140.000 VND/Hộp</h4>
+                </div>
+                <button>Thêm vào giỏ hàng</button>
+              </div>
+              <div class="item">
+                <img src="../img/item.png" alt="">
+                <div>
+                  <p>Găng tay cao su y tế size M Vglove (100 chiếc/hộp)</p>
+                  <h4>140.000 VND/Hộp</h4>
+                </div>
+                <button>Thêm vào giỏ hàng</button>
+              </div>
+            </div>
+          </div>
+          <a class="carousel-control-prev" href="#carousel9" role="button" data-slide="prev">
+            <span class="carousel-control-prev-icon" aria-hidden="true">
+              <img src="../img//left-arrow.png" alt="">
+            </span>
+            <span class="sr-only">Previous</span>
+          </a>
+          <a class="carousel-control-next" href="#carousel9" role="button" data-slide="next">
+            <span class="carousel-control-next-icon" aria-hidden="true">
+              <img src="../img//right-arrow.png" alt="">
+            </span>
+            <span class="sr-only">Next</span>
+          </a>
+        </div>
+      </div>
+    </div>
+
+    <div class="container-brand">
+      <div class="title">
+        <h1>Thương hiệu nổi bật</h1>
+        <a href="#">Xem tất cả ></a>
+      </div>
+      <div class="brand-wrap">
+        <div class="brand-item">
+          <img src="../img/brand (1).png">
+          <p>Pharmacity</p>
+        </div>
+        <div class="brand-item">
+          <img src="../img/brand (2).png">
+          <p>Welson</p>
+        </div>
+        <div class="brand-item">
+          <img src="../img/brand (3).png">
+          <p>Nucos</p>
+        </div>
+        <div class="brand-item">
+          <img src="../img/brand (4).png">
+          <p>Blackmores</p>
+        </div>
+        <div class="brand-item">
+          <img src="../img/brand (5).png">
+          <p>Abbott</p>
+        </div>
+        <div class="brand-item">
+          <img src="../img/brand (6).png">
+          <p>Sanofi GEM</p>
+        </div>
+        <div class="brand-item">
+          <img src="../img/brand (7).png">
+          <p>Microlife</p>
+        </div>
+        <div class="brand-item">
+          <img src="../img/brand (8).png">
+          <p>Nature Gift</p>
+        </div>
+      </div>
+    </div>
+
+    <div class="container-news">
+      <div class="wrap-news">
+        <div class="title">
+          <h1>Tin mới nhất</h1>
+          <a href="#">Xem tất cả ></a>
+        </div>
+
+        <div class="tabs-news">
+          <ul class="nav nav-pills mb-3" id="pills-tab" role="tablist">
+            <li class="nav-item">
+              <a class="nav-link active" id="pills-home-tab" data-toggle="pill" href="#pills-home" role="tab"
+                aria-controls="pills-home" aria-selected="true">Tin tức</a>
+            </li>
+            <li class="nav-item">
+              <a class="nav-link" id="pills-profile-tab" data-toggle="pill" href="#pills-profile" role="tab"
+                aria-controls="pills-profile" aria-selected="false">Mẹ và bé</a>
+            </li>
+            <li class="nav-item">
+              <a class="nav-link" id="pills-contact-tab" data-toggle="pill" href="#pills-contact" role="tab"
+                aria-controls="pills-contact" aria-selected="false">Làm đẹp</a>
+            </li>
+            <li class="nav-item">
+              <a class="nav-link" id="pills-contact-tab" data-toggle="pill" href="#pills-contact" role="tab"
+                aria-controls="pills-contact" aria-selected="false">Gia đình & Giới tính</a>
+            </li>
+            <li class="nav-item">
+              <a class="nav-link" id="pills-contact-tab" data-toggle="pill" href="#pills-contact" role="tab"
+                aria-controls="pills-contact" aria-selected="false">Dinh dưỡng</a>
+            </li>
+            <li class="nav-item">
+              <a class="nav-link" id="pills-contact-tab" data-toggle="pill" href="#pills-contact" role="tab"
+                aria-controls="pills-contact" aria-selected="false">COVID-19</a>
+            </li>
+            <li class="nav-item">
+              <a class="nav-link" id="pills-contact-tab" data-toggle="pill" href="#pills-contact" role="tab"
+                aria-controls="pills-contact" aria-selected="false">Bệnh thường gặp</a>
+            </li>
+            <li class="nav-item">
+              <a class="nav-link" id="pills-contact-tab" data-toggle="pill" href="#pills-contact" role="tab"
+                aria-controls="pills-contact" aria-selected="false">Bệnh mãn tính</a>
+            </li>
+          </ul>
+          <div class="tab-content" id="pills-tabContent">
+            <div class="tab-pane fade show active" id="pills-home" role="tabpanel" aria-labelledby="pills-home-tab">
+              <div class="news">
+                <img src="../img/5.png" alt="">
+                <p>Chương trình khuyến mãi tháng 3 - Quà tặng cho phái đẹp</p>
+              </div>
+              <div class="news">
+                <img src="../img/3.png" alt="">
+                <p>Chương trình khuyến mãi tháng 3 - Quà tặng cho phái đẹp</p>
+              </div>
+              <div class="news">
+                <img src="../img/6.png" alt="">
+                <p>Chương trình khuyến mãi tháng 3 - Quà tặng cho phái đẹp</p>
+              </div>
+              <div class="news">
+                <img src="../img/1.png" alt="">
+                <p>Chương trình khuyến mãi tháng 3 - Quà tặng cho phái đẹp</p>
+              </div>
+            </div>
+            <div class="tab-pane fade" id="pills-profile" role="tabpanel" aria-labelledby="pills-profile-tab">
+              <div class="news">
+                <img src="../img/5.png" alt="">
+                <p>Chương trình khuyến mãi tháng 3 - Quà tặng cho phái đẹp</p>
+              </div>
+              <div class="news">
+                <img src="../img/3.png" alt="">
+                <p>Chương trình khuyến mãi tháng 3 - Quà tặng cho phái đẹp</p>
+              </div>
+              <div class="news">
+                <img src="../img/6.png" alt="">
+                <p>Chương trình khuyến mãi tháng 3 - Quà tặng cho phái đẹp</p>
+              </div>
+              <div class="news">
+                <img src="../img/1.png" alt="">
+                <p>Chương trình khuyến mãi tháng 3 - Quà tặng cho phái đẹp</p>
+              </div>
+            </div>
+            <div class="tab-pane fade" id="pills-contact" role="tabpanel" aria-labelledby="pills-contact-tab">
+              <div class="news">
+                <img src="../img/5.png" alt="">
+                <p>Chương trình khuyến mãi tháng 3 - Quà tặng cho phái đẹp</p>
+              </div>
+              <div class="news">
+                <img src="../img/3.png" alt="">
+                <p>Chương trình khuyến mãi tháng 3 - Quà tặng cho phái đẹp</p>
+              </div>
+              <div class="news">
+                <img src="../img/6.png" alt="">
+                <p>Chương trình khuyến mãi tháng 3 - Quà tặng cho phái đẹp</p>
+              </div>
+              <div class="news">
+                <img src="../img/1.png" alt="">
+                <p>Chương trình khuyến mãi tháng 3 - Quà tặng cho phái đẹp</p>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <div class="container-banner">
+      <img class="banner" src="../img/AnyConv.com__banner-tim-hieu-benh-2-2.png" alt="">
+    </div>
+
+    <div class="container-banner">
+      <div class="container-suggestion-item">
+        <div class="title">
+          <h1>Gợi ý hôm nay</h1>
+        </div>
+        <div class="tabs-items">
+          <ul class="nav nav-pills mb-3" id="pills-tab" role="tablist">
+            <li class="nav-item">
+              <a class="nav-link active" id="pills-home-tab" data-toggle="pill" href="#pills-all" role="tab"
+                aria-controls="pills-all" aria-selected="true">
+                <i class="fas fa-fire fa-fw"></i> Tất cả</a>
+            </li>
+            <li class="nav-item">
+              <a class="nav-link" id="pills-profile-tab" data-toggle="pill" href="#pills-baby" role="tab"
+                aria-controls="pills-baby" aria-selected="false">Mẹ và bé</a>
+            </li>
+            <li class="nav-item">
+              <a class="nav-link" id="pills-contact-tab" data-toggle="pill" href="#pills-food" role="tab"
+                aria-controls="pills-food" aria-selected="false">Thực phẩm chức năng</a>
+            </li>
+            <li class="nav-item">
+              <a class="nav-link" id="pills-contact-tab" data-toggle="pill" href="#pills-health" role="tab"
+                aria-controls="pills-health" aria-selected="false">Chăm sóc sức khoẻ</a>
+            </li>
+            <li class="nav-item">
+              <a class="nav-link" id="pills-contact-tab" data-toggle="pill" href="#pills-convenient" role="tab"
+                aria-controls="pills-convenient" aria-selected="false">Sản phẩm tiện lợi</a>
+            </li>
+            <li class="nav-item">
+              <a class="nav-link" id="pills-contact-tab" data-toggle="pill" href="#pills-medicine" role="tab"
+                aria-controls="pills-medicine" aria-selected="false">Dược phẩm</a>
+            </li>
+            <li class="nav-item">
+              <a class="nav-link" id="pills-contact-tab" data-toggle="pill" href="#pills-personal" role="tab"
+                aria-controls="pills-personal" aria-selected="false">Chăm sóc cá nhân</a>
+            </li>
+          </ul>
+          <div class="tab-content" id="pills-tabContent">
+            <div class="tab-pane fade show active flex" id="pills-all" role="tabpanel" aria-labelledby="pills-home-tab">
+              <div class="wrap-items">
+                <div class="item">
+                  <img src="../img/item.png" alt="">
+                  <div>
+                    <p>Găng tay cao su y tế size M Vglove (100 chiếc/hộp)</p>
+                    <h4>140.000 VND/Hộp</h4>
+                  </div>
+                  <button>Thêm vào giỏ hàng</button>
+                </div>
+                <div class="item">
+                  <img src="../img/item.png" alt="">
+                  <div>
+                    <p>Găng tay cao su y tế size M Vglove (100 chiếc/hộp)</p>
+                    <h4>140.000 VND/Hộp</h4>
+                  </div>
+                  <button>Thêm vào giỏ hàng</button>
+                </div>
+                <div class="item">
+                  <img src="../img/item.png" alt="">
+                  <div>
+                    <p>Găng tay cao su y tế size M Vglove (100 chiếc/hộp)</p>
+                    <h4>140.000 VND/Hộp</h4>
+                  </div>
+                  <button>Thêm vào giỏ hàng</button>
+                </div>
+                <div class="item">
+                  <img src="../img/item.png" alt="">
+                  <div>
+                    <p>Găng tay cao su y tế size M Vglove (100 chiếc/hộp)</p>
+                    <h4>140.000 VND/Hộp</h4>
+                  </div>
+                  <button>Thêm vào giỏ hàng</button>
+                </div>
+                <div class="item">
+                  <img src="../img/item.png" alt="">
+                  <div>
+                    <p>Găng tay cao su y tế size M Vglove (100 chiếc/hộp)</p>
+                    <h4>140.000 VND/Hộp</h4>
+                  </div>
+                  <button>Thêm vào giỏ hàng</button>
+                </div>
+              </div>
+              <div class="wrap-items">
+                <div class="item">
+                  <img src="../img/item.png" alt="">
+                  <div>
+                    <p>Găng tay cao su y tế size M Vglove (100 chiếc/hộp)</p>
+                    <h4>140.000 VND/Hộp</h4>
+                  </div>
+                  <button>Thêm vào giỏ hàng</button>
+                </div>
+                <div class="item">
+                  <img src="../img/item.png" alt="">
+                  <div>
+                    <p>Găng tay cao su y tế size M Vglove (100 chiếc/hộp)</p>
+                    <h4>140.000 VND/Hộp</h4>
+                  </div>
+                  <button>Thêm vào giỏ hàng</button>
+                </div>
+                <div class="item">
+                  <img src="../img/item.png" alt="">
+                  <div>
+                    <p>Găng tay cao su y tế size M Vglove (100 chiếc/hộp)</p>
+                    <h4>140.000 VND/Hộp</h4>
+                  </div>
+                  <button>Thêm vào giỏ hàng</button>
+                </div>
+                <div class="item">
+                  <img src="../img/item.png" alt="">
+                  <div>
+                    <p>Găng tay cao su y tế size M Vglove (100 chiếc/hộp)</p>
+                    <h4>140.000 VND/Hộp</h4>
+                  </div>
+                  <button>Thêm vào giỏ hàng</button>
+                </div>
+                <div class="item">
+                  <img src="../img/item.png" alt="">
+                  <div>
+                    <p>Găng tay cao su y tế size M Vglove (100 chiếc/hộp)</p>
+                    <h4>140.000 VND/Hộp</h4>
+                  </div>
+                  <button>Thêm vào giỏ hàng</button>
+                </div>
+              </div>
+              <button class="btn-xemthem">Xem thêm</button>
+            </div>
+            <div class="tab-pane fade" id="pills-baby" role="tabpanel" aria-labelledby="pills-profile-tab">
+              <div>
+                2222
+              </div>
+            </div>
+            <div class="tab-pane fade" id="pills-food" role="tabpanel" aria-labelledby="pills-contact-tab">
+              3
+            </div>
+            <div class="tab-pane fade" id="pills-health" role="tabpanel" aria-labelledby="pills-contact-tab">
+              4
+            </div>
+            <div class="tab-pane fade" id="pills-convenient" role="tabpanel" aria-labelledby="pills-contact-tab">
+              5
+            </div>
+            <div class="tab-pane fade" id="pills-medicine" role="tabpanel" aria-labelledby="pills-contact-tab">
+              6
+            </div>
+            <div class="tab-pane fade" id="pills-personal" role="tabpanel" aria-labelledby="pills-contact-tab">
+              7
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <div class="container-service">
+      <div class="service-top">
+        <div class="service-item">
+          <svg width="52" height="52" viewBox="0 0 52 52" fill="none">
+            <path
+              d="M47.4999 28.5581L46.2051 23.3159C46.5591 23.2398 46.8247 22.9219 46.8247 22.5411V21.6958C46.8247 19.8607 45.3496 18.3677 43.5366 18.3677H37.6389V16.6244C37.6389 15.7214 36.9132 14.9868 36.021 14.9868H25.0547L31.7188 12.2887C32.1203 12.1262 32.3155 11.665 32.1549 11.2586C31.9944 10.8524 31.539 10.6546 31.1373 10.8172L25.6808 13.0263C27.3435 11.9465 28.9885 10.7581 29.6148 9.92699C30.834 8.309 30.5253 5.98871 28.9267 4.75464C27.3282 3.52046 25.0358 3.83311 23.8165 5.4511C22.9257 6.63348 21.7503 9.95575 20.9896 12.2969C20.2288 9.95595 19.0535 6.63348 18.1626 5.4511C16.9435 3.83311 14.651 3.52066 13.0525 4.75464C11.4539 5.98862 11.1452 8.3089 12.3644 9.92699C12.9906 10.7582 14.6356 11.9465 16.2984 13.0263L10.8419 10.8172C10.4403 10.6544 9.98478 10.8523 9.82424 11.2586C9.66359 11.665 9.8589 12.1262 10.2604 12.2887L16.9244 14.9868H5.95821C5.06602 14.9868 4.34024 15.7214 4.34024 16.6244V30.9935C4.34024 31.4311 4.69073 31.7859 5.12315 31.7859C5.55548 31.7859 5.90606 31.4312 5.90606 30.9935V16.6244C5.90606 16.5953 5.9294 16.5716 5.95821 16.5716H36.0209C36.0497 16.5716 36.073 16.5953 36.073 16.6244V30.9937C36.073 31.4313 36.4235 31.7861 36.8559 31.7861C37.2883 31.7861 37.6388 31.4314 37.6388 30.9937V30.0954H46.8738C46.8747 30.0954 46.8754 30.0956 46.8763 30.0956C46.8771 30.0956 46.8779 30.0955 46.8788 30.0955C48.0151 30.0964 48.98 30.8513 49.3112 31.8916H46.8769C46.4445 31.8916 46.0939 32.2463 46.0939 32.684V34.3745C46.0939 35.7436 47.1943 36.8573 48.547 36.8573H49.4343V40.3439H47.3872C46.7147 38.3787 44.8689 36.9629 42.7015 36.9629C40.534 36.9629 38.6881 38.3786 38.0157 40.3439H37.6387V34.3744C37.6387 33.9368 37.2883 33.5819 36.8558 33.5819C36.4235 33.5819 36.0729 33.9367 36.0729 34.3744V40.3438H19.8298C19.1574 38.3786 17.3116 36.9628 15.1441 36.9628C12.9766 36.9628 11.1307 38.3785 10.4583 40.3438H5.95821C5.9294 40.3438 5.90606 40.3202 5.90606 40.291V38.5477H9.29855C9.73088 38.5477 10.0815 38.1929 10.0815 37.7552C10.0815 37.3176 9.73097 36.9628 9.29855 36.9628H1.78291C1.35059 36.9628 1 37.3176 1 37.7552C1 38.1929 1.35049 38.5477 1.78291 38.5477H4.34034V40.291C4.34034 41.1941 5.06612 41.9287 5.95831 41.9287H10.1872C10.187 41.9463 10.1859 41.9638 10.1859 41.9815C10.1859 44.7486 12.4102 47 15.1441 47C17.878 47 20.1023 44.7486 20.1023 41.9815C20.1023 41.9637 20.1011 41.9463 20.1009 41.9287H37.7445C37.7443 41.9463 37.7431 41.9638 37.7431 41.9815C37.7431 44.7486 39.9675 47 42.7014 47C45.4352 47 47.6596 44.7486 47.6596 41.9815C47.6596 41.9637 47.6584 41.9463 47.6582 41.9287H50.2171C50.6494 41.9287 51 41.5739 51 41.1362V32.6839C51.0001 30.5969 49.4789 28.863 47.4999 28.5581ZM17.8848 12.1619C14.7966 10.2195 13.8806 9.32581 13.6094 8.96582C12.9138 8.04271 13.09 6.71888 14.0021 6.01481C14.3781 5.7246 14.8212 5.58434 15.2612 5.58434C15.8883 5.58434 16.5088 5.86961 16.9177 6.41226C17.675 7.41732 18.8611 10.8001 19.6441 13.2377C19.1157 12.9228 18.5082 12.5542 17.8848 12.1619ZM22.3353 13.2376C23.1183 10.8001 24.3043 7.41742 25.0616 6.41217C25.7572 5.48905 27.0651 5.31084 27.9771 6.01481C28.8892 6.71888 29.0653 8.04271 28.3698 8.96582C28.0986 9.32571 27.1826 10.2195 24.0946 12.1618C23.4712 12.554 22.8638 12.9227 22.3353 13.2376ZM37.6389 19.9524H43.5366C44.4863 19.9524 45.259 20.7345 45.259 21.6957V21.7485H37.6389V19.9524ZM37.6389 28.5105V23.3334H44.5955L45.8742 28.5105H37.6389ZM15.1441 45.4152C13.2735 45.4152 11.7516 43.8748 11.7516 41.9815C11.7516 40.0881 13.2735 38.5477 15.1441 38.5477C17.0147 38.5477 18.5366 40.0881 18.5366 41.9815C18.5366 43.8748 17.0147 45.4152 15.1441 45.4152ZM42.7015 45.4152C40.8309 45.4152 39.3091 43.8748 39.3091 41.9815C39.3091 40.0881 40.8309 38.5477 42.7015 38.5477C44.5722 38.5477 46.094 40.0881 46.094 41.9815C46.094 43.8748 44.5722 45.4152 42.7015 45.4152ZM49.4344 35.2724H48.5471C48.0578 35.2724 47.6598 34.8695 47.6598 34.3743V33.4762H49.4343V35.2724H49.4344Z"
+              fill="#0F62F9"></path>
+            <path
+              d="M15.1434 40.3438C14.2512 40.3438 13.5254 41.0784 13.5254 41.9814C13.5254 42.8845 14.2512 43.6191 15.1434 43.6191C16.0356 43.6191 16.7613 42.8845 16.7613 41.9814C16.7613 41.0784 16.0356 40.3438 15.1434 40.3438Z"
+              fill="#0F62F9"></path>
+            <path
+              d="M42.702 40.3438C41.8098 40.3438 41.084 41.0784 41.084 41.9814C41.084 42.8845 41.8098 43.6191 42.702 43.6191C43.5941 43.6191 44.3199 42.8845 44.3199 41.9814C44.3199 41.0784 43.5941 40.3438 42.702 40.3438Z"
+              fill="#0F62F9"></path>
+            <path
+              d="M33.5159 36.9639H21.8249C21.3926 36.9639 21.042 37.3186 21.042 37.7563C21.042 38.194 21.3925 38.5487 21.8249 38.5487H33.5159C33.9483 38.5487 34.2989 38.194 34.2989 37.7563C34.2989 37.3186 33.9484 36.9639 33.5159 36.9639Z"
+              fill="#0F62F9"></path>
+            <path
+              d="M13.4738 33.5801H3.45283C3.02051 33.5801 2.66992 33.9348 2.66992 34.3725C2.66992 34.8102 3.02041 35.165 3.45283 35.165H13.4738C13.9061 35.165 14.2567 34.8102 14.2567 34.3725C14.2567 33.9348 13.9061 33.5801 13.4738 33.5801Z"
+              fill="#0F62F9"></path>
+            <path
+              d="M13.4738 21.749H10.1335C9.70117 21.749 9.35059 22.1038 9.35059 22.5415V29.3033C9.35059 29.7409 9.70107 30.0958 10.1335 30.0958C10.5659 30.0958 10.9164 29.741 10.9164 29.3033V26.7148H12.6388C13.0711 26.7148 13.4217 26.36 13.4217 25.9223C13.4217 25.4847 13.0712 25.1299 12.6388 25.1299H10.9164V23.3339H13.4738C13.9062 23.3339 14.2567 22.9791 14.2567 22.5415C14.2567 22.1039 13.9062 21.749 13.4738 21.749Z"
+              fill="#5DAC46"></path>
+            <path
+              d="M19.636 27.0863C20.4195 26.5669 20.9385 25.6712 20.9385 24.6546C20.9385 23.0524 19.6508 21.749 18.0679 21.749H15.9802C15.5479 21.749 15.1973 22.1038 15.1973 22.5415V29.3033C15.1973 29.7409 15.5478 30.0958 15.9802 30.0958C16.4126 30.0958 16.7631 29.741 16.7631 29.3033V27.56H18.0664L19.5041 29.7428C19.655 29.9718 19.9031 30.0958 20.1562 30.0958C20.3055 30.0958 20.4563 30.0527 20.5897 29.9625C20.9495 29.7199 21.0467 29.2278 20.8067 28.8638L19.636 27.0863ZM18.0679 25.9752H16.7631V23.3339H18.0679C18.7874 23.3339 19.3727 23.9263 19.3727 24.6546C19.3727 25.3829 18.7874 25.9752 18.0679 25.9752Z"
+              fill="#5DAC46"></path>
+            <path
+              d="M26.0002 28.511H23.4428V26.7122C23.4601 26.7134 23.4773 26.7149 23.4949 26.7149H25.165C25.5974 26.7149 25.948 26.3601 25.948 25.9224C25.948 25.4848 25.5975 25.13 25.165 25.13H23.4949C23.4772 25.13 23.4601 25.1315 23.4428 25.1327V23.3339H26.0002C26.4325 23.3339 26.7831 22.9791 26.7831 22.5415C26.7831 22.1039 26.4326 21.749 26.0002 21.749H22.6599C22.2275 21.749 21.877 22.1038 21.877 22.5415V29.3033C21.877 29.7409 22.2274 30.0958 22.6599 30.0958H26.0002C26.4325 30.0958 26.7831 29.741 26.7831 29.3033C26.7831 28.8656 26.4325 28.511 26.0002 28.511Z"
+              fill="#5DAC46"></path>
+            <path
+              d="M31.8459 28.511H29.2885V26.7149H30.1758C30.6081 26.7149 30.9587 26.3601 30.9587 25.9224C30.9587 25.4848 30.6082 25.13 30.1758 25.13H29.2885V23.3339H31.8459C32.2782 23.3339 32.6288 22.9791 32.6288 22.5415C32.6288 22.1039 32.2783 21.749 31.8459 21.749H28.5056C28.0732 21.749 27.7227 22.1038 27.7227 22.5415V29.3033C27.7227 29.7409 28.0731 30.0958 28.5056 30.0958H31.8459C32.2782 30.0958 32.6288 29.741 32.6288 29.3033C32.6288 28.8656 32.2782 28.511 31.8459 28.511Z"
+              fill="#5DAC46"></path>
+          </svg>
+          <div>
+            <h2>MIỄN PHÍ VẬN CHUYỂN</h2>
+            <p>Aps dụng chơ đơn hàng <br>trên 300,000 VNĐ</p>
+          </div>
+        </div>
+        <div class="service-item">
+          <svg width="52" height="52" viewBox="0 0 52 52" fill="none">
+            <path fill-rule="evenodd" clip-rule="evenodd"
+              d="M30.8166 4.25172L38.4644 11.8999C38.6256 12.0611 38.7161 12.2796 38.716 12.5075V28.6633C38.716 29.1378 38.3312 29.5226 37.8567 29.5226C37.3822 29.5226 36.9974 29.1378 36.9974 28.6633V13.3669H31.9275C30.506 13.3669 29.3496 12.2104 29.3496 10.7889V5.7188H6.57792C6.10415 5.7188 5.71864 6.10424 5.71864 6.57811V45.4208C5.71864 45.8946 6.10407 46.2801 6.57792 46.2801H22.9925C23.467 46.2801 23.8518 46.6649 23.8518 47.1394C23.8518 47.6139 23.4671 47.9987 22.9925 47.9987H6.57792C5.15645 47.9987 4 46.8422 4 45.4207V6.57811C4 5.15658 5.15645 4 6.57792 4H30.209C30.4369 4 30.6554 4.09058 30.8166 4.25172ZM31.0683 10.7889C31.0683 11.2627 31.4537 11.6482 31.9276 11.6482H35.7824L31.0683 6.93407V10.7889Z"
+              fill="#0F62F9"></path>
+            <path
+              d="M17.4344 28.0618H32.3578C32.8323 28.0618 33.2172 28.4466 33.2171 28.9211C33.2171 29.3957 32.8323 29.7804 32.3578 29.7804H17.4344C16.96 29.7804 16.5752 29.3956 16.5752 28.9211C16.5752 28.4466 16.9599 28.0618 17.4344 28.0618Z"
+              fill="#0F62F9"></path>
+            <path
+              d="M13.1589 28.0618H10.3589C9.88435 28.0618 9.49962 28.4466 9.49962 28.9211C9.49962 29.3956 9.88444 29.7804 10.3589 29.7804H13.1589C13.6334 29.7804 14.0181 29.3956 14.0181 28.9211C14.0181 28.4466 13.6334 28.0618 13.1589 28.0618Z"
+              fill="#0F62F9"></path>
+            <path
+              d="M17.4344 32.8742H25.9989C26.4735 32.8742 26.8582 33.259 26.8582 33.7335C26.8582 34.208 26.4735 34.5928 25.9989 34.5928H17.4344C16.96 34.5928 16.5752 34.2079 16.5752 33.7335C16.5752 33.259 16.9599 32.8742 17.4344 32.8742Z"
+              fill="#0F62F9"></path>
+            <path
+              d="M13.1589 32.8742H10.3589C9.88435 32.8742 9.49962 33.259 9.49962 33.7335C9.49962 34.2079 9.88444 34.5928 10.3589 34.5928H13.1589C13.6334 34.5928 14.0181 34.2079 14.0181 33.7335C14.0181 33.259 13.6334 32.8742 13.1589 32.8742Z"
+              fill="#0F62F9"></path>
+            <path
+              d="M17.4345 37.6865C17.6613 37.6865 17.8822 37.7785 18.042 37.9383C18.2027 38.0982 18.2939 38.3199 18.2939 38.5459C18.2939 38.7719 18.2027 38.9937 18.042 39.1534C17.8822 39.3134 17.6614 39.4053 17.4345 39.4053C17.2085 39.4053 16.9868 39.3133 16.8269 39.1534C16.667 38.9937 16.5752 38.7719 16.5752 38.5459C16.5752 38.3199 16.6671 38.0982 16.8269 37.9383C16.9876 37.7784 17.2085 37.6865 17.4345 37.6865Z"
+              fill="#0F62F9"></path>
+            <path
+              d="M13.1589 37.6865H10.3589C9.88435 37.6865 9.49962 38.0714 9.49962 38.5458C9.49962 39.0204 9.88444 39.4051 10.3589 39.4051H13.1589C13.6334 39.4051 14.0181 39.0203 14.0181 38.5458C14.0182 38.0714 13.6334 37.6865 13.1589 37.6865Z"
+              fill="#0F62F9"></path>
+            <path fill-rule="evenodd" clip-rule="evenodd"
+              d="M41.9292 37.3969C42.1721 37.3628 42.4199 37.344 42.6721 37.344C45.6099 37.344 48 39.734 48 42.672C48 45.6099 45.61 48 42.6722 48C39.8038 48 37.4589 45.7211 37.3497 42.8788L33.7891 46.4395C32.7506 47.478 31.386 47.9975 30.0219 47.9975C28.6574 47.9975 27.2934 47.4783 26.2546 46.4395C25.2483 45.4332 24.6941 44.0953 24.6941 42.6721C24.6941 41.2489 25.2483 39.911 26.2546 38.9046L33.06 32.0991C34.0662 31.0928 35.4041 30.5386 36.8272 30.5386C38.2503 30.5386 39.5882 31.0928 40.5945 32.0991C42.0259 33.5306 42.4707 35.5807 41.9292 37.3969ZM27.4698 45.2242C28.8769 46.6316 31.1666 46.6316 32.5737 45.2242L35.3688 42.4291L30.2649 37.3249L27.4698 40.1201C26.7881 40.8017 26.4127 41.7081 26.4127 42.6722C26.4127 43.6362 26.7881 44.5425 27.4698 45.2242ZM31.48 36.1095L36.584 41.2138L39.379 38.4186C40.7862 37.0114 40.7862 34.7216 39.379 33.3144C38.6975 32.6327 37.7911 32.2573 36.8271 32.2573C35.863 32.2573 34.9568 32.6327 34.2751 33.3144L31.48 36.1095ZM39.063 42.6721C39.063 44.366 40.2364 45.7905 41.8128 46.1772V39.167C40.2363 39.5536 39.063 40.978 39.063 42.6721ZM43.5314 39.1669V46.1772C45.1079 45.7905 46.2813 44.3659 46.2813 42.672C46.2813 40.978 45.1079 39.5536 43.5314 39.1669Z"
+              fill="#0F62F9"></path>
+            <path fill-rule="evenodd" clip-rule="evenodd"
+              d="M30.8166 4.25172L38.4644 11.8999C38.6256 12.0611 38.7161 12.2796 38.716 12.5075V28.6633C38.716 29.1378 38.3312 29.5226 37.8567 29.5226C37.3822 29.5226 36.9974 29.1378 36.9974 28.6633V13.3669H31.9275C30.506 13.3669 29.3496 12.2104 29.3496 10.7889V5.7188H6.57792C6.10415 5.7188 5.71864 6.10424 5.71864 6.57811V45.4208C5.71864 45.8946 6.10407 46.2801 6.57792 46.2801H22.9925C23.467 46.2801 23.8518 46.6649 23.8518 47.1394C23.8518 47.6139 23.4671 47.9987 22.9925 47.9987H6.57792C5.15645 47.9987 4 46.8422 4 45.4207V6.57811C4 5.15658 5.15645 4 6.57792 4H30.209C30.4369 4 30.6554 4.09058 30.8166 4.25172ZM31.0683 10.7889C31.0683 11.2627 31.4537 11.6482 31.9276 11.6482H35.7824L31.0683 6.93407V10.7889Z"
+              stroke="#0F62F9" stroke-width="0.5" stroke-miterlimit="10" stroke-linecap="square"></path>
+            <path
+              d="M17.4344 28.0618H32.3578C32.8323 28.0618 33.2172 28.4466 33.2171 28.9211C33.2171 29.3957 32.8323 29.7804 32.3578 29.7804H17.4344C16.96 29.7804 16.5752 29.3956 16.5752 28.9211C16.5752 28.4466 16.9599 28.0618 17.4344 28.0618Z"
+              stroke="#0F62F9" stroke-width="0.5" stroke-miterlimit="10" stroke-linecap="square"></path>
+            <path
+              d="M13.1589 28.0618H10.3589C9.88435 28.0618 9.49962 28.4466 9.49962 28.9211C9.49962 29.3956 9.88444 29.7804 10.3589 29.7804H13.1589C13.6334 29.7804 14.0181 29.3956 14.0181 28.9211C14.0181 28.4466 13.6334 28.0618 13.1589 28.0618Z"
+              stroke="#0F62F9" stroke-width="0.5" stroke-miterlimit="10" stroke-linecap="square"></path>
+            <path
+              d="M17.4344 32.8742H25.9989C26.4735 32.8742 26.8582 33.259 26.8582 33.7335C26.8582 34.208 26.4735 34.5928 25.9989 34.5928H17.4344C16.96 34.5928 16.5752 34.2079 16.5752 33.7335C16.5752 33.259 16.9599 32.8742 17.4344 32.8742Z"
+              stroke="#0F62F9" stroke-width="0.5" stroke-miterlimit="10" stroke-linecap="square"></path>
+            <path
+              d="M13.1589 32.8742H10.3589C9.88435 32.8742 9.49962 33.259 9.49962 33.7335C9.49962 34.2079 9.88444 34.5928 10.3589 34.5928H13.1589C13.6334 34.5928 14.0181 34.2079 14.0181 33.7335C14.0181 33.259 13.6334 32.8742 13.1589 32.8742Z"
+              stroke="#0F62F9" stroke-width="0.5" stroke-miterlimit="10" stroke-linecap="square"></path>
+            <path
+              d="M17.4345 37.6865C17.6613 37.6865 17.8822 37.7785 18.042 37.9383C18.2027 38.0982 18.2939 38.3199 18.2939 38.5459C18.2939 38.7719 18.2027 38.9937 18.042 39.1534C17.8822 39.3134 17.6614 39.4053 17.4345 39.4053C17.2085 39.4053 16.9868 39.3133 16.8269 39.1534C16.667 38.9937 16.5752 38.7719 16.5752 38.5459C16.5752 38.3199 16.6671 38.0982 16.8269 37.9383C16.9876 37.7784 17.2085 37.6865 17.4345 37.6865Z"
+              stroke="#0F62F9" stroke-width="0.5" stroke-miterlimit="10" stroke-linecap="square"></path>
+            <path
+              d="M13.1589 37.6865H10.3589C9.88435 37.6865 9.49962 38.0714 9.49962 38.5458C9.49962 39.0204 9.88444 39.4051 10.3589 39.4051H13.1589C13.6334 39.4051 14.0181 39.0203 14.0181 38.5458C14.0182 38.0714 13.6334 37.6865 13.1589 37.6865Z"
+              stroke="#0F62F9" stroke-width="0.5" stroke-miterlimit="10" stroke-linecap="square"></path>
+            <path fill-rule="evenodd" clip-rule="evenodd"
+              d="M41.9292 37.3969C42.1721 37.3628 42.4199 37.344 42.6721 37.344C45.6099 37.344 48 39.734 48 42.672C48 45.6099 45.61 48 42.6722 48C39.8038 48 37.4589 45.7211 37.3497 42.8788L33.7891 46.4395C32.7506 47.478 31.386 47.9975 30.0219 47.9975C28.6574 47.9975 27.2934 47.4783 26.2546 46.4395C25.2483 45.4332 24.6941 44.0953 24.6941 42.6721C24.6941 41.2489 25.2483 39.911 26.2546 38.9046L33.06 32.0991C34.0662 31.0928 35.4041 30.5386 36.8272 30.5386C38.2503 30.5386 39.5882 31.0928 40.5945 32.0991C42.0259 33.5306 42.4707 35.5807 41.9292 37.3969ZM27.4698 45.2242C28.8769 46.6316 31.1666 46.6316 32.5737 45.2242L35.3688 42.4291L30.2649 37.3249L27.4698 40.1201C26.7881 40.8017 26.4127 41.7081 26.4127 42.6722C26.4127 43.6362 26.7881 44.5425 27.4698 45.2242ZM31.48 36.1095L36.584 41.2138L39.379 38.4186C40.7862 37.0114 40.7862 34.7216 39.379 33.3144C38.6975 32.6327 37.7911 32.2573 36.8271 32.2573C35.863 32.2573 34.9568 32.6327 34.2751 33.3144L31.48 36.1095ZM39.063 42.6721C39.063 44.366 40.2364 45.7905 41.8128 46.1772V39.167C40.2363 39.5536 39.063 40.978 39.063 42.6721ZM43.5314 39.1669V46.1772C45.1079 45.7905 46.2813 44.3659 46.2813 42.672C46.2813 40.978 45.1079 39.5536 43.5314 39.1669Z"
+              stroke="#0F62F9" stroke-width="0.5" stroke-miterlimit="10" stroke-linecap="square"></path>
+            <path fill-rule="evenodd" clip-rule="evenodd"
+              d="M22.018 9.09448V10.4707C22.9874 10.5938 23.899 10.8637 24.4884 11.1876L25.3781 11.6767L24.4 13.4563L23.5102 12.9672C23.2089 12.8016 22.6538 12.626 22.018 12.5221V15.3695C22.5009 15.5424 23.0059 15.7513 23.4328 16.0264C24.1781 16.5067 24.7986 17.261 24.7986 18.4168C24.7986 19.3779 24.4759 20.1851 23.855 20.7721C23.3349 21.2638 22.6782 21.5324 22.018 21.6673V23.5693H19.9874V21.7523C18.983 21.6639 17.9665 21.4135 17.0996 21.1007L16.1445 20.756L16.8338 18.8459L17.7888 19.1905C18.4929 19.4446 19.263 19.6309 19.9874 19.7117V16.823C19.4279 16.6209 18.8244 16.3636 18.3203 15.9939C17.5617 15.4377 17.0048 14.6115 17.0048 13.4222C17.0048 12.4066 17.4519 11.624 18.1668 11.12C18.7084 10.7382 19.3582 10.5459 19.9874 10.4595V9.09448H22.018ZM19.9874 12.5203C19.7037 12.5832 19.4864 12.6743 19.3368 12.7798C19.1557 12.9074 19.0355 13.0739 19.0355 13.4222C19.0355 13.8659 19.199 14.1202 19.521 14.3563C19.6557 14.455 19.811 14.5445 19.9874 14.6296V12.5203ZM22.018 19.5612C22.2114 19.486 22.3563 19.3945 22.4601 19.2964C22.6225 19.1428 22.768 18.8965 22.768 18.4168C22.768 18.1317 22.6681 17.9494 22.3328 17.7334C22.2372 17.6717 22.1324 17.6143 22.018 17.5591V19.5612Z"
+              fill="#5DAC46"></path>
+          </svg>
+          <div>
+            <h2>THUỐC TỐT GIÁ RẺ</h2>
+            <p>Nếu hkông rẻ <br> Hoàn tiền chênh lệch</p>
+          </div>
+        </div>
+        <div class="service-item">
+          <svg width="52" height="52" viewBox="0 0 52 52" fill="none">
+            <path fill-rule="evenodd" clip-rule="evenodd"
+              d="M11.3214 19.4831C11.3214 11.123 18.1304 4.32148 26.4998 4.32148C34.8694 4.32148 41.6783 11.123 41.6784 19.4831C41.6784 22.7964 40.863 25.9543 39.1858 29.1374C37.7029 31.9516 35.6844 34.5471 33.7322 37.0572L33.7304 37.0595C31.2893 40.1984 28.7651 43.4441 27.1246 47.2678C27.0176 47.5173 26.7718 47.6791 26.4999 47.6791C26.228 47.6791 25.9823 47.5173 25.8752 47.2678C24.2346 43.4437 21.71 40.1976 19.2687 37.0585C17.3163 34.5483 15.2971 31.952 13.8141 29.1374C12.1368 25.9543 11.3214 22.7964 11.3214 19.4831ZM32.658 36.2251C36.5979 31.1594 40.3191 26.3746 40.3191 19.4831C40.3191 11.8716 34.1198 5.67929 26.4998 5.67929C18.8799 5.67929 12.6807 11.8717 12.6807 19.4831C12.6807 26.3746 16.4019 31.1593 20.3416 36.2251L20.3428 36.2266C22.5491 39.0635 24.8215 41.9855 26.4998 45.3802C28.1782 41.9852 30.4516 39.0621 32.658 36.2251Z"
+              fill="#0F62F9"></path>
+            <path fill-rule="evenodd" clip-rule="evenodd"
+              d="M19.2687 37.0585C17.3163 34.5483 15.2971 31.952 13.8141 29.1374C12.1368 25.9543 11.3214 22.7964 11.3214 19.4831C11.3214 11.123 18.1304 4.32148 26.4998 4.32148C34.8694 4.32148 41.6783 11.123 41.6784 19.4831C41.6784 22.7964 40.863 25.9543 39.1858 29.1374C37.7029 31.9516 35.6844 34.5471 33.7322 37.0572L33.7304 37.0595C31.2893 40.1984 28.7651 43.4441 27.1246 47.2678C27.0176 47.5173 26.7718 47.6791 26.4999 47.6791C26.228 47.6791 25.9823 47.5173 25.8752 47.2678C24.2346 43.4437 21.71 40.1976 19.2687 37.0585ZM33.9951 37.2425C35.9413 34.74 37.9742 32.126 39.4704 29.2867C41.1698 26.0615 42 22.8526 42 19.4828C41.9999 10.9453 35.047 4 26.4999 4C17.9529 4 11 10.9453 11 19.4828C11 22.8526 11.8302 26.0615 13.5296 29.2867C15.026 32.1265 17.0599 34.7416 19.0064 37.2444L19.0148 37.2552C21.4602 40.3995 23.958 43.614 25.5797 47.394C25.7375 47.7617 26.0996 48 26.5 48C26.9004 48 27.2625 47.7617 27.4202 47.394C29.0418 43.6144 31.5393 40.4002 33.9844 37.2562L33.9951 37.2425ZM20.5957 36.0279L20.6057 36.0407C22.6837 38.7127 24.8407 41.4862 26.4999 44.6699C28.1593 41.4858 30.3171 38.7113 32.3953 36.0392L32.4042 36.0277L32.658 36.2251C30.5296 38.9618 28.339 41.7782 26.6802 45.0214C26.6194 45.1403 26.5592 45.2601 26.4998 45.3802C26.4405 45.2601 26.3804 45.1403 26.3196 45.0214C24.661 41.7786 22.4711 38.9632 20.3428 36.2266L20.3416 36.2251C16.4019 31.1593 12.6807 26.3746 12.6807 19.4831C12.6807 11.8717 18.8799 5.67929 26.4998 5.67929C34.1198 5.67929 40.3191 11.8716 40.3191 19.4831C40.3191 26.3746 36.5979 31.1594 32.658 36.2251L32.4042 36.0277C36.3531 30.9504 39.9976 26.2487 39.9976 19.4828C39.9976 12.0486 33.9423 6.00014 26.4999 6.00014C19.0576 6.00014 13.0023 12.0487 13.0023 19.4828C13.0023 26.2487 16.6469 30.9504 20.5957 36.0279Z"
+              fill="#0F62F9"></path>
+            <path
+              d="M35.9209 18.3116C35.3734 13.9721 31.8126 10.4982 27.4542 10.0515C25.568 9.85798 23.6953 10.2124 22.0382 11.0762C21.7235 11.2402 21.6014 11.6282 21.7654 11.943C21.9295 12.2577 22.3175 12.3797 22.6322 12.2157C24.0658 11.4684 25.6876 11.1621 27.3232 11.3297C31.0929 11.7161 34.1726 14.7201 34.646 18.4724C34.9715 21.0515 34.1142 23.5751 32.2941 25.3958C30.474 27.2166 27.9509 28.0747 25.3716 27.7503C23.6158 27.5294 21.9398 26.7116 20.6524 25.4472C19.3644 24.1824 18.5176 22.5219 18.268 20.7717C17.96 18.6121 18.4817 16.4639 19.7368 14.7226C19.7386 14.7201 19.7516 14.7112 19.7726 14.7112H21.1404C21.1591 14.7112 21.1761 14.7237 21.1814 14.7418L22.7979 20.1298C23.0551 20.9881 23.8301 21.5647 24.726 21.5647H29.1889C30.2989 21.5647 31.202 20.6616 31.202 19.5515V15.4395C31.202 15.0847 30.9144 14.797 30.5595 14.797H22.5394L22.4121 14.3726C22.2423 13.8066 21.7312 13.4264 21.1403 13.4264H19.7725C19.3435 13.4264 18.9404 13.6301 18.6944 13.9713C17.2439 15.9835 16.6407 18.4631 16.9959 20.9532C17.2852 22.9811 18.264 24.9027 19.7521 26.3641C21.2392 27.8244 23.178 28.7696 25.2113 29.0253C25.6246 29.0773 26.0361 29.1028 26.4449 29.1028C28.9802 29.1028 31.3922 28.1157 33.203 26.3042C35.3057 24.2009 36.2963 21.2876 35.9209 18.3116ZM29.917 16.0821V19.5516C29.917 19.9531 29.5903 20.2798 29.1888 20.2798H24.7259C24.4018 20.2798 24.1215 20.0712 24.0284 19.7608L22.9249 16.0822H29.917V16.0821Z"
+              fill="#5DAC46"></path>
+            <path
+              d="M23.0202 22.3357C22.288 22.3357 21.6924 22.9313 21.6924 23.6635C21.6924 24.3957 22.288 24.9914 23.0202 24.9914C23.7524 24.9914 24.3481 24.3957 24.3481 23.6635C24.3481 22.9313 23.7524 22.3357 23.0202 22.3357Z"
+              fill="#5DAC46"></path>
+            <path
+              d="M29.8728 22.3357C29.1406 22.3357 28.5449 22.9313 28.5449 23.6635C28.5449 24.3957 29.1406 24.9914 29.8728 24.9914C30.605 24.9914 31.2006 24.3957 31.2006 23.6635C31.2006 22.9313 30.605 22.3357 29.8728 22.3357Z"
+              fill="#5DAC46"></path>
+          </svg>
+          <div>
+            <h2>NHÀ THUỐC GẦN BẠN</h2>
+            <p>Tìm ngay nhà thuốc gần nơi bạn<br> sống và ghé thăm</p>
+          </div>
+        </div>
+        <div class="service-item">
+          <svg width="52" height="52" viewBox="0 0 52 52" fill="none">
+            <path
+              d="M36.0767 11.6078C36.5201 11.6078 36.8765 11.2422 36.8765 10.7951V6.99379C36.8765 5.2897 35.515 3.90024 33.8376 3.90024H12.9389C11.2614 3.90024 9.9 5.2897 9.9 6.99379V45.0067C9.9 46.7108 11.2614 48.1002 12.9389 48.1002H33.8376C35.515 48.1002 36.8765 46.7108 36.8765 45.0067V32.8425C36.8765 32.3955 36.5202 32.0298 36.0767 32.0298C35.6333 32.0298 35.2769 32.3954 35.2769 32.8425V45.0066C35.2769 45.8178 34.6294 46.4746 33.8376 46.4746H12.9389C12.147 46.4746 11.4995 45.8178 11.4995 45.0066V6.99379C11.4995 6.18265 12.147 5.52577 12.9389 5.52577H33.8376C34.6294 5.52577 35.2769 6.18265 35.2769 6.99379V10.7951C35.2769 11.2421 35.6332 11.6078 36.0767 11.6078Z"
+              fill="#0F62F9" stroke="#0F62F9" stroke-width="0.2"></path>
+            <path
+              d="M24.8796 6.94016H21.8941C21.4507 6.94016 21.0943 7.30575 21.0943 7.75293C21.0943 8.19999 21.4506 8.56569 21.8941 8.56569H24.8796C25.323 8.56569 25.6794 8.2001 25.6794 7.75293C25.6794 7.30575 25.323 6.94016 24.8796 6.94016Z"
+              fill="#0F62F9" stroke="#0F62F9" stroke-width="0.2"></path>
+            <path
+              d="M18.9099 6.94016H18.9174C19.3609 6.94016 19.7172 7.30575 19.7171 7.75293L18.9099 6.94016ZM18.9099 6.94016C18.4659 6.94016 18.1139 7.30646 18.1139 7.75293M18.9099 6.94016L18.1139 7.75293M18.1139 7.75293C18.1139 8.2007 18.4747 8.56569 18.9173 8.56569M18.1139 7.75293L18.9173 8.56569M18.9173 8.56569C19.3607 8.56569 19.7171 8.20011 19.7171 7.75295L18.9173 8.56569Z"
+              fill="#0F62F9" stroke="#0F62F9" stroke-width="0.2"></path>
+            <path
+              d="M24.8796 43.4353H21.8941C21.4507 43.4353 21.0943 43.8009 21.0943 44.248C21.0943 44.6951 21.4506 45.0608 21.8941 45.0608H24.8796C25.323 45.0608 25.6794 44.6952 25.6794 44.248C25.6794 43.8009 25.323 43.4353 24.8796 43.4353Z"
+              fill="#0F62F9" stroke="#0F62F9" stroke-width="0.2"></path>
+            <path
+              d="M33.092 32.7926C32.6486 32.7926 32.2922 33.1582 32.2922 33.6054V40.3953H14.4858V11.6105H33.092C33.5354 11.6105 33.8918 11.2449 33.8918 10.7977C33.8918 10.3507 33.5355 9.98496 33.092 9.98496H13.6861C13.2427 9.98496 12.8863 10.3506 12.8863 10.7977V41.208C12.8863 41.6551 13.2426 42.0208 13.6861 42.0208H33.092C33.5354 42.0208 33.8918 41.6552 33.8918 41.208V33.6053C33.8918 33.1582 33.5354 32.7926 33.092 32.7926Z"
+              fill="#0F62F9" stroke="#0F62F9" stroke-width="0.2"></path>
+            <path
+              d="M28.8638 28.4967L28.7577 28.6736C27.867 30.159 26.8998 31.0207 26.8682 31.0483C26.7402 31.1596 26.6955 31.3447 26.7611 31.5061C26.8224 31.6568 26.9647 31.7502 27.1169 31.7502L28.8638 28.4967ZM28.8638 28.4967L28.7103 28.359C27.0151 26.838 26.0527 24.6853 26.0527 22.3693C26.0527 17.9545 29.578 14.3704 33.9011 14.3704C38.2241 14.3704 41.7494 17.9545 41.7494 22.3693C41.7494 26.7841 38.2241 30.3683 33.9011 30.3683C33.2041 30.3683 32.514 30.2747 31.8453 30.09L31.7333 30.0591L31.6374 30.1247C29.5801 31.5339 27.2535 31.7404 27.1481 31.749L28.8638 28.4967ZM28.2386 30.7783L28.7079 30.1478C29.0317 29.7128 29.3774 29.1899 29.7015 28.5866C29.795 28.4125 29.7489 28.1959 29.5972 28.0772C27.8353 26.6984 26.8248 24.6169 26.8248 22.3692C26.8248 18.4014 29.9947 15.166 33.9011 15.166C37.8076 15.166 40.9774 18.4015 40.9774 22.3692C40.9774 26.3369 37.8076 29.5725 33.9011 29.5725C33.1788 29.5725 32.4645 29.4613 31.7784 29.2419L28.2386 30.7783ZM28.2386 30.7783L28.9859 30.5348M28.2386 30.7783L28.9859 30.5348M28.9859 30.5348C29.7411 30.2887 30.6272 29.9021 31.4382 29.2992M28.9859 30.5348L31.4382 29.2992M31.4382 29.2992C31.537 29.2258 31.663 29.2051 31.7783 29.2418L31.4382 29.2992Z"
+              fill="#5DAC46" stroke="#5DAC46" stroke-width="0.5"></path>
+            <path
+              d="M38.3227 20.4149C38.136 20.2248 37.8332 20.2248 37.6465 20.415L33.3944 24.7461L31.1824 22.493C30.9957 22.3027 30.693 22.3027 30.5063 22.493C30.3195 22.6832 30.3195 22.9915 30.5063 23.1817L33.0564 25.7792C33.1497 25.8743 33.2721 25.9219 33.3944 25.9219C33.5168 25.9219 33.6392 25.8743 33.7325 25.7792L38.3226 21.1037C38.5094 20.9135 38.5094 20.6052 38.3227 20.4149Z"
+              fill="#5DAC46" stroke="#5DAC46" stroke-width="0.5"></path>
+            <path
+              d="M22.6422 28.988H17.4175C16.9742 28.988 16.6178 29.3536 16.6178 29.8008C16.6178 30.2478 16.9741 30.6135 17.4175 30.6135H22.6422C23.0856 30.6135 23.442 30.2479 23.442 29.8008C23.442 29.3536 23.0856 28.988 22.6422 28.988Z"
+              fill="#0F62F9" stroke="#0F62F9" stroke-width="0.2"></path>
+            <path
+              d="M19.6567 25.9511H17.4175C16.9742 25.9511 16.6178 26.3167 16.6178 26.7639C16.6178 27.211 16.9741 27.5767 17.4175 27.5767H19.6567C20.1 27.5767 20.4564 27.2111 20.4564 26.7639C20.4564 26.3167 20.1001 25.9511 19.6567 25.9511Z"
+              fill="#0F62F9" stroke="#0F62F9" stroke-width="0.2"></path>
+            <path
+              d="M22.6422 32.0339H17.4175C16.9742 32.0339 16.6178 32.3995 16.6178 32.8467C16.6178 33.2937 16.9741 33.6594 17.4175 33.6594H22.6422C23.0856 33.6594 23.442 33.2938 23.442 32.8467C23.442 32.3995 23.0856 32.0339 22.6422 32.0339Z"
+              fill="#0F62F9" stroke="#0F62F9" stroke-width="0.2"></path>
+            <path
+              d="M18.9103 37.3526H17.4175C16.9742 37.3526 16.6178 37.7182 16.6178 38.1654C16.6178 38.6125 16.9741 38.9782 17.4175 38.9782H18.9103C19.3536 38.9782 19.71 38.6126 19.71 38.1654C19.71 37.7182 19.3536 37.3526 18.9103 37.3526Z"
+              fill="#0F62F9" stroke="#0F62F9" stroke-width="0.2"></path>
+            <path
+              d="M29.3585 37.3526H27.8658C27.4224 37.3526 27.066 37.7182 27.066 38.1654C27.066 38.6125 27.4223 38.9782 27.8658 38.9782H29.3585C29.8019 38.9782 30.1583 38.6126 30.1583 38.1654C30.1583 37.7182 29.8019 37.3526 29.3585 37.3526Z"
+              fill="#0F62F9" stroke="#0F62F9" stroke-width="0.2"></path>
+            <path
+              d="M24.1359 37.3526H22.6431C22.1998 37.3526 21.8434 37.7182 21.8434 38.1654C21.8434 38.6125 22.1997 38.9782 22.6431 38.9782H24.1359C24.5792 38.9782 24.9356 38.6126 24.9356 38.1654C24.9356 37.7182 24.5793 37.3526 24.1359 37.3526Z"
+              fill="#0F62F9" stroke="#0F62F9" stroke-width="0.2"></path>
+          </svg>
+          <div>
+            <h2>TÍCH LUỸ ĐIỂM</h2>
+            <p>Tích luỹ điểm thường và sử dụng<br> điểm cho mọi giao dịch</p>
+          </div>
+        </div>
+      </div>
+
+      <div class="service-bot">
+        <p>Nhập <b>Email</b> để nhận thông tin khuyến mãi từ Medimall</p>
+        <input type="email" placeholder="Email thường dùng">
+        <button>Đăng ký</button>
+      </div>
+    </div>
+  </div>
+  <div class="bg"></div>
+
+  <div class="container-footer">
+    <div class="footer1">
+      <div class="ft1-item">
+        <h4>Về Medimall</h4>
+        <p>Tại Medimall, mỗi dược sỹ luôn tận tâm phục vụ và được đào tạo để hoàn thành xuất sắc những sứ mệnh được
+          giao.</p>
+        <a href="#">Tìm hiểu thêm</a>
+        <h3>Trở thành nhà cung cấp</h3>
+        <p>Hỗ trợ đơn hàng doanh nghiệp:
+          <br>
+          Groupb2b@medimall.vn</p>
+      </div>
+      <div class="ft1-item">
+        <h4>Liên kết hữu ích</h4>
+        <p>Câu hỏi thường gặp<br>
+          Tìm cửa hàng gần bạn<br>
+          Chính sách giao hàng<br>
+          Phuơg thức thah toán<br>
+          Chính sách đổi trả<br>
+          Thể lệ chương trình Thẻ thành viên<br>
+          Chính sách bảo mật<br>
+          Thông báo cổ đông</p>
+      </div>
+      <div class="ft1-item">
+        <h4>Theo dõi chúng tôi trên</h4>
+        <div>
+          <svg width="16" height="16" viewBox="0 0 16 16" fill="none">
+            <g clip-path="url(#facebook)">
+              <path
+                d="M15.1169 16.0001C15.6046 16.0001 16 15.6047 16 15.117V0.883062C16 0.395312 15.6046 0 15.1169 0H0.883062C0.39525 0 0 0.395312 0 0.883062V15.117C0 15.6047 0.39525 16.0001 0.883062 16.0001H15.1169Z"
+                fill="#395185"></path>
+              <path
+                d="M11.0396 16V9.80394H13.1194L13.4308 7.38925H11.0396V5.8475C11.0396 5.14838 11.2338 4.67194 12.2364 4.67194L13.5151 4.67138V2.51169C13.2938 2.48225 12.5348 2.4165 11.6518 2.4165C9.80819 2.4165 8.54606 3.54182 8.54606 5.60844V7.38925H6.46094V9.80394H8.54606V16H11.0396Z"
+                fill="white"></path>
+            </g>
+            <defs>
+              <clipPath id="facebook">
+                <rect width="16" height="16" fill="white"></rect>
+              </clipPath>
+            </defs>
+          </svg>
+          <p>Facebook</p>
+        </div>
+        <div>
+          <svg width="16" height="16" viewBox="0 0 16 16" fill="none">
+            <g clip-path="url(#clip0)">
+              <path
+                d="M15.6466 4.4146C15.5549 4.07663 15.3758 3.76851 15.1274 3.52093C14.879 3.27334 14.5698 3.09493 14.2306 3.00346C12.989 2.66602 7.99189 2.66602 7.99189 2.66602C7.99189 2.66602 2.99451 2.67623 1.75289 3.01368C1.41373 3.10515 1.10454 3.28357 0.856102 3.53117C0.607665 3.77876 0.428651 4.08689 0.336887 4.42488C-0.0386755 6.62333 -0.184363 9.97327 0.347199 12.0838C0.438973 12.4218 0.617991 12.7299 0.866427 12.9775C1.11486 13.225 1.42405 13.4035 1.7632 13.4949C3.00482 13.8324 8.00207 13.8324 8.00207 13.8324C8.00207 13.8324 12.9993 13.8324 14.2408 13.4949C14.58 13.4035 14.8892 13.2251 15.1376 12.9775C15.3861 12.7299 15.5651 12.4218 15.6569 12.0838C16.053 9.88221 16.1751 6.53439 15.6466 4.41466V4.4146Z"
+                fill="#FF0000"></path>
+              <path d="M6.40039 10.7856L10.546 8.39278L6.40045 6L6.40039 10.7856Z" fill="white"></path>
+            </g>
+            <defs>
+              <clipPath id="clip0">
+                <rect width="16" height="11.2109" fill="white" transform="translate(0 2.66602)"></rect>
+              </clipPath>
+            </defs>
+          </svg>
+          <p>Youtube</p>
+        </div>
+        <div>
+          <img src="../img//zalo.png" alt="">
+          <p>Zalo</p>
+        </div>
+        <img src="../img/bo-cong-thuong.svg" alt="">
+        <img src="../img/dmca-logo.svg" alt="">
+      </div>
+      <div class="ft1-item">
+        <h4>Tải ứng dụng Medimall ngay thôi</h4>
+        <div>
+          <div><img src="../img/qr-code-download-app.png" alt="">
+            <p>Quét mã để tải ứng dụng</p>
+          </div>
+          <div>Hoặc</div>
+          <div>
+            <img src="../img/gg-play.png" alt="">
+            <img src="../img/app store.png" alt="">
+          </div>
+        </div>
+      </div>
+    </div>
+    <div class="footer2">
+      <div>Công Ty Cổ Phần Dược Phẩm Medimall</div>
+      <div>Trụ sở: 248A Nơ Trang Long, P.12, Q.Bình Thạnh, TP.Hồ Chí Minh.<br>
+        Điện thoại: 1800 6821. Email:cskh@pharmacity.vn</div>
+      <div>GPDKKD: 0311770883<br>
+        do sở KH & ĐT TP.HCM cấp lần đầu ngày 05/05/2012, đăng ký thay đổi lần thứ: 49, ngày 20/01/2018.</div>
+    </div>
+  </div>
+
+  <script src="../js/trangchu.js"></script>
+</body>
+
+</html>
