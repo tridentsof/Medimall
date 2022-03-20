@@ -134,7 +134,8 @@
     <Compile Include="App_Start\RouteConfig.cs" />
     <Compile Include="Controllers\AdminAccountsController.cs" />
     <Compile Include="Controllers\AdminHomeController.cs" />
-    <Compile Include="Controllers\ProductsController.cs" />
+    <Compile Include="Controllers\AdminProductsController.cs" />
+    <Compile Include="Controllers\HomeController.cs" />
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
@@ -190,11 +191,15 @@
     <Compile Include="Models\Product.cs">
       <DependentUpon>DbContext.tt</DependentUpon>
     </Compile>
+    <Compile Include="Models\sysdiagram.cs">
+      <DependentUpon>DbContext.tt</DependentUpon>
+    </Compile>
     <Compile Include="Models\Voucher.cs">
       <DependentUpon>DbContext.tt</DependentUpon>
     </Compile>
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="ViewModels\AccountViewModel.cs" />
+    <Compile Include="ViewModels\ProductViewModel.cs" />
   </ItemGroup>
   <ItemGroup>
     <Content Include="Content\alertifyjs\alertify.css" />
@@ -217,10 +222,114 @@
     <Content Include="Content\bootstrap-theme.min.css" />
     <Content Include="Content\bootstrap.css" />
     <Content Include="Content\bootstrap.min.css" />
+    <Content Include="Content\usercss\home-customer.css" />
     <Content Include="favicon.ico" />
+    <Content Include="FE\css\cart.css" />
+    <Content Include="FE\css\dathang%28checkout%29.css" />
+    <Content Include="FE\css\style.css" />
+    <Content Include="FE\css\trangchu.css" />
+    <Content Include="FE\html\cart.html" />
+    <Content Include="FE\html\dathang%28checkout%29.html" />
+    <Content Include="FE\html\index.html" />
+    <Content Include="FE\html\trangchu.html" />
+    <Content Include="FE\img\1.png" />
+    <Content Include="FE\img\2.png" />
+    <Content Include="FE\img\3.png" />
+    <Content Include="FE\img\4.png" />
+    <Content Include="FE\img\5.png" />
+    <Content Include="FE\img\6.png" />
+    <Content Include="FE\img\7.png" />
+    <Content Include="FE\img\8.png" />
+    <Content Include="FE\img\AnyConv.com__banner-tim-hieu-benh-2-2.png" />
+    <Content Include="FE\img\app store.png" />
+    <Content Include="FE\img\banner.png" />
+    <Content Include="FE\img\bo-cong-thuong.svg" />
+    <Content Include="FE\img\brand %281%29.png" />
+    <Content Include="FE\img\brand %282%29.png" />
+    <Content Include="FE\img\brand %283%29.png" />
+    <Content Include="FE\img\brand %284%29.png" />
+    <Content Include="FE\img\brand %285%29.png" />
+    <Content Include="FE\img\brand %286%29.png" />
+    <Content Include="FE\img\brand %287%29.png" />
+    <Content Include="FE\img\brand %288%29.png" />
+    <Content Include="FE\img\clock.png" />
+    <Content Include="FE\img\covid19-banner.png" />
+    <Content Include="FE\img\dmca-logo.svg" />
+    <Content Include="FE\img\england-flag.png" />
+    <Content Include="FE\img\fire.png" />
+    <Content Include="FE\img\gg-play.png" />
+    <Content Include="FE\img\icon-1.png" />
+    <Content Include="FE\img\icon-2.png" />
+    <Content Include="FE\img\icon-3.png" />
+    <Content Include="FE\img\icon-4.png" />
+    <Content Include="FE\img\icon-5.png" />
+    <Content Include="FE\img\icon-6.png" />
+    <Content Include="FE\img\Icon.png" />
+    <Content Include="FE\img\item.png" />
+    <Content Include="FE\img\left-arrow.png" />
+    <Content Include="FE\img\lock.png" />
+    <Content Include="FE\img\Logo.png" />
+    <Content Include="FE\img\mail.png" />
+    <Content Include="FE\img\money %281%29.png" />
+    <Content Include="FE\img\money %282%29.png" />
+    <Content Include="FE\img\money %283%29.png" />
+    <Content Include="FE\img\money %284%29.png" />
+    <Content Include="FE\img\money %285%29.png" />
+    <Content Include="FE\img\P23469_1.jpg" />
+    <Content Include="FE\img\qr-code-download-app.png" />
+    <Content Include="FE\img\right-arrow.png" />
+    <Content Include="FE\img\search.png" />
+    <Content Include="FE\img\shopping-cart.png" />
+    <Content Include="FE\img\sp %281%29.png" />
+    <Content Include="FE\img\sp %282%29.png" />
+    <Content Include="FE\img\sp %283%29.png" />
+    <Content Include="FE\img\sp %284%29.png" />
+    <Content Include="FE\img\sp %285%29.png" />
+    <Content Include="FE\img\sp %286%29.png" />
+    <Content Include="FE\img\sp %287%29.png" />
+    <Content Include="FE\img\sp %288%29.png" />
+    <Content Include="FE\img\subtract.png" />
+    <Content Include="FE\img\user.png" />
+    <Content Include="FE\img\voucher-banner.png" />
+    <Content Include="FE\img\zalo.png" />
+    <Content Include="FE\js\cart.js" />
+    <Content Include="FE\js\chitietsanpham.js" />
+    <Content Include="FE\js\dathang%28checkout%29.js" />
+    <Content Include="FE\js\trangchu.js" />
+    <Content Include="FE\readme.txt" />
     <Content Include="fonts\glyphicons-halflings-regular.svg" />
     <Content Include="Global.asax" />
     <Content Include="Content\Site.css" />
+    <Content Include="Vendor\img\banners\1.png" />
+    <Content Include="Vendor\img\banners\2.png" />
+    <Content Include="Vendor\img\banners\3.png" />
+    <Content Include="Vendor\img\banners\4.png" />
+    <Content Include="Vendor\img\banners\5.png" />
+    <Content Include="Vendor\img\banners\6.png" />
+    <Content Include="Vendor\img\banners\7.png" />
+    <Content Include="Vendor\img\banners\8.png" />
+    <Content Include="Vendor\img\banners\banner.png" />
+    <Content Include="Vendor\img\banners\covid19-banner.png" />
+    <Content Include="Vendor\img\banners\voucher-banner.png" />
+    <Content Include="Vendor\img\categories\D01.png" />
+    <Content Include="Vendor\img\icon\app store.png" />
+    <Content Include="Vendor\img\icon\bo-cong-thuong.svg" />
+    <Content Include="Vendor\img\icon\clock.png" />
+    <Content Include="Vendor\img\icon\dmca-logo.svg" />
+    <Content Include="Vendor\img\icon\england-flag.png" />
+    <Content Include="Vendor\img\icon\gg-play.png" />
+    <Content Include="Vendor\img\icon\icon-1.png" />
+    <Content Include="Vendor\img\icon\icon-2.png" />
+    <Content Include="Vendor\img\icon\icon-3.png" />
+    <Content Include="Vendor\img\icon\icon-4.png" />
+    <Content Include="Vendor\img\icon\icon-5.png" />
+    <Content Include="Vendor\img\icon\icon-6.png" />
+    <Content Include="Vendor\img\icon\Icon.png" />
+    <Content Include="Vendor\img\icon\left-arrow.png" />
+    <Content Include="Vendor\img\icon\Logo.png" />
+    <Content Include="Vendor\img\icon\right-arrow.png" />
+    <Content Include="Vendor\img\icon\shopping-cart.png" />
+    <Content Include="Interface\Readme.txt" />
     <Content Include="Models\DbContext.Context.tt">
       <Generator>TextTemplatingFileGenerator</Generator>
       <DependentUpon>DbContext.edmx</DependentUpon>
@@ -242,7 +351,9 @@
     <Content Include="Models\DbContext.edmx.diagram">
       <DependentUpon>DbContext.edmx</DependentUpon>
     </Content>
+    <Content Include="FE\html\cart.html.bak" />
     <None Include="Scripts\jquery-3.4.1.intellisense.js" />
+    <Content Include="Scripts\home-customer.js" />
     <Content Include="Scripts\importImage.js" />
     <Content Include="Scripts\jquery-3.4.1.js" />
     <Content Include="Scripts\jquery-3.4.1.min.js" />
@@ -255,10 +366,15 @@
     <Content Include="Scripts\jquery.validate.unobtrusive.min.js" />
     <Content Include="Scripts\lazyLoadAccounts.js" />
     <Content Include="Scripts\modernizr-2.8.3.js" />
+    <Content Include="Scripts\onload-crud.js" />
     <Content Include="Scripts\onload.js" />
+    <Content Include="Vendor\css\admin-site.css" />
     <Content Include="Vendor\css\sb-admin-2.css" />
     <Content Include="Vendor\css\sb-admin-2.min.css" />
     <Content Include="Vendor\img\dots_2.gif" />
+    <Content Include="Vendor\img\icon\subtract.png" />
+    <Content Include="Vendor\img\icon\zalo.png" />
+    <Content Include="Vendor\img\products\item.png" />
     <Content Include="Vendor\img\undraw_posting_photo.svg" />
     <Content Include="Vendor\img\undraw_profile.svg" />
     <Content Include="Vendor\img\undraw_profile_1.svg" />
@@ -1951,9 +2067,6 @@
     <Content Include="Views\_ViewStart.cshtml" />
     <Content Include="Views\Shared\Error.cshtml" />
     <Content Include="Views\Shared\_Layout.cshtml" />
-    <Content Include="Views\Home\About.cshtml" />
-    <Content Include="Views\Home\Contact.cshtml" />
-    <Content Include="Views\Home\Index.cshtml" />
     <Content Include="Views\Shared\_LayoutAdmin.cshtml" />
     <Content Include="Vendor\vendor\bootstrap\js\bootstrap.bundle.js.map" />
     <Content Include="Vendor\vendor\bootstrap\js\bootstrap.bundle.min.js.map" />
@@ -2109,19 +2222,26 @@
     <Content Include="Views\Shared\_LoginPartial.cshtml" />
     <Content Include="Views\AdminAccounts\Create.cshtml" />
     <Content Include="Views\AdminAccounts\Delete.cshtml" />
-    <Content Include="Views\AdminAccounts\Details.cshtml" />
     <Content Include="Views\AdminAccounts\Edit.cshtml" />
     <Content Include="Views\AdminAccounts\Index.cshtml" />
-    <Content Include="Views\Products\Create.cshtml" />
-    <Content Include="Views\Products\Delete.cshtml" />
-    <Content Include="Views\Products\Details.cshtml" />
-    <Content Include="Views\Products\Edit.cshtml" />
-    <Content Include="Views\Products\Index.cshtml" />
+    <Content Include="Views\AdminProducts\Create.cshtml" />
+    <Content Include="Views\AdminProducts\Delete.cshtml" />
+    <Content Include="Views\AdminProducts\Edit.cshtml" />
+    <Content Include="Views\AdminProducts\Index.cshtml" />
+    <Content Include="Views\Shared\_LayoutCustomer.cshtml" />
+    <Content Include="Views\Home\Index.cshtml" />
+    <Content Include="Views\Home\GetCategories.cshtml" />
+    <Content Include="Views\Home\GetCategoriesWithImage.cshtml" />
+    <Content Include="Views\Home\GetVoucher.cshtml" />
+    <Content Include="Views\Home\CovidNews.cshtml" />
+    <Content Include="Views\Home\GetCovidProductPageOne.cshtml" />
+    <Content Include="Views\Home\GetCovidProductPageTwo.cshtml" />
+    <Content Include="Views\Home\GetCovidProductPageThree.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
     <Folder Include="Data\" />
-    <Folder Include="Images\avatar\" />
+    <Folder Include="Vendor\img\avatar\" />
   </ItemGroup>
   <ItemGroup>
     <Content Include="fonts\glyphicons-halflings-regular.woff2" />

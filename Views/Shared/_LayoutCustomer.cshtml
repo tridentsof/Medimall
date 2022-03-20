@@ -1,0 +1,241 @@
+﻿
+@{
+    Layout = null;
+}
+
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Medimall</title>
+
+    <!-- Icon -->
+    <link rel="stylesheet" href="../fontawesome-free-5.15.4-web/css/all.min.css">
+    <!-- Reset css -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/normalize/8.0.1/normalize.min.css"
+          integrity="sha512-NhSC1YmyruXifcj/KFRWoC561YpHpc5Jtzgvbuzx5VozKpWvQ+4nXhPdFgmx8xqexRcpAglTj9sIBWINXa8x5w=="
+          crossorigin="anonymous" referrerpolicy="no-referrer" />
+    <!-- Bootstrap4, FontAwesome -->
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.6.1/dist/css/bootstrap.min.css">
+    <script src="https://cdn.jsdelivr.net/npm/jquery@3.5.1/dist/jquery.slim.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.1/dist/umd/popper.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@4.6.1/dist/js/bootstrap.bundle.min.js"></script>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css
+  ">
+    <!-- Font -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Dosis:wght@200;300;400;500;600;700;800&display=swap"
+          rel="stylesheet">
+    <link rel="shortcut icon" type="image/png" href="~/Vendor/img/icon/Icon.png" />
+    <link href="~/Content/usercss/home-customer.css" rel="stylesheet" />
+</head>
+
+<body>
+    <header>
+        <div class="container-header">
+            <div class="header-top">
+                <div class="header-top-left">
+                    <p>Hotline Đặt hàng (Miễn phí)</p>
+                    <p><i class="fas fa-phone-alt fa-fw fa-xs"></i>1800 6821</p>
+                </div>
+                <div class="header-top-right">
+                    <p>Sống Khoẻ</p>
+                    <p>Nhãn hàng Medimall</p>
+                    <p><i class="fas fa-map-marker-alt fa-fw fa-xs"></i>863 cửa hàng</p>
+                    <div class="dropdown">
+                        <button type="button" class="language-btn" data-toggle="dropdown">
+                            <i class="fas fa-star fa-fw fa-xs"></i>Tiếng Việt&emsp;<i class="fas fa-chevron-down"></i></i>
+                        </button>
+                        <div class="dropdown-menu">
+                            <div class="dropdown-item">
+                                <img src="~/Vendor/img/icon/england-flag.png" />
+                                <div>
+                                    <p>Tiếng Anh</p>
+                                    <p>Coming soon</p>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <button type="button" class="login-btn" data-toggle="modal" data-target="#myModal">
+                        Đăng nhập&ensp;<i class="far fa-user fa-fw fa-lg"></i>
+                    </button>
+                    <!-- Đăng nhập -->
+                    <div id="myModal" class="modal fade " role="dialog">
+                        <div class="modal-dialog modal-dialog-centered modal-lg">
+                            <!-- Đăng nhập content-->
+                            <div class="modal-content center">
+                                <div class="modal-body">
+                                    <div class="modal-left">
+                                        <img src="~/Vendor/img/banners/banner.png" />
+                                        <div class="modal-left-text">
+                                            <h2>Medimall xin chào !</h2>
+                                            <p>
+                                                Hãy đăng nhập để được hưởng các đặc quyền riêng dành cho thành viên
+                                            </p>
+                                            <div>
+                                                Bạn đã là thành viên Medicall vui lòng nhấp <a href="#">tạo mật khẩu</a> để tiếp tục sử dụng.
+                                                Tất cả thông tin tài khoản và điểm tích lũy đều không thay đổi
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="form-login">
+                                        <h1>Đăng nhập</h1>
+                                        <form action="/action_page.php" class="needs-validation" novalidate>
+                                            <div class="form-group">
+                                                <input type="text" class="form-control" id="uname" placeholder="Số điện thoại của bạn"
+                                                       name="uname" required>
+                                                <div class="valid-feedback">Hợp lệ.</div>
+                                                <div class="invalid-feedback">Vui lòng điền vào trường này.</div>
+                                            </div>
+                                            <div class="form-group">
+                                                <input type="password" class="form-control" id="pwd" placeholder="Mật khẩu" name="pswd"
+                                                       required>
+                                                <div class="valid-feedback">Hợp lệ.</div>
+                                                <div class="invalid-feedback">Vui lòng điền vào trường này.</div>
+                                            </div>
+                                            <h2><a href="#">Quên mật khẩu?</a></h2>
+                                            <button type="submit" class="btn">Đăng Nhập</button>
+                                            <h3>Bạn chưa có tài khoản Pharmacity?</h3>
+                                            <a href="#">Đăng ký ngay</a>
+                                        </form>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="header-main">
+                <div class="logo">   
+                    <div><img src="~/Vendor/img/icon/Logo.png" /></div>
+                    <p>Nhà thuốc tiện lợi</p>
+                </div>
+                <div class="dropdown-category">
+                    <button class="dropbtn">
+                        <i class="fas fa-bars fa-fw"></i>Danh mục<i class="fas fa-chevron-down fa-fw"></i>
+                    </button>
+                    <div class="dropdown-content">
+                        @{ Html.RenderAction("GetCategories","Home");}
+                    </div>
+                </div>
+                <div class="search">
+                    <input type="text" placeholder="Bạn đang tìm gì hôm nay...">
+                </div>
+                <div class="cart">
+                    Giỏ hàng
+                    <img src="~/Vendor/img/icon/shopping-cart.png" />
+                </div>
+            </div>
+        </div>
+    </header>
+
+    <div class="container-body">
+        @*Here for render content*@
+        @RenderBody()
+    </div>
+    <div class="bg"></div>
+
+    <div class="container-footer">
+        <div class="footer1">
+            <div class="ft1-item">
+                <h4>Về Medimall</h4>
+                <p>
+                    Tại Medimall, mỗi dược sỹ luôn tận tâm phục vụ và được đào tạo để hoàn thành xuất sắc những sứ mệnh được
+                    giao.
+                </p>
+                <a href="#">Tìm hiểu thêm</a>
+                <h3>Trở thành nhà cung cấp</h3>
+                <p>
+                    Hỗ trợ đơn hàng doanh nghiệp:
+                    <br>
+                    Groupb2b@medimall.vn
+                </p>
+            </div>
+            <div class="ft1-item">
+                <h4>Liên kết hữu ích</h4>
+                <p>
+                    Câu hỏi thường gặp<br>
+                    Tìm cửa hàng gần bạn<br>
+                    Chính sách giao hàng<br>
+                    Phuơg thức thah toán<br>
+                    Chính sách đổi trả<br>
+                    Thể lệ chương trình Thẻ thành viên<br>
+                    Chính sách bảo mật<br>
+                    Thông báo cổ đông
+                </p>
+            </div>
+            <div class="ft1-item">
+                <h4>Theo dõi chúng tôi trên</h4>
+                <div>
+                    <svg width="16" height="16" viewBox="0 0 16 16" fill="none">
+                        <g clip-path="url(#facebook)">
+                            <path d="M15.1169 16.0001C15.6046 16.0001 16 15.6047 16 15.117V0.883062C16 0.395312 15.6046 0 15.1169 0H0.883062C0.39525 0 0 0.395312 0 0.883062V15.117C0 15.6047 0.39525 16.0001 0.883062 16.0001H15.1169Z"
+                                  fill="#395185"></path>
+                            <path d="M11.0396 16V9.80394H13.1194L13.4308 7.38925H11.0396V5.8475C11.0396 5.14838 11.2338 4.67194 12.2364 4.67194L13.5151 4.67138V2.51169C13.2938 2.48225 12.5348 2.4165 11.6518 2.4165C9.80819 2.4165 8.54606 3.54182 8.54606 5.60844V7.38925H6.46094V9.80394H8.54606V16H11.0396Z"
+                                  fill="white"></path>
+                        </g>
+                        <defs>
+                            <clipPath id="facebook">
+                                <rect width="16" height="16" fill="white"></rect>
+                            </clipPath>
+                        </defs>
+                    </svg>
+                    <p>Facebook</p>
+                </div>
+                <div>
+                    <svg width="16" height="16" viewBox="0 0 16 16" fill="none">
+                        <g clip-path="url(#clip0)">
+                            <path d="M15.6466 4.4146C15.5549 4.07663 15.3758 3.76851 15.1274 3.52093C14.879 3.27334 14.5698 3.09493 14.2306 3.00346C12.989 2.66602 7.99189 2.66602 7.99189 2.66602C7.99189 2.66602 2.99451 2.67623 1.75289 3.01368C1.41373 3.10515 1.10454 3.28357 0.856102 3.53117C0.607665 3.77876 0.428651 4.08689 0.336887 4.42488C-0.0386755 6.62333 -0.184363 9.97327 0.347199 12.0838C0.438973 12.4218 0.617991 12.7299 0.866427 12.9775C1.11486 13.225 1.42405 13.4035 1.7632 13.4949C3.00482 13.8324 8.00207 13.8324 8.00207 13.8324C8.00207 13.8324 12.9993 13.8324 14.2408 13.4949C14.58 13.4035 14.8892 13.2251 15.1376 12.9775C15.3861 12.7299 15.5651 12.4218 15.6569 12.0838C16.053 9.88221 16.1751 6.53439 15.6466 4.41466V4.4146Z"
+                                  fill="#FF0000"></path>
+                            <path d="M6.40039 10.7856L10.546 8.39278L6.40045 6L6.40039 10.7856Z" fill="white"></path>
+                        </g>
+                        <defs>
+                            <clipPath id="clip0">
+                                <rect width="16" height="11.2109" fill="white" transform="translate(0 2.66602)"></rect>
+                            </clipPath>
+                        </defs>
+                    </svg>
+                    <p>Youtube</p>
+                </div>
+                <div>
+                    <img src="~/Vendor/img/icon/zalo.png" />
+                    <p>Zalo</p>
+                </div>
+                <img src="~/Vendor/img/icon/bo-cong-thuong.svg" />
+                <img src="~/Vendor/img/icon/dmca-logo.svg" />
+            </div>
+            <div class="ft1-item">
+                <h4>Tải ứng dụng Medimall ngay thôi</h4>
+                <div>
+                    <div>
+                        <img src="../img/qr-code-download-app.png" alt="">
+                        <p>Quét mã để tải ứng dụng</p>
+                    </div>
+                    <div>Hoặc</div>
+                    <div>
+                        <img src="~/Vendor/img/icon/gg-play.png" />
+                        <img src="~/Vendor/img/icon/app store.png" />
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="footer2">
+            <div>Công Ty Cổ Phần Dược Phẩm Medimall</div>
+            <div>
+                Trụ sở: 94A Yên Bái, P.Phước Ninh, Hải Châu,TP.Đà Nẵng.<br>
+                Điện thoại: 1800 6821. Email:cskh@medimall.vn
+            </div>
+            <div>
+                GPDKKD: 0311770883<br>
+                do sở KH & ĐT TP.HCM cấp lần đầu ngày 05/05/2012, đăng ký thay đổi lần thứ: 49, ngày 20/01/2018.
+            </div>
+        </div>
+    </div>
+    <script src="~/Scripts/home-customer.js"></script>
+</body>
+
+</html>

@@ -7,21 +7,82 @@ using System.Net;
 using System.Web;
 using System.Web.Mvc;
 using Medimall.Models;
+using Medimall.Helper;
+using Medimall.ViewModels;
+using System.IO;
 
 namespace Medimall.Controllers
 {
-    public class ProductsController : Controller
+    public class AdminProductsController : Controller
     {
         private MedimallEntities db = new MedimallEntities();
 
-        // GET: Products
+        // GET: AdminProducts
         public ActionResult Index()
         {
-            var products = db.Products.Include(p => p.Category);
-            return View(products.ToList());
+            return View();
         }
 
-        // GET: Products/Details/5
+        public ActionResult GetPaggedData(int pageNumber = 1,int pageSize = 6)
+        {
+            db.Configuration.ProxyCreationEnabled = false;
+            List<Product> listData = db.Products.ToList();
+            var pagedData = Pagination.PagedResult(listData, pageNumber, pageSize);
+
+            return Json(pagedData, JsonRequestBehavior.AllowGet);
+        }
+
+        public JsonResult GetSearchingData(string SearchBy, string SearchValue)
+        {
+            db.Configuration.ProxyCreationEnabled = false;
+            List<Product> listProduct = new List<Product>();
+
+            if(SearchBy == "Id")
+            {
+                try
+                {
+                    listProduct = db.Products.Where(p => p.CategoryId == SearchValue || SearchValue == null).ToList();
+                }
+                catch (FormatException)
+                {
+                    Console.WriteLine("{0} không phải là danh mục hợp lệ",SearchValue);
+                }
+
+                return Json(listProduct, JsonRequestBehavior.AllowGet);
+            }
+            else
+            {
+                try
+                {
+                    listProduct = db.Products.Where(p => p.ProductName.Contains(SearchValue) || SearchValue == null).ToList(); 
+                }
+                catch (Exception)
+                {
+
+                    throw;
+                }
+
+                return Json(listProduct, JsonRequestBehavior.AllowGet);
+            }
+        }
+
+        public JsonResult DeleteProduct(int id)
+        {
+            bool result = false;
+            Product product = db.Products.Where(a => a.ProductId == id).SingleOrDefault();
+
+            if (product != null)
+            {
+                db.Products.Remove(product);
+                TempData["SuccessMess"] = "Xóa thành công!";
+                db.SaveChanges();
+                result = true;
+            }
+
+            return Json(result, JsonRequestBehavior.AllowGet);
+        }
+
+        // GET: AdminProducts/Details/5
         public ActionResult Details(int? id)
         {
             if (id == null)
@@ -36,24 +97,38 @@ namespace Medimall.Controllers
             return View(product);
         }
 
-        // GET: Products/Create
+        // GET: AdminProducts/Create
         public ActionResult Create()
         {
             ViewBag.CategoryId = new SelectList(db.Categories, "CategoryId", "CategoryName");
             return View();
         }
 
-        // POST: Products/Create
+        // POST: AdminProducts/Create
         // To protect from overposting attacks, enable the specific properties you want to bind to, for 
         // more details see https://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult Create([Bind(Include = "ProductId,CategoryId,ProductName,ProductImg,UsesFor,Ingredient,Price,Quantity,QuantitySold")] Product product)
+        public ActionResult Create([Bind(Include = "ProductId,CategoryId,ProductName,UsesFor,Ingredient,Price,Quantity,QuantitySold,Photo")] Product product)
         {
             if (ModelState.IsValid)
             {
                 db.Products.Add(product);
                 db.SaveChanges();
+
+                if (product != null)
+                {
+                    TempData["SuccessMess"] = "Tạo thành công!";
+                }
+
+                var extension = Path.GetExtension(product.Photo.FileName);
+                var path = Path.Combine(Server.MapPath("~/Vendor/img/products/"));
+
+                if (!Directory.Exists(path))
+                    Directory.CreateDirectory(path);
+                product.Photo.SaveAs(path + product.ProductId + extension);
+
+                ModelState.Clear();
                 return RedirectToAction("Index");
             }
 
@@ -61,7 +136,7 @@ namespace Medimall.Controllers
             return View(product);
         }
 
-        // GET: Products/Edit/5
+        // GET: AdminProducts/Edit/5
         public ActionResult Edit(int? id)
         {
             if (id == null)
@@ -77,12 +152,12 @@ namespace Medimall.Controllers
             return View(product);
         }
 
-        // POST: Products/Edit/5
+        // POST: AdminProducts/Edit/5
         // To protect from overposting attacks, enable the specific properties you want to bind to, for 
         // more details see https://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult Edit([Bind(Include = "ProductId,CategoryId,ProductName,ProductImg,UsesFor,Ingredient,Price,Quantity,QuantitySold")] Product product)
+        public ActionResult Edit([Bind(Include = "ProductId,CategoryId,ProductName,UsesFor,Ingredient,Price,Quantity,QuantitySold,Photo")] Product product)
         {
             if (ModelState.IsValid)
             {
@@ -94,7 +169,7 @@ namespace Medimall.Controllers
             return View(product);
         }
 
-        // GET: Products/Delete/5
+        // GET: AdminProducts/Delete/5
         public ActionResult Delete(int? id)
         {
             if (id == null)
@@ -109,7 +184,7 @@ namespace Medimall.Controllers
             return View(product);
         }
 
-        // POST: Products/Delete/5
+        // POST: AdminProducts/Delete/5
         [HttpPost, ActionName("Delete")]
         [ValidateAntiForgeryToken]
         public ActionResult DeleteConfirmed(int id)

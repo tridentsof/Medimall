@@ -1,0 +1,16 @@
+﻿@model IEnumerable<Medimall.Models.Category>
+
+<div class="content-2">
+    <h1>Danh mục sản phẩm</h1>
+    <div class="ct2-wrap">
+        @foreach (var item in Model)
+        {
+        <div class="ct2-item">
+            <img src="~/Vendor/img/categories/@(item.CategoryId).png" />
+            <p>@item.CategoryName</p>
+        </div>
+        }
+    </div>
+</div>
+
+
