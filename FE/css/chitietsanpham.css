@@ -250,6 +250,7 @@ html,body{
     width: 100%;
     background-color: #f0f2f5;
     padding: 20px;
+    margin-top: 20px;
    
 }
 .detail_product{
@@ -348,7 +349,11 @@ html,body{
     width: 100%;
     margin: 0 auto;
   }
-  
+  .ct5-wrap .title h1{
+      color: #112950;
+      font-weight: 700;
+      font-size: 28px;
+  }
   .ct5-wrap .carousel-item {
     width: 100%;
     height: 460px;

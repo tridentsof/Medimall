@@ -21,6 +21,7 @@ function handle_Giam(){
     
 }
 
+
 function handle_Tang(){
     var value = parseInt(document.getElementById('amount').value)
         value =isNaN(value) ? 0 : value;
