@@ -38,6 +38,8 @@ namespace Medimall.Models
         public Nullable<int> PayId { get; set; }
         [Display(Name = "Trạng thái")]
         public Nullable<int> Status { get; set; }
+        [Display(Name = "Số điện thoại")]
+        public string Phone { get; set; }
 
         public virtual Account Account { get; set; }
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]

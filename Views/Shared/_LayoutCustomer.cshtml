@@ -32,6 +32,7 @@
           rel="stylesheet">
     <link rel="shortcut icon" type="image/png" href="~/Vendor/img/icon/Icon.png" />
     <link href="~/Content/usercss/home-customer.css" rel="stylesheet" />
+    <link href="~/Vendor/css/cart.css" rel="stylesheet" />
 </head>
 
 <body>
@@ -111,7 +112,7 @@
             </div>
             <div class="header-main">
                 <div class="logo">   
-                    <div><img src="~/Vendor/img/icon/Logo.png" /></div>
+                    <a href="@Url.Action("Index","Home")"><div><img src="~/Vendor/img/icon/Logo.png" /></div></a>
                     <p>Nhà thuốc tiện lợi</p>
                 </div>
                 <div class="dropdown-category">
@@ -125,10 +126,8 @@
                 <div class="search">
                     <input type="text" placeholder="Bạn đang tìm gì hôm nay...">
                 </div>
-                <div class="cart">
-                    Giỏ hàng
-                    <img src="~/Vendor/img/icon/shopping-cart.png" />
-                </div>
+                @Html.Action("BagCart","Cart")
+                
             </div>
         </div>
     </header>

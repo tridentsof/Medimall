@@ -40,6 +40,7 @@
           <Property Name="Price" Type="decimal" Precision="18" Scale="0" />
           <Property Name="VoucherId" Type="int" />
           <Property Name="Total" Type="decimal" Precision="18" Scale="0" />
+          <Property Name="ProductName" Type="nvarchar" MaxLength="100" />
         </EntityType>
         <EntityType Name="Billing">
           <Key>
@@ -53,6 +54,7 @@
           <Property Name="Total" Type="decimal" Precision="18" Scale="0" />
           <Property Name="PayId" Type="int" />
           <Property Name="Status" Type="int" />
+          <Property Name="Phone" Type="nvarchar" MaxLength="50"/>
         </EntityType>
         <EntityType Name="Category">
           <Key>
@@ -358,6 +360,7 @@
           <Property Name="Price" Type="Decimal" Precision="18" Scale="0" />
           <Property Name="VoucherId" Type="Int32" />
           <Property Name="Total" Type="Decimal" Precision="18" Scale="0" />
+          <Property Name="ProductName" Type="String" MaxLength="100" FixedLength="false" Unicode="true"/>
           <NavigationProperty Name="Billing" Relationship="Self.FK_HD" FromRole="BillDetail" ToRole="Billing" />
           <NavigationProperty Name="Product" Relationship="Self.FK_SP" FromRole="BillDetail" ToRole="Product" />
           <NavigationProperty Name="Voucher" Relationship="Self.FK_VC" FromRole="BillDetail" ToRole="Voucher" />
@@ -374,6 +377,7 @@
           <Property Name="Total" Type="Decimal" Precision="18" Scale="0" />
           <Property Name="PayId" Type="Int32" />
           <Property Name="Status" Type="Int32" />
+          <Property Name="Phone" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
           <NavigationProperty Name="Account" Relationship="Self.FK_kh" FromRole="Billing" ToRole="Account" />
           <NavigationProperty Name="BillDetails" Relationship="Self.FK_HD" FromRole="Billing" ToRole="BillDetail" />
           <NavigationProperty Name="Delivery" Relationship="Self.FK_DVVC" FromRole="Billing" ToRole="Delivery" />
@@ -692,6 +696,7 @@
                 <ScalarProperty Name="Price" ColumnName="Price" />
                 <ScalarProperty Name="VoucherId" ColumnName="VoucherId" />
                 <ScalarProperty Name="Total" ColumnName="Total" />
+                <ScalarProperty Name="ProductName" ColumnName="ProductName" />
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>
@@ -706,6 +711,7 @@
                 <ScalarProperty Name="Total" ColumnName="Total" />
                 <ScalarProperty Name="PayId" ColumnName="PayId" />
                 <ScalarProperty Name="Status" ColumnName="Status" />
+                <ScalarProperty Name="Phone" ColumnName="Phone"/>
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>
