@@ -53,5 +53,30 @@ namespace Medimall.Controllers
             List<Product> listProduct = db.Products.Where(p => p.IsForCovid == true).OrderBy(p => p.ProductId).Skip(10).Take(5).ToList();
             return PartialView(listProduct);
         }
+
+        public Cart GetCart()
+        {
+            Cart cart = Session["Cart"] as Cart;
+
+            if (cart == null || Session["Cart"] == null)
+            {
+                cart = new Cart();
+                Session["Cart"] = cart;
+            }
+
+            return cart;
+        }
+
+        public ActionResult AddToCart(int id)
+        {
+            var product = db.Products.SingleOrDefault(p => p.ProductId == id);
+
+            if(product != null)
+            {
+                GetCart().Add(product);
+            }
+
+            return RedirectToAction("ShowCart", "Cart");
+        }
     }
 }

@@ -8,8 +8,20 @@
             <p>@item.ProductName</p>
             <h4>@(item.Price)/Hộp</h4>
         </div>
-        <button>Thêm vào giỏ hàng</button>
+        <button onclick="addToCart(@item.ProductId)">Thêm vào giỏ hàng</button>
     </div>
 }
+
+<script>
+    function addToCart(productId) {
+            window.location.href = '@Url.Action("AddToCart","Home")/' + productId;
+    }
+
+    @*$(document).ready(function () {
+        function addToCart(productId) {
+            window.location.href = '@Url.Action("AddToCart","Home")/' + productId;
+        }
+    })*@
+</script>
 
 

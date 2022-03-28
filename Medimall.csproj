@@ -135,6 +135,7 @@
     <Compile Include="Controllers\AdminAccountsController.cs" />
     <Compile Include="Controllers\AdminHomeController.cs" />
     <Compile Include="Controllers\AdminProductsController.cs" />
+    <Compile Include="Controllers\CartController.cs" />
     <Compile Include="Controllers\HomeController.cs" />
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
@@ -155,6 +156,7 @@
     <Compile Include="Models\Billing.cs">
       <DependentUpon>DbContext.tt</DependentUpon>
     </Compile>
+    <Compile Include="Models\Cart.cs" />
     <Compile Include="Models\Category.cs">
       <DependentUpon>DbContext.tt</DependentUpon>
     </Compile>
@@ -222,6 +224,7 @@
     <Content Include="Content\bootstrap-theme.min.css" />
     <Content Include="Content\bootstrap.css" />
     <Content Include="Content\bootstrap.min.css" />
+    <Content Include="Content\usercss\checkout.css" />
     <Content Include="Content\usercss\home-customer.css" />
     <Content Include="favicon.ico" />
     <Content Include="FE\css\cart.css" />
@@ -300,6 +303,8 @@
     <Content Include="fonts\glyphicons-halflings-regular.svg" />
     <Content Include="Global.asax" />
     <Content Include="Content\Site.css" />
+    <Content Include="Scripts\checkout.js" />
+    <Content Include="Vendor\css\cart.css" />
     <Content Include="Vendor\img\banners\1.png" />
     <Content Include="Vendor\img\banners\2.png" />
     <Content Include="Vendor\img\banners\3.png" />
@@ -381,6 +386,7 @@
     <Content Include="Vendor\img\undraw_profile_2.svg" />
     <Content Include="Vendor\img\undraw_profile_3.svg" />
     <Content Include="Vendor\img\undraw_rocket.svg" />
+    <Content Include="Vendor\js\cart.js" />
     <Content Include="Vendor\js\demo\chart-area-demo.js" />
     <Content Include="Vendor\js\demo\chart-bar-demo.js" />
     <Content Include="Vendor\js\demo\chart-pie-demo.js" />
@@ -2237,6 +2243,9 @@
     <Content Include="Views\Home\GetCovidProductPageOne.cshtml" />
     <Content Include="Views\Home\GetCovidProductPageTwo.cshtml" />
     <Content Include="Views\Home\GetCovidProductPageThree.cshtml" />
+    <Content Include="Views\Cart\ShowCart.cshtml" />
+    <Content Include="Views\Cart\BagCart.cshtml" />
+    <Content Include="Views\Cart\Checkout.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />

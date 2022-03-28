@@ -1,0 +1,279 @@
+﻿@using Medimall.Models
+@model IEnumerable<BillDetail>
+@{
+    ViewBag.Title = "Checkout";
+    Layout = "~/Views/Shared/_LayoutCustomer.cshtml";
+}
+<link href="~/Content/usercss/checkout.css" rel="stylesheet" />
+
+
+<div class="container-body">
+    <div class="body-header">
+        <li>Trang chủ</li>
+        <li><i class="fas fa-circle"></i>Giỏ hàng</li>
+        <li><i class="fas fa-circle"></i>Thanh toán</li>
+    </div>
+    <div class="content-body">
+        <div class="content-left">
+            <div class="ct-left-box">
+                <h3>Giỏ hàng</h3>
+                <div class="left-box-1">
+                    <p class="index">1</p>
+                    <p class="checkout-title">Giỏ hàng </p>
+                    <a href="#">Nhấn để thay đổi</a>
+                </div>
+                @foreach (var item in (IEnumerable<BillDetail>)TempData["BillProduct"])
+                {
+                    <div class="left-box-2">
+                        <img src="~/Vendor/img/products/@(item.ProductId).png" alt="">
+                        <p class="name-product">@item.ProductName</p>
+                        <div>
+                            <p>@item.Price VND</p>
+                            <p>@item.Price VND</p>
+                        </div>
+                        <p>@item.Quantity</p>
+                        <p>@item.Total</p>
+                    </div>
+                }
+
+            </div>
+            <div class="ct-left-box">
+                <div>
+                    <p class="index">2</p>
+                    <p class="checkout-title">Thông tin giao hàng</p>
+                </div>
+                <div>
+                    <button class="left-box-btn1" type="button" data-toggle="modal" data-target="#left-box-btn1">
+                        Đăng nhập tài khoản Medimall
+                    </button>
+                    <button class="left-box-btn2" type="button" data-toggle="modal" data-target="#left-box-btn2">
+                        Nhập địa chỉ giao hàng
+                    </button>
+                    <div id="left-box-btn1" class="modal fade " role="dialog">
+                        <div class="modal-dialog modal-dialog-centered modal-lg">
+                            <div class="modal-content center">
+                                <div class="modal-body">
+                                    <div class="modal-left">
+                                        <img src="../img/banner.png">
+                                        <div class="modal-left-text">
+                                            <h2>Medimall xin chào !</h2>
+                                            <p>
+                                                Hãy đăng nhập để được hưởng các đặc quyền riêng dành cho thành viên
+                                            </p>
+                                            <div>
+                                                Bạn đã là thành viên Medicall vui lòng nhấp <a href="#">tạo mật khẩu</a> để tiếp tục sử dụng.
+                                                Tất cả thông tin tài khoản và điểm tích lũy đều không thay đổi
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="form-login">
+                                        <h1>Đăng nhập</h1>
+                                        <form action="/action_page.php" class="needs-validation" novalidate>
+                                            <div class="form-group">
+                                                <input type="text" class="form-control" id="uname" placeholder="Số điện thoại của bạn"
+                                                       name="uname" required>
+                                                <div class="valid-feedback">Hợp lệ.</div>
+                                                <div class="invalid-feedback">Vui lòng điền vào trường này.</div>
+                                            </div>
+                                            <div class="form-group">
+                                                <input type="password" class="form-control" id="pwd" placeholder="Mật khẩu" name="pswd"
+                                                       required>
+                                                <div class="valid-feedback">Hợp lệ.</div>
+                                                <div class="invalid-feedback">Vui lòng điền vào trường này.</div>
+                                            </div>
+                                            <h2><a href="#">Quên mật khẩu?</a></h2>
+                                            <button type="submit" class="btn">Đăng Nhập</button>
+                                            <h3>Bạn chưa có tài khoản Pharmacity?</h3>
+                                            <a href="#">Đăng ký ngay</a>
+                                        </form>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="modal fade" id="left-box-btn2">
+                        <div class="modal-dialog modal-dialog-centered">
+                            <div class="modal-content">
+                                <div class="modal-header">
+                                    <h4 class="modal-title">Nhập địa chỉ nhận hàng</h4>
+                                    <button type="button" class="close" data-dismiss="modal">&times;</button>
+                                </div>
+                                <div class="modal-body">
+                                    <p>Phân loại địa chỉ (Không bắt buộc)</p>
+                                    <div>
+                                        <button class="btn-location">Nhà</button>
+                                        <button class="btn-location">Công ty</button>
+                                        <button class="btn-location">Khác</button>
+                                    </div>
+                                    <p>Tên người nhận*</p>
+                                    <input type="text" placeholder="Nhập tên người dùng">
+                                    <p>Số điện thoại*</p>
+                                    <input type="text" placeholder="0000-000-000">
+                                    <p>Tỉnh/Thành Phố, Quận/Huyện</p>
+                                    <input type="text" placeholder="Tỉnh/Thành Phố, Quận/Huyện">
+                                    <p>Địa chỉ người nhận*</p>
+                                    <input type="text" placeholder="Ví dụ: Số nhà/tên toàn nhà cụ thể...">
+                                    <p>Ghi chú</p>
+                                    <textarea cols="30" rows="10" placeholder="Nếu bạn có lời nhắn thêm, vui lòng cho biết"></textarea>
+                                </div>
+                                <div class="modal-footer">
+                                    <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                </div>
+            </div>
+            <div class="ct-left-box">
+                <div class="ct-left3-div">
+                    <p class="index">3</p>
+                    <p class="checkout-title">Chọn hình thức giao hàng</p>
+                </div>
+                <div class="tabs-delivery">
+                    <ul class="nav nav-pills">
+                        <li class="nav-item">
+                            <a class="nav-link active" data-toggle="pill" href="#home">Giao hàng tận nơi</a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link" data-toggle="pill" href="#menu1">Nhận tại nhà thuốc</a>
+                        </li>
+                    </ul>
+                    <div class="tab-content">
+                        <div class="tab-pane container active" id="home">
+                            <p>Đơn vị vận chuyển:</p>
+                            <a href="#">Chọn hình thức giao hàng</a>
+                        </div>
+                        <div class="tab-pane container fade" id="menu1">
+                            <p>Địa chỉ nhà thuốc:</p>
+                            <a href="#">Chọn cửa hàng bạn muốn nhận</a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="ct-left-box">
+                <div>
+                    <p class="index">4</p>
+                    <p class="checkout-title">Chọn hình thức thanh toán</p>
+                </div>
+                <div class="box-money">
+                    <img src="../img/money (1).png" alt="">
+                    <div>
+                        <h5>Tiền Mặt</h5>
+                        <p>Thanh toán bằng tiền mặt khi nhận hàng</p>
+                    </div>
+                    <i class="fas fa-dot-circle"></i>
+                </div>
+                <div class="box-money">
+                    <img src="../img/money (2).png" alt="">
+                    <div>
+                        <h5>MoMo</h5>
+                        <p>Ví điện tử MoMo</p>
+                    </div>
+                    <i class="fas fa-dot-circle"></i>
+                </div>
+                <div class="box-money">
+                    <img src="../img/money (3).png" alt="">
+                    <div>
+                        <h5>Viettel Money</h5>
+                        <p>Thanh toán bằng ViettelPay</p>
+                    </div>
+                    <i class="fas fa-dot-circle"></i>
+                </div>
+                <div class="box-money">
+                    <img src="../img/money (4).png" alt="">
+                    <div class="money">
+                        <h5>Thẻ Tín Dụng</h5>
+                        <p>Bạn sẽ thanh toán trước số tiền của đơn hàng qua thẻ tín dụng</p>
+                    </div>
+                    <i class="fas fa-dot-circle"></i>
+                </div>
+                <div class="box-money">
+                    <img src="../img/money (5).png" alt="">
+                    <div class="money">
+                        <h5>Thẻ ATM</h5>
+                        <p>Bạn sẽ thanh toán trước số tiền của đơn hàng qua thẻ ATM nội địa</p>
+                    </div>
+                    <i class="fas fa-dot-circle"></i>
+                </div>
+            </div>
+        </div>
+        <div class="content-right">
+            <div class="ct-right-box">
+                <p class="checkout-title">
+                    Mã giảm giá của Medimall
+                </p>
+                <div class="discount-wrap">
+                    <p>Mã giảm giá</p>
+                    <button class="btn-discount" type="button" data-toggle="modal" data-target="#btn-discount">
+                        Chọn mã giảm
+                        giá
+                    </button>
+                    <div class="modal fade" id="btn-discount">
+                        <div class="modal-dialog modal-dialog-centered">
+                            <div class="modal-content">
+                                <div class="modal-header">
+                                    <h4 class="modal-title">Mã giảm giá của bạn</h4>
+                                    <button type="button" class="close" data-dismiss="modal">&times;</button>
+                                </div>
+                                <div class="modal-body">
+                                    <input type="text" placeholder="Nhập mã giảm giá ">
+                                    <button class="left-box-btn1">Áp dụng</button>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="ct-right-box">
+                <h3>Tổng tiền</h3>
+                <div class="right-box-item">
+                    <p>Tạm tính</p>
+                    <h3>57.750 VND</h3>
+                </div>
+                <div class="right-box-item">
+                    <p>Thành tiền <p class="VAT">(Đã bao gồm VAT)</p>
+                    </p>
+                    <h3 class="total-money">57.750 VND</h3>
+                </div>
+                <div class="right-box-item">
+                    <fieldset class="question">
+                        <input id="coupon_question" type="checkbox" name="coupon_question" value="1" />
+                        <label for="coupon_question">Yêu cầu xuất Hoá đơn VAT</label>
+                    </fieldset>
+                    <fieldset class="answer">
+                        <div>
+                            <p>Tên công ty*</p>
+                            <input type="text" placeholder="Nhập tên công ty">
+                        </div>
+                        <div>
+                            <p>Số điện thoại*</p>
+                            <input type="text" placeholder="Nhập số điện thoại">
+                        </div>
+                        <div>
+                            <p>Mã số thuế*</p>
+                            <input type="text" placeholder="Nhập mã số thuế">
+                        </div>
+                        <div>
+                            <p>Địa chỉ*</p>
+                            <input type="text" placeholder="Nhập địa chỉ">
+                        </div>
+                        <div>
+                            <p>Email*</p>
+                            <input type="text" placeholder="Nhập email">
+                        </div>
+                    </fieldset>
+                    <p class="note">
+                        *Pharmacity sẽ liên hệ Quý khách sớm nhất trong trường hợp đơn hàng không thể giao đến địa
+                        điểm theo yêu
+                        cầu vì một số khu vực hạn chế giao nhận do dịch diễn biến phức tạp.
+                    </p>
+                    <button class="btn-order">Đặt hàng</button>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+<script src="~/Scripts/checkout.js"></script>

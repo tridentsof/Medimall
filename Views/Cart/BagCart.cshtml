@@ -1,0 +1,26 @@
+﻿@model Medimall.Models.Cart
+@if (ViewBag.QuantityCart == null)
+{
+    <a href="@Url.Action("ShowCart","Cart")">
+        <div class="cart">
+            Giỏ hàng
+            <img src="~/Vendor/img/icon/shopping-cart.png" />
+        </div>
+    </a>
+}
+else
+{
+    <a href="@Url.Action("ShowCart","Cart")">
+        <div class="cart">
+            <div>
+                Giỏ hàng
+                <p>2000</p>
+            </div>
+            <p class="cart_soluong">@ViewBag.QuantityCart</p>
+            <img src="~/Vendor/img/icon/shopping-cart.png" />
+        </div>
+    </a>
+
+}
+
+
