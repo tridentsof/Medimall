@@ -1,0 +1,512 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Lịch sử mua hàng</title>
+
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.6.0/jquery.min.js"
+        integrity="sha512-894YE6QWD5I59HgZOGReFYm4dnWc1Qt5NtvYSaNcOP+u1T9qYdvdihz0PPSiiqn/+/3e7Jo4EaG7TubfWGUrMQ=="
+        crossorigin="anonymous" referrerpolicy="no-referrer"></script>
+    <!-- Icon -->
+    <link rel="stylesheet" href="../fontawesome-free-5.15.4-web/css/all.min.css" />
+    <!-- Reset css -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/normalize/8.0.1/normalize.min.css"
+        integrity="sha512-NhSC1YmyruXifcj/KFRWoC561YpHpc5Jtzgvbuzx5VozKpWvQ+4nXhPdFgmx8xqexRcpAglTj9sIBWINXa8x5w=="
+        crossorigin="anonymous" referrerpolicy="no-referrer" />
+    <!-- Bootstrap4, FontAwesome -->
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.6.1/dist/css/bootstrap.min.css">
+    <script src="https://cdn.jsdelivr.net/npm/jquery@3.5.1/dist/jquery.slim.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.1/dist/umd/popper.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@4.6.1/dist/js/bootstrap.bundle.min.js"></script>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css
+">
+    <!-- Font -->
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link href="https://fonts.googleapis.com/css2?family=Varela+Round&display=swap" rel="stylesheet">
+
+    <link rel="shortcut icon" type="image/png" href="../img/Icon.png" />
+    <link rel="stylesheet" href="../css/purchasehistory.css" />
+</head>
+
+<body>
+    <div class="container-body">
+        <div class="body-header">
+            <ul>
+                <li>Trang chủ</li>
+                <li><i class="fas fa-circle"></i>Trang cá nhân</li>
+                <li><i class="fas fa-circle"></i>Lịch sử mua hàng</li>
+            </ul>
+        </div>
+        <div class="content-body">
+            <div class="sidebar-wrap">
+                <div class="info-user-wrap">
+                    <img src="">
+                    <h2>User</h2>
+                    <div class="point-wrap">
+                        <div>
+                            <div class="barPoint">
+                                <i class="fas fa-circle"></i>
+                                <hr>
+                                <i class="fas fa-circle"></i>
+                            </div>
+                            <div>
+                                <div class="imgthanhvien">
+                                    <img src="../img/thethanhvien_green.png" alt="">
+                                    <p>Thành viên</p>
+                                </div>
+                                <div>
+                                    <p>Để lên hạng bạn cần chi tiêu thêm</p>
+                                    <p>8.000.000 VND</p>
+                                </div>
+                                <div class="imgthanhvien">
+                                    <img src="../img/thethanhvien_yellow.png" alt="">
+                                    <p>V.I.P</p>
+                                </div>
+                            </div>
+                        </div>
+                        <hr class="hrpb">
+                        <div>
+                            <div class="imgthanhvien1">
+                                <img src="../img/thethanhvien_green.png" alt="">
+                                <p>Thành viên</p>
+                            </div>
+                            <div class="accumulated-points">
+                                <div>
+                                    <p>Điểm tích lũy</p>
+                                    <p>0</p>
+                                </div>
+                                <div>
+                                    <p>Điểm có thể dùng</p>
+                                    <p>0</p>
+                                </div>
+                                <div>
+                                    <p>Điểm đã dùng</p>
+                                    <p>0</p>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="sidebar1">
+                    <div class="nav flex-column nav-pills" id="v-pills-tab" role="tablist" aria-orientation="vertical">
+                        <a class="nav-link active" id="v-pills-personalinformation" data-toggle="pill"
+                            href="#v-pills-personal-information" role="tab" aria-controls="v-pills-personal-information"
+                            aria-selected="true">
+                            <div class="nav-link-border">
+                                <div>
+                                    <svg width="20" height="20" viewBox="0 0 24 24" fill="none">
+                                        <path
+                                            d="M12 12C14.7614 12 17 9.76142 17 7C17 4.23858 14.7614 2 12 2C9.23858 2 7 4.23858 7 7C7 9.76142 9.23858 12 12 12Z"
+                                            stroke="inherit" stroke-width="1.5" stroke-linecap="round"
+                                            stroke-linejoin="round"></path>
+                                        <path
+                                            d="M19.2101 15.74L15.67 19.2801C15.53 19.4201 15.4 19.68 15.37 19.87L15.18 21.22C15.11 21.71 15.45 22.05 15.94 21.98L17.29 21.79C17.48 21.76 17.75 21.63 17.88 21.49L21.42 17.95C22.03 17.34 22.32 16.63 21.42 15.73C20.53 14.84 19.8201 15.13 19.2101 15.74Z"
+                                            stroke="inherit" stroke-width="1.5" stroke-miterlimit="10"
+                                            stroke-linecap="round" stroke-linejoin="round"></path>
+                                        <path d="M18.7002 16.25C19.0002 17.33 19.8402 18.17 20.9202 18.47"
+                                            stroke="inherit" stroke-width="1.5" stroke-miterlimit="10"
+                                            stroke-linecap="round" stroke-linejoin="round"></path>
+                                        <path
+                                            d="M3.41016 22C3.41016 18.13 7.26018 15 12.0002 15C13.0402 15 14.0402 15.15 14.9702 15.43"
+                                            stroke="inherit" stroke-width="1.5" stroke-linecap="round"
+                                            stroke-linejoin="round"></path>
+                                    </svg>
+                                    Chỉnh sửa thông tin cá nhân
+                                </div>
+                                <i class="fas fa-chevron-right"></i>
+                            </div>
+                        </a>
+
+                        <a class="nav-link" id="v-pills-orderhistory" data-toggle="pill" href="#v-pills-order-history"
+                            role="tab" aria-controls="v-pills-order-history" aria-selected="false">
+                            <div>
+                                <svg width="18" height="17" viewBox="0 0 20 20" fill="none">
+                                    <path fill-rule="evenodd" clip-rule="evenodd"
+                                        d="M19.25 10C19.25 15.108 15.109 19.25 10 19.25C4.892 19.25 0.75 15.108 0.75 10C0.75 4.891 4.892 0.75 10 0.75C15.109 0.75 19.25 4.891 19.25 10Z"
+                                        stroke="inherit" stroke-width="1.5" stroke-linecap="round"
+                                        stroke-linejoin="round"></path>
+                                    <path d="M14.1911 10.7667L9.66113 10.6927V5.8457" stroke="inherit"
+                                        stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"></path>
+                                </svg>
+                                Lịch sử đơn hàng
+                            </div>
+                            <i class="fas fa-chevron-right"></i>
+                        </a>
+
+                        <a class="nav-link" id="v-pills-deliveryaddress" data-toggle="pill"
+                            href="#v-pills-delivery-address" role="tab" aria-controls="v-pills-delivery-address"
+                            aria-selected="false">
+                            <div>
+                                <svg width="20" height="20" viewBox="0 0 24 24" fill="none">
+                                    <path
+                                        d="M11.999 0C6.89854 0 2.74902 4.14952 2.74902 9.24998C2.74902 12.1186 4.23332 15.4504 7.16071 19.1527C9.30276 21.8617 11.414 23.734 11.5028 23.8124C11.7863 24.0625 12.2117 24.0625 12.4952 23.8124C12.5841 23.734 14.6953 21.8617 16.8373 19.1527C19.7647 15.4504 21.249 12.1186 21.249 9.24998C21.249 4.14952 17.0995 0 11.999 0V0ZM11.999 22.2268C10.2166 20.5281 4.24902 14.4514 4.24902 9.24998C4.24902 4.97662 7.72565 1.5 11.999 1.5C16.2724 1.5 19.749 4.97662 19.749 9.24998C19.749 14.4514 13.7813 20.5282 11.999 22.2268Z">
+                                    </path>
+                                    <path
+                                        d="M17.7371 8.80556L12.4871 4.30556C12.2062 4.06481 11.7918 4.06481 11.5109 4.30556L6.26093 8.80556C5.94645 9.07509 5.91003 9.54862 6.1796 9.86311C6.44918 10.1776 6.92267 10.214 7.23715 9.94444L7.874 9.39853V13.125C7.874 13.5392 8.20981 13.875 8.624 13.875H15.374C15.7882 13.875 16.124 13.5392 16.124 13.125V9.39853L16.7609 9.94444C17.0768 10.2152 17.5501 10.1762 17.8184 9.86311C18.088 9.54862 18.0516 9.07514 17.7371 8.80556ZM14.624 12.375H9.374V8.1128L11.999 5.8628L14.624 8.1128V12.375Z">
+                                    </path>
+                                </svg>
+                                Sổ địa chỉ nhận hàng
+                            </div>
+                            <i class="fas fa-chevron-right"></i>
+                        </a>
+                    </div>
+                </div>
+
+                <div class="sidebar2">
+                    <div class="nav-link">
+                        <svg width="24" height="24" viewBox="0 0 24 24" fill="none">
+                            <path d="M13.8496 4.25V6.67" stroke="#112950" stroke-width="1.5" stroke-linecap="round"
+                                stroke-linejoin="round"></path>
+                            <path d="M13.8496 17.7598V19.7838" stroke="#112950" stroke-width="1.5"
+                                stroke-linecap="round" stroke-linejoin="round"></path>
+                            <path d="M13.8496 14.3249V9.50391" stroke="#112950" stroke-width="1.5"
+                                stroke-linecap="round" stroke-linejoin="round"></path>
+                            <path fill-rule="evenodd" clip-rule="evenodd"
+                                d="M18.7021 20C20.5242 20 22 18.5426 22 16.7431V14.1506C20.7943 14.1506 19.8233 13.1917 19.8233 12.001C19.8233 10.8104 20.7943 9.85039 22 9.85039L21.999 7.25686C21.999 5.45745 20.5221 4 18.7011 4H5.29892C3.47789 4 2.00104 5.45745 2.00104 7.25686L2 9.93485C3.20567 9.93485 4.17668 10.8104 4.17668 12.001C4.17668 13.1917 3.20567 14.1506 2 14.1506V16.7431C2 18.5426 3.4758 20 5.29787 20H18.7021Z"
+                                stroke="#112950" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round">
+                            </path>
+                        </svg>
+                        <div>
+                            <p>Mã khuyến mãi của bạn</p>
+                        </div>
+                        <i class="fas fa-chevron-right"></i>
+                    </div>
+                    <div class="nav-link">
+                        <svg width="24" height="24" viewBox="0 0 24 24" stroke="#333333" fill="none">
+                            <path
+                                d="M12 15C15.7279 15 18.75 12.0899 18.75 8.5C18.75 4.91015 15.7279 2 12 2C8.27208 2 5.25 4.91015 5.25 8.5C5.25 12.0899 8.27208 15 12 15Z"
+                                stroke="inherit" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round">
+                            </path>
+                            <path
+                                d="M7.51974 13.5198L7.50977 20.8998C7.50977 21.7998 8.13977 22.2398 8.91977 21.8698L11.5998 20.5999C11.8198 20.4899 12.1898 20.4899 12.4098 20.5999L15.0998 21.8698C15.8698 22.2298 16.5098 21.7998 16.5098 20.8998V13.3398"
+                                stroke="inherit" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round">
+                            </path>
+                        </svg>
+                        <div>
+                            <p>Quy chế xếp hạng
+                            <p> &nbspThẻ thành viên</p>
+                        </div>
+                        <i class="fas fa-chevron-right"></i>
+                        </p>
+                    </div>
+                    <div class="nav-link">
+                        <svg width="24" height="24" viewBox="0 0 24 24">
+                            <path
+                                d="M14.68 22.75H8C4.35 22.75 2.25 20.65 2.25 17V7.5C2.25 3.85 4.35 1.75 8 1.75H16C19.65 1.75 21.75 3.85 21.75 7.5V13.63C21.75 13.92 21.58 14.18 21.33 14.31C21.07 14.43 20.76 14.4 20.54 14.22C18.96 12.96 16.53 12.96 14.95 14.25C13.87 15.1 13.26 16.37 13.26 17.76C13.26 18.58 13.48 19.38 13.91 20.07C14.24 20.61 14.65 21.06 15.13 21.4C15.39 21.59 15.51 21.93 15.41 22.24C15.29 22.54 15.01 22.75 14.68 22.75ZM8 3.25C5.14 3.25 3.75 4.64 3.75 7.5V17C3.75 19.86 5.14 21.25 8 21.25H12.89C12.79 21.12 12.7 20.98 12.62 20.84C12.05 19.92 11.75 18.85 11.75 17.75C11.75 15.9 12.57 14.2 14.01 13.07C15.72 11.68 18.25 11.38 20.25 12.3V7.5C20.25 4.64 18.86 3.25 16 3.25H8Z"
+                                fill="#292D32"></path>
+                            <path
+                                d="M13 11.75H7C6.59 11.75 6.25 11.41 6.25 11C6.25 10.59 6.59 10.25 7 10.25H13C13.41 10.25 13.75 10.59 13.75 11C13.75 11.41 13.41 11.75 13 11.75Z"
+                                fill="#292D32"></path>
+                            <path
+                                d="M13 7.5H7C6.59 7.5 6.25 7.16 6.25 6.75C6.25 6.34 6.59 6 7 6H13C13.41 6 13.75 6.34 13.75 6.75C13.75 7.16 13.41 7.5 13 7.5Z"
+                                fill="#292D32"></path>
+                            <path
+                                d="M17.75 7.5H11.75C11.34 7.5 11 7.16 11 6.75C11 6.34 11.34 6 11.75 6H17.75C18.16 6 18.5 6.34 18.5 6.75C18.5 7.16 18.16 7.5 17.75 7.5Z"
+                                fill="#292D32"></path>
+                            <path
+                                d="M9.62 16.75H7C6.59 16.75 6.25 16.41 6.25 16C6.25 15.59 6.59 15.25 7 15.25H9.62C10.03 15.25 10.37 15.59 10.37 16C10.37 16.41 10.04 16.75 9.62 16.75Z"
+                                fill="#292D32"></path>
+                            <path
+                                d="M20.37 18.5H17.75C17.34 18.5 17 18.16 17 17.75C17 17.34 17.34 17 17.75 17H20.37C20.78 17 21.12 17.34 21.12 17.75C21.12 18.16 20.79 18.5 20.37 18.5Z"
+                                fill="#292D32"></path>
+                            <path
+                                d="M18.5 14.7501L18.5 17.3701C18.5 17.7801 18.16 18.1201 17.75 18.1201C17.34 18.1201 17 17.7801 17 17.3701L17 14.7501C17 14.3401 17.34 14.0001 17.75 14.0001C18.16 14.0001 18.5 14.3301 18.5 14.7501Z"
+                                fill="#292D32"></path>
+                            <path
+                                d="M17.75 23.75C16.47 23.75 15.26 23.35 14.24 22.61C13.6 22.15 13.05 21.55 12.62 20.84C12.05 19.92 11.75 18.85 11.75 17.75C11.75 15.9 12.57 14.2 14.01 13.07C16.09 11.38 19.37 11.37 21.47 13.04C22.92 14.18 23.75 15.9 23.75 17.75C23.75 18.85 23.45 19.92 22.88 20.84C22.56 21.39 22.15 21.87 21.68 22.26C20.61 23.22 19.21 23.75 17.75 23.75ZM17.75 13.25C16.73 13.25 15.73 13.6 14.94 14.24C13.86 15.09 13.25 16.36 13.25 17.75C13.25 18.57 13.47 19.37 13.9 20.06C14.23 20.6 14.64 21.05 15.12 21.39C15.89 21.95 16.8 22.25 17.75 22.25C18.86 22.25 19.88 21.86 20.7 21.13C21.06 20.83 21.35 20.48 21.59 20.07C22.02 19.37 22.25 18.57 22.25 17.75C22.25 16.36 21.63 15.0799 20.54 14.2199C19.74 13.5799 18.78 13.25 17.75 13.25Z"
+                                fill="#292D32"></path>
+                        </svg>
+                        <div>
+                            <p>Lịch sử dùng điểm
+                            <p> &nbspThẻ thành viên</p>
+                        </div>
+                        <i class="fas fa-chevron-right"></i>
+                        </p>
+                    </div>
+                </div>
+                <div class="sidebar3">
+                    <div>
+                        <svg width="24" height="24" viewBox="0 0 24 24" fill="none">
+                            <g>
+                                <path
+                                    d="M21.8906 7.07745H20.4407C19.9659 5.94791 19.2585 4.90634 18.3626 4.03789C16.9544 2.67284 15.1312 1.78339 13.229 1.53336C10.0768 1.11903 6.98733 2.3263 4.96486 4.76277C4.38445 5.462 3.91214 6.24449 3.56348 7.07745H2.10938C0.946266 7.07745 0 8.02372 0 9.18683V11.9993C0 13.1624 0.946266 14.1087 2.10938 14.1087H4.98984L4.68863 13.1871C3.81084 10.5015 4.30594 7.75836 6.04692 5.66094C7.75889 3.59844 10.3754 2.57666 13.0457 2.92761C16.3905 3.36725 19.0988 5.99403 19.6316 9.3155C19.9953 11.582 19.3609 13.8722 17.891 15.599C16.4178 17.3299 14.2746 18.3243 12.0108 18.3275C10.8418 18.329 9.89067 19.2754 9.89067 20.4368C9.89067 21.5999 10.8369 22.5462 12 22.5462C13.1632 22.5462 14.1094 21.5999 14.1094 20.4368V19.4869C15.9825 19.0421 17.6853 18.0103 18.9619 16.5105C19.582 15.782 20.0757 14.9771 20.4378 14.1087H21.8906C23.0537 14.1087 24 13.1624 24 11.9993V9.18678C24 8.02372 23.0537 7.07745 21.8906 7.07745ZM3.0968 12.7025H2.10938C1.72167 12.7025 1.40625 12.387 1.40625 11.9993V9.18683C1.40625 8.79913 1.72167 8.4837 2.10938 8.4837H3.10519C3.08016 8.58908 3.057 8.69502 3.03581 8.80124C2.77917 10.0871 2.80003 11.3956 3.0968 12.7025ZM12.7031 20.4368C12.7031 20.8245 12.3877 21.14 12 21.14C11.6123 21.14 11.2969 20.8245 11.2969 20.4368C11.2969 20.0496 11.618 19.7342 12.0127 19.7337C12.244 19.7334 12.4744 19.7243 12.7031 19.7067V20.4368ZM22.5938 11.9993C22.5938 12.387 22.2783 12.7025 21.8906 12.7025H20.8943C21.1735 11.5282 21.2164 10.3162 21.0201 9.0927C20.9873 8.88842 20.9467 8.68531 20.8992 8.4837H21.8906C22.2783 8.4837 22.5938 8.79913 22.5938 9.18683V11.9993Z"
+                                    fill="#112950"></path>
+                                <path d="M8 13C8.5 14.5 9.79 16 12 16C14.21 16 15.5 14.5 16 13" stroke="#112950"
+                                    stroke-width="1.5" stroke-linecap="round"></path>
+                                <path
+                                    d="M9 10C9.55228 10 10 9.32843 10 8.5C10 7.67157 9.55228 7 9 7C8.44772 7 8 7.67157 8 8.5C8 9.32843 8.44772 10 9 10Z"
+                                    fill="#112950"></path>
+                                <path
+                                    d="M15 10C15.5523 10 16 9.32843 16 8.5C16 7.67157 15.5523 7 15 7C14.4477 7 14 7.67157 14 8.5C14 9.32843 14.4477 10 15 10Z"
+                                    fill="#112950"></path>
+                            </g>
+                        </svg>
+                        <h5>1780 1111</h5>
+                        <p>Tư vấn đặt hàng</p>
+                    </div>
+                    <h3><a href="#">Đăng xuất</a></h3>
+                </div>
+
+            </div>
+            <div class="main-content">
+                <h4>Lịch sử đơn hàng</h4>
+                <div class="tabs">
+                    <div class="nav  nav-pills" id="v-pills-tab" role="tablist" aria-orientation="vertical">
+                        <a class="nav-link active" id="v-pills1" data-toggle="pill" href="#v-pills-1" role="tab"
+                            aria-controls="v-pills-1" aria-selected="true">Tất cả
+                        </a>
+                        <a class="nav-link" id="v-pills2" data-toggle="pill" href="#v-pills-2" role="tab"
+                            aria-controls="v-pills-2" aria-selected="false">Chờ xác nhận
+                        </a>
+                        <a class="nav-link" id="v-pills3" data-toggle="pill" href="#v-pills-3" role="tab"
+                            aria-controls="v-pills-3" aria-selected="false">Đang xử lý
+                        </a>
+                        <a class="nav-link" id="v-pills4" data-toggle="pill" href="#v-pills-4" role="tab"
+                            aria-controls="v-pills-4" aria-selected="false">Đang giao
+                        </a>
+                        <a class="nav-link" id="v-pills5" data-toggle="pill" href="#v-pills-5" role="tab"
+                            aria-controls="v-pills-5" aria-selected="false">Hoàn thành
+                        </a>
+                        <a class="nav-link" id="v-pills6" data-toggle="pill" href="#v-pills-6" role="tab"
+                            aria-controls="v-pills-6" aria-selected="false">Đã hủy
+                        </a>
+                    </div>
+                    <div class="searchbox">
+                        <svg width="20" height="20" viewBox="0 0 20 20" fill="none">
+                            <path
+                                d="M18.129 17.1715L15.2645 14.3709L15.1973 14.2688C15.0725 14.1445 14.9018 14.0745 14.7237 14.0745C14.5455 14.0745 14.3748 14.1445 14.25 14.2688C11.8156 16.5021 8.06447 16.6235 5.48435 14.5524C2.90423 12.4814 2.29574 8.86049 4.06242 6.09116C5.8291 3.32183 9.42274 2.26339 12.4601 3.6178C15.4974 4.9722 17.0359 8.31917 16.0552 11.439C15.9846 11.6644 16.0423 11.9095 16.2066 12.082C16.371 12.2545 16.6169 12.3282 16.8519 12.2753C17.0868 12.2224 17.2751 12.0509 17.3457 11.8255C18.518 8.12322 16.7475 4.13898 13.1794 2.45023C9.61143 0.761484 5.31671 1.87504 3.07356 5.07053C0.830408 8.26602 1.312 12.5845 4.20679 15.2323C7.10159 17.8801 11.5408 18.0626 14.6528 15.6618L17.1891 18.1414C17.451 18.3964 17.8745 18.3964 18.1364 18.1414C18.3981 17.8829 18.3981 17.4665 18.1364 17.2079L18.129 17.1715Z"
+                                fill="#112950"></path>
+                        </svg>
+                        <input placeholder="Nhập tên sản phẩm,mã đơn..." value="" class="search">
+                    </div>
+                    <div class="sortbox">
+                        <svg stroke="#112950" id="toggleMenuMobile" width="24" height="24" viewBox="0 0 24 24"
+                            fill="none">
+                            <path d="M3 7L21 7" stroke="inherit" stroke-width="1.5" stroke-linecap="round"></path>
+                            <path d="M3 12H15" stroke="inherit" stroke-width="1.5" stroke-linecap="round"></path>
+                            <path d="M3 17H7" stroke="inherit" stroke-width="1.5" stroke-linecap="round"></path>
+                        </svg>
+                        <select class="select-sort">
+                            <option value="1">Đơn hàng mới nhất</option>
+                            <option value="2">Đơn hàng cũ nhất</option>
+                        </select>
+                    </div>
+                    <div class="tab-content" id="v-pills-tabContent">
+                        <div class="tab-pane fade show active" id="v-pills-1" role="tabpanel"
+                            aria-labelledby="v-pills1">
+                            <fieldset class="detailsorder">
+                                <legend>Đã giao hàng</legend>
+                                <div class="listoder-header">
+                                    <div class="d-flex justify-content-between">
+                                        <div class="d-flex listoder-item">
+                                            <p>Điểm tích lũy: </p> &nbsp;
+                                            <p class="point">Bạn cần lên VIP để tích điểm</p>
+                                        </div>
+                                        <p class="state">Hoàn thành</p>
+                                    </div>
+                                    <p>Mã đơn hàng:
+                                        <span class="oderid"> #DNPMC396-DNPMC39602-46375</span>
+                                    </p>
+                                    <p>Giá trị đơn:
+                                        <span class="priceoder">110.000 VND</span>
+                                    </p>
+                                </div>
+                                <div class="listoder-bot">
+                                    <a href="http://">Xem chi tiết
+                                        <i class="fas fa-chevron-right"></i>
+                                    </a>
+                                </div>
+                            </fieldset>
+                            <fieldset class="detailsorder">
+                                <legend>Đang giao</legend>
+                                <div class="listoder-header">
+                                    <div class="d-flex justify-content-between">
+                                        <div class="d-flex listoder-item">
+                                            <p>Điểm tích lũy: </p> &nbsp;
+                                            <p class="point">Bạn cần lên VIP để tích điểm</p>
+                                        </div>
+                                        <p class="state">Chưa hoàn thành</p>
+                                    </div>
+                                    <p>Mã đơn hàng:
+                                        <span class="oderid"> #DNPMC396-DNPMC39602-46375</span>
+                                    </p>
+                                    <p>Giá trị đơn:
+                                        <span class="priceoder">110.000 VND</span>
+                                    </p>
+                                </div>
+                                <div class="listoder-bot">
+                                    <a href="http://">Xem chi tiết
+                                        <i class="fas fa-chevron-right"></i>
+                                    </a>
+                                </div>
+                            </fieldset>
+                            <fieldset class="detailsorder">
+                                <legend>Đang chờ</legend>
+                                <div class="listoder-header">
+                                    <div class="d-flex justify-content-between">
+                                        <div class="d-flex listoder-item">
+                                            <p>Điểm tích lũy: </p> &nbsp;
+                                            <p class="point">Bạn cần lên VIP để tích điểm</p>
+                                        </div>
+                                        <p class="state">Chưa hoàn thành</p>
+                                    </div>
+                                    <p>Mã đơn hàng:
+                                        <span class="oderid"> #DNPMC396-DNPMC39602-46375</span>
+                                    </p>
+                                    <p>Giá trị đơn:
+                                        <span class="priceoder">110.000 VND</span>
+                                    </p>
+                                </div>
+                                <div class="listoder-bot">
+                                    <a href="http://">Xem chi tiết
+                                        <i class="fas fa-chevron-right"></i>
+                                    </a>
+                                </div>
+                            </fieldset>
+                            <fieldset class="detailsorder">
+                                <legend>Đang xử lý</legend>
+                                <div class="listoder-header">
+                                    <div class="d-flex justify-content-between">
+                                        <div class="d-flex listoder-item">
+                                            <p>Điểm tích lũy: </p> &nbsp;
+                                            <p class="point">Bạn cần lên VIP để tích điểm</p>
+                                        </div>
+                                        <p class="state">Chưa hoàn thành</p>
+                                    </div>
+                                    <p>Mã đơn hàng:
+                                        <span class="oderid"> #DNPMC396-DNPMC39602-46375</span>
+                                    </p>
+                                    <p>Giá trị đơn:
+                                        <span class="priceoder">110.000 VND</span>
+                                    </p>
+                                </div>
+                                <div class="listoder-bot">
+                                    <a href="http://">Xem chi tiết
+                                        <i class="fas fa-chevron-right"></i>
+                                    </a>
+                                </div>
+                            </fieldset>
+                        </div>
+                        <div class="tab-pane fade" id="v-pills-2" role="tabpanel" aria-labelledby="v-pills2">
+                            <fieldset class="detailsorder">
+                                <legend>Đang chờ</legend>
+                                <div class="listoder-header">
+                                    <div class="d-flex justify-content-between">
+                                        <div class="d-flex listoder-item">
+                                            <p>Điểm tích lũy: </p> &nbsp;
+                                            <p class="point">Bạn cần lên VIP để tích điểm</p>
+                                        </div>
+                                        <p class="state">Chưa hoàn thành</p>
+                                    </div>
+                                    <p>Mã đơn hàng:
+                                        <span class="oderid"> #DNPMC396-DNPMC39602-46375</span>
+                                    </p>
+                                    <p>Giá trị đơn:
+                                        <span class="priceoder">110.000 VND</span>
+                                    </p>
+                                </div>
+                                <div class="listoder-bot">
+                                    <a href="http://">Xem chi tiết
+                                        <i class="fas fa-chevron-right"></i>
+                                    </a>
+                                </div>
+                            </fieldset>
+                        </div>
+                        <div class="tab-pane fade" id="v-pills-3" role="tabpanel" aria-labelledby="v-pills3">
+                            <fieldset class="detailsorder">
+                                <legend>Đang xử lý</legend>
+                                <div class="listoder-header">
+                                    <div class="d-flex justify-content-between">
+                                        <div class="d-flex listoder-item">
+                                            <p>Điểm tích lũy: </p> &nbsp;
+                                            <p class="point">Bạn cần lên VIP để tích điểm</p>
+                                        </div>
+                                        <p class="state">Chưa hoàn thành</p>
+                                    </div>
+                                    <p>Mã đơn hàng:
+                                        <span class="oderid"> #DNPMC396-DNPMC39602-46375</span>
+                                    </p>
+                                    <p>Giá trị đơn:
+                                        <span class="priceoder">110.000 VND</span>
+                                    </p>
+                                </div>
+                                <div class="listoder-bot">
+                                    <a href="http://">Xem chi tiết
+                                        <i class="fas fa-chevron-right"></i>
+                                    </a>
+                                </div>
+                            </fieldset>
+                        </div>
+                        <div class="tab-pane fade" id="v-pills-4" role="tabpanel" aria-labelledby="v-pills4">
+                            <fieldset class="detailsorder">
+                                <legend>Đang giao</legend>
+                                <div class="listoder-header">
+                                    <div class="d-flex justify-content-between">
+                                        <div class="d-flex listoder-item">
+                                            <p>Điểm tích lũy: </p> &nbsp;
+                                            <p class="point">Bạn cần lên VIP để tích điểm</p>
+                                        </div>
+                                        <p class="state">Chưa hoàn thành</p>
+                                    </div>
+                                    <p>Mã đơn hàng:
+                                        <span class="oderid"> #DNPMC396-DNPMC39602-46375</span>
+                                    </p>
+                                    <p>Giá trị đơn:
+                                        <span class="priceoder">110.000 VND</span>
+                                    </p>
+                                </div>
+                                <div class="listoder-bot">
+                                    <a href="http://">Xem chi tiết
+                                        <i class="fas fa-chevron-right"></i>
+                                    </a>
+                                </div>
+                            </fieldset>
+                        </div>
+                        <div class="tab-pane fade" id="v-pills-5" role="tabpanel" aria-labelledby="v-pills5">
+                            <fieldset class="detailsorder">
+                                <legend>Đã giao hàng</legend>
+                                <div class="listoder-header">
+                                    <div class="d-flex justify-content-between">
+                                        <div class="d-flex listoder-item">
+                                            <p>Điểm tích lũy: </p> &nbsp;
+                                            <p class="point">Bạn cần lên VIP để tích điểm</p>
+                                        </div>
+                                        <p class="state">Hoàn thành</p>
+                                    </div>
+                                    <p>Mã đơn hàng:
+                                        <span class="oderid"> #DNPMC396-DNPMC39602-46375</span>
+                                    </p>
+                                    <p>Giá trị đơn:
+                                        <span class="priceoder">110.000 VND</span>
+                                    </p>
+                                </div>
+                                <div class="listoder-bot">
+                                    <a href="http://">Xem chi tiết
+                                        <i class="fas fa-chevron-right"></i>
+                                    </a>
+                                </div>
+                            </fieldset>
+                        </div>
+                        <div class="tab-pane fade" id="v-pills-6" role="tabpanel" aria-labelledby="v-pills6">
+                            <div class="empty-result">
+                                <img src="../img/empty-image.png" alt="">
+                                <p>Bạn chưa có đơn hàng nào rồi</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+            </div>
+        </div>
+    </div>
+
+    <script type="text/javascript" src="../js/purchasehistory.js"></script>
+    <script>
+    </script>
+</body>
+
+</html>
