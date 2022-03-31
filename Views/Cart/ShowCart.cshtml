@@ -5,96 +5,95 @@
     Layout = "~/Views/Shared/_LayoutCustomer.cshtml";
 }
 
-
 @if (Model != null)
 {
-    <div class="cart-page">
 
-        <div class="container-fluid cartbox" id="cartbox">
-            <div class="container-fluid carthead">
-                <div class="row">
-                    <a href="" class="home">Trang Chủ</a> &bull;
-                    <p>Giỏ hàng</p>
-                </div>
+    <div class="fake-blur" id="blur"></div>
+    <div class="container-fluid cartbox">
+        <div class="container-fluid carthead">
+            <div class="row">
+                <a href="" class="home">Trang Chủ</a> &bull;
+                <p>Giỏ hàng</p>
             </div>
+        </div>
 
-            <div class="container-fluid cartbody">
-                <div class="row">
-                    <div class="col-md-7 cartlist">
-                        <div class="row cartlist-head" id="header">
-                            <p>Giỏ hàng</p>
-                            <input type="button" value="Xóa tất cả giỏ hàng" class="btndelete" onclick="myFunction()">
-                        </div>
-                        @foreach (var item in Model.Items)
-                        {
-                            <div class="popup" id="popup">
-                                <h4>Xóa sản phẩm</h4>
-                                <p>Bạn có muốn xóa toàn bộ sản phẩm khỏi giỏ hàng không?</p>
-                                <input type="button" class="back" value="Quay Lại" onclick="backFunction()">
-                                <a class="deleteall" href="/Cart/RemoveCart/@item._shopping_product.ProductId">Xóa</a>
-                            </div>
-                            <div class="popup" id="popup2">
-                                <h4>Xóa sản phẩm</h4>
-                                <p>Bạn có muốn xóa sản phẩm này khỏi giỏ hàng?</p>
-                                <input type="button" class="back" value="Quay Lại" id="back2">
-                                <a class="deleteall" href="/Cart/RemoveCart/@item._shopping_product.ProductId">Xóa</a>
-                            </div>
-                            double total = Convert.ToDouble(item._shopping_product.Price.Value * item._shopping_quantity);
-
-                            <div class="row cartlist-body">
-                                <div class="col-md-6 productdetail">
-                                    <a href="#">
-                                        <img src="~/Vendor/img/products/@(item._shopping_product.ProductId).png" alt="">
-                                        <p>@item._shopping_product.ProductName</p>
-                                    </a>
-                                </div>
-                                <div class="col-md-3 quantity">
-                                    @using (Html.BeginForm("UpdateQuantity", "Cart"))
-                                    {
-                                        <div class="quantity-product">
-                                            <input type="hidden" value="@item._shopping_product.ProductId" name="ProductId" />
-                                            <input type="button" value="-" class="btn quantity-left-minus" data-type="minus" data-field="" />
-                                            <input readonly="" type="number" class="num" name="quantity" value="@item._shopping_quantity" id="quantity" min="1" />
-                                            <input type="button" value="+" class="btn quantity-right-plus" data-type="plus" data-field="" />
-                                            <div class="col-md-1 deleteone">
-                                                <input id="btn-update-quantity" type="submit" value="Cập nhật" />
-                                            </div>
-                                        </div>
-                                    }
-                                </div>
-                                <div class="col-md-2 productprice">
-                                    <p>@total</p>
-                                </div>
-                                <div class="col-md-1 deleteone">
-                                    <input type="button" value="Xóa" onclick="myFunction2()">
-                                </div>
-                            </div>
-                        }
-
-                        <hr>
+        <div class="container-fluid cartbody">
+            <div class="row">
+                <div class="col-md-7 cartlist">
+                    <div class="row cartlist-head" id="header">
+                        <p>Giỏ hàng</p>
+                        <input type="button" value="Xóa tất cả giỏ hàng" class="btndelete" onclick="myFunction()">
                     </div>
-                    <div class="col-md-3 carttotal">
-                        <p>Tổng tiền</p>
-                        <div class="totalprice">
-                            <span>Tạm tính</span>
-                            <p>@Model.TotalMoney()</p>
-                        </div>
-                        <div class="button">
-                            <a href="">
+                    @foreach (var item in Model.Items)
+                    {
 
-                            </a>
-                            @using (Html.BeginForm("DirectCheckOut", "Cart"))
-                            {
-                                @Html.ActionLink("Mua thêm", "Index", "Home", "Home", new { @class = "buymore" })
-                                <input type="submit" class="checkout" value="Đặt hàng">
-                            }
+                        <div class="popup" id="popup">
+                            <h4>Xóa sản phẩm</h4>
+                            <p>Bạn có muốn xóa toàn bộ sản phẩm khỏi giỏ hàng không?</p>
+                            <input type="button" class="back" value="Quay Lại" onclick="backFunction()">
+                            <a class="deleteall" href="/Cart/RemoveCart/@item._shopping_product.ProductId">Xóa</a>
                         </div>
+                        <div class="popup" id="popup2">
+                            <h4>Xóa sản phẩm</h4>
+                            <p>Bạn có muốn xóa sản phẩm này khỏi giỏ hàng?</p>
+                            <input type="button" class="back" value="Quay Lại" onclick="backFunction2()">
+                            <a class="deleteall" href="/Cart/RemoveCart/@item._shopping_product.ProductId">Xóa</a>
+                        </div>
+                        double total = Convert.ToDouble(item._shopping_product.Price.Value * item._shopping_quantity);
+                        <div class="row cartlist-body">
+                            <div class="col-md-6 productdetail">
+                                <a href="#">
+                                    <img src="~/Vendor/img/products/@(item._shopping_product.ProductId).png" alt="">
+                                    <p>@item._shopping_product.ProductName</p>
+                                </a>
+                            </div>
+                            <div class="col-md-3 quantity">
+                                @using (Html.BeginForm("UpdateQuantity", "Cart"))
+                                {
+                                    <div class="quantity-product">
+                                        <input type="hidden" value="@item._shopping_product.ProductId" name="ProductId" />
+                                        
+                                        <input  type="number" class="num" name="quantity" value="@item._shopping_quantity" id="quantity" min="0" onchange="changevalue(this.value)" />
+                                        
+                                        <div class="col-md-1 deleteone">
+                                            <input id="btn-update-quantity" type="submit" value="Cập nhật" />
+                                        </div>
+                                    </div>
+                                }
+                            </div>
+                            <div class="col-md-2 productprice">
+                                <p>@total</p>
+                            </div>
+                            <div class="col-md-1 deleteone">
+                                <input type="button" value="Xóa" onclick="myFunction2()">
+                            </div>
+                        </div>
+                    }
+
+                    <hr>
+                </div>
+                <div class="col-md-3 carttotal">
+                    <p>Tổng tiền</p>
+                    <div class="totalprice">
+                        <span>Tạm tính</span>
+                        <p>@Model.TotalMoney()</p>
+                    </div>
+                    <div class="button">
+                        <a href="">
+
+                        </a>
+                        @using (Html.BeginForm("DirectCheckOut", "Cart"))
+                        {
+                            @Html.ActionLink("Mua thêm", "Index", "Home", "Home", new { @class = "buymore" })
+                            <input type="submit" class="checkout" value="Đặt hàng">
+                        }
                     </div>
                 </div>
             </div>
         </div>
     </div>
 }
+
 else {
 <div>Null</div>
 }
@@ -104,10 +103,10 @@ else {
 
 
 
-<script type="text/javascript" src="~/Vendor/js/cart.js"></script>
+
 <script>
     function myFunction() {
-        var blur = document.getElementById("cartbox");
+        var blur = document.getElementById("blur");
         blur.classList.add("blur")
         var popup = document.getElementById("popup");
         popup.classList.add("active-cart")
@@ -115,15 +114,30 @@ else {
     }
     function backFunction() {
         var back = document.getElementById("popup")
-        back.classList.remove("active");
-        var blur = document.getElementById("cartbox");
+        back.classList.remove("active-cart");
+        var blur = document.getElementById("blur");
         blur.classList.remove("blur")
     }
     function myFunction2() {
-        var blur = document.getElementById("cartbox");
+        var blur = document.getElementById("blur");
         blur.classList.add("blur")
         var popup = document.getElementById("popup2");
         popup.classList.add("active-cart")
+    }
+    function backFunction2() {
+        var back = document.getElementById("popup2")
+        back.classList.remove("active-cart");
+        var blur = document.getElementById("blur");
+        blur.classList.remove("blur")
+        
+    }
+    function changevalue(val) {
+        if (val == 0) {
+            var blur = document.getElementById("blur");
+            blur.classList.add("blur")
+            var popup = document.getElementById("popup");
+            popup.classList.add("active-cart")
+        }
     }
 </script>
 
