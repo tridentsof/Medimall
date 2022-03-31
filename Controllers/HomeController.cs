@@ -18,6 +18,34 @@ namespace Medimall.Controllers
             return View();
         }
 
+        public ActionResult Login()
+        {
+            return View();
+        }
+
+        [HttpPost]
+        public ActionResult Login(AccountViewModel model)
+        {
+            if (ModelState.IsValid)
+            {
+                Account account = db.Accounts.Where(a => a.UserName == model.UserName && a.Password == model.Password).FirstOrDefault();
+
+                if (account != null)
+                {
+                    Session["UserNameCustomer"] = account.UserName;
+
+                    return RedirectToAction("Index", "Home");
+                }
+                else
+                {
+                    ModelState.AddModelError("", "Sai tên đăng nhập hoặc mật khẩu");
+                    return View(model);
+                }
+            }
+            else
+                return View(model);
+        }
+
         public ActionResult GetCategories()
         {
             List<Category> listCate = db.Categories.ToList();

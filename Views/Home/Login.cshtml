@@ -1,0 +1,62 @@
+﻿@model Medimall.Models.Account
+
+@{
+    ViewBag.Title = "ShowCart";
+    Layout = "~/Views/Shared/_LayoutCustomer.cshtml";
+}
+
+@if (Session["UserNameCustomer"] == null)
+{
+    <button type="button" class="login-btn" data-toggle="modal" data-target="#myModal">
+        Đăng nhập&ensp;<i class="far fa-user fa-fw fa-lg"></i>
+    </button>
+    <!-- Đăng nhập -->
+    <div id="myModal" class="modal fade in" role="dialog">
+
+    </div>
+    <div class="modal-dialog modal-dialog-centered modal-lg">
+        <!-- Đăng nhập content-->
+        <div class="modal-content center">
+            <div class="modal-body">
+                <div class="modal-left">
+                    <img src="~/Vendor/img/banners/banner.png" />
+                    <div class="modal-left-text">
+                        <h2>Medimall xin chào !</h2>
+                        <p>
+                            Hãy đăng nhập để được hưởng các đặc quyền riêng dành cho thành viên
+                        </p>
+                        <div>
+                            Bạn đã là thành viên Medicall vui lòng nhấp <a href="#">tạo mật khẩu</a> để tiếp tục sử dụng.
+                            Tất cả thông tin tài khoản và điểm tích lũy đều không thay đổi
+                        </div>
+                    </div>
+                </div>
+                <div class="form-login">
+                    <h1>Đăng nhập</h1>
+                    @using (Html.BeginForm("Login", "Home", FormMethod.Post, new { @class = "needs-validation" }))
+                    {
+                        <div class="form-group">
+                            @Html.TextBoxFor(m => m.UserName, new { @class = "form-control", id = "uname", placeholder = "Tên đăng nhập", name = "uname" })
+                            @Html.ValidationMessageFor(model => model.UserName, "", new { @class = "invalid-feedback" })
+                        </div>
+                        <div class="form-group">
+                            @Html.PasswordFor(m => m.Password, new { @class = "form-control", id = "pwd", placeholder = "Mật khẩu", name = "pswd" })
+                            @Html.ValidationMessageFor(model => model.Password, "", new { @class = "invalid-feedback" })
+
+                        </div>
+                        <h2><a href="#">Quên mật khẩu?</a></h2>
+                        <input type="submit" class="btn" value="Đăng nhập">
+                        <h3>Bạn chưa có tài khoản Pharmacity?</h3>
+                        <a href="#">Đăng ký ngay</a>
+                    }
+                </div>
+            </div>
+        </div>
+    </div>
+
+}
+else
+{
+    <h1 style="font-size: 13px; margin-left: 5px; margin-top: 7px; text-transform: capitalize;">@Session["UserNameCustomer"]</h1>
+}
+

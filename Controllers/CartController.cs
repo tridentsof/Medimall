@@ -68,6 +68,7 @@ namespace Medimall.Controllers
             {
                 Cart cart = Session["Cart"] as Cart;
                 List<BillDetail> billingDetail = new List<BillDetail>();
+                decimal? totalMoney = 0;
                 
                 foreach (var item in cart.Items)
                 {
@@ -78,9 +79,12 @@ namespace Medimall.Controllers
                         Total = item._shopping_product.Price * item._shopping_quantity,
                         ProductName = item._shopping_product.ProductName
                     });
+
+                    totalMoney += item._shopping_product.Price * item._shopping_quantity;
                 }
 
                 TempData["BillProduct"] = billingDetail;
+                TempData["TotalMoney"] = totalMoney;
 
                 return RedirectToAction("Checkout", "Cart");
             }
@@ -94,6 +98,52 @@ namespace Medimall.Controllers
         public ActionResult Checkout()
         {
             return View();
+        }
+
+        public ActionResult Purchase(FormCollection form)
+        {
+            try
+            {
+                var userName = Session["UserNameCustomer"];
+                var userInfor = db.Accounts.FirstOrDefault(x => x.UserName == userName.ToString());
+                Cart cart = Session["Cart"] as Cart;
+                Billing billing = new Billing();
+
+                billing.AccountId = userInfor.AccountId;
+                billing.PurchaseDate = DateTime.Now;
+                //Can replace if adress in form collection == null
+                billing.Address = userInfor.Address;
+                billing.DeliveryId = int.Parse(form["delivery-id"]);
+                billing.PayId = int.Parse(form["pay-id"]);
+                billing.Status = 1;
+                db.Billings.Add(billing);
+
+                foreach (var item in cart.Items)
+                {
+                    BillDetail billDetail = new BillDetail();
+
+                    var product = db.Products.Single(x => x.ProductId == item._shopping_product.ProductId);
+                    product.QuantitySold += item._shopping_quantity;
+                    product.Quantity -= item._shopping_quantity;
+
+                    billDetail.BillId = billing.BillId;
+                    billDetail.ProductId = item._shopping_product.ProductId;
+                    billDetail.Price = item._shopping_product.Price;
+                    billDetail.Quantity = item._shopping_product.Quantity;
+
+                    db.BillDetails.Add(billDetail);
+                }
+
+                db.SaveChanges();
+                cart.ClearCart();
+
+                return RedirectToAction("Index", "Home");
+
+            }
+            catch (Exception)
+            {
+                throw;
+            }
         }
     }
 }
