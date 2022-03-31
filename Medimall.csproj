@@ -147,6 +147,7 @@
     <Compile Include="Models\Account.cs">
       <DependentUpon>DbContext.tt</DependentUpon>
     </Compile>
+    <Compile Include="Models\AccountViewModel.cs" />
     <Compile Include="Models\Admin.cs">
       <DependentUpon>DbContext.tt</DependentUpon>
     </Compile>
@@ -2246,6 +2247,8 @@
     <Content Include="Views\Cart\ShowCart.cshtml" />
     <Content Include="Views\Cart\BagCart.cshtml" />
     <Content Include="Views\Cart\Checkout.cshtml" />
+    <Content Include="Views\Shared\_LoginCustomer.cshtml" />
+    <Content Include="Views\Home\Login.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
