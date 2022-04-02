@@ -1,0 +1,14 @@
+﻿@model IEnumerable<Medimall.Models.Product>
+
+@foreach (var item in Model)
+{
+    <div class="item">
+        <a href="#"><img src="~/Vendor/img/products/@(item.ProductId).png" /></a>
+        <div>
+            <p>@item.ProductName</p>
+            <h4>@(item.Price)/Hộp</h4>
+        </div>
+        <button>Thêm vào giỏ hàng</button>
+    </div>
+}
+

@@ -21,14 +21,15 @@
           <Property Name="ActiveCode" Type="nvarchar" MaxLength="50" />
           <Property Name="PowerPoint" Type="int" />
         </EntityType>
-        <EntityType Name="Admin">
-          <Key>
-            <PropertyRef Name="AdminId" />
-          </Key>
-          <Property Name="AdminId" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
-          <Property Name="UserName" Type="nvarchar" MaxLength="50" />
-          <Property Name="Password" Type="nvarchar" MaxLength="50" />
-        </EntityType>
+		  <EntityType Name="Admin">
+			  <Key>
+				  <PropertyRef Name="AdminId" />
+			  </Key>
+			  <Property Name="AdminId" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+			  <Property Name="UserName" Type="nvarchar" MaxLength="50" />
+			  <Property Name="Password" Type="nvarchar" MaxLength="50" />
+			  <Property Name="RoleId" Type="int" />
+		  </EntityType>
         <EntityType Name="BillDetail">
           <Key>
             <PropertyRef Name="BillDetailId" />
@@ -121,6 +122,13 @@
           <Property Name="QuantitySold" Type="int" />
           <Property Name="IsForCovid" Type="bit"/>
         </EntityType>
+		  <EntityType Name="Role">
+			  <Key>
+				  <PropertyRef Name="RoleId" />
+			  </Key>
+			  <Property Name="RoleId" Type="int" Nullable="false" />
+			  <Property Name="RoleName" Type="nvarchar" MaxLength="50" />
+		  </EntityType>
         <EntityType Name="sysdiagrams">
           <Key>
             <PropertyRef Name="diagram_id" />
@@ -142,6 +150,18 @@
           <Property Name="StartDate" Type="datetime"/>
           <Property Name="EndDate" Type="datetime" />
         </EntityType>
+		  <Association Name="FK__Admin__RoleId__6FE99F9F">
+			  <End Role="Role" Type="Self.Role" Multiplicity="0..1" />
+			  <End Role="Admin" Type="Self.Admin" Multiplicity="*" />
+			  <ReferentialConstraint>
+				  <Principal Role="Role">
+					  <PropertyRef Name="RoleId" />
+				  </Principal>
+				  <Dependent Role="Admin">
+					  <PropertyRef Name="RoleId" />
+				  </Dependent>
+			  </ReferentialConstraint>
+		  </Association>
         <Association Name="FK_Acc">
           <End Role="Account" Type="Self.Account" Multiplicity="0..1" />
           <End Role="HealthBook" Type="Self.HealthBook" Multiplicity="*" />
@@ -274,9 +294,14 @@
           <EntitySet Name="News" EntityType="Self.News" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="Payment" EntityType="Self.Payment" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="Product" EntityType="Self.Product" Schema="dbo" store:Type="Tables" />
-          <EntitySet Name="sysdiagrams" EntityType="Self.sysdiagrams" Schema="dbo" store:Type="Tables" />
+		  <EntitySet Name="Role" EntityType="Self.Role" Schema="dbo" store:Type="Tables" />
+		  <EntitySet Name="sysdiagrams" EntityType="Self.sysdiagrams" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="Voucher" EntityType="Self.Voucher" Schema="dbo" store:Type="Tables" />
-          <AssociationSet Name="FK_Acc" Association="Self.FK_Acc">
+		  <AssociationSet Name="FK__Admin__RoleId__6FE99F9F" Association="Self.FK__Admin__RoleId__6FE99F9F">
+				<End Role="Role" EntitySet="Role" />
+				<End Role="Admin" EntitySet="Admin" />
+			</AssociationSet>
+			<AssociationSet Name="FK_Acc" Association="Self.FK_Acc">
             <End Role="Account" EntitySet="Account" />
             <End Role="HealthBook" EntitySet="HealthBook" />
           </AssociationSet>
@@ -341,14 +366,16 @@
           <NavigationProperty Name="ListDrugs" Relationship="Self.FK_Acc1" FromRole="Account" ToRole="ListDrug" />
           <NavigationProperty Name="Billings" Relationship="Self.FK_kh" FromRole="Account" ToRole="Billing" />
         </EntityType>
-        <EntityType Name="Admin">
-          <Key>
-            <PropertyRef Name="AdminId" />
-          </Key>
-          <Property Name="AdminId" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
-          <Property Name="UserName" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
-          <Property Name="Password" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
-        </EntityType>
+		  <EntityType Name="Admin">
+			  <Key>
+				  <PropertyRef Name="AdminId" />
+			  </Key>
+			  <Property Name="AdminId" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+			  <Property Name="UserName" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+			  <Property Name="Password" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+			  <Property Name="RoleId" Type="Int32" />
+			  <NavigationProperty Name="Role" Relationship="Self.FK__Admin__RoleId__6FE99F9F" FromRole="Admin" ToRole="Role" />
+		  </EntityType>
         <EntityType Name="BillDetail">
           <Key>
             <PropertyRef Name="BillDetailId" />
@@ -457,6 +484,14 @@
           <NavigationProperty Name="Category" Relationship="Self.FK_Category" FromRole="Product" ToRole="Category" />
           <NavigationProperty Name="ListDrugs" Relationship="Self.FK_Pro" FromRole="Product" ToRole="ListDrug" />
         </EntityType>
+		  <EntityType Name="Role">
+			  <Key>
+				  <PropertyRef Name="RoleId" />
+			  </Key>
+			  <Property Name="RoleId" Type="Int32" Nullable="false" />
+			  <Property Name="RoleName" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+			  <NavigationProperty Name="Admins" Relationship="Self.FK__Admin__RoleId__6FE99F9F" FromRole="Role" ToRole="Admin" />
+		  </EntityType>
         <EntityType Name="sysdiagram">
           <Key>
             <PropertyRef Name="diagram_id" />
@@ -515,6 +550,18 @@
             </Dependent>
           </ReferentialConstraint>
         </Association>
+		  <Association Name="FK__Admin__RoleId__6FE99F9F">
+			  <End Role="Role" Type="Self.Role" Multiplicity="0..1" />
+			  <End Role="Admin" Type="Self.Admin" Multiplicity="*" />
+			  <ReferentialConstraint>
+				  <Principal Role="Role">
+					  <PropertyRef Name="RoleId" />
+				  </Principal>
+				  <Dependent Role="Admin">
+					  <PropertyRef Name="RoleId" />
+				  </Dependent>
+			  </ReferentialConstraint>
+		  </Association>
         <Association Name="FK_HD">
           <End Role="Billing" Type="Self.Billing" Multiplicity="0..1" />
           <End Role="BillDetail" Type="Self.BillDetail" Multiplicity="*" />
@@ -611,6 +658,7 @@
           <EntitySet Name="News" EntityType="Self.News" />
           <EntitySet Name="Payments" EntityType="Self.Payment" />
           <EntitySet Name="Products" EntityType="Self.Product" />
+		  <EntitySet Name="Roles" EntityType="Self.Role" />
           <EntitySet Name="sysdiagrams" EntityType="Self.sysdiagram" />
           <EntitySet Name="Vouchers" EntityType="Self.Voucher" />
           <AssociationSet Name="FK_Acc" Association="Self.FK_Acc">
@@ -625,6 +673,10 @@
             <End Role="Account" EntitySet="Accounts" />
             <End Role="Billing" EntitySet="Billings" />
           </AssociationSet>
+			<AssociationSet Name="FK__Admin__RoleId__6FE99F9F" Association="Self.FK__Admin__RoleId__6FE99F9F">
+				<End Role="Role" EntitySet="Roles" />
+				<End Role="Admin" EntitySet="Admins" />
+			</AssociationSet>
           <AssociationSet Name="FK_HD" Association="Self.FK_HD">
             <End Role="Billing" EntitySet="Billings" />
             <End Role="BillDetail" EntitySet="BillDetails" />
@@ -677,15 +729,16 @@
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>
-          <EntitySetMapping Name="Admins">
-            <EntityTypeMapping TypeName="MedimallModel.Admin">
-              <MappingFragment StoreEntitySet="Admin">
-                <ScalarProperty Name="AdminId" ColumnName="AdminId" />
-                <ScalarProperty Name="UserName" ColumnName="UserName" />
-                <ScalarProperty Name="Password" ColumnName="Password" />
-              </MappingFragment>
-            </EntityTypeMapping>
-          </EntitySetMapping>
+			<EntitySetMapping Name="Admins">
+				<EntityTypeMapping TypeName="MedimallModel.Admin">
+					<MappingFragment StoreEntitySet="Admin">
+						<ScalarProperty Name="AdminId" ColumnName="AdminId" />
+						<ScalarProperty Name="UserName" ColumnName="UserName" />
+						<ScalarProperty Name="Password" ColumnName="Password" />
+						<ScalarProperty Name="RoleId" ColumnName="RoleId" />
+					</MappingFragment>
+				</EntityTypeMapping>
+			</EntitySetMapping>
           <EntitySetMapping Name="BillDetails">
             <EntityTypeMapping TypeName="MedimallModel.BillDetail">
               <MappingFragment StoreEntitySet="BillDetail">
@@ -787,6 +840,14 @@
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>
+			<EntitySetMapping Name="Roles">
+				<EntityTypeMapping TypeName="MedimallModel.Role">
+					<MappingFragment StoreEntitySet="Role">
+						<ScalarProperty Name="RoleId" ColumnName="RoleId" />
+						<ScalarProperty Name="RoleName" ColumnName="RoleName" />
+					</MappingFragment>
+				</EntityTypeMapping>
+			</EntitySetMapping>
           <EntitySetMapping Name="sysdiagrams">
             <EntityTypeMapping TypeName="MedimallModel.sysdiagram">
               <MappingFragment StoreEntitySet="sysdiagrams">

@@ -16,12 +16,14 @@
         <EntityTypeShape EntityType="MedimallModel.News" Width="1.5" PointX="16.125" PointY="9.125" IsExpanded="true" />
         <EntityTypeShape EntityType="MedimallModel.Payment" Width="1.5" PointX="12.25" PointY="3.75" IsExpanded="true" />
         <EntityTypeShape EntityType="MedimallModel.Product" Width="1.5" PointX="3.75" PointY="0.75" IsExpanded="true" />
-        <EntityTypeShape EntityType="MedimallModel.sysdiagram" Width="1.5" PointX="20.5" PointY="4.625" IsExpanded="true" />
+		<EntityTypeShape EntityType="MedimallModel.Role" Width="1.5" PointX="11.5" PointY="1.75" IsExpanded="true" />       
+		<EntityTypeShape EntityType="MedimallModel.sysdiagram" Width="1.5" PointX="20.5" PointY="4.625" IsExpanded="true" />
         <EntityTypeShape EntityType="MedimallModel.Voucher" Width="1.5" PointX="6" PointY="3.5" IsExpanded="true" />
         <AssociationConnector Association="MedimallModel.FK_Acc" ManuallyRouted="false" />
         <AssociationConnector Association="MedimallModel.FK_Acc1" ManuallyRouted="false" />
         <AssociationConnector Association="MedimallModel.FK_kh" ManuallyRouted="false" />
-        <AssociationConnector Association="MedimallModel.FK_HD" ManuallyRouted="false" />
+	    <AssociationConnector Association="MedimallModel.FK__Admin__RoleId__6FE99F9F" ManuallyRouted="false" />
+		<AssociationConnector Association="MedimallModel.FK_HD" ManuallyRouted="false" />
         <AssociationConnector Association="MedimallModel.FK_SP" ManuallyRouted="false" />
         <AssociationConnector Association="MedimallModel.FK_VC" ManuallyRouted="false" />
         <AssociationConnector Association="MedimallModel.FK_DVVC" ManuallyRouted="false" />

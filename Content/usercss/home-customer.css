@@ -1079,3 +1079,31 @@ header {
 	text-align: center;
 	margin-bottom: 20px;
 }
+.news-tab {
+	width: 1250px;
+	height: auto;
+	margin: 0 auto;
+}
+
+	.news-tab .nav-link {
+		padding: 20px;
+		font-size: 18px
+	}
+
+.blog-content {
+	width: 100%;
+	padding: 30px 0;
+	text-align: center;
+}
+
+.blog-title {
+	font-weight: 700;
+	font-size: 22px;
+	line-height: 34px;
+}
+
+.hr {
+	width: 70px;
+	border-top: 1px solid grey;
+	margin: auto;
+}

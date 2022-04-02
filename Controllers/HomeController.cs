@@ -106,5 +106,50 @@ namespace Medimall.Controllers
 
             return RedirectToAction("ShowCart", "Cart");
         }
+        public ActionResult GetSkinCareProductPageOne()
+        {
+            List<Product> listProduct = db.Products.Where(p => p.CategoryId == "SkinCare").OrderBy(p => p.ProductId).Take(5).ToList();
+            return PartialView(listProduct);
+        }
+        public ActionResult GetSkinCareProductPageTwo()
+        {
+            List<Product> listProduct = db.Products.Where(p => p.CategoryId == "SkinCare").OrderBy(p => p.ProductId).Skip(5).Take(5).ToList();
+            return PartialView(listProduct);
+        }
+        public ActionResult GetSkinCareProductPageThree()
+        {
+            List<Product> listProduct = db.Products.Where(p => p.CategoryId == "SkinCare").OrderBy(p => p.ProductId).Skip(10).Take(5).ToList();
+            return PartialView(listProduct);
+        }
+        public ActionResult GetBestSaleProductPageOne()
+        {
+            List<Product> listProduct = db.Products.Where(p => p.QuantitySold > 5).OrderBy(p => p.ProductId).Take(5).ToList();
+            return PartialView(listProduct);
+        }
+        public ActionResult GetBestSaleProductPageTwo()
+        {
+            List<Product> listProduct = db.Products.Where(p => p.QuantitySold > 5).OrderBy(p => p.ProductId).Skip(5).Take(5).ToList();
+            return PartialView(listProduct);
+        }
+        public ActionResult GetBestSaleProductPageThree()
+        {
+            List<Product> listProduct = db.Products.Where(p => p.QuantitySold > 5).OrderBy(p => p.ProductId).Skip(10).Take(5).ToList();
+            return PartialView(listProduct);
+        }
+        public ActionResult GetNewProductPageOne()
+        {
+            List<Product> listProduct = db.Products.OrderByDescending(p => p.ProductId).Take(5).ToList();
+            return PartialView(listProduct);
+        }
+        public ActionResult GetNewProductPageTwo()
+        {
+            List<Product> listProduct = db.Products.OrderByDescending(p => p.ProductId).Skip(5).Take(5).ToList();
+            return PartialView(listProduct);
+        }
+        public ActionResult GetNewProductPageThree()
+        {
+            List<Product> listProduct = db.Products.OrderByDescending(p => p.ProductId).Skip(10).Take(5).ToList();
+            return PartialView(listProduct);
+        }
     }
 }
