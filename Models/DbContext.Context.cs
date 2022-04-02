@@ -34,8 +34,10 @@ namespace Medimall.Models
         public virtual DbSet<HealthBook> HealthBooks { get; set; }
         public virtual DbSet<ListDrug> ListDrugs { get; set; }
         public virtual DbSet<News> News { get; set; }
+        public virtual DbSet<NewsCategory> NewsCategories { get; set; }
         public virtual DbSet<Payment> Payments { get; set; }
         public virtual DbSet<Product> Products { get; set; }
+        public virtual DbSet<Role> Roles { get; set; }
         public virtual DbSet<sysdiagram> sysdiagrams { get; set; }
         public virtual DbSet<Voucher> Vouchers { get; set; }
     }
