@@ -28,6 +28,7 @@
           <Property Name="AdminId" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
           <Property Name="UserName" Type="nvarchar" MaxLength="50" />
           <Property Name="Password" Type="nvarchar" MaxLength="50" />
+          <Property Name="RoleId" Type="int" />
         </EntityType>
         <EntityType Name="BillDetail">
           <Key>
@@ -54,7 +55,7 @@
           <Property Name="Total" Type="decimal" Precision="18" Scale="0" />
           <Property Name="PayId" Type="int" />
           <Property Name="Status" Type="int" />
-          <Property Name="Phone" Type="nvarchar" MaxLength="50"/>
+          <Property Name="Phone" Type="nvarchar" MaxLength="50" />
         </EntityType>
         <EntityType Name="Category">
           <Key>
@@ -98,6 +99,14 @@
           <Property Name="NewsId" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
           <Property Name="NewTiTle" Type="nvarchar" MaxLength="200" />
           <Property Name="Content" Type="nvarchar" MaxLength="500" />
+          <Property Name="NewsCategoryId" Type="int" />
+        </EntityType>
+        <EntityType Name="NewsCategory">
+          <Key>
+            <PropertyRef Name="NewsCategoryId" />
+          </Key>
+          <Property Name="NewsCategoryId" Type="int" Nullable="false" />
+          <Property Name="NewsCategoryName" Type="nvarchar" MaxLength="100" />
         </EntityType>
         <EntityType Name="Payment">
           <Key>
@@ -119,7 +128,14 @@
           <Property Name="Price" Type="decimal" Precision="18" Scale="0" />
           <Property Name="Quantity" Type="int" />
           <Property Name="QuantitySold" Type="int" />
-          <Property Name="IsForCovid" Type="bit"/>
+          <Property Name="IsForCovid" Type="bit" />
+        </EntityType>
+        <EntityType Name="Role">
+          <Key>
+            <PropertyRef Name="RoleId" />
+          </Key>
+          <Property Name="RoleId" Type="int" Nullable="false" />
+          <Property Name="RoleName" Type="nvarchar" MaxLength="50" />
         </EntityType>
         <EntityType Name="sysdiagrams">
           <Key>
@@ -139,9 +155,21 @@
           <Property Name="VoucherCode" Type="nvarchar" MaxLength="20" />
           <Property Name="Percent" Type="int" />
           <Property Name="VoucherDetail" Type="nvarchar" MaxLength="200" />
-          <Property Name="StartDate" Type="datetime"/>
+          <Property Name="StartDate" Type="datetime" />
           <Property Name="EndDate" Type="datetime" />
         </EntityType>
+        <Association Name="FK__News__NewsCatego__17036CC0">
+          <End Role="NewsCategory" Type="Self.NewsCategory" Multiplicity="0..1" />
+          <End Role="News" Type="Self.News" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="NewsCategory">
+              <PropertyRef Name="NewsCategoryId" />
+            </Principal>
+            <Dependent Role="News">
+              <PropertyRef Name="NewsCategoryId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
         <Association Name="FK_Acc">
           <End Role="Account" Type="Self.Account" Multiplicity="0..1" />
           <End Role="HealthBook" Type="Self.HealthBook" Multiplicity="*" />
@@ -163,6 +191,18 @@
             </Principal>
             <Dependent Role="ListDrug">
               <PropertyRef Name="AccountId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Admin_Role">
+          <End Role="Role" Type="Self.Role" Multiplicity="0..1" />
+          <End Role="Admin" Type="Self.Admin" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Role">
+              <PropertyRef Name="RoleId" />
+            </Principal>
+            <Dependent Role="Admin">
+              <PropertyRef Name="RoleId" />
             </Dependent>
           </ReferentialConstraint>
         </Association>
@@ -272,10 +312,16 @@
           <EntitySet Name="HealthBook" EntityType="Self.HealthBook" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="ListDrug" EntityType="Self.ListDrug" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="News" EntityType="Self.News" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="NewsCategory" EntityType="Self.NewsCategory" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="Payment" EntityType="Self.Payment" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="Product" EntityType="Self.Product" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Role" EntityType="Self.Role" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="sysdiagrams" EntityType="Self.sysdiagrams" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="Voucher" EntityType="Self.Voucher" Schema="dbo" store:Type="Tables" />
+          <AssociationSet Name="FK__News__NewsCatego__17036CC0" Association="Self.FK__News__NewsCatego__17036CC0">
+            <End Role="NewsCategory" EntitySet="NewsCategory" />
+            <End Role="News" EntitySet="News" />
+          </AssociationSet>
           <AssociationSet Name="FK_Acc" Association="Self.FK_Acc">
             <End Role="Account" EntitySet="Account" />
             <End Role="HealthBook" EntitySet="HealthBook" />
@@ -283,6 +329,10 @@
           <AssociationSet Name="FK_Acc1" Association="Self.FK_Acc1">
             <End Role="Account" EntitySet="Account" />
             <End Role="ListDrug" EntitySet="ListDrug" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Admin_Role" Association="Self.FK_Admin_Role">
+            <End Role="Role" EntitySet="Role" />
+            <End Role="Admin" EntitySet="Admin" />
           </AssociationSet>
           <AssociationSet Name="FK_Category" Association="Self.FK_Category">
             <End Role="Category" EntitySet="Category" />
@@ -348,6 +398,8 @@
           <Property Name="AdminId" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
           <Property Name="UserName" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
           <Property Name="Password" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="RoleId" Type="Int32" />
+          <NavigationProperty Name="Role" Relationship="Self.FK_Admin_Role" FromRole="Admin" ToRole="Role" />
         </EntityType>
         <EntityType Name="BillDetail">
           <Key>
@@ -360,7 +412,7 @@
           <Property Name="Price" Type="Decimal" Precision="18" Scale="0" />
           <Property Name="VoucherId" Type="Int32" />
           <Property Name="Total" Type="Decimal" Precision="18" Scale="0" />
-          <Property Name="ProductName" Type="String" MaxLength="100" FixedLength="false" Unicode="true"/>
+          <Property Name="ProductName" Type="String" MaxLength="100" FixedLength="false" Unicode="true" />
           <NavigationProperty Name="Billing" Relationship="Self.FK_HD" FromRole="BillDetail" ToRole="Billing" />
           <NavigationProperty Name="Product" Relationship="Self.FK_SP" FromRole="BillDetail" ToRole="Product" />
           <NavigationProperty Name="Voucher" Relationship="Self.FK_VC" FromRole="BillDetail" ToRole="Voucher" />
@@ -430,6 +482,16 @@
           <Property Name="NewsId" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
           <Property Name="NewTiTle" Type="String" MaxLength="200" FixedLength="false" Unicode="true" />
           <Property Name="Content" Type="String" MaxLength="500" FixedLength="false" Unicode="true" />
+          <Property Name="NewsCategoryId" Type="Int32" />
+          <NavigationProperty Name="NewsCategory" Relationship="Self.FK__News__NewsCatego__17036CC0" FromRole="News" ToRole="NewsCategory" />
+        </EntityType>
+        <EntityType Name="NewsCategory">
+          <Key>
+            <PropertyRef Name="NewsCategoryId" />
+          </Key>
+          <Property Name="NewsCategoryId" Type="Int32" Nullable="false" />
+          <Property Name="NewsCategoryName" Type="String" MaxLength="100" FixedLength="false" Unicode="true" />
+          <NavigationProperty Name="News" Relationship="Self.FK__News__NewsCatego__17036CC0" FromRole="NewsCategory" ToRole="News" />
         </EntityType>
         <EntityType Name="Payment">
           <Key>
@@ -452,10 +514,18 @@
           <Property Name="Price" Type="Decimal" Precision="18" Scale="0" />
           <Property Name="Quantity" Type="Int32" />
           <Property Name="QuantitySold" Type="Int32" />
-          <Property Name="IsForCovid" Type="Boolean"/>
+          <Property Name="IsForCovid" Type="Boolean" />
           <NavigationProperty Name="BillDetails" Relationship="Self.FK_SP" FromRole="Product" ToRole="BillDetail" />
           <NavigationProperty Name="Category" Relationship="Self.FK_Category" FromRole="Product" ToRole="Category" />
           <NavigationProperty Name="ListDrugs" Relationship="Self.FK_Pro" FromRole="Product" ToRole="ListDrug" />
+        </EntityType>
+        <EntityType Name="Role">
+          <Key>
+            <PropertyRef Name="RoleId" />
+          </Key>
+          <Property Name="RoleId" Type="Int32" Nullable="false" />
+          <Property Name="RoleName" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <NavigationProperty Name="Admins" Relationship="Self.FK_Admin_Role" FromRole="Role" ToRole="Admin" />
         </EntityType>
         <EntityType Name="sysdiagram">
           <Key>
@@ -512,6 +582,18 @@
             </Principal>
             <Dependent Role="Billing">
               <PropertyRef Name="AccountId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Admin_Role">
+          <End Role="Role" Type="Self.Role" Multiplicity="0..1" />
+          <End Role="Admin" Type="Self.Admin" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Role">
+              <PropertyRef Name="RoleId" />
+            </Principal>
+            <Dependent Role="Admin">
+              <PropertyRef Name="RoleId" />
             </Dependent>
           </ReferentialConstraint>
         </Association>
@@ -599,6 +681,18 @@
             </Dependent>
           </ReferentialConstraint>
         </Association>
+        <Association Name="FK__News__NewsCatego__17036CC0">
+          <End Role="NewsCategory" Type="Self.NewsCategory" Multiplicity="0..1" />
+          <End Role="News" Type="Self.News" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="NewsCategory">
+              <PropertyRef Name="NewsCategoryId" />
+            </Principal>
+            <Dependent Role="News">
+              <PropertyRef Name="NewsCategoryId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
         <EntityContainer Name="MedimallEntities" annotation:LazyLoadingEnabled="true">
           <EntitySet Name="Accounts" EntityType="Self.Account" />
           <EntitySet Name="Admins" EntityType="Self.Admin" />
@@ -609,8 +703,10 @@
           <EntitySet Name="HealthBooks" EntityType="Self.HealthBook" />
           <EntitySet Name="ListDrugs" EntityType="Self.ListDrug" />
           <EntitySet Name="News" EntityType="Self.News" />
+          <EntitySet Name="NewsCategories" EntityType="Self.NewsCategory" />
           <EntitySet Name="Payments" EntityType="Self.Payment" />
           <EntitySet Name="Products" EntityType="Self.Product" />
+          <EntitySet Name="Roles" EntityType="Self.Role" />
           <EntitySet Name="sysdiagrams" EntityType="Self.sysdiagram" />
           <EntitySet Name="Vouchers" EntityType="Self.Voucher" />
           <AssociationSet Name="FK_Acc" Association="Self.FK_Acc">
@@ -624,6 +720,10 @@
           <AssociationSet Name="FK_kh" Association="Self.FK_kh">
             <End Role="Account" EntitySet="Accounts" />
             <End Role="Billing" EntitySet="Billings" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Admin_Role" Association="Self.FK_Admin_Role">
+            <End Role="Role" EntitySet="Roles" />
+            <End Role="Admin" EntitySet="Admins" />
           </AssociationSet>
           <AssociationSet Name="FK_HD" Association="Self.FK_HD">
             <End Role="Billing" EntitySet="Billings" />
@@ -652,6 +752,10 @@
           <AssociationSet Name="FK_Pro" Association="Self.FK_Pro">
             <End Role="Product" EntitySet="Products" />
             <End Role="ListDrug" EntitySet="ListDrugs" />
+          </AssociationSet>
+          <AssociationSet Name="FK__News__NewsCatego__17036CC0" Association="Self.FK__News__NewsCatego__17036CC0">
+            <End Role="NewsCategory" EntitySet="NewsCategories" />
+            <End Role="News" EntitySet="News" />
           </AssociationSet>
         </EntityContainer>
       </Schema>
@@ -683,6 +787,7 @@
                 <ScalarProperty Name="AdminId" ColumnName="AdminId" />
                 <ScalarProperty Name="UserName" ColumnName="UserName" />
                 <ScalarProperty Name="Password" ColumnName="Password" />
+                <ScalarProperty Name="RoleId" ColumnName="RoleId" />
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>
@@ -711,7 +816,7 @@
                 <ScalarProperty Name="Total" ColumnName="Total" />
                 <ScalarProperty Name="PayId" ColumnName="PayId" />
                 <ScalarProperty Name="Status" ColumnName="Status" />
-                <ScalarProperty Name="Phone" ColumnName="Phone"/>
+                <ScalarProperty Name="Phone" ColumnName="Phone" />
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>
@@ -760,6 +865,15 @@
                 <ScalarProperty Name="NewsId" ColumnName="NewsId" />
                 <ScalarProperty Name="NewTiTle" ColumnName="NewTiTle" />
                 <ScalarProperty Name="Content" ColumnName="Content" />
+                <ScalarProperty Name="NewsCategoryId" ColumnName="NewsCategoryId" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="NewsCategories">
+            <EntityTypeMapping TypeName="MedimallModel.NewsCategory">
+              <MappingFragment StoreEntitySet="NewsCategory">
+                <ScalarProperty Name="NewsCategoryId" ColumnName="NewsCategoryId" />
+                <ScalarProperty Name="NewsCategoryName" ColumnName="NewsCategoryName" />
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>
@@ -784,6 +898,14 @@
                 <ScalarProperty Name="Quantity" ColumnName="Quantity" />
                 <ScalarProperty Name="QuantitySold" ColumnName="QuantitySold" />
                 <ScalarProperty Name="IsForCovid" ColumnName="IsForCovid" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Roles">
+            <EntityTypeMapping TypeName="MedimallModel.Role">
+              <MappingFragment StoreEntitySet="Role">
+                <ScalarProperty Name="RoleId" ColumnName="RoleId" />
+                <ScalarProperty Name="RoleName" ColumnName="RoleName" />
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>
