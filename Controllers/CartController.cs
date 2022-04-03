@@ -48,15 +48,34 @@ namespace Medimall.Controllers
             return RedirectToAction("ShowCart", "Cart");
         }
 
+        public ActionResult Voucher()
+        {
+            var userId = Session["UserId"].ToString();
+            var voucher = db.Vouchers.Where(m => m.AccountId.ToString() == userId).ToList();
+
+            return PartialView("Voucher",voucher);
+        }
+
+        public ActionResult Address()
+        {
+            var userId = Session["UserId"].ToString();
+            var userInfor = db.Accounts.Where(m => m.AccountId.ToString() == userId).FirstOrDefault();
+
+            return PartialView("Address", userInfor);
+        }
+
         public PartialViewResult BagCart()
         {
             int totalItem = 0;
+            double totalMoney = 0;
             Cart cart = Session["Cart"] as Cart;
 
             if (cart != null)
             {
                 totalItem = cart.TotalQuantity();
+                totalMoney = cart.TotalMoney();
                 ViewBag.QuantityCart = totalItem;
+                ViewBag.TotalMoney = totalMoney;
             }
 
             return PartialView("BagCart");
@@ -95,10 +114,6 @@ namespace Medimall.Controllers
             }
         }
 
-        public ActionResult Checkout()
-        {
-            return View();
-        }
 
         public ActionResult Purchase(FormCollection form)
         {

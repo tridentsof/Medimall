@@ -229,6 +229,7 @@
     <Content Include="Content\bootstrap-theme.min.css" />
     <Content Include="Content\bootstrap.css" />
     <Content Include="Content\bootstrap.min.css" />
+    <Content Include="Content\usercss\cart.css" />
     <Content Include="Content\usercss\checkout.css" />
     <Content Include="Content\usercss\home-customer.css" />
     <Content Include="favicon.ico" />
@@ -318,6 +319,7 @@
       <DependentUpon>DbContext.edmx</DependentUpon>
       <LastGenOutput>DbContext.cs</LastGenOutput>
     </Content>
+    <Content Include="Scripts\cart.js" />
     <Content Include="Scripts\checkout.js" />
     <Content Include="Vendor\css\cart.css" />
     <Content Include="Vendor\img\banners\1.png" />
@@ -336,6 +338,7 @@
     <Content Include="Vendor\img\icon\bo-cong-thuong.svg" />
     <Content Include="Vendor\img\icon\clock.png" />
     <Content Include="Vendor\img\icon\dmca-logo.svg" />
+    <Content Include="Vendor\img\icon\empty-image.png" />
     <Content Include="Vendor\img\icon\england-flag.png" />
     <Content Include="Vendor\img\icon\gg-play.png" />
     <Content Include="Vendor\img\icon\icon-1.png" />
@@ -347,6 +350,8 @@
     <Content Include="Vendor\img\icon\Icon.png" />
     <Content Include="Vendor\img\icon\left-arrow.png" />
     <Content Include="Vendor\img\icon\Logo.png" />
+    <Content Include="Vendor\img\icon\money %281%29.png" />
+    <Content Include="Vendor\img\icon\money %284%29.png" />
     <Content Include="Vendor\img\icon\right-arrow.png" />
     <Content Include="Vendor\img\icon\shopping-cart.png" />
     <Content Include="Interface\Readme.txt" />
@@ -2250,9 +2255,10 @@
     <Content Include="Views\Home\GetCovidProductPageThree.cshtml" />
     <Content Include="Views\Cart\ShowCart.cshtml" />
     <Content Include="Views\Cart\BagCart.cshtml" />
-    <Content Include="Views\Cart\Checkout.cshtml" />
     <Content Include="Views\Shared\_LoginCustomer.cshtml" />
     <Content Include="Views\Home\Login.cshtml" />
+    <Content Include="Views\Cart\Voucher.cshtml" />
+    <Content Include="Views\Cart\Address.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />

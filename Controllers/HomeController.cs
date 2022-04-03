@@ -53,11 +53,12 @@ namespace Medimall.Controllers
             try
             {
                 var accountId = Session["UserId"].ToString();
-                Account userInfor = db.Accounts.Where(m => m.AccountId.ToString() == accountId).SingleOrDefault();
-                userInfor.VoucherId = id;
 
-                db.Accounts.Attach(userInfor);
-                db.Entry(userInfor).Property(x => x.VoucherId).IsModified = true;
+                var voucher = db.Vouchers.Where(m => m.VoucherId == id).FirstOrDefault();
+                voucher.AccountId = int.Parse(accountId);
+
+                db.Vouchers.Attach(voucher);
+                db.Entry(voucher).Property(x => x.AccountId).IsModified = true;
                 db.SaveChanges();
                 TempData["SuccessMessVoucher"] = "Lưu thành công! Mời bạn vào mục quản lý Voucher để sử dụng";
 

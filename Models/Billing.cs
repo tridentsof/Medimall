@@ -40,7 +40,8 @@ namespace Medimall.Models
         public Nullable<int> Status { get; set; }
         [Display(Name = "Số điện thoại")]
         public string Phone { get; set; }
-
+        public string UserName { get; set; }
+    
         public virtual Account Account { get; set; }
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
         public virtual ICollection<BillDetail> BillDetails { get; set; }
