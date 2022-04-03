@@ -20,5 +20,8 @@ namespace Medimall.Models
         public string UserName { get; set; }
         [Display(Name = "Mật khẩu")]
         public string Password { get; set; }
+        public Nullable<int> RoleId { get; set; }
+
+        public virtual Role Role { get; set; }
     }
 }

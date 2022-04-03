@@ -13,10 +13,23 @@
                 </div>
                 <div>
                     <img src="~/Vendor/img/icon/clock.png" />
-                    <button>Lưu lại</button>
+                    <button onclick="SaveVoucher(@item.VoucherId)">Lưu lại</button>
                     <p>@(item.StartDate.ToString("dd")).@(item.StartDate.ToString("MM")) - @(item.EndDate.ToString("dd")).@(item.EndDate .ToString("MM"))  </p>
                 </div>
             </div>
         }
     </div>
 </div>
+
+<script>
+    function SaveVoucher(id) {
+        $.ajax({
+                type: "POST",
+                url: "/Home/SaveVoucher/" + id,
+                data: id,
+                success: function (result) {
+                    window.location.href = '@Url.Action("Index","Home")';
+                }
+         })
+    }
+</script>

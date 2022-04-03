@@ -18,6 +18,7 @@ namespace Medimall.Models
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2214:DoNotCallOverridableMethodsInConstructors")]
         public Voucher()
         {
+            this.Accounts = new HashSet<Account>();
             this.BillDetails = new HashSet<BillDetail>();
         }
 
@@ -34,6 +35,8 @@ namespace Medimall.Models
         public DateTime StartDate { get; set; }
         public DateTime EndDate { get; set; }
 
+        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
+        public virtual ICollection<Account> Accounts { get; set; }
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
         public virtual ICollection<BillDetail> BillDetails { get; set; }
     }

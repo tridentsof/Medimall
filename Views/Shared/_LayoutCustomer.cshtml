@@ -33,6 +33,11 @@
     <link rel="shortcut icon" type="image/png" href="~/Vendor/img/icon/Icon.png" />
     <link href="~/Content/usercss/home-customer.css" rel="stylesheet" />
     <link href="~/Vendor/css/cart.css" rel="stylesheet" />
+
+    @Scripts.Render("~/bundles/modernizr")
+    @Scripts.Render("~/bundles/jquery")
+    <link href="~/Content/alertifyjs/alertify.min.css" rel="stylesheet" />
+    <link href="~/Content/alertifyjs/themes/default.min.css" rel="stylesheet" />
 </head>
 
 <body>
@@ -63,11 +68,11 @@
                     </div>
                     @if (Session["UserNameCustomer"] != null)
                     {
-                        <p>@Session["UserNameCustomer"]</p>
+                        <p style="text-transform:capitalize">@Session["UserNameCustomer"]</p>
                     }
                     else
                     {
-                        <a href="@Url.Action("Login","Home")">Đăng nhập</a>
+                        <a style="color:inherit!important;text-decoration:inherit;margin-left:10px" href="@Url.Action("Login","Home")">Đăng nhập</a>
                     }
 
                 </div>
@@ -197,6 +202,9 @@
         </div>
     </div>
     <script src="~/Scripts/home-customer.js"></script>
+    <script src="~/Scripts/alertify.min.js"></script>
+
+    @RenderSection("scripts", required: false)
 </body>
 
 </html>
