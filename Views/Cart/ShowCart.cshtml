@@ -4,107 +4,284 @@
     ViewBag.Title = "ShowCart";
     Layout = "~/Views/Shared/_LayoutCustomer.cshtml";
 }
+<link href="~/Content/usercss/cart.css" rel="stylesheet" />
+@*@if (Model != null)
+    {
+        <div class="cart-page">
 
-
-@if (Model != null)
-{
-    <div class="cart-page">
-
-        <div class="container-fluid cartbox" id="cartbox">
-            <div class="container-fluid carthead">
-                <div class="row">
-                    <a href="" class="home">Trang Chủ</a> &bull;
-                    <p>Giỏ hàng</p>
-                </div>
-            </div>
-
-            <div class="container-fluid cartbody">
-                <div class="row">
-                    <div class="col-md-7 cartlist">
-                        <div class="row cartlist-head" id="header">
-                            <p>Giỏ hàng</p>
-                            <input type="button" value="Xóa tất cả giỏ hàng" class="btndelete" onclick="myFunction()">
-                        </div>
-                        @foreach (var item in Model.Items)
-                        {
-                            <div class="popup" id="popup">
-                                <h4>Xóa sản phẩm</h4> 
-                                <p>Bạn có muốn xóa toàn bộ sản phẩm khỏi giỏ hàng không?</p>
-                                <input type="button" class="back" value="Quay Lại" onclick="backFunction()">
-                                <a class="deleteall" href="/Cart/RemoveCart/@item._shopping_product.ProductId">Xóa</a>
-                            </div>
-                            <div class="popup" id="popup2">
-                                <h4>Xóa sản phẩm</h4>
-                                <p>Bạn có muốn xóa sản phẩm này khỏi giỏ hàng?</p>
-                                <input type="button" class="back" value="Quay Lại" id="back2">
-                                <a class="deleteall" href="/Cart/RemoveCart/@item._shopping_product.ProductId">Xóa</a>
-                            </div>
-                            double total = Convert.ToDouble(item._shopping_product.Price.Value * item._shopping_quantity);
-
-                            <div class="row cartlist-body">
-                                <div class="col-md-6 productdetail">
-                                    <a href="#">
-                                        <img src="~/Vendor/img/products/@(item._shopping_product.ProductId).png" alt="">
-                                        <p>@item._shopping_product.ProductName</p>
-                                    </a>
-                                </div>
-                                <div class="col-md-3 quantity">
-                                    @using (Html.BeginForm("UpdateQuantity", "Cart"))
-                                    {
-                                        <div class="quantity-product">
-                                            <input type="hidden" value="@item._shopping_product.ProductId" name="ProductId" />
-                                            <input type="button" value="-" class="btn quantity-left-minus" data-type="minus" data-field="" />
-                                            <input readonly="" type="number" class="num" name="quantity" value="@item._shopping_quantity" id="quantity" min="1" />
-                                            <input type="button" value="+" class="btn quantity-right-plus" data-type="plus" data-field="" />
-                                            <div class="col-md-1 deleteone">
-                                                <input id="btn-update-quantity" type="submit" value="Cập nhật" />
-                                            </div>
-                                        </div>
-                                    }
-                                </div>
-                                <div class="col-md-2 productprice">
-                                    <p>@total</p>
-                                </div>
-                                <div class="col-md-1 deleteone">
-                                    <input type="button" value="Xóa" onclick="myFunction2()">
-                                </div>
-                            </div>
-                        }
-
-                        <hr>
+            <div class="container-fluid cartbox" id="cartbox">
+                <div class="container-fluid carthead">
+                    <div class="row">
+                        <a href="" class="home">Trang Chủ</a> &bull;
+                        <p>Giỏ hàng</p>
                     </div>
-                    <div class="col-md-3 carttotal">
-                        <p>Tổng tiền</p>
-                        <div class="totalprice">
-                            <span>Tạm tính</span>
-                            <p>@Model.TotalMoney()</p>
-                        </div>
-                        <div class="button">
-                            <a href="">
+                </div>
 
-                            </a>
-                            @using (Html.BeginForm("DirectCheckOut", "Cart"))
+                <div class="container-fluid cartbody">
+                    <div class="row">
+                        <div class="col-md-7 cartlist">
+                            <div class="row cartlist-head" id="header">
+                                <p>Giỏ hàng</p>
+                                <input type="button" value="Xóa tất cả giỏ hàng" class="btndelete" onclick="myFunction()">
+                            </div>
+                            @foreach (var item in Model.Items)
                             {
-                                @Html.ActionLink("Mua thêm", "Index", "Home", "Home", new { @class = "buymore" })
-                                <input type="submit" class="checkout" value="Đặt hàng">
+                                <div class="popup" id="popup">
+                                    <h4>Xóa sản phẩm</h4>
+                                    <p>Bạn có muốn xóa toàn bộ sản phẩm khỏi giỏ hàng không?</p>
+                                    <input type="button" class="back" value="Quay Lại" onclick="backFunction()">
+                                    <a class="deleteall" href="/Cart/RemoveCart/@item._shopping_product.ProductId">Xóa</a>
+                                </div>
+                                <div class="popup" id="popup2">
+                                    <h4>Xóa sản phẩm</h4>
+                                    <p>Bạn có muốn xóa sản phẩm này khỏi giỏ hàng?</p>
+                                    <input type="button" class="back" value="Quay Lại" id="back2">
+                                    <a class="deleteall" href="/Cart/RemoveCart/@item._shopping_product.ProductId">Xóa</a>
+                                </div>
+                                double total = Convert.ToDouble(item._shopping_product.Price.Value * item._shopping_quantity);
+
+                                <div class="row cartlist-body">
+                                    <div class="col-md-6 productdetail">
+                                        <a href="#">
+                                            <img src="~/Vendor/img/products/@(item._shopping_product.ProductId).png" alt="">
+                                            <p>@item._shopping_product.ProductName</p>
+                                        </a>
+                                    </div>
+                                    <div class="col-md-3 quantity">
+                                        @using (Html.BeginForm("UpdateQuantity", "Cart"))
+                                        {
+                                            <div class="quantity-product">
+                                                <input type="hidden" value="@item._shopping_product.ProductId" name="ProductId" />
+                                                <input type="button" value="-" class="btn quantity-left-minus" data-type="minus" data-field="" />
+                                                <input readonly="" type="number" class="num" name="quantity" value="@item._shopping_quantity" id="quantity" min="1" />
+                                                <input type="button" value="+" class="btn quantity-right-plus" data-type="plus" data-field="" />
+                                                <div class="col-md-1 deleteone">
+                                                    <input id="btn-update-quantity" type="submit" value="Cập nhật" />
+                                                </div>
+                                            </div>
+                                        }
+                                    </div>
+                                    <div class="col-md-2 productprice">
+                                        <p>@total</p>
+                                    </div>
+                                    <div class="col-md-1 deleteone">
+                                        <input type="button" value="Xóa" onclick="myFunction2()">
+                                    </div>
+                                </div>
                             }
+
+                            <hr>
+                        </div>
+                        <div class="col-md-3 carttotal">
+                            <p>Tổng tiền</p>
+                            <div class="totalprice">
+                                <span>Tạm tính</span>
+                                <p>@Model.TotalMoney()</p>
+                            </div>
+                            <div class="button">
+                                <a href="">
+
+                                </a>
+                                @using (Html.BeginForm("DirectCheckOut", "Cart"))
+                                {
+                                    @Html.ActionLink("Mua thêm", "Index", "Home", "Home", new { @class = "buymore" })
+                                    <input type="submit" class="checkout" value="Đặt hàng">
+                                }
+                            </div>
                         </div>
                     </div>
                 </div>
             </div>
         </div>
+    }
+    else {
+    <div>Null</div>
+    }*@
+
+<div class="container-body" id="app">
+    <div class="body-header">
+        <li>Trang chủ</li>
+        <li><i class="fas fa-circle"></i>Giỏ hàng</li>
+        <li><i class="fas fa-circle"></i>Thanh toán</li>
     </div>
-}
-else {
-<div>Null</div>
-}
+    <div class="content-body">
+        <div class="content-left">
+
+            <div class="ct-left-box">
+                <h3>Giỏ hàng</h3>
+                <div class="ct-left3-div">
+                    <p class="index">1</p>
+                    <p class="checkout-title">Giỏ hàng (@Model.TotalQuantity() sản phẩm - @Model.TotalMoney() VND)</p>
+                </div>
+                @foreach (var item in Model.Items)
+                {
+                    double total = Convert.ToDouble(item._shopping_product.Price.Value * item._shopping_quantity);
+                    <div class="left-box-2">
+                        <img src="~/Vendor/img/products/@(item._shopping_product.ProductId).png" alt="">
+                        <p class="name-product">@item._shopping_product.ProductName</p>
+                        <div class="preview-cost">
+                            <p>@item._shopping_product.Price VND</p>
+                            <p>@item._shopping_product.Price VND/Sản phẩm</p>
+                        </div>
+
+                        <div class="counter">
+
+                            <div class="count-wrap">
+                                <button onclick="decrease()">-</button>
+                                <p id="clicks">1</p>
+                                <button onclick="increase()">+</button>
+                            </div>
+                            <a href="#">Cập nhật</a>
+                        </div>
+                        <p>@total</p>
+                    </div>
+                }
+                <div class="wrap-preview-total-cost">
+                    <p>Tạm tính:</p>
+                    <h5>@Model.TotalMoney() VNĐ</h5>
+                </div>
+            </div>
+
+            <div class="ct-left-box">
+                <div class="ct-left3-div">
+                    <p class="index">2</p>
+                    <p class="checkout-title">Chọn hình thức giao hàng</p>
+                </div>
+                <div class="tabs-delivery">
+                    <div class="span">
+                        <h4>Giao hàng tận nơi</h4>
+                    </div>
+                    <div class="wrap-modal-delivery">
+                        <p>Đơn vị vận chuyển:</p>
+                        <button type="button" data-toggle="modal" data-target="#myModal" class="btn-delivery">
+                            Chọn hình thức giao hàng
+                        </button>
+
+                        <div class="modal fade " id="myModal">
+                            <div class="modal-dialog modal-dialog-centered">
+                                <div class="modal-content">
+                                    <!-- Modal Header -->
+                                    <div class="modal-header">
+                                        <h4 class="modal-title">Chọn đơn vị vận chuyển</h4>
+                                        <button type="button" class="close" data-dismiss="modal">&times;</button>
+                                    </div>
+                                    <div class="modal-body">
+                                        <h5><i class="fas fa-caret-right"></i>&ensp; Giao hàng nhanh</h5>
+                                        <label class="box-discount box-delivery">
+                                            <i class="fas fa-shipping-fast"></i>
+                                            <div class="delivery-item1">
+                                                <p>Hình thức</p>
+                                                <p>Phí vận chuyển:</p>
+                                            </div>
+                                            <div class="delivery-item2">
+                                                <p>Giao hàng nhanh</p>
+                                                <p>42.000 VNĐ</p>
+                                            </div>
+                                            <input type="radio" checked="checked" name="delivery">
+                                            <span class="checkmark"></span>
+                                        </label>
+                                        <h5><i class="fas fa-caret-right"></i>&ensp; Giao hàng thường</h5>
+                                        <label class="box-discount box-delivery">
+                                            <i class="fas fa-shipping-fast"></i>
+                                            <div class="delivery-item1">
+                                                <p>Hình thức</p>
+                                                <p>Phí vận chuyển:</p>
+                                            </div>
+                                            <div class="delivery-item2">
+                                                <p>Giao hàng thường</p>
+                                                <p>16.050 VNĐ</p>
+                                            </div>
+                                            <input type="radio" name="delivery">
+                                            <span class="checkmark"></span>
+                                        </label>
+                                    </div>
+                                    <div class="modal-footer">
+                                        <button type="button" class="btn btn-secondary" data-dismiss="modal">
+                                            Bỏ
+                                            qua
+                                        </button>
+                                        <button class="btn btn-primary">Lưu</button>
+                                    </div>
+
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                </div>
+
+
+            </div>
+            <div class="ct-left-box">
+                <div class="ct-left3-div">
+                    <p class="index">3</p>
+                    <p class="checkout-title">Chọn hình thức thanh toán</p>
+                </div>
+                <label class="box-discount box-money">
+                    <img src="~/Vendor/img/icon/money (1).png" alt="" />
+                    <div class="money">
+                        <h5>Tiền Mặt</h5>
+                        <p>Thanh toán bằng tiền mặt khi nhận hàng</p>
+                    </div>
+                    <input type="radio" checked="checked" name="money">
+                    <span class="checkmark"></span>
+                </label>
+                <label class="box-discount box-money">
+                    <img src="~/Vendor/img/icon/money (4).png" alt="" />
+                    <div class="money">
+                        <h5>Thẻ Tín Dụng</h5>
+                        <p>Bạn sẽ thanh toán trước số tiền của đơn hàng qua thẻ tín dụng</p>
+                    </div>
+                    <input type="radio" name="money">
+                    <span class="checkmark"></span>
+                </label>
 
 
 
 
+            </div>
+        </div>
+        <div class="content-right">
+            <div class="ct-right-box">
+                <p class="checkout-title">
+                    Mã giảm giá của Medimall
+                </p>
+                <div class="discount-wrap">
+                    <p>Mã giảm giá</p>
+                    <button class="btn-discount" type="button" data-toggle="modal" data-target="#btn-discount">
+                        Chọn
+                        mã giảm
+                        giá
+                    </button>
+                    @Html.Action("Voucher","Cart")
+                </div>
+            </div>
+            <div class="ct-right-box">
+                <div>
+                    <p class="checkout-title">Thông tin giao hàng</p>
+                </div>
+                @Html.Action("Address","Cart")
+            </div>
+            <div class="ct-right-box">
+                <h3>Tổng tiền</h3>
+                <div class="right-box-item">
+                    <p>Tạm tính</p>
+                    <h3>@Model.TotalMoney() VND</h3>
+                </div>
+                <div class="right-box-item">
+                    <p>Thành tiền</p>
+                    <h3 class="total-money">@Model.TotalMoney() VND</h3>
+                </div>
+                <button class="btn-order">ĐẶT HÀNG</button>
+            </div>
+        </div>
+    </div>
+</div>
 
 
-<script type="text/javascript" src="~/Vendor/js/cart.js"></script>
+
+<script type="text/javascript" src="~/Scripts/cart.js"></script>
+
 <script>
     function myFunction() {
         var blur = document.getElementById("cartbox");

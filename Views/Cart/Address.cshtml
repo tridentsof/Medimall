@@ -1,0 +1,25 @@
+﻿@model Medimall.Models.Account
+
+<div class="info-client-wrap">
+    <div class="info-client">
+        <div>
+            <button class="info-client-other">Thông tin</button>
+            <a href="#">Chỉnh sửa</a>
+        </div>
+
+        <div>
+            <p>Người nhận:</p>
+            <input type="text" name="name" value="@Model.UserName" />
+        </div>
+        <div>
+            <p>Số điện thoại:</p>
+            <input type="text" name="name" value="@Model.Phone" />
+        </div>
+        <div>
+            <p>Địa chỉ:</p>
+            <p>
+                <input type="text" name="name" value="@Model.Address" />
+            </p>
+        </div>
+    </div>
+</div>

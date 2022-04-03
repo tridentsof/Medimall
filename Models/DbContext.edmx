@@ -20,7 +20,6 @@
           <Property Name="Status" Type="int" />
           <Property Name="ActiveCode" Type="nvarchar" MaxLength="50" />
           <Property Name="PowerPoint" Type="int" />
-          <Property Name="VoucherId" Type="int" />
         </EntityType>
         <EntityType Name="Admin">
           <Key>
@@ -57,6 +56,7 @@
           <Property Name="PayId" Type="int" />
           <Property Name="Status" Type="int" />
           <Property Name="Phone" Type="nvarchar" MaxLength="50" />
+          <Property Name="UserName" Type="nvarchar" MaxLength="200" />
         </EntityType>
         <EntityType Name="Category">
           <Key>
@@ -158,6 +158,7 @@
           <Property Name="VoucherDetail" Type="nvarchar" MaxLength="200" />
           <Property Name="StartDate" Type="datetime" />
           <Property Name="EndDate" Type="datetime" />
+          <Property Name="AccountId" Type="int" />
         </EntityType>
         <Association Name="FK__News__NewsCatego__17036CC0">
           <End Role="NewsCategory" Type="Self.NewsCategory" Multiplicity="0..1" />
@@ -192,18 +193,6 @@
             </Principal>
             <Dependent Role="ListDrug">
               <PropertyRef Name="AccountId" />
-            </Dependent>
-          </ReferentialConstraint>
-        </Association>
-        <Association Name="FK_Account_Voucher">
-          <End Role="Voucher" Type="Self.Voucher" Multiplicity="0..1" />
-          <End Role="Account" Type="Self.Account" Multiplicity="*" />
-          <ReferentialConstraint>
-            <Principal Role="Voucher">
-              <PropertyRef Name="VoucherId" />
-            </Principal>
-            <Dependent Role="Account">
-              <PropertyRef Name="VoucherId" />
             </Dependent>
           </ReferentialConstraint>
         </Association>
@@ -315,6 +304,18 @@
             </Dependent>
           </ReferentialConstraint>
         </Association>
+        <Association Name="FK_Voucher_Account">
+          <End Role="Account" Type="Self.Account" Multiplicity="0..1" />
+          <End Role="Voucher" Type="Self.Voucher" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Account">
+              <PropertyRef Name="AccountId" />
+            </Principal>
+            <Dependent Role="Voucher">
+              <PropertyRef Name="AccountId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
         <EntityContainer Name="MedimallModelStoreContainer">
           <EntitySet Name="Account" EntityType="Self.Account" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="Admin" EntityType="Self.Admin" Schema="dbo" store:Type="Tables" />
@@ -342,10 +343,6 @@
           <AssociationSet Name="FK_Acc1" Association="Self.FK_Acc1">
             <End Role="Account" EntitySet="Account" />
             <End Role="ListDrug" EntitySet="ListDrug" />
-          </AssociationSet>
-          <AssociationSet Name="FK_Account_Voucher" Association="Self.FK_Account_Voucher">
-            <End Role="Voucher" EntitySet="Voucher" />
-            <End Role="Account" EntitySet="Account" />
           </AssociationSet>
           <AssociationSet Name="FK_Admin_Role" Association="Self.FK_Admin_Role">
             <End Role="Role" EntitySet="Role" />
@@ -383,6 +380,10 @@
             <End Role="Voucher" EntitySet="Voucher" />
             <End Role="BillDetail" EntitySet="BillDetail" />
           </AssociationSet>
+          <AssociationSet Name="FK_Voucher_Account" Association="Self.FK_Voucher_Account">
+            <End Role="Account" EntitySet="Account" />
+            <End Role="Voucher" EntitySet="Voucher" />
+          </AssociationSet>
         </EntityContainer>
       </Schema>
     </edmx:StorageModels>
@@ -404,11 +405,10 @@
           <Property Name="Status" Type="Int32" />
           <Property Name="ActiveCode" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
           <Property Name="PowerPoint" Type="Int32" />
-          <Property Name="VoucherId" Type="Int32" />
           <NavigationProperty Name="HealthBooks" Relationship="Self.FK_Acc" FromRole="Account" ToRole="HealthBook" />
           <NavigationProperty Name="ListDrugs" Relationship="Self.FK_Acc1" FromRole="Account" ToRole="ListDrug" />
-          <NavigationProperty Name="Voucher" Relationship="Self.FK_Account_Voucher" FromRole="Account" ToRole="Voucher" />
           <NavigationProperty Name="Billings" Relationship="Self.FK_kh" FromRole="Account" ToRole="Billing" />
+          <NavigationProperty Name="Vouchers" Relationship="Self.FK_Voucher_Account" FromRole="Account" ToRole="Voucher" />
         </EntityType>
         <EntityType Name="Admin">
           <Key>
@@ -449,6 +449,7 @@
           <Property Name="PayId" Type="Int32" />
           <Property Name="Status" Type="Int32" />
           <Property Name="Phone" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="UserName" Type="String" MaxLength="200" FixedLength="false" Unicode="true" />
           <NavigationProperty Name="Account" Relationship="Self.FK_kh" FromRole="Billing" ToRole="Account" />
           <NavigationProperty Name="BillDetails" Relationship="Self.FK_HD" FromRole="Billing" ToRole="BillDetail" />
           <NavigationProperty Name="Delivery" Relationship="Self.FK_DVVC" FromRole="Billing" ToRole="Delivery" />
@@ -566,7 +567,8 @@
           <Property Name="VoucherDetail" Type="String" MaxLength="200" FixedLength="false" Unicode="true" />
           <Property Name="StartDate" Type="DateTime" Precision="3" />
           <Property Name="EndDate" Type="DateTime" Precision="3" />
-          <NavigationProperty Name="Accounts" Relationship="Self.FK_Account_Voucher" FromRole="Voucher" ToRole="Account" />
+          <Property Name="AccountId" Type="Int32" />
+          <NavigationProperty Name="Account" Relationship="Self.FK_Voucher_Account" FromRole="Voucher" ToRole="Account" />
           <NavigationProperty Name="BillDetails" Relationship="Self.FK_VC" FromRole="Voucher" ToRole="BillDetail" />
         </EntityType>
         <Association Name="FK_Acc">
@@ -593,18 +595,6 @@
             </Dependent>
           </ReferentialConstraint>
         </Association>
-        <Association Name="FK_Account_Voucher">
-          <End Role="Voucher" Type="Self.Voucher" Multiplicity="0..1" />
-          <End Role="Account" Type="Self.Account" Multiplicity="*" />
-          <ReferentialConstraint>
-            <Principal Role="Voucher">
-              <PropertyRef Name="VoucherId" />
-            </Principal>
-            <Dependent Role="Account">
-              <PropertyRef Name="VoucherId" />
-            </Dependent>
-          </ReferentialConstraint>
-        </Association>
         <Association Name="FK_kh">
           <End Role="Account" Type="Self.Account" Multiplicity="0..1" />
           <End Role="Billing" Type="Self.Billing" Multiplicity="*" />
@@ -613,6 +603,18 @@
               <PropertyRef Name="AccountId" />
             </Principal>
             <Dependent Role="Billing">
+              <PropertyRef Name="AccountId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Voucher_Account">
+          <End Role="Account" Type="Self.Account" Multiplicity="0..1" />
+          <End Role="Voucher" Type="Self.Voucher" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Account">
+              <PropertyRef Name="AccountId" />
+            </Principal>
+            <Dependent Role="Voucher">
               <PropertyRef Name="AccountId" />
             </Dependent>
           </ReferentialConstraint>
@@ -749,13 +751,13 @@
             <End Role="Account" EntitySet="Accounts" />
             <End Role="ListDrug" EntitySet="ListDrugs" />
           </AssociationSet>
-          <AssociationSet Name="FK_Account_Voucher" Association="Self.FK_Account_Voucher">
-            <End Role="Voucher" EntitySet="Vouchers" />
-            <End Role="Account" EntitySet="Accounts" />
-          </AssociationSet>
           <AssociationSet Name="FK_kh" Association="Self.FK_kh">
             <End Role="Account" EntitySet="Accounts" />
             <End Role="Billing" EntitySet="Billings" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Voucher_Account" Association="Self.FK_Voucher_Account">
+            <End Role="Account" EntitySet="Accounts" />
+            <End Role="Voucher" EntitySet="Vouchers" />
           </AssociationSet>
           <AssociationSet Name="FK_Admin_Role" Association="Self.FK_Admin_Role">
             <End Role="Role" EntitySet="Roles" />
@@ -814,7 +816,6 @@
                 <ScalarProperty Name="Status" ColumnName="Status" />
                 <ScalarProperty Name="ActiveCode" ColumnName="ActiveCode" />
                 <ScalarProperty Name="PowerPoint" ColumnName="PowerPoint" />
-                <ScalarProperty Name="VoucherId" ColumnName="VoucherId" />
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>
@@ -854,6 +855,7 @@
                 <ScalarProperty Name="PayId" ColumnName="PayId" />
                 <ScalarProperty Name="Status" ColumnName="Status" />
                 <ScalarProperty Name="Phone" ColumnName="Phone" />
+                <ScalarProperty Name="UserName" ColumnName="UserName" />
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>
@@ -966,6 +968,7 @@
                 <ScalarProperty Name="VoucherDetail" ColumnName="VoucherDetail" />
                 <ScalarProperty Name="StartDate" ColumnName="StartDate" />
                 <ScalarProperty Name="EndDate" ColumnName="EndDate" />
+                <ScalarProperty Name="AccountId" ColumnName="AccountId" />
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>
