@@ -94,3 +94,13 @@
         </div>
     </div>
 </div>
+
+<script>
+    $(document).ready(function () {
+        var successMess = '@TempData["SuccessMessVoucher"]'
+        if (successMess != '') {
+            alertify.success(successMess);
+            successMess = '';
+        }
+    })
+</script>

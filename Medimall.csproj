@@ -186,10 +186,16 @@
     <Compile Include="Models\News.cs">
       <DependentUpon>DbContext.tt</DependentUpon>
     </Compile>
+    <Compile Include="Models\NewsCategory.cs">
+      <DependentUpon>DbContext.tt</DependentUpon>
+    </Compile>
     <Compile Include="Models\Payment.cs">
       <DependentUpon>DbContext.tt</DependentUpon>
     </Compile>
     <Compile Include="Models\Product.cs">
+      <DependentUpon>DbContext.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\Role.cs">
       <DependentUpon>DbContext.tt</DependentUpon>
     </Compile>
     <Compile Include="Models\sysdiagram.cs">
@@ -302,6 +308,16 @@
     <Content Include="fonts\glyphicons-halflings-regular.svg" />
     <Content Include="Global.asax" />
     <Content Include="Content\Site.css" />
+    <Content Include="Models\DbContext.Context.tt">
+      <Generator>TextTemplatingFileGenerator</Generator>
+      <DependentUpon>DbContext.edmx</DependentUpon>
+      <LastGenOutput>DbContext.Context.cs</LastGenOutput>
+    </Content>
+    <Content Include="Models\DbContext.tt">
+      <Generator>TextTemplatingFileGenerator</Generator>
+      <DependentUpon>DbContext.edmx</DependentUpon>
+      <LastGenOutput>DbContext.cs</LastGenOutput>
+    </Content>
     <Content Include="Scripts\checkout.js" />
     <Content Include="Vendor\css\cart.css" />
     <Content Include="Vendor\img\banners\1.png" />
@@ -334,20 +350,11 @@
     <Content Include="Vendor\img\icon\right-arrow.png" />
     <Content Include="Vendor\img\icon\shopping-cart.png" />
     <Content Include="Interface\Readme.txt" />
-    <Content Include="Models\DbContext.Context.tt">
-      <Generator>TextTemplatingFileGenerator</Generator>
-      <DependentUpon>DbContext.edmx</DependentUpon>
-      <LastGenOutput>DbContext.Context.cs</LastGenOutput>
-    </Content>
-    <Content Include="Models\DbContext.tt">
-      <Generator>TextTemplatingFileGenerator</Generator>
-      <DependentUpon>DbContext.edmx</DependentUpon>
-      <LastGenOutput>DbContext.cs</LastGenOutput>
-    </Content>
     <Content Include="Scripts\alertify.js" />
     <Content Include="Scripts\alertify.min.js" />
     <Content Include="Scripts\bootstrap.js" />
     <Content Include="Scripts\bootstrap.min.js" />
+    <Content Include="FE\html\cart.html.bak" />
     <EntityDeploy Include="Models\DbContext.edmx">
       <Generator>EntityModelCodeGenerator</Generator>
       <LastGenOutput>DbContext.Designer.cs</LastGenOutput>
@@ -355,7 +362,6 @@
     <Content Include="Models\DbContext.edmx.diagram">
       <DependentUpon>DbContext.edmx</DependentUpon>
     </Content>
-    <Content Include="FE\html\cart.html.bak" />
     <None Include="Scripts\jquery-3.4.1.intellisense.js" />
     <Content Include="Scripts\home-customer.js" />
     <Content Include="Scripts\importImage.js" />

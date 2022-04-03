@@ -22,5 +22,8 @@ namespace Medimall.Models
         public string NewTiTle { get; set; }
         [Display(Name = "Nội dung")]
         public string Content { get; set; }
+        public Nullable<int> NewsCategoryId { get; set; }
+
+        public virtual NewsCategory NewsCategory { get; set; }
     }
 }

@@ -13,9 +13,10 @@ namespace Medimall.Helper
             int maxContent = 1024 * 1024;
             string[] sAllowedExt = new string[] { ".jpg", ".png" };
             var file = value as HttpPostedFileBase;
-
-            if (file == null)
-                return false;
+            if (value == null)
+            {
+                return true;
+            }
             else if (!sAllowedExt.Contains(file.FileName.Substring(file.FileName.LastIndexOf('.'))))
             {
                 ErrorMessage = "Tải lên ảnh có định dạng" + string.Join(", ", sAllowedExt);

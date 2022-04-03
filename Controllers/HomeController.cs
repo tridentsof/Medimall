@@ -33,6 +33,7 @@ namespace Medimall.Controllers
                 if (account != null)
                 {
                     Session["UserNameCustomer"] = account.UserName;
+                    Session["UserId"] = account.AccountId;
 
                     return RedirectToAction("Index", "Home");
                 }
@@ -45,6 +46,32 @@ namespace Medimall.Controllers
             else
                 return View(model);
         }
+
+        public JsonResult SaveVoucher(int id)
+        {
+            bool result = false;
+            try
+            {
+                var accountId = Session["UserId"].ToString();
+                Account userInfor = db.Accounts.Where(m => m.AccountId.ToString() == accountId).SingleOrDefault();
+                userInfor.VoucherId = id;
+
+                db.Accounts.Attach(userInfor);
+                db.Entry(userInfor).Property(x => x.VoucherId).IsModified = true;
+                db.SaveChanges();
+                TempData["SuccessMessVoucher"] = "Lưu thành công! Mời bạn vào mục quản lý Voucher để sử dụng";
+
+                result = true;
+            }
+            catch (Exception)
+            {
+                throw;
+            }
+
+
+            return Json(result, JsonRequestBehavior.AllowGet);
+        }
+
 
         public ActionResult GetCategories()
         {

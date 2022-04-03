@@ -56,6 +56,7 @@ namespace Medimall.Models
         public string ActiveCode { get; set; }
         [Display(Name = "Điểm thưởng")]
         public Nullable<int> PowerPoint { get; set; }
+        public Nullable<int> VoucherId { get; set; }
 
         [Display(Name = "Avatar")]
         [NotMapped]
@@ -66,9 +67,8 @@ namespace Medimall.Models
         public virtual ICollection<HealthBook> HealthBooks { get; set; }
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
         public virtual ICollection<ListDrug> ListDrugs { get; set; }
+        public virtual Voucher Voucher { get; set; }
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
         public virtual ICollection<Billing> Billings { get; set; }
-
-        
     }
 }
