@@ -130,9 +130,6 @@
     <Compile Include="App_Start\BundleConfig2.cs" />
     <Compile Include="App_Start\FilterConfig.cs" />
     <Compile Include="App_Start\RouteConfig.cs" />
-    <Compile Include="Controllers\AdminAccountsController.cs" />
-    <Compile Include="Controllers\AdminHomeController.cs" />
-    <Compile Include="Controllers\AdminProductsController.cs" />
     <Compile Include="Controllers\CartController.cs" />
     <Compile Include="Controllers\HomeController.cs" />
     <Compile Include="Global.asax.cs">
@@ -2233,17 +2230,7 @@
     <Content Include="Vendor\vendor\fontawesome-free\webfonts\fa-solid-900.woff2" />
     <Content Include="Vendor\vendor\jquery\jquery.min.map" />
     <Content Include="Vendor\vendor\jquery\jquery.slim.min.map" />
-    <Content Include="Views\AdminHome\Index.cshtml" />
-    <Content Include="Views\AdminHome\Login.cshtml" />
     <Content Include="Views\Shared\_LoginPartial.cshtml" />
-    <Content Include="Views\AdminAccounts\Create.cshtml" />
-    <Content Include="Views\AdminAccounts\Delete.cshtml" />
-    <Content Include="Views\AdminAccounts\Edit.cshtml" />
-    <Content Include="Views\AdminAccounts\Index.cshtml" />
-    <Content Include="Views\AdminProducts\Create.cshtml" />
-    <Content Include="Views\AdminProducts\Delete.cshtml" />
-    <Content Include="Views\AdminProducts\Edit.cshtml" />
-    <Content Include="Views\AdminProducts\Index.cshtml" />
     <Content Include="Views\Shared\_LayoutCustomer.cshtml" />
     <Content Include="Views\Home\Index.cshtml" />
     <Content Include="Views\Home\GetCategories.cshtml" />
