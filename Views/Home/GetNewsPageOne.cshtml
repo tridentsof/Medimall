@@ -1,0 +1,11 @@
+﻿@model IEnumerable<Medimall.Models.News>
+
+@foreach (var item in Model)
+{
+    var newsid = item.NewsId;
+<a href="@Url.Action("News","News",new {id=newsid})" class="blog-content">
+    <img src="~/Vendor/img/news/@(item.NewsId).png" />
+    <h3 class="blog-title">@item.NewTiTle</h3>
+    <div class="hr"></div>
+</a>
+}
