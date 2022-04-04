@@ -132,6 +132,7 @@
     <Compile Include="App_Start\RouteConfig.cs" />
     <Compile Include="Controllers\CartController.cs" />
     <Compile Include="Controllers\HomeController.cs" />
+    <Compile Include="Controllers\NewsController.cs" />
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
@@ -2246,6 +2247,24 @@
     <Content Include="Views\Home\Login.cshtml" />
     <Content Include="Views\Cart\Voucher.cshtml" />
     <Content Include="Views\Cart\Address.cshtml" />
+    <Content Include="Views\News\News.cshtml" />
+    <Content Include="Views\Home\GetNewProductPageOne.cshtml" />
+    <Content Include="Views\Home\GetNewProductPageThree.cshtml" />
+    <Content Include="Views\Home\GetNewProductPageTwo.cshtml" />
+    <Content Include="Views\Home\GetNewsPageEight.cshtml" />
+    <Content Include="Views\Home\GetNewsPageFive.cshtml" />
+    <Content Include="Views\Home\GetNewsPageOne.cshtml" />
+    <Content Include="Views\Home\GetNewsPageFour.cshtml" />
+    <Content Include="Views\Home\GetNewsPageSeven.cshtml" />
+    <Content Include="Views\Home\GetNewsPageThree.cshtml" />
+    <Content Include="Views\Home\GetNewsPageSix.cshtml" />
+    <Content Include="Views\Home\GetSkinCareProductPageOne.cshtml" />
+    <Content Include="Views\Home\GetNewsPageTwo.cshtml" />
+    <Content Include="Views\Home\GetSkinCareProductPageThree.cshtml" />
+    <Content Include="Views\Home\GetSkinCareProductPageTwo.cshtml" />
+    <Content Include="Views\Home\GetBestSaleProductPageOne.cshtml" />
+    <Content Include="Views\Home\GetBestSaleProductPageThree.cshtml" />
+    <Content Include="Views\Home\GetBestSaleProductPageTwo.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />

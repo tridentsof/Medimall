@@ -134,5 +134,90 @@ namespace Medimall.Controllers
 
             return RedirectToAction("ShowCart", "Cart");
         }
+        public ActionResult GetSkinCareProductPageOne()
+        {
+            List<Product> listProduct = db.Products.Where(p => p.CategoryId == "SkinCare").OrderBy(p => p.ProductId).Take(5).ToList();
+            return PartialView(listProduct);
+        }
+        public ActionResult GetSkinCareProductPageTwo()
+        {
+            List<Product> listProduct = db.Products.Where(p => p.CategoryId == "SkinCare").OrderBy(p => p.ProductId).Skip(5).Take(5).ToList();
+            return PartialView(listProduct);
+        }
+        public ActionResult GetSkinCareProductPageThree()
+        {
+            List<Product> listProduct = db.Products.Where(p => p.CategoryId == "SkinCare").OrderBy(p => p.ProductId).Skip(10).Take(5).ToList();
+            return PartialView(listProduct);
+        }
+        public ActionResult GetBestSaleProductPageOne()
+        {
+            List<Product> listProduct = db.Products.Where(p => p.QuantitySold > 5).OrderBy(p => p.ProductId).Take(5).ToList();
+            return PartialView(listProduct);
+        }
+        public ActionResult GetBestSaleProductPageTwo()
+        {
+            List<Product> listProduct = db.Products.Where(p => p.QuantitySold > 5).OrderBy(p => p.ProductId).Skip(5).Take(5).ToList();
+            return PartialView(listProduct);
+        }
+        public ActionResult GetBestSaleProductPageThree()
+        {
+            List<Product> listProduct = db.Products.Where(p => p.QuantitySold > 5).OrderBy(p => p.ProductId).Skip(10).Take(5).ToList();
+            return PartialView(listProduct);
+        }
+        public ActionResult GetNewProductPageOne()
+        {
+            List<Product> listProduct = db.Products.OrderByDescending(p => p.ProductId).Take(5).ToList();
+            return PartialView(listProduct);
+        }
+        public ActionResult GetNewProductPageTwo()
+        {
+            List<Product> listProduct = db.Products.OrderByDescending(p => p.ProductId).Skip(5).Take(5).ToList();
+            return PartialView(listProduct);
+        }
+        public ActionResult GetNewProductPageThree()
+        {
+            List<Product> listProduct = db.Products.OrderByDescending(p => p.ProductId).Skip(10).Take(5).ToList();
+            return PartialView(listProduct);
+        }
+        public ActionResult GetNewsPageOne()
+        {
+            List<News> listnews = db.News.Where(p => p.NewsCategoryId == 1).OrderByDescending(p => p.NewsCategoryId).Take(5).ToList();
+            return PartialView(listnews);
+        }
+        public ActionResult GetNewsPageTwo()
+        {
+            List<News> listnews = db.News.Where(p => p.NewsCategoryId == 2).OrderByDescending(p => p.NewsCategoryId).Take(5).ToList();
+            return PartialView(listnews);
+        }
+        public ActionResult GetNewsPageThree()
+        {
+            List<News> listnews = db.News.Where(p => p.NewsCategoryId == 3).OrderByDescending(p => p.NewsCategoryId).Take(5).ToList();
+            return PartialView(listnews);
+        }
+        public ActionResult GetNewsPageFour()
+        {
+            List<News> listnews = db.News.Where(p => p.NewsCategoryId == 4).OrderByDescending(p => p.NewsCategoryId).Take(5).ToList();
+            return PartialView(listnews);
+        }
+        public ActionResult GetNewsPageFive()
+        {
+            List<News> listnews = db.News.Where(p => p.NewsCategoryId == 5).OrderByDescending(p => p.NewsCategoryId).Take(5).ToList();
+            return PartialView(listnews);
+        }
+        public ActionResult GetNewsPageSix()
+        {
+            List<News> listnews = db.News.Where(p => p.NewsCategoryId == 6).OrderByDescending(p => p.NewsCategoryId).Take(5).ToList();
+            return PartialView(listnews);
+        }
+        public ActionResult GetNewsPageSeven()
+        {
+            List<News> listnews = db.News.Where(p => p.NewsCategoryId == 7).OrderByDescending(p => p.NewsCategoryId).Take(5).ToList();
+            return PartialView(listnews);
+        }
+        public ActionResult GetNewsPageEight()
+        {
+            List<News> listnews = db.News.Where(p => p.NewsCategoryId == 8).OrderByDescending(p => p.NewsCategoryId).Take(5).ToList();
+            return PartialView(listnews);
+        }
     }
 }
