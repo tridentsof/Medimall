@@ -840,3 +840,20 @@ textarea {
         color: #112950;
         font-size: 15px;
     }
+.disblur {
+    width: 1519px;
+    height: 1700px;
+    position: absolute;
+    z-index: 1;
+    background-color: #0f62f9;
+    opacity: 0;
+    visibility: hidden;
+    transition: 0.5s;
+    margin-left: -112px;
+    margin-top: -200px;
+}
+
+.blur {
+    opacity: .3;
+    visibility: visible;
+}

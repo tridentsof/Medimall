@@ -48,7 +48,7 @@ $(document).ready(function () {
     });
     $('#back2').click(function (e) {
         $('#popup2').removeClass("active-cart");
-        $('#cartbox').removeClass("blur");
+        $('#blur').removeClass("blur");
         var quantity = parseInt($('#quantity').val());
         $('#quantity').val(quantity);
     });

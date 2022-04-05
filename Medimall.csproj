@@ -130,9 +130,7 @@
     <Compile Include="App_Start\BundleConfig2.cs" />
     <Compile Include="App_Start\FilterConfig.cs" />
     <Compile Include="App_Start\RouteConfig.cs" />
-    <Compile Include="Controllers\AdminAccountsController.cs" />
-    <Compile Include="Controllers\AdminHomeController.cs" />
-    <Compile Include="Controllers\AdminProductsController.cs" />
+    <Compile Include="Controllers\AccountController.cs" />
     <Compile Include="Controllers\CartController.cs" />
     <Compile Include="Controllers\HomeController.cs" />
     <Compile Include="Controllers\NewsController.cs" />
@@ -143,6 +141,7 @@
     <Compile Include="Helper\Pagination.cs" />
     <Compile Include="Helper\ValidateFileAttribute.cs" />
     <Compile Include="Infrastructure\CustomAuthenticationAdminFilter.cs" />
+    <Compile Include="Infrastructure\CustomAuthenticationCustomerFilter.cs" />
     <Compile Include="Models\Account.cs">
       <DependentUpon>DbContext.tt</DependentUpon>
     </Compile>
@@ -299,6 +298,8 @@
     <Content Include="FE\img\sp %287%29.png" />
     <Content Include="FE\img\sp %288%29.png" />
     <Content Include="FE\img\subtract.png" />
+    <Content Include="FE\img\thethanhvien_green.png" />
+    <Content Include="FE\img\thethanhvien_yellow.png" />
     <Content Include="FE\img\user.png" />
     <Content Include="FE\img\voucher-banner.png" />
     <Content Include="FE\img\zalo.png" />
@@ -2278,6 +2279,8 @@
     <Content Include="Views\Home\GetBestSaleProductPageOne.cshtml" />
     <Content Include="Views\Home\GetBestSaleProductPageThree.cshtml" />
     <Content Include="Views\Home\GetBestSaleProductPageTwo.cshtml" />
+    <Content Include="Views\News\GetCategoryNews.cshtml" />
+    <Content Include="Views\Account\Account.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />

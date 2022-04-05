@@ -97,8 +97,8 @@
     else {
     <div>Null</div>
     }*@
-
-<div class="container-body" id="cartbox">
+<div id="blur" class="disblur"></div>
+<div class="container-body">
     <div class="body-header">
         <li>Trang chủ</li>
         <li><i class="fas fa-circle"></i>Giỏ hàng</li>
@@ -306,22 +306,22 @@
 
 <script>
     function myFunction() {
-        var blur = document.getElementById("cartbox");
+        var blur = document.getElementById("blur");
         blur.classList.add("blur")
         var popup = document.getElementById("popup");
-        popup.classList.add("active")
+        popup.classList.add("active-cart")
 
     }
     function backFunction() {
         var back = document.getElementById("popup")
         back.classList.remove("active-cart");
-        var blur = document.getElementById("cartbox");
+        var blur = document.getElementById("blur");
         blur.classList.remove("blur")
     }
     function myFunction2() {
         var popup2 = document.getElementById("popup2");
         popup2.classList.add("active-cart")
-        var blur = document.getElementById("cartbox");
+        var blur = document.getElementById("blur");
         blur.classList.add("blur")
     }
 </script>
