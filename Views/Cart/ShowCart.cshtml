@@ -97,8 +97,8 @@
     else {
     <div>Null</div>
     }*@
-
-<div class="container-body" id="app">
+<div id="blur" class="disblur"></div>
+<div class="container-body">
     <div class="body-header">
         <li>Trang chủ</li>
         <li><i class="fas fa-circle"></i>Giỏ hàng</li>
@@ -115,7 +115,22 @@
                 </div>
                 @foreach (var item in Model.Items)
                 {
+                    <div class="popup" id="popup">
+                        <h4>Xóa sản phẩm</h4>
+                        <p>Bạn có muốn xóa toàn bộ sản phẩm khỏi giỏ hàng không?</p>
+                        <input type="button" class="back" value="Quay Lại" onclick="backFunction()">
+                        <a class="deleteall" href="/Cart/RemoveCart/@item._shopping_product.ProductId">Xóa</a>
+                    </div>
+                    <div class="popup" id="popup2">
+                        <h4>Xóa sản phẩm</h4>
+                        <p>Bạn có muốn xóa sản phẩm này khỏi giỏ hàng?</p>
+                        <div style="display: flex; justify-content: space-evenly">
+                            <input type="button" class="back" value="Quay Lại" id="back2">
+                            <a class="deleteall" href="/Cart/RemoveCart/@item._shopping_product.ProductId" style="text-decoration: none; color: #fff">Xóa</a>
+                        </div>
+                    </div>
                     double total = Convert.ToDouble(item._shopping_product.Price.Value * item._shopping_quantity);
+
                     <div class="left-box-2">
                         <img src="~/Vendor/img/products/@(item._shopping_product.ProductId).png" alt="">
                         <p class="name-product">@item._shopping_product.ProductName</p>
@@ -126,14 +141,21 @@
 
                         <div class="counter">
 
-                            <div class="count-wrap">
-                                <button onclick="decrease()">-</button>
-                                <p id="clicks">1</p>
-                                <button onclick="increase()">+</button>
-                            </div>
-                            <a href="#">Cập nhật</a>
+                            @using (Html.BeginForm("UpdateQuantity", "Cart"))
+                            {
+                                <div class="quantity-product">
+                                    <input type="hidden" value="@item._shopping_product.ProductId" name="ProductId" />
+                                    <input type="button" value="-" class="btn quantity-left-minus" data-type="minus" data-field="" />
+                                    <input readonly="" type="number" class="num" name="quantity" value="@item._shopping_quantity" id="quantity" />
+                                    <input type="button" value="+" class="btn quantity-right-plus" data-type="plus" data-field="" />
+                                    <div class="col-md-1 deleteone">
+                                        <input id="btn-update-quantity" type="submit" value="Cập nhật" />
+                                    </div>
+                                </div>
+                            }
                         </div>
                         <p>@total</p>
+                        <input style="color:red;  padding: 0" type="button" value="x" class="btn" onclick="myFunction2()">
                     </div>
                 }
                 <div class="wrap-preview-total-cost">
@@ -147,7 +169,7 @@
                     <p class="index">2</p>
                     <p class="checkout-title">Chọn hình thức giao hàng</p>
                 </div>
-                <div class="tabs-delivery">
+                <div class="tabs-delivery left-box-btn2">
                     <div class="span">
                         <h4>Giao hàng tận nơi</h4>
                     </div>
@@ -253,14 +275,14 @@
                         mã giảm
                         giá
                     </button>
-                    @Html.Action("Voucher","Cart")
+                    @Html.Action("Voucher", "Cart")
                 </div>
             </div>
             <div class="ct-right-box">
                 <div>
                     <p class="checkout-title">Thông tin giao hàng</p>
                 </div>
-                @Html.Action("Address","Cart")
+                @Html.Action("Address", "Cart")
             </div>
             <div class="ct-right-box">
                 <h3>Tổng tiền</h3>
@@ -284,7 +306,7 @@
 
 <script>
     function myFunction() {
-        var blur = document.getElementById("cartbox");
+        var blur = document.getElementById("blur");
         blur.classList.add("blur")
         var popup = document.getElementById("popup");
         popup.classList.add("active-cart")
@@ -292,15 +314,15 @@
     }
     function backFunction() {
         var back = document.getElementById("popup")
-        back.classList.remove("active");
-        var blur = document.getElementById("cartbox");
+        back.classList.remove("active-cart");
+        var blur = document.getElementById("blur");
         blur.classList.remove("blur")
     }
     function myFunction2() {
-        var blur = document.getElementById("cartbox");
+        var popup2 = document.getElementById("popup2");
+        popup2.classList.add("active-cart")
+        var blur = document.getElementById("blur");
         blur.classList.add("blur")
-        var popup = document.getElementById("popup2");
-        popup.classList.add("active-cart")
     }
 </script>
 
