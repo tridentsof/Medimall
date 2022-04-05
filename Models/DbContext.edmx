@@ -159,6 +159,7 @@
           <Property Name="StartDate" Type="datetime" />
           <Property Name="EndDate" Type="datetime" />
           <Property Name="AccountId" Type="int" />
+          <Property Name="StartFrom" Type="decimal" Precision="18" Scale="0" />
         </EntityType>
         <Association Name="FK__News__NewsCatego__17036CC0">
           <End Role="NewsCategory" Type="Self.NewsCategory" Multiplicity="0..1" />
@@ -568,6 +569,7 @@
           <Property Name="StartDate" Type="DateTime" Precision="3" />
           <Property Name="EndDate" Type="DateTime" Precision="3" />
           <Property Name="AccountId" Type="Int32" />
+          <Property Name="StartFrom" Type="Decimal" Precision="18" Scale="0" />
           <NavigationProperty Name="Account" Relationship="Self.FK_Voucher_Account" FromRole="Voucher" ToRole="Account" />
           <NavigationProperty Name="BillDetails" Relationship="Self.FK_VC" FromRole="Voucher" ToRole="BillDetail" />
         </EntityType>
@@ -969,6 +971,7 @@
                 <ScalarProperty Name="StartDate" ColumnName="StartDate" />
                 <ScalarProperty Name="EndDate" ColumnName="EndDate" />
                 <ScalarProperty Name="AccountId" ColumnName="AccountId" />
+                <ScalarProperty Name="StartFrom" ColumnName="StartFrom" />
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>

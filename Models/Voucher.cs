@@ -31,9 +31,17 @@ namespace Medimall.Models
         [Required(ErrorMessage = "Không được để trống")]
         [Display(Name = "Nội dung")]
         public string VoucherDetail { get; set; }
+        [Display(Name = "Ngày bắt đầu")]
+        [DataType(DataType.Date)]
+        [DisplayFormat(DataFormatString = "{0:yyyy-MM-dd}", ApplyFormatInEditMode = true)]
         public DateTime StartDate { get; set; }
+        [Display(Name = "Ngày kết thúc")]
+        [DataType(DataType.Date)]
+        [DisplayFormat(DataFormatString = "{0:yyyy-MM-dd}", ApplyFormatInEditMode = true)]
         public DateTime EndDate { get; set; }
         public int AccountId { get; set; }
+        [Display(Name = "Áp dụng từ")]
+        public Nullable<decimal> StartFrom { get; set; }
 
         public virtual Account Account { get; set; }
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
