@@ -35,7 +35,7 @@ header {
 .header-top {
 	display: flex;
 	justify-content: space-between;
-	font-size: 12px;
+	font-size: 16px;
 	font-weight: 550;
 	color: #fff;
 	margin-bottom: 10px;
@@ -375,6 +375,7 @@ header {
 	justify-content: space-between;
 	border-radius: 12px;
 	padding: 0 20px;
+	font-size: 15px !important;
 }
 
 .cart img {
@@ -384,7 +385,7 @@ header {
 
 /* Body */
 .container-body {
-	padding: 32px 0;
+	padding: 20px 0;
 }
 
 .carousel,
@@ -583,7 +584,7 @@ header {
 
 .ct4-voucher div:first-child p {
 	color: #fff;
-	font-size: 13.008px;
+	font-size: 14px;
 	line-height: 23px;
 }
 

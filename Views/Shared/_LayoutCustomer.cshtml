@@ -54,7 +54,7 @@
                     <p><i class="fas fa-map-marker-alt fa-fw fa-xs"></i>863 cửa hàng</p>
                     <div class="dropdown">
                         <button type="button" class="language-btn" data-toggle="dropdown">
-                            <i class="fas fa-star fa-fw fa-xs"></i>Tiếng Việt&emsp;<i class="fas fa-chevron-down"></i></i>
+                            &emsp;<i class="fas fa-star fa-fw fa-xs"></i>Tiếng Việt&emsp;<i class="fas fa-chevron-down fa-xs"></i></i>&emsp;
                         </button>
                         <div class="dropdown-menu">
                             <div class="dropdown-item">
@@ -68,7 +68,10 @@
                     </div>
                     @if (Session["UserNameCustomer"] != null)
                     {
-                        <p style="text-transform:capitalize">@Session["UserNameCustomer"]</p>
+                        <a href="#" style="display: flex; color: #fff; width: auto">
+                            <p style="text-transform:capitalize">@Session["UserNameCustomer"]&ensp;<i class="far fa-user fa-fw fa-lg"></i></p>
+                        </a>
+
                     }
                     else
                     {
