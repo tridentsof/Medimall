@@ -17,5 +17,12 @@ namespace Medimall.Controllers
             var display = db.News.Where(p => p.NewsId == id).ToList();
             return View(display);
         }
+
+        public ActionResult GetCategoryNews()
+        {
+            var listCategory = db.NewsCategories.ToList();
+
+            return PartialView("GetCategoryNews", listCategory);
+        }
     }
 }

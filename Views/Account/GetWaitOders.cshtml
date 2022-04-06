@@ -1,0 +1,44 @@
+﻿@model IEnumerable<Medimall.Models.Billing>
+
+@if (Model != null)
+{
+    <div>
+        @foreach (var item in Model)
+        {
+            <fieldset class="detailsorder">
+                <legend>Chờ xác nhận</legend>
+                <div class="listoder-header">
+                    <div class="d-flex justify-content-between">
+                        <div class="d-flex listoder-item">
+                            <p>Điểm tích lũy: </p> &nbsp;
+                            <p class="point">Bạn cần lên VIP để tích điểm</p>
+                        </div>
+                        <p class="state2">Chưa hoàn thành</p>
+                    </div>
+                    <p>
+                        Mã đơn hàng:
+                        <span class="oderid"> @(item.BillId)</span>
+                    </p>
+                    <p>
+                        Giá trị đơn:
+                        <span class="priceoder">@(item.Total) VND</span>
+                    </p>
+                </div>
+                <div class="listoder-bot">
+                    <a href="http://">
+                        Xem chi tiết
+                        <i class="fas fa-chevron-right"></i>
+                    </a>
+                </div>
+            </fieldset>
+        }
+    </div>
+}
+else
+{
+    <div class="empty-result">
+        <img src="~/Vendor/img/icon/empty-image.png" alt="">
+        <p>Bạn chưa có đơn hàng nào rồi</p>
+    </div>
+}
+
