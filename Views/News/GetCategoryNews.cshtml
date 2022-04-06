@@ -1,0 +1,6 @@
+﻿@model IEnumerable<Medimall.Models.NewsCategory>
+
+@foreach (var item in Model)
+{
+    <li><i class="fas fa-circle"></i>@item.NewsCategoryName</li>
+}
