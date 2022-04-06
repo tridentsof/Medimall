@@ -57,6 +57,8 @@ namespace Medimall.Models
         public string ActiveCode { get; set; }
         [Display(Name = "Điểm thưởng")]
         public Nullable<int> PowerPoint { get; set; }
+        [Display(Name = "Giới tính")]
+        public Nullable<int> Gender { get; set; }
 
         [Display(Name = "Avatar")]
         [NotMapped]

@@ -1,0 +1,46 @@
+﻿@model IEnumerable<Medimall.Models.Delivery>
+
+@using (Html.BeginForm("ApplyDelivery", "Cart"))
+{
+    <div class="modal fade " id="myModal">
+        <div class="modal-dialog modal-dialog-centered">
+            <div class="modal-content">
+                <!-- Modal Header -->
+                <div class="modal-header">
+                    <h4 class="modal-title">Chọn đơn vị vận chuyển</h4>
+                    <button type="button" class="close" data-dismiss="modal">&times;</button>
+                </div>
+                <div class="modal-body">
+                    @foreach (var item in Model)
+                    {
+                        <h5><i class="fas fa-caret-right"></i>&ensp; Giao hàng nhanh</h5>
+                        <label class="box-discount box-delivery">
+                            <i class="fas fa-shipping-fast"></i>
+                            <div class="delivery-item1">
+                                <p>Hình thức</p>
+                                <p>Phí vận chuyển:</p>
+                            </div>
+                            <div class="delivery-item2">
+                                <p>@item.DeliveryName</p>
+                                <p>@item.DeliveryPrice</p>
+                            </div>
+                            <input type="radio" value="@item.DeliveryId" checked="checked" name="delivery-id">
+                            <span class="checkmark"></span>
+                        </label>
+                    }
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-secondary" data-dismiss="modal">
+                        Bỏ
+                        qua
+                    </button>
+                    <button type="submit" class="btn btn-primary">Lưu</button>
+                </div>
+
+            </div>
+        </div>
+    </div>
+
+
+}
+

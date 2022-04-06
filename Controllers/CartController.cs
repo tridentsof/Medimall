@@ -34,10 +34,42 @@ namespace Medimall.Controllers
 
             int productId = int.Parse(form["ProductId"]);
             int quantity = int.Parse(form["quantity"]);
+            var quantityLeft = db.Products.Where(m => m.ProductId == productId).FirstOrDefault().Quantity;
 
-            cart.UpdateQuantity(productId, quantity);
+            if(quantityLeft > quantity)
+            {
+                cart.UpdateQuantity(productId, quantity);
+                return RedirectToAction("ShowCart", "Cart");
+            }
+            else
+            {
+                var alert = String.Format("Xin lỗi quý khách! số lượng sản phẩm còn lại trong kho: {0}",quantityLeft);
+                TempData["ErrorQuantity"] = alert;
+                return RedirectToAction("ShowCart", "Cart");
+            }
+        }
 
-            return RedirectToAction("ShowCart", "Cart");
+        public ActionResult ApplyVoucher(FormCollection form)
+        {
+            Cart cart = Session["Cart"] as Cart;
+
+            int idVoucher = int.Parse(form["voucher"]);
+            var voucher = db.Vouchers.Where(m => m.VoucherId == idVoucher).First();
+            decimal startFrom = voucher.StartFrom.GetValueOrDefault();
+            int percentDiscount = voucher.Percent.GetValueOrDefault();
+            
+            if(cart.TotalMoney() < Decimal.ToDouble(startFrom))
+            {
+                TempData["ErrorVoucher"] = "Giá trị đơn hàng chưa đủ để áp dụng khuyến mãi!";
+                return RedirectToAction("ShowCart", "Cart");
+            }
+            else
+            {
+                double discountPrice = cart.TotalMoney() * (100 - percentDiscount) / 100;
+                TempData["DiscountPrice"] = discountPrice;
+                TempData["SuccessVoucher"] = "Áp dụng thành công!";
+                return RedirectToAction("ShowCart", "Cart");
+            }
         }
 
         public ActionResult RemoveCart(int id)
@@ -62,6 +94,25 @@ namespace Medimall.Controllers
             var userInfor = db.Accounts.Where(m => m.AccountId.ToString() == userId).FirstOrDefault();
 
             return PartialView("Address", userInfor);
+        }
+
+        public ActionResult Delivery()
+        {
+            var delivery = db.Deliveries.ToList();
+            return PartialView("Delivery",delivery);
+        }
+
+        public ActionResult ApplyDelivery(FormCollection form)
+        {
+            Cart cart = Session["Cart"] as Cart;
+
+            var deliveryId = int.Parse(form["delivery-id"]);
+            var delivery = db.Deliveries.Where(m => m.DeliveryId == deliveryId).FirstOrDefault();
+
+            var finalPrice = cart.TotalMoney() + Decimal.ToDouble(delivery.DeliveryPrice.GetValueOrDefault());
+
+            TempData["DiscountPrice"] = finalPrice;
+            return RedirectToAction("ShowCart", "Cart");
         }
 
         public PartialViewResult BagCart()
@@ -120,7 +171,8 @@ namespace Medimall.Controllers
             try
             {
                 var userName = Session["UserNameCustomer"];
-                var userInfor = db.Accounts.FirstOrDefault(x => x.UserName == userName.ToString());
+                var userId = Session["UserId"].ToString();
+                var userInfor = db.Accounts.FirstOrDefault(x => x.AccountId.ToString() == userId);
                 Cart cart = Session["Cart"] as Cart;
                 Billing billing = new Billing();
 
