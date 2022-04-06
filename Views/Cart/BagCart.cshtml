@@ -14,7 +14,15 @@ else
         <div class="cart">
             <div>
                 Giỏ hàng
-                <p>@ViewBag.TotalMoney</p>
+                @if (@TempData["DiscountPrice"] != null)
+                {
+                    <p>@TempData["DiscountPrice"]</p>
+                }
+                else
+                {
+                    <p>@ViewBag.TotalMoney</p>
+                }
+
             </div>
             <p class="cart_soluong">@ViewBag.QuantityCart</p>
             <img src="~/Vendor/img/icon/shopping-cart.png" />

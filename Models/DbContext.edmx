@@ -20,6 +20,7 @@
           <Property Name="Status" Type="int" />
           <Property Name="ActiveCode" Type="nvarchar" MaxLength="50" />
           <Property Name="PowerPoint" Type="int" />
+          <Property Name="Gender" Type="int" />
         </EntityType>
         <EntityType Name="Admin">
           <Key>
@@ -406,6 +407,7 @@
           <Property Name="Status" Type="Int32" />
           <Property Name="ActiveCode" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
           <Property Name="PowerPoint" Type="Int32" />
+          <Property Name="Gender" Type="Int32" />
           <NavigationProperty Name="HealthBooks" Relationship="Self.FK_Acc" FromRole="Account" ToRole="HealthBook" />
           <NavigationProperty Name="ListDrugs" Relationship="Self.FK_Acc1" FromRole="Account" ToRole="ListDrug" />
           <NavigationProperty Name="Billings" Relationship="Self.FK_kh" FromRole="Account" ToRole="Billing" />
@@ -818,6 +820,7 @@
                 <ScalarProperty Name="Status" ColumnName="Status" />
                 <ScalarProperty Name="ActiveCode" ColumnName="ActiveCode" />
                 <ScalarProperty Name="PowerPoint" ColumnName="PowerPoint" />
+                <ScalarProperty Name="Gender" ColumnName="Gender" />
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>

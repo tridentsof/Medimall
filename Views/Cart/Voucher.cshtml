@@ -1,37 +1,43 @@
 ﻿@model IEnumerable<Medimall.Models.Voucher>
 
-<div class="modal fade" id="btn-discount">
-    <div class="modal-dialog modal-dialog-centered">
-        <div class="modal-content">
-            <div class="modal-header">
-                <h4 class="modal-title">Mã giảm giá của bạn</h4>
-                <button type="button" class="close" data-dismiss="modal">&times;</button>
-            </div>
-            @if (Model.Count() != 0)
-            {
-                <div class="modal-body">
-                    @foreach (var item in Model)
-                    {
-                        <label class="box-discount">
-                            <i class="fas fa-tags fa-xs" style="color: #5dac46;"></i>
-                            <div>
-                                <h5>@item.VoucherCode</h5>
-                                <p>@item.VoucherDetail</p>
-                            </div>
-                            <input type="radio" value="@item.VoucherId" checked="checked" name="voucher">
-                            <span class="checkmark"></span>
-                        </label>
-                    }
+@using (Html.BeginForm("ApplyVoucher", "Cart"))
+{
+
+    <div class="modal fade" id="btn-discount">
+        <div class="modal-dialog modal-dialog-centered">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h4 class="modal-title">Mã giảm giá của bạn</h4>
+                    <button type="button" class="close" data-dismiss="modal">&times;</button>
                 </div>
-            }
-            else
-            {
-                <img src="~/Vendor/img/icon/empty-image.png" />
-                <p>Không tìm thấy ưu đãi khả dụng!</p>
-            }
-            <div class="modal-footer">
-                <button type="button" data-dismiss="modal" class="btn btn-primary">OK</button>
+                @if (Model.Count() != 0)
+                {
+                    <div class="modal-body">
+                        @foreach (var item in Model)
+                        {
+                            <label class="box-discount" style="width: 370px; margin: 0 auto;">
+                                <i class="fas fa-tags fa-xs" style="color: #5dac46;"></i>
+                                <div>
+                                    <h5>@item.VoucherCode</h5>
+                                    <p>@item.VoucherDetail</p>
+                                </div>
+                                <input type="radio" value="@item.VoucherId" checked="checked" name="voucher">
+                                <span class="checkmark"></span>
+                            </label>
+                        }
+                    </div>
+                }
+                else
+                {
+                    <img src="~/Vendor/img/icon/empty-image.png" />
+                    <p>Không tìm thấy ưu đãi khả dụng!</p>
+                }
+                <div class="modal-footer">
+                    <button type="submit" class="btn btn-primary">OK</button>
+                </div>
             </div>
         </div>
     </div>
-</div>
+
+}
+
