@@ -130,6 +130,7 @@
     <Compile Include="App_Start\BundleConfig2.cs" />
     <Compile Include="App_Start\FilterConfig.cs" />
     <Compile Include="App_Start\RouteConfig.cs" />
+    <Compile Include="Controllers\AccountController.cs" />
     <Compile Include="Controllers\CartController.cs" />
     <Compile Include="Controllers\HomeController.cs" />
     <Compile Include="Controllers\NewsController.cs" />
@@ -140,6 +141,7 @@
     <Compile Include="Helper\Pagination.cs" />
     <Compile Include="Helper\ValidateFileAttribute.cs" />
     <Compile Include="Infrastructure\CustomAuthenticationAdminFilter.cs" />
+    <Compile Include="Infrastructure\CustomAuthenticationCustomerFilter.cs" />
     <Compile Include="Models\Account.cs">
       <DependentUpon>DbContext.tt</DependentUpon>
     </Compile>
@@ -2072,7 +2074,6 @@
     <Content Include="Vendor\vendor\jquery\jquery.min.js" />
     <Content Include="Vendor\vendor\jquery\jquery.slim.js" />
     <Content Include="Vendor\vendor\jquery\jquery.slim.min.js" />
-    <Content Include="Views\Home\GetCovidProductPageOne.cshtml" />
     <Content Include="Web.config" />
     <Content Include="Web.Debug.config">
       <DependentUpon>Web.config</DependentUpon>
@@ -2251,6 +2252,7 @@
     <Content Include="Views\Home\GetCategoriesWithImage.cshtml" />
     <Content Include="Views\Home\GetVoucher.cshtml" />
     <Content Include="Views\Home\CovidNews.cshtml" />
+    <Content Include="Views\Home\GetCovidProductPageOne.cshtml" />
     <Content Include="Views\Home\GetCovidProductPageTwo.cshtml" />
     <Content Include="Views\Home\GetCovidProductPageThree.cshtml" />
     <Content Include="Views\Cart\ShowCart.cshtml" />
@@ -2279,17 +2281,18 @@
     <Content Include="Views\Home\GetBestSaleProductPageTwo.cshtml" />
     <Content Include="Views\News\GetCategoryNews.cshtml" />
     <Content Include="Views\Account\Account.cshtml" />
-<<<<<<< Updated upstream
     <Content Include="Views\Cart\Delivery.cshtml" />
-=======
+    <Content Include="Views\Account\GetAddressOder.cshtml" />
     <Content Include="Views\Account\GetAllOders.cshtml" />
-    <Content Include="Views\Account\GetWaitOders.cshtml" />
+    <Content Include="Views\Account\GetCancleOders.cshtml" />
     <Content Include="Views\Account\GetDeliOder.cshtml" />
     <Content Include="Views\Account\GetSuccesOders.cshtml" />
-    <Content Include="Views\Account\GetCancleOders.cshtml" />
-    <Content Include="Views\Account\GetAddressOder.cshtml" />
-    <Content Include="Views\Account\EditCustomer.cshtml" />
->>>>>>> Stashed changes
+    <Content Include="Views\Account\GetWaitOders.cshtml" />
+    <Content Include="Views\Account\Edit.cshtml" />
+    <Content Include="Views\Account\Voucher.cshtml" />
+    <Content Include="Views\Account\ForceVoucher.cshtml" />
+    <Content Include="Views\Account\ExpireVoucher.cshtml" />
+    <Content Include="Views\Account\UsedVoucher.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
