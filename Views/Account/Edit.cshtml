@@ -1,0 +1,85 @@
+﻿@model IEnumerable<Medimall.Models.Account>
+
+@foreach (var item in Model)
+{
+    <div class="upload-img-wrap">
+        <div class="avatar-upload">
+            <div class="avatar-edit">
+            
+                <input type='file' id="imageUpload" accept=".png, .jpg, .jpeg" />
+            </div>
+            <div class="avatar-preview">
+                <div id="imagePreview">
+                    <img src="~/Vendor/img/avatar/@(item.AccountId.ToString()).png">
+                </div>
+                <label for="imageUpload">Bấm để cập nhật ảnh mới</label>
+            </div>
+        </div>
+    </div>
+    <div class="upload-info-wrap">
+
+
+        <div class="span-input name">
+            <div>
+                <p>Họ và tên <i class="fas fa-asterisk fa-xs" style="color: red;"></i></p>
+                <input type="text" id="txtname" name="Name" placeholder="none" value="@(item.FullName)">
+            </div>
+        </div>
+        <div class="span-input">
+            <p>Giới tính</p>
+            <div>
+                @Html.RadioButtonFor(modelItem => item.Gender, 1, new { name = "gender" }) Nam
+                @Html.RadioButtonFor(modelItem => item.Gender, 2, new { name = "gender" }) Nữ
+                @Html.RadioButtonFor(modelItem => item.Gender, 3, new { name = "gender" }) Khác
+            </div>
+        </div>
+        <div class="span-input">
+            <p>Ngày tháng năm sinh</p>
+            <input type="text" id="txtbirthday" name="Birthday" value="@(item.BirthDay)">
+        </div>
+        <div class="span-input">
+            <p>Số điện thoại</p>
+            <input type="text" id="txtphone" name="Phone" value="@(item.Phone)">
+        </div>
+        <div class="span-input">
+            <p>Email</p>
+            <input type="text" id="txtemail" name="Email" value="@(item.Email)">
+        </div>
+        <a href="#">Đổi mật khẩu<i class="fas fa-chevron-right"></i></a>
+        <button onclick="UpdateCustomer(@item.AccountId)">Lưu thông tin</button>
+    </div>
+}
+    <script type="text/javascript">
+    function UpdateCustomer(id) {
+        FullName = document.getElementById("txtname");
+        BirthDay = document.getElementById("txtbirthday");
+        Phone = document.getElementById("txtphone");
+        Email = document.getElementById("txtemail");
+        var Gender
+        var ele = document.getElementsByTagName('input');
+        for (i = 0; i < ele.length; i++) {
+
+            if (ele[i].type = "radio") {
+
+                if (ele[i].checked)
+                    Gender=ele[i].value;
+            }
+        }
+        var customer = {
+            "fullname": FullName.value,
+            "birthday": BirthDay.value,
+            "phone": Phone.value,
+            "email": Email.value,
+            "gender": Gender
+        };
+        $.ajax({
+                type: "POST",
+                url: "/Account/UpdateCustomer/" + id,
+                data: customer,
+                success: function (result) {
+                    window.location.href = '@Url.Action("Account","Account")';
+                }
+         })
+    }
+    </script>
+

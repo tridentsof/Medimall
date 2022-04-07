@@ -1,0 +1,261 @@
+﻿@model IEnumerable<Medimall.Models.Voucher>
+
+<style>
+        /* CSS khuyến mãi */
+        .tab-voucher .nav-link.active {
+            color: var(--blue);
+            font-weight: 700;
+            border-bottom: 3px solid var(--blue);
+        }
+
+    .tab-voucher .nav-link {
+        color: #b2bac6;
+        font-weight: 700;
+        padding: 0 25px;
+    }
+
+        .makm {
+            font-size: 24px;
+            font-weight: 700;
+            line-height: 32px;
+        }
+
+        .tab-voucher {
+
+        }
+        /* .active {
+    display: flex !important;
+    justify-content: space-between;
+    } */
+        .maybe_used, .used {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            height: 500px;
+            flex-direction: column;
+        }
+
+        .expire {
+            padding: 10px;
+            width: 775px;
+        }
+
+        .coupon_box {
+            margin-top:25px;
+            width: 100%;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+        }
+
+        .couponItem {
+            display: flex;
+            width: 100%;
+        }
+
+        .couponItem_name {
+            width: 250px;
+            height: 100px;
+            padding: 5px;
+            border-left: 9px solid var(--blue);
+            border-radius: 10px;
+            border-top: 1px solid #e5e5e5;
+            border-bottom: 1px solid #e5e5e5;
+        }
+
+        .couponItem_code {
+            width: 100px;
+            height: 100px;
+            word-wrap: break-word;
+            text-align: center;
+            line-height: 20px;
+            border-radius: 10px;
+            border: 1px solid #e5e5e5;
+            padding: 10px;
+            border-left: 2px dashed #e5e5e5;
+        }
+
+        .couponItem_name p {
+            font-size: 13px;
+        }
+
+        .couponItem_name .hsd {
+            font-size: 13px;
+            margin-top: 4px;
+        }
+
+        .couponItem_name a {
+            font-size: 13px;
+            text-decoration: underline;
+            margin-top: -3px;
+        }
+
+        .couponItem_code p {
+            margin-top: 20px;
+            font-size: 14px;
+            color: var(--blue);
+        }
+
+        .expried {
+            font-size: 13px;
+            color: #ce3c3c;
+        }
+        /* CSS Modal Popup */
+        .modal-content {
+            width: 375px;
+            text-align: center !important;
+            padding: 15px;
+            height: 600px;
+            overflow-y: scroll;
+        }
+
+        .modal-header {
+            padding: 15px;
+            margin-top: -10px;
+        }
+
+            .modal-header h4 {
+                text-align: center !important;
+                flex: 1 1;
+                font-size: 24px;
+                line-height: 32px;
+                color: #0f62f9;
+                margin-left: 10px;
+                font-weight: 600;
+            }
+
+        .expire_code {
+            padding: 16px 12px;
+            background-color: #feaa48;
+            border-radius: 2px;
+            font-size: 15px;
+            line-height: 22px;
+            color: #fff;
+            margin-bottom: 8px;
+        }
+
+        .coupon_info {
+            background: #54b3df;
+            border-radius: 16px;
+            padding: 12px 8px;
+            margin-top: 12px;
+        }
+
+        .coupon_info_code {
+            padding: 12px;
+            background: #154783;
+            border-radius: 12px;
+            max-width: 260px;
+            margin: auto;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            cursor: pointer;
+        }
+
+            .coupon_info_code p {
+                font-weight: 700;
+                font-size: 20px;
+                line-height: 28px;
+                text-transform: uppercase;
+                color: #fff;
+                margin-top: 20px;
+            }
+
+        .coupon_info_voucher {
+            margin-top: 12px;
+            display: flex;
+            align-items: stretch;
+            padding: 20px;
+            background: #fff;
+            border-radius: 12px;
+        }
+
+        .coupon_info_monney {
+            flex: 1 0;
+            padding: -2px 16px;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+        }
+
+            .coupon_info_monney p {
+                font-size: 14px;
+                text-transform: uppercase;
+                line-height: 19px;
+            }
+
+        .voucher_monney {
+            font-weight: 700;
+            font-size: 22px;
+            line-height: 24px;
+            color: #feaa48;
+            margin-top: 6px;
+        }
+
+        .coupon_info_hsd {
+            border-left: 1px solid #154783;
+            padding-left: 10px;
+        }
+
+            .coupon_info_hsd p {
+                font-size: 14px;
+                line-height: 19px;
+                text-transform: uppercase;
+            }
+
+        .expire_date {
+            font-size: 12px;
+            line-height: 19px;
+            color: #194881;
+            font-weight: 700;
+        }
+
+        .coupop_voucher-title p {
+            margin-top: 20px;
+            font-weight: 700;
+            font-size: 20px;
+            line-height: 28px;
+            color: #0f62f9;
+        }
+
+        .coupop_voucher-title span {
+            text-align: start !important;
+            white-space: pre-wrap;
+            margin-top: 20px;
+            padding: 0 8px;
+            font-size: 16px;
+            line-height: 22px;
+        }
+</style>
+
+        <h4 class="makm">Mã khuyến mãi</h4>
+        <div class="tabs">
+            <div class="nav nav-pills tab-voucher" id="v-pills-tab" role="tablist" aria-orientation="vertical">
+                <a class="nav-link active" id="v-pills-1" data-toggle="pill" href="#v-1" role="tab"
+                   aria-controls="v-pills-1" aria-selected="true">
+                    Có thể Dùng
+                </a>
+                <a class="nav-link " id="v-pills-2" data-toggle="pill" href="#v-2" role="tab"
+                   aria-controls="v-pills-2" aria-selected="false">
+                    Đã sử dụng
+                </a>
+                <a class="nav-link " id="v-pills-3" data-toggle="pill" href="#v-3" role="tab"
+                   aria-controls="v-pills-3" aria-selected="false">
+                    Đã hết hạn
+                </a>
+            </div>
+            <div class="tab-content" id="v-pills-tabContent">
+                <div class="tab-pane fade show active" id="v-1" role="tabpanel"
+                     aria-labelledby="v-pills-1">
+                    @Html.Action("ForceVoucher", "Account")
+                </div>
+                <div class="tab-pane fade" id="v-2" role="tabpanel" aria-labelledby="v-pills-2">
+                    @Html.Action("UsedVoucher", "Account")
+                </div>
+                <div class="tab-pane fade" id="v-3" role="tabpanel" aria-labelledby="v-pills-3">
+                    @Html.Action("ExpireVoucher", "Account")
+                </div>
+            </div>
+        </div>
+   

@@ -1,0 +1,21 @@
+﻿@model IEnumerable<Medimall.Models.Voucher>
+
+
+<div class="coupon_box">
+    @foreach (var item in Model)
+    {
+        <div class="couponItem">
+            <div class="couponItem_name">
+                <p>@(item.VoucherDetail)</p>
+                <p class="hsd">Hạn sử dụng: <span>@(item.EndDate)</span></p>
+                <a href="" data-toggle="modal"
+                   data-target="#myModal(@item.VoucherId)">Xem chi tiết</a>
+                <p class="expried">Đã sử dụng</p>
+            </div>
+            <div class="couponItem_code">
+                <p>@(item.VoucherCode)</p>
+            </div>
+        </div>
+    }
+</div>
+
