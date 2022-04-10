@@ -1,0 +1,24 @@
+﻿@model IEnumerable<Medimall.Models.BillDetail>
+
+@foreach (var item in Model)
+{
+    <div class="col-xl-3 col-md-6 mb-4">
+        <div class="card border-left-success shadow h-100 py-2">
+            <div class="card-body">
+                <div class="row no-gutters align-items-center">
+                    <div class="col mr-2">
+                        <div class="text-xs font-weight-bold text-success text-uppercase mb-1">
+                            <img class="text-center" style="width:50%" src="~/Vendor/img/products/@(item.ProductId).png" />
+                        </div>
+                        <div class="h5 mb-0 font-weight-bold text-gray-800 text-center">@item.ProductName <span style="font-weight:normal; font-size:12px">x @item.Quantity </span></div>
+                    </div>
+                    <div class="col-auto">
+                        Tổng tiền: <br />
+                        <i style="color:yellowgreen!important" class="fas fa-dollar-sign fa-2x text-gray-300"></i>
+                        @item.Total
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+}
