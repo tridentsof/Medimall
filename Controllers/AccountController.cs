@@ -24,7 +24,7 @@ namespace Medimall.Controllers
         public ActionResult GetAllOders()
         {
             var accountId = int.Parse(Session["UserId"].ToString());
-            var displayoder = db.Billings.Where(p => p.AccountId == accountId).ToList();
+            var displayoder = db.Billings.Where(p => p.AccountId == accountId).OrderByDescending(m => m.PurchaseDate).ToList();
             Billing status = db.Billings.Find(accountId);
 
             return PartialView(displayoder);
@@ -32,7 +32,7 @@ namespace Medimall.Controllers
         public ActionResult GetWaitOders()
         {
             var accountId = int.Parse(Session["UserId"].ToString());
-            var displayoder = db.Billings.Where(p => p.AccountId == accountId).Where(p => p.Status == 1).ToList();
+            var displayoder = db.Billings.Where(p => p.AccountId == accountId).OrderByDescending(m => m.PurchaseDate).Where(p => p.Status == 1).ToList();
             return PartialView(displayoder);
         }
         public ActionResult GetDeliOder()

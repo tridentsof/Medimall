@@ -13,6 +13,7 @@
         <li><i class="fas fa-circle"></i>Giỏ hàng</li>
         <li><i class="fas fa-circle"></i>Thanh toán</li>
     </div>
+
     <div class="content-body">
         <div class="content-left">
 
@@ -50,18 +51,25 @@
 
                         <div class="counter">
 
+                            @*<div class="quantity-product">
+                                <input type="hidden" value="@item._shopping_product.ProductId" name="ProductId" />
+                                <input type="button" value="-" class="btn quantity-left-minus" data-type="minus" data-field="" />
+                                <input readonly="" type="number" class="num" name="quantity" value="@item._shopping_quantity" id="quantity" />
+                                <input type="button" value="+" class="btn quantity-right-plus" data-type="plus" data-field="" />
+
+                            </div>*@
                             @using (Html.BeginForm("UpdateQuantity", "Cart"))
-                            {
-                                <div class="quantity-product">
-                                    <input type="hidden" value="@item._shopping_product.ProductId" name="ProductId" />
-                                    <input type="button" value="-" class="btn quantity-left-minus" data-type="minus" data-field="" />
-                                    <input readonly="" type="number" class="num" name="quantity" value="@item._shopping_quantity" id="quantity" />
-                                    <input type="button" value="+" class="btn quantity-right-plus" data-type="plus" data-field="" />
-                                    <div class="col-md-1 deleteone">
-                                        <input id="btn-update-quantity" type="submit" style="color: #112950" value="Cập nhật" />
+                                {
+                                    <div class="quantity-product">
+                                        <input type="hidden" value="@item._shopping_product.ProductId" name="ProductId" />
+                                        <input type="button" value="-" class="btn quantity-left-minus" data-type="minus" data-field="" />
+                                        <input readonly="" type="number" class="num" name="quantity" value="@item._shopping_quantity" id="quantity" />
+                                        <input type="button" value="+" class="btn quantity-right-plus" data-type="plus" data-field="" />
+                                        <div class="col-md-1 deleteone">
+                                            <input style="color:black" id="btn-update-quantity" type="submit" value="Cập nhật" />
+                                        </div>
                                     </div>
-                                </div>
-                            }
+                                }
                         </div>
                         <p>@total</p>
                         <input style="color:red;  padding: 0" type="button" value="x" class="btn" onclick="myFunction2()">
@@ -87,6 +95,7 @@
                         <button type="button" data-toggle="modal" data-target="#myModal" class="btn-delivery">
                             Chọn hình thức giao hàng
                         </button>
+
                         @Html.Action("Delivery", "Cart")
 
                     </div>
@@ -106,7 +115,7 @@
                         <h5>Tiền Mặt</h5>
                         <p>Thanh toán bằng tiền mặt khi nhận hàng</p>
                     </div>
-                    <input type="radio" value="1" checked="checked" name="money">
+                    <input id="money-pay" type="radio" value="1"  name="payment" onclick="handleClick(this)">
                     <span class="checkmark"></span>
                 </label>
                 <label class="box-discount box-money">
@@ -115,7 +124,7 @@
                         <h5>Thẻ Tín Dụng</h5>
                         <p>Bạn sẽ thanh toán trước số tiền của đơn hàng qua thẻ tín dụng</p>
                     </div>
-                    <input type="radio" value="2" name="money">
+                    <input id="credit-pay" type="radio" value="2" name="payment" onclick="handleClick(this)">
                     <span class="checkmark"></span>
                 </label>
             </div>
@@ -147,24 +156,32 @@
                     <p>Giá ban đầu</p>
                     <h3>@Model.TotalMoney() VND</h3>
                 </div>
-                <div class="right-box-item">
-                    <p>Thành tiền</p>
-                    <h3 class="total-money">
-                        @if (TempData["DiscountPrice"] != null)
-                        {
-                            <input type="number" hidden="hidden" name="total-money" value="@TempData["DiscountPrice"]" />
-                            @TempData["DiscountPrice"]
-                            <span>VND</span>
-                        }
-                        else
-                        {
-                            @Model.TotalMoney()
-                            <input hidden="hidden" type="number" name="total-money" value="@Model.TotalMoney()" />
-                            <span>VND</span>
-                        }
-                    </h3>
-                </div>
-                <button class="btn-order">ĐẶT HÀNG</button>
+
+                @using (Html.BeginForm("Purchase", "Cart"))
+                {
+                    <div class="right-box-item">
+                        <p>Thành tiền</p>
+                        <h3 class="total-money">
+                            @if (Session["DiscountPrice"] != null)
+                            {
+                                double finalPrice = Convert.ToDouble(Session["DeliveryPrice"]) + Convert.ToDouble(Session["DiscountPrice"]);
+                                <input type="number" hidden="hidden" name="total-money" value="@finalPrice" />
+                                @finalPrice
+                                <span>VND</span>
+                            }
+                            else
+                            {
+                                double finalPrice = Model.TotalMoney() + Convert.ToDouble(Session["DeliveryPrice"]);
+                                @finalPrice
+                                <input hidden="hidden" type="number" name="total-money" value="@finalPrice" />
+                                <span>VND</span>
+                            }
+                        </h3>
+                    </div>
+                    <input id="payment-method" type="number" hidden="hidden" value="1" name="pay-id" />
+                    <button type="submit" class="btn-order">ĐẶT HÀNG</button>
+                }
+
             </div>
         </div>
     </div>
@@ -175,7 +192,14 @@
 <script type="text/javascript" src="~/Scripts/cart.js"></script>
 
 <script>
-     $(document).ready(function () {
+    handleClick = (obj) => {
+        $('#payment-method').val(obj.value);
+    }
+
+    $(document).ready(function () {
+        
+
+
          var errorVoucher = '@TempData["ErrorVoucher"]';
          var successVoucher = '@TempData["SuccessVoucher"]';
          var errorQuantity = '@TempData["ErrorQuantity"]';

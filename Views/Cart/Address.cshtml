@@ -1,5 +1,7 @@
 ﻿@model Medimall.Models.Account
 
+@if (Model == null)
+{
 <div class="info-client-wrap">
     <div class="info-client">
         <div>
@@ -9,17 +11,45 @@
 
         <div>
             <p>Người nhận:</p>
-            <input type="text" name="name" value="@Model.UserName" />
+            <input type="text" name="name" value="" />
         </div>
         <div>
             <p>Số điện thoại:</p>
-            <input type="text" name="name" value="@Model.Phone" />
+            <input type="text" name="name" value="" />
         </div>
         <div>
             <p>Địa chỉ:</p>
             <p>
-                <input type="text" name="name" value="@Model.Address" />
+                <input type="text" name="name" value="" />
             </p>
         </div>
     </div>
 </div>
+}
+else
+{
+    <div class="info-client-wrap">
+        <div class="info-client">
+            <div>
+                <button class="info-client-other">Thông tin</button>
+                <a href="#">Chỉnh sửa</a>
+            </div>
+
+            <div>
+                <p>Người nhận:</p>
+                <input type="text" name="name" value="@Model.UserName" />
+            </div>
+            <div>
+                <p>Số điện thoại:</p>
+                <input type="text" name="name" value="@Model.Phone" />
+            </div>
+            <div>
+                <p>Địa chỉ:</p>
+                <p>
+                    <input type="text" name="name" value="@Model.Address" />
+                </p>
+            </div>
+        </div>
+    </div>
+}
+

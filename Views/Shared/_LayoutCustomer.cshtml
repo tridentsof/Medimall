@@ -68,7 +68,7 @@
                     </div>
                     @if (Session["UserNameCustomer"] != null)
                     {
-                        <a href="#" style="display: flex; color: #fff; width: auto">
+                        <a href="@Url.Action("Account","Account/")" style="display: flex; color: #fff; width: auto">
                             <p style="text-transform:capitalize">@Session["UserNameCustomer"]&ensp;<i class="far fa-user fa-fw fa-lg"></i></p>
                         </a>
 
