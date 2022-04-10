@@ -52,24 +52,24 @@
                         <div class="counter">
 
                             @*<div class="quantity-product">
-                                <input type="hidden" value="@item._shopping_product.ProductId" name="ProductId" />
-                                <input type="button" value="-" class="btn quantity-left-minus" data-type="minus" data-field="" />
-                                <input readonly="" type="number" class="num" name="quantity" value="@item._shopping_quantity" id="quantity" />
-                                <input type="button" value="+" class="btn quantity-right-plus" data-type="plus" data-field="" />
+                                    <input type="hidden" value="@item._shopping_product.ProductId" name="ProductId" />
+                                    <input type="button" value="-" class="btn quantity-left-minus" data-type="minus" data-field="" />
+                                    <input readonly="" type="number" class="num" name="quantity" value="@item._shopping_quantity" id="quantity" />
+                                    <input type="button" value="+" class="btn quantity-right-plus" data-type="plus" data-field="" />
 
-                            </div>*@
+                                </div>*@
                             @using (Html.BeginForm("UpdateQuantity", "Cart"))
-                                {
-                                    <div class="quantity-product">
-                                        <input type="hidden" value="@item._shopping_product.ProductId" name="ProductId" />
-                                        <input type="button" value="-" class="btn quantity-left-minus" data-type="minus" data-field="" />
-                                        <input readonly="" type="number" class="num" name="quantity" value="@item._shopping_quantity" id="quantity" />
-                                        <input type="button" value="+" class="btn quantity-right-plus" data-type="plus" data-field="" />
-                                        <div class="col-md-1 deleteone">
-                                            <input style="color:black" id="btn-update-quantity" type="submit" value="Cập nhật" />
-                                        </div>
+                            {
+                                <div class="quantity-product">
+                                    <input type="hidden" value="@item._shopping_product.ProductId" name="ProductId" />
+                                    <input type="button" value="-" class="btn quantity-left-minus" data-type="minus" data-field="" />
+                                    <input readonly="" type="number" class="num" name="quantity" value="@item._shopping_quantity" id="quantity" />
+                                    <input type="button" value="+" class="btn quantity-right-plus" data-type="plus" data-field="" />
+                                    <div class="col-md-1 deleteone">
+                                        <input style="color:black" id="btn-update-quantity" type="submit" value="Cập nhật" />
                                     </div>
-                                }
+                                </div>
+                            }
                         </div>
                         <p>@total</p>
                         <input style="color:red;  padding: 0" type="button" value="x" class="btn" onclick="myFunction2()">
@@ -115,7 +115,7 @@
                         <h5>Tiền Mặt</h5>
                         <p>Thanh toán bằng tiền mặt khi nhận hàng</p>
                     </div>
-                    <input id="money-pay" type="radio" value="1"  name="payment" onclick="handleClick(this)">
+                    <input id="money-pay" type="radio" value="1" name="payment" onclick="handleClick(this)">
                     <span class="checkmark"></span>
                 </label>
                 <label class="box-discount box-money">
@@ -197,13 +197,18 @@
     }
 
     $(document).ready(function () {
-        
+
 
 
          var errorVoucher = '@TempData["ErrorVoucher"]';
          var successVoucher = '@TempData["SuccessVoucher"]';
+         var successQuanntity = '@TempData["SuccessQuantity"]'
          var errorQuantity = '@TempData["ErrorQuantity"]';
 
+        if (successQuanntity != '') {
+            alertify.success(successQuanntity);
+            successQuanntity = '';
+        }
          if (errorQuantity != '') {
              alertify.error(errorQuantity);
              errorQuantity = '';

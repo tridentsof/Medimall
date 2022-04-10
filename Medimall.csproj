@@ -131,6 +131,10 @@
     <Compile Include="App_Start\FilterConfig.cs" />
     <Compile Include="App_Start\RouteConfig.cs" />
     <Compile Include="Controllers\AccountController.cs" />
+    <Compile Include="Controllers\AdminAccountsController.cs" />
+    <Compile Include="Controllers\AdminBillingsController.cs" />
+    <Compile Include="Controllers\AdminHomeController.cs" />
+    <Compile Include="Controllers\AdminProductsController.cs" />
     <Compile Include="Controllers\CartController.cs" />
     <Compile Include="Controllers\HomeController.cs" />
     <Compile Include="Controllers\NewsController.cs" />
@@ -142,6 +146,7 @@
     <Compile Include="Helper\ValidateFileAttribute.cs" />
     <Compile Include="Infrastructure\CustomAuthenticationAdminFilter.cs" />
     <Compile Include="Infrastructure\CustomAuthenticationCustomerFilter.cs" />
+    <Compile Include="Infrastructure\CustomAuthorizeAttribute.cs" />
     <Compile Include="Models\Account.cs">
       <DependentUpon>DbContext.tt</DependentUpon>
     </Compile>
@@ -391,6 +396,22 @@
     <Content Include="Vendor\img\dots_2.gif" />
     <Content Include="Vendor\img\icon\subtract.png" />
     <Content Include="Vendor\img\icon\zalo.png" />
+    <Content Include="Vendor\img\products\1.png" />
+    <Content Include="Vendor\img\products\10.png" />
+    <Content Include="Vendor\img\products\11.png" />
+    <Content Include="Vendor\img\products\12.png" />
+    <Content Include="Vendor\img\products\13.png" />
+    <Content Include="Vendor\img\products\14.png" />
+    <Content Include="Vendor\img\products\15.png" />
+    <Content Include="Vendor\img\products\16.png" />
+    <Content Include="Vendor\img\products\17.png" />
+    <Content Include="Vendor\img\products\3.png" />
+    <Content Include="Vendor\img\products\4.png" />
+    <Content Include="Vendor\img\products\5.png" />
+    <Content Include="Vendor\img\products\6.png" />
+    <Content Include="Vendor\img\products\7.png" />
+    <Content Include="Vendor\img\products\8.png" />
+    <Content Include="Vendor\img\products\9.png" />
     <Content Include="Vendor\img\products\item.png" />
     <Content Include="Vendor\img\undraw_posting_photo.svg" />
     <Content Include="Vendor\img\undraw_profile.svg" />
@@ -2293,6 +2314,13 @@
     <Content Include="Views\Account\ForceVoucher.cshtml" />
     <Content Include="Views\Account\ExpireVoucher.cshtml" />
     <Content Include="Views\Account\UsedVoucher.cshtml" />
+    <Content Include="Views\AdminHome\UnAuthorized.cshtml" />
+    <Content Include="Views\AdminBillings\BillingDetail.cshtml" />
+    <Content Include="Views\AdminBillings\Create.cshtml" />
+    <Content Include="Views\AdminBillings\Delete.cshtml" />
+    <Content Include="Views\AdminBillings\Details.cshtml" />
+    <Content Include="Views\AdminBillings\EditBilling.cshtml" />
+    <Content Include="Views\AdminBillings\Index.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />

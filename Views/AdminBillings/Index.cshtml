@@ -1,0 +1,179 @@
+﻿@model IEnumerable<Medimall.Models.Billing>
+@{
+    Layout = "~/Views/Shared/_LayoutAdmin.cshtml";
+}
+<link href="~/Vendor/css/admin-site.css" rel="stylesheet" />
+
+
+<h2 class="text-center">Đơn hàng</h2>
+<p>
+    @Html.ActionLink("Tạo mới", "Create", "AdminProducts", new { @class = "d-none d-sm-inline-block btn btn-sm btn-primary shadow-sm" })
+</p>
+
+<b>Tìm theo: </b>
+<select id="search-by">
+    <option value="Name">Mã tài khoản</option>
+    <option value="Id">Mã hóa đơn</option>
+</select>
+@Html.TextBox("Search")
+<input type="submit" id="search-btn" value="Tìm" />
+<br />
+<br />
+
+<table class="table table-striped ">
+    <thead style="background-color: #4e73df;color:aliceblue ">
+        <tr>
+            <th>@Html.DisplayNameFor(model => model.BillId)</th>
+            <th>@Html.DisplayNameFor(model => model.Account)</th>
+            <th>@Html.DisplayNameFor(model => model.PurchaseDate)</th>
+            <th>@Html.DisplayNameFor(model => model.Status)</th>
+            <th>Chức năng</th>
+        </tr>
+    </thead>
+
+    <tbody id="tblProduct">
+    </tbody>
+</table>
+
+<div id="paged-product"></div>
+
+<script>
+    $(document).ready(function () {
+
+        //Code pagging
+        GetPageData(1);
+
+        //Code xu ly giao dien
+        $('#li-insligt').removeClass('active');
+        $('#li-chat').removeClass('active');
+        $('#li-table').removeClass('active');
+        $('#li-function').addClass('active');
+
+        //Code searching
+        $("#search-btn").click(function () {
+            var SearchBy = $("#search-by").val();
+            var SearchValue = $("#Search").val();
+            var SetData = $("#tblProduct");
+
+            SetData.html("");
+            $.ajax({
+                type: "post",
+                url: "/AdminBillings/GetSearchingData?SearchBy=" + SearchBy + "&SearchValue=" + SearchValue,
+                contentType: "html",
+                success: function (result) {
+                    if (result.length == 0) {
+                        SetData.append('<tr style="color:red"><td colspan="3">Không tìm thấy</td></tr>')
+                    }
+                    else {
+                        $.each(result, function (index, value) {
+                            var data = '<tr><td>' + value.BillId + '</td>' +
+                                '<td>' + value.AccountId + '</td>' +
+                                '<td>' + value.PurchaseDate + '</td>' +
+                                '<td>' + value.Status + '</td>' +
+                                '<td>' + '<a onclick = "EditBilling(' + value.BillId + ')" class="d-none d-sm-inline-block btn btn-sm btn btn-info">' + 'Sửa <i class="fas fa-edit"></i></a>' +
+                                '<a style="margin-left:15px" onclick = "DeleteBilling(' + value.BillId + ')" class="d-none d-sm-inline-block btn btn-sm btn btn-danger ">' + 'Xóa <i class="fas fa-minus-circle"></i></a>' +
+                                '</td>' +
+                                '</tr>';
+
+                            SetData.append(data);
+                        })
+                    }
+                }
+            })
+        })
+    });
+
+
+
+    $(function() {
+        var successMess = '@TempData["SuccessMess"]'
+        if (successMess != '') {
+            alertify.success(successMess);
+            successMess = '';
+        }
+    });
+
+    function GetPageData(pageNum, pageSize) {
+        $("#tblProduct").empty();
+        $("#paged-product").empty();
+        $.getJSON("/AdminBillings/GetPaggedData", { pageNumber: pageNum, pageSize: pageSize }, function (response) {
+            var rowData = "";
+            for (var i = 0; i < response.Data.length; i++) {
+
+                rowData = rowData +
+                    '<tr><td>' + response.Data[i].BillId + '</td>' +
+                    '<td>' + response.Data[i].AccountId + '</td>' +
+                    '<td>' + response.Data[i].PurchaseDate + '</td>' +
+                    '<td>' + response.Data[i].Status + '</td>' +
+                    '<td>' + '<a onclick = "EditBilling(' + response.Data[i].BillId + ')" class="d-none d-sm-inline-block btn btn-sm btn btn-info">' + 'Sửa <i class="fas fa-edit"></i></a>' +
+                    '<a style="margin-left:15px" onclick = "DeleteBilling(' + response.Data[i].BillId + ')" class="d-none d-sm-inline-block btn btn-sm btn btn-danger ">' + 'Xóa <i class="fas fa-minus-circle"></i></a>' +
+                    '</td>' +
+                    '</tr>';
+
+            }
+            $("#tblProduct").append(rowData);
+            PaggingTemplate(response.TotalPages, response.CurrentPage);
+        });
+    }
+
+    function EditBilling(id) {
+        debugger
+        window.location.href = '@Url.Action("EditBilling","AdminBillings")/' + id;
+    }
+
+    function DeleteBilling(id) {
+        alertify.confirm("Xóa", "Bạn có muốn xóa không?", function () {
+            $.ajax({
+                type: "POST",
+                url: "/AdminBillings/DeleteBilling/" + id,
+                data: id,
+                success: function (result) {
+                    window.location.href = '@Url.Action("Index", "AdminBillings")';
+                }
+            })
+        },null);
+    }
+
+    function PaggingTemplate(totalPage, currentPage) {
+        var template = "";
+        var TotalPages = totalPage;
+        var CurrentPage = currentPage;
+        var PageNumberArray = Array();
+
+
+        var countIncr = 1;
+        for (var i = currentPage; i <= totalPage; i++) {
+            PageNumberArray[0] = currentPage;
+            if (totalPage != currentPage && PageNumberArray[countIncr - 1] != totalPage) {
+                PageNumberArray[countIncr] = i + 1;
+            }
+            countIncr++;
+        };
+        PageNumberArray = PageNumberArray.slice(0, 5);
+        var FirstPage = 1;
+        var LastPage = totalPage;
+        if (totalPage != currentPage) {
+            var ForwardOne = currentPage + 1;
+        }
+        var BackwardOne = 1;
+        if (currentPage > 1) {
+            BackwardOne = currentPage - 1;
+        }
+
+
+        template = template + '<ul class="pager">' +
+            '<li class="previous"><a href="#" onclick="GetPageData(' + FirstPage + ')"><i class="fas fa-caret-left"></i>&nbsp;Đầu</a></li>' +
+            '<li><a href="#" onclick="GetPageData(' + BackwardOne + ')"><i class="glyphicon glyphicon-backward"></i></a>';
+
+        var numberingLoop = "";
+        for (var i = 0; i < PageNumberArray.length; i++) {
+            numberingLoop = numberingLoop + '<a class="page-number" onclick="GetPageData(' + PageNumberArray[i] + ')" href="#">' + PageNumberArray[i] + ' &nbsp;&nbsp;</a>'
+        }
+        template = template + numberingLoop + '<a href="#" onclick="GetPageData(' + ForwardOne + ')" ><i class="glyphicon glyphicon-forward"></i></a></li>' +
+            '<li class="next"><a href="#" onclick="GetPageData(' + LastPage + ')">Cuối&nbsp;<i class="fas fa-caret-right"></i></a></li></ul>';
+        $("#paged-product").append(template);
+        $('#selectedId').change(function () {
+            GetPageData(1, $(this).val());
+        });
+    }
+</script>

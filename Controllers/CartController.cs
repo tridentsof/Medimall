@@ -39,6 +39,7 @@ namespace Medimall.Controllers
 
             if(quantityLeft >= quantity)
             {
+                TempData["SuccessQuantity"] = "Cập nhật số lượng thành công";
                 cart.UpdateQuantity(productId, quantity);
                 return RedirectToAction("ShowCart", "Cart");
             }
@@ -190,7 +191,7 @@ namespace Medimall.Controllers
                     billDetail.BillId = billing.BillId;
                     billDetail.ProductId = item._shopping_product.ProductId;
                     billDetail.Price = item._shopping_product.Price;
-                    billDetail.Quantity = item._shopping_product.Quantity;
+                    billDetail.Quantity = item._shopping_quantity;
                     billDetail.ProductName = item._shopping_product.ProductName;
                     billDetail.VoucherId = voucherId;
                     billDetail.Total = totalMoney;

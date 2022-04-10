@@ -1,0 +1,22 @@
+﻿
+@{
+    ViewBag.Title = "UnAuthorized";
+    Layout = "~/Views/Shared/_LayoutAdmin.cshtml";
+}
+<div class="card shadow mb-4">
+    <div class="card-header py-3">
+        <h6 class="m-0 font-weight-bold text-primary">Truy cập từ chối</h6>
+    </div>
+    <div class="card-body">
+        <div class="text-center">
+            <img class="img-fluid px-3 px-sm-4 mt-3 mb-4" style="width: 25rem;" src="~/Vendor/img/banners/undraw_posting_photo.svg" alt="..."/>
+        </div>
+        <p style="color:red">
+            Xin lỗi bạn hiện tại quyền truy cập của bạn không đủ khả năng để sử dụng chức năng này, vui lòng liên hệ quản trị viên để biết thêm thông tin chi tiết!
+        </p>
+        <a target="_blank" rel="nofollow" href="@Url.Action("Index","AdminHome")">
+            Trở về trang chủ →
+        </a>
+    </div>
+</div>
+

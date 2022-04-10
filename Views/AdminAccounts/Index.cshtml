@@ -1,0 +1,159 @@
+﻿@model IEnumerable<Medimall.Models.Account>
+
+@{
+    ViewBag.Title = "Index";
+    Layout = "~/Views/Shared/_LayoutAdmin.cshtml";
+}
+<link href="~/Vendor/css/admin-site.css" rel="stylesheet" />
+<h2 class="text-center">Quản lý tài khoản</h2>
+
+<p>
+    @Html.ActionLink("Tạo mới", "Create", "AdminAccounts", new { @class = "d-none d-sm-inline-block btn btn-sm btn-primary shadow-sm" })
+</p>
+<table class="table table-striped">
+    <thead>
+
+        <tr>
+            <th>
+                @Html.DisplayNameFor(model => model.UserName)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.FullName)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Phone)
+            </th>
+
+            <th>
+                @Html.DisplayNameFor(model => model.Status)
+            </th>
+            <th>
+                Tùy chỉnh
+            </th>
+        </tr>
+    </thead>
+
+    <tbody id="tblData">
+    </tbody>
+</table>
+
+<div id="paged">
+
+</div>
+
+<script>
+    $(document).ready(function () {
+        GetPageData(1);
+        $('#li-insligt').removeClass('active');
+        $('#li-chat').removeClass('active');
+        $('#li-table').removeClass('active');
+        $('#li-function').addClass('active');
+    });
+
+    $(function() {
+            var successMess = '@TempData["SuccessMess"]'
+        if (successMess != '') {
+            alertify.success(successMess);
+            successMess = '';
+        }
+
+        });
+
+    function GetPageData(pageNum, pageSize) {
+        $("#tblData").empty();
+        $("#paged").empty();
+        $.getJSON("/AdminAccounts/GetPaggedData", { pageNumber: pageNum, pageSize: pageSize }, function (response) {
+            var rowData = "";
+            for (var i = 0; i < response.Data.length; i++) {
+                //var convertStatus = function () {
+                //    if (response.Data[i].Status == 1)
+                //        return 'Mở'
+                //    else {
+                //        return 'Đóng'
+                //    }
+                //}
+
+                rowData = rowData +
+                    '<tr><td>' + response.Data[i].UserName + '</td>'
+                    + '<td>' + response.Data[i].FullName + '</td>' +
+                    '<td>' + response.Data[i].Phone + '</td>' +
+                    '<td>' + response.Data[i].Status + '</td>' +
+                    '<td>' + '<a onclick = "EditAccount(' + response.Data[i].AccountId + ')" class="d-none d-sm-inline-block btn btn-sm btn btn-info">' + 'Sửa <i class="fas fa-edit"></i></a>' +
+                    '<a style="margin-left:15px" onclick = "DeleteAccountt(' + response.Data[i].AccountId + ')" class="d-none d-sm-inline-block btn btn-sm btn btn-danger ">' + 'Xóa <i class="fas fa-minus-circle"></i></a>' +
+                    '</td>' +
+                    '</tr>';
+
+            }
+            $("#tblData").append(rowData);
+            PaggingTemplate(response.TotalPages, response.CurrentPage);
+        });
+    }
+
+    function EditAccount(id) {
+        window.location.href = '@Url.Action("Edit","AdminAccounts")/' + id;
+    }
+
+    function DeleteAccount(id) {
+        alertify.confirm("Xóa", "Bạn có muốn xóa không?", function () {
+            window.location.href = '@Url.Action("Delete","AdminAccounts")/' + id;
+        },null);
+    }
+
+    function DeleteAccountt(id) {
+        alertify.confirm("Xóa", "Bạn có muốn xóa không?", function () {
+            $.ajax({
+                type: "POST",
+                url: "/AdminAccounts/DeleteAccount/" + id,
+                data: id,
+                success: function (result) {
+                    window.location.href = '@Url.Action("Index","AdminAccounts")';
+                }
+            })
+        },null);
+    }
+
+    function PaggingTemplate(totalPage, currentPage) {
+        var template = "";
+        var TotalPages = totalPage;
+        var CurrentPage = currentPage;
+        var PageNumberArray = Array();
+
+
+        var countIncr = 1;
+        for (var i = currentPage; i <= totalPage; i++) {
+            PageNumberArray[0] = currentPage;
+            if (totalPage != currentPage && PageNumberArray[countIncr - 1] != totalPage) {
+                PageNumberArray[countIncr] = i + 1;
+            }
+            countIncr++;
+        };
+        PageNumberArray = PageNumberArray.slice(0, 5);
+        var FirstPage = 1;
+        var LastPage = totalPage;
+        if (totalPage != currentPage) {
+            var ForwardOne = currentPage + 1;
+        }
+        var BackwardOne = 1;
+        if (currentPage > 1) {
+            BackwardOne = currentPage - 1;
+        }
+
+        template = "<p>Trang " + CurrentPage + " trong " + TotalPages + " trang</p>"
+        template = template + '<ul style="list-style-type:none;display:flex;margin-left:-3%" class="pager">' +
+            '<li class="previous"><a href="#" onclick="GetPageData(' + FirstPage + ')"><i class="fa fa-fast-backward"></i>&nbsp;Đầu</a></li>' +
+            '<li><a href="#" onclick="GetPageData(' + BackwardOne + ')"><i class="glyphicon glyphicon-backward"></i></a>';
+
+        var numberingLoop = "";
+        for (var i = 0; i < PageNumberArray.length; i++) {
+            numberingLoop = numberingLoop + '<a style="margin-left:10px" class="page-number active" onclick="GetPageData(' + PageNumberArray[i] + ')" href="#">' + PageNumberArray[i] + ' &nbsp;&nbsp;</a>'
+        }
+        template = template + numberingLoop + '<a href="#" onclick="GetPageData(' + ForwardOne + ')" ><i class="glyphicon glyphicon-forward"></i></a></li>' +
+            '<li class="next"><a href="#" onclick="GetPageData(' + LastPage + ')">Cuối&nbsp;<i class="fa fa-fast-forward"></i></a></li></ul>';
+        $("#paged").append(template);
+        $('#selectedId').change(function () {
+            GetPageData(1, $(this).val());
+        });
+    }
+</script>
+
+

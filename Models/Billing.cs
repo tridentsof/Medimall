@@ -30,7 +30,7 @@ namespace Medimall.Models
         public Nullable<System.DateTime> PurchaseDate { get; set; }
         [Display(Name = "Địa chỉ")]
         public string Address { get; set; }
-        [Display(Name = "Mã vận chuyển")]
+        [Display(Name = "Hình thức vận chuyển")]
         public Nullable<int> DeliveryId { get; set; }
         [Display(Name = "Tổng tiền")]
         public Nullable<decimal> Total { get; set; }
@@ -40,6 +40,7 @@ namespace Medimall.Models
         public Nullable<int> Status { get; set; }
         [Display(Name = "Số điện thoại")]
         public string Phone { get; set; }
+        [Display(Name = "Tên người dùng")]
         public string UserName { get; set; }
     
         public virtual Account Account { get; set; }
