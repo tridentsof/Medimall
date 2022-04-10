@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Web;
 using System.Web.Mvc;
+using Medimall.Infrastructure;
 using Medimall.Models;
 
 namespace Medimall.Controllers
@@ -47,6 +48,7 @@ namespace Medimall.Controllers
                 return View(model);
         }
 
+        [CustomAuthenticationCustomerFilter]
         public JsonResult SaveVoucher(int id)
         {
             bool result = false;

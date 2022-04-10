@@ -276,7 +276,14 @@
 
 <script>
     $(document).ready(function () {
-        var successMess = '@TempData["SuccessMessVoucher"]'
+        var successMess = '@TempData["SuccessMessVoucher"]';
+        var successCart = '@TempData["SuccessCart"]';
+
+        if (successCart != '') {
+            alertify.success(successCart);
+            successCart = '';
+        }
+
         if (successMess != '') {
             alertify.success(successMess);
             successMess = '';
