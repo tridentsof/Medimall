@@ -2,26 +2,31 @@
 
 @foreach (var item in Model)
 {
-    <div class="item">
-        <a href="#"><img src="~/Vendor/img/products/@(item.ProductId).png" /></a>
-        <div>
-            <p>@item.ProductName</p>
-            <h4>@String.Format("{0:0,0}", item.Price)/Sản phẩm</h4>
-        </div>
-        <button onclick="addToCart(@item.ProductId)">Thêm vào giỏ hàng</button>
+<div class="item">
+    <a href="#"><img src="~/Vendor/img/products/@(item.ProductId).png" /></a>
+    <div>
+        <p>@item.ProductName</p>
+        <h4>@String.Format("{0:0,0}", item.Price)/Sản phẩm</h4>
     </div>
+    @if (item.Quantity > 0)
+    {
+        <button onclick="addToCart(@item.ProductId)">
+            Thêm vào giỏ hàng
+        </button>
+    }
+    else
+    {
+        <button style="background-color: #b2bec3 ">
+            Tạm hết hàng
+        </button>
+    }
+</div>
 }
 
 <script>
     function addToCart(productId) {
             window.location.href = '@Url.Action("AddToCart","Home")/' + productId;
     }
-
-    @*$(document).ready(function () {
-        function addToCart(productId) {
-            window.location.href = '@Url.Action("AddToCart","Home")/' + productId;
-        }
-    })*@
 </script>
 
 
