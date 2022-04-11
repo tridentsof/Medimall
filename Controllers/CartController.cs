@@ -37,7 +37,7 @@ namespace Medimall.Controllers
             int quantity = int.Parse(form["quantity"]);
             var quantityLeft = db.Products.Where(m => m.ProductId == productId).FirstOrDefault().Quantity;
 
-            if(quantityLeft >= quantity)
+            if (quantityLeft >= quantity)
             {
                 TempData["SuccessQuantity"] = "Cập nhật số lượng thành công";
                 cart.UpdateQuantity(productId, quantity);
@@ -45,7 +45,7 @@ namespace Medimall.Controllers
             }
             else
             {
-                var alert = String.Format("Xin lỗi quý khách! số lượng sản phẩm còn lại trong kho: {0}",quantityLeft);
+                var alert = String.Format("Xin lỗi quý khách! số lượng sản phẩm còn lại trong kho: {0}", quantityLeft);
                 TempData["ErrorQuantity"] = alert;
                 return RedirectToAction("ShowCart", "Cart");
             }
@@ -61,8 +61,8 @@ namespace Medimall.Controllers
             var voucher = db.Vouchers.Where(m => m.VoucherId == idVoucher).First();
             decimal startFrom = voucher.StartFrom.GetValueOrDefault();
             int percentDiscount = voucher.Percent.GetValueOrDefault();
-            
-            if(cart.TotalMoney() < Decimal.ToDouble(startFrom))
+
+            if (cart.TotalMoney() < Decimal.ToDouble(startFrom))
             {
                 TempData["ErrorVoucher"] = "Giá trị đơn hàng chưa đủ để áp dụng khuyến mãi!";
                 return RedirectToAction("ShowCart", "Cart");
@@ -89,7 +89,7 @@ namespace Medimall.Controllers
         {
             var voucher = db.Vouchers.ToList();
 
-            return PartialView("Voucher",voucher);
+            return PartialView("Voucher", voucher);
         }
 
         public ActionResult Address()
@@ -112,7 +112,7 @@ namespace Medimall.Controllers
         public ActionResult Delivery()
         {
             var delivery = db.Deliveries.ToList();
-            return PartialView("Delivery",delivery);
+            return PartialView("Delivery", delivery);
         }
 
         public ActionResult ApplyDelivery(FormCollection form)
@@ -122,7 +122,7 @@ namespace Medimall.Controllers
             var deliveryId = int.Parse(form["delivery-id"]);
             var delivery = db.Deliveries.Where(m => m.DeliveryId == deliveryId).FirstOrDefault();
 
-            var deliveryPrice = delivery.DeliveryPrice; 
+            var deliveryPrice = delivery.DeliveryPrice;
 
             Session["DeliveryPrice"] = deliveryPrice;
             Session["DeliveryId"] = deliveryId;
@@ -186,14 +186,15 @@ namespace Medimall.Controllers
                     product.QuantitySold += item._shopping_quantity;
                     product.Quantity -= item._shopping_quantity;
 
-                    var totalMoney = Convert.ToDecimal(item._shopping_product.Price * (100 - voucher.Percent.GetValueOrDefault()) / 100 + delivery.DeliveryPrice.GetValueOrDefault());
+                    var voucherPercent = voucher?.Percent ?? 0;
+                    var deliveryPrice = delivery?.DeliveryPrice ?? 0;
+                    var totalMoney = Convert.ToDecimal(item._shopping_product.Price * (100 - voucherPercent) / 100 + deliveryPrice);
 
                     billDetail.BillId = billing.BillId;
                     billDetail.ProductId = item._shopping_product.ProductId;
                     billDetail.Price = item._shopping_product.Price;
                     billDetail.Quantity = item._shopping_quantity;
                     billDetail.ProductName = item._shopping_product.ProductName;
-                    billDetail.VoucherId = voucherId;
                     billDetail.Total = totalMoney;
 
                     db.BillDetails.Add(billDetail);
