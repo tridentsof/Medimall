@@ -6,7 +6,7 @@
         <a href="#"><img src="~/Vendor/img/products/@(item.ProductId).png" /></a>
         <div>
             <p>@item.ProductName</p>
-            <h4>@(item.Price)/Hộp</h4>
+            <h4>@String.Format("{0:0,0}", item.Price)đ/Sản phẩm</h4>
         </div>
         <button onclick="addToCart(@item.ProductId)">Thêm vào giỏ hàng</button>
     </div>

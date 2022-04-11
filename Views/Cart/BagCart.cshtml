@@ -16,11 +16,11 @@ else
                 Giỏ hàng
                 @if (@TempData["DiscountPrice"] != null)
                 {
-                    <p>@TempData["DiscountPrice"] đ</p>
+                    <p>@String.Format("{0:0,0}", TempData["DiscountPrice"])đ</p>
                 }
                 else
                 {
-                    <p>@ViewBag.TotalMoney đ</p>
+                    <p>@String.Format("{0:0,0}", ViewBag.TotalMoney)đ</p>
                 }
 
             </div>

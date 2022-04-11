@@ -21,7 +21,7 @@
                 <h3>Giỏ hàng</h3>
                 <div class="ct-left3-div">
                     <p class="index">1</p>
-                    <p class="checkout-title">Giỏ hàng (@Model.TotalQuantity() sản phẩm - @Model.TotalMoney() VND)</p>
+                    <p class="checkout-title">Giỏ hàng (@Model.TotalQuantity() sản phẩm -  @String.Format("{0:0,0}", Model.TotalMoney()) VND)</p>
                 </div>
                 @foreach (var item in Model.Items)
                 {
@@ -46,18 +46,10 @@
                         <p class="name-product">@item._shopping_product.ProductName</p>
                         <div class="preview-cost">
                             <p>@item._shopping_product.Price VND</p>
-                            <p>@item._shopping_product.Price VND/Sản phẩm</p>
+                            <p>@String.Format("{0:0,0}", item._shopping_product.Price) VND/Sản phẩm</p>
                         </div>
 
-                        <div class="counter">
-
-                            @*<div class="quantity-product">
-                                    <input type="hidden" value="@item._shopping_product.ProductId" name="ProductId" />
-                                    <input type="button" value="-" class="btn quantity-left-minus" data-type="minus" data-field="" />
-                                    <input readonly="" type="number" class="num" name="quantity" value="@item._shopping_quantity" id="quantity" />
-                                    <input type="button" value="+" class="btn quantity-right-plus" data-type="plus" data-field="" />
-
-                                </div>*@
+                        <div class="counter">   
                             @using (Html.BeginForm("UpdateQuantity", "Cart"))
                             {
                                 <div class="quantity-product">
@@ -71,13 +63,13 @@
                                 </div>
                             }
                         </div>
-                        <p>@total</p>
+                        <p>@String.Format("{0:0,0}",total)</p>
                         <input style="color:red;  padding: 0" type="button" value="x" class="btn" onclick="myFunction2()">
                     </div>
                 }
                 <div class="wrap-preview-total-cost">
-                    <p>Tạm tính:</p>
-                    <h5>@Model.TotalMoney() VNĐ</h5>
+                    <p>Tạm tính:</p>                   
+                    <h5>@String.Format("{0:0,0}", Model.TotalMoney())  VNĐ</h5>
                 </div>
             </div>
 
@@ -115,7 +107,7 @@
                         <h5>Tiền Mặt</h5>
                         <p>Thanh toán bằng tiền mặt khi nhận hàng</p>
                     </div>
-                    <input id="money-pay" type="radio" value="1" name="payment" onclick="handleClick(this)">
+                    <input checked="checked" id="money-pay" type="radio" value="1" name="payment" onclick="handleClick(this)">
                     <span class="checkmark"></span>
                 </label>
                 <label class="box-discount box-money">
@@ -154,7 +146,7 @@
                 <h3>Tổng tiền</h3>
                 <div class="right-box-item">
                     <p>Giá ban đầu</p>
-                    <h3>@Model.TotalMoney() VND</h3>
+                    <h3>@String.Format("{0:0,0}",Model.TotalMoney()) VND</h3>
                 </div>
 
                 @using (Html.BeginForm("Purchase", "Cart"))
@@ -166,13 +158,13 @@
                             {
                                 double finalPrice = Convert.ToDouble(Session["DeliveryPrice"]) + Convert.ToDouble(Session["DiscountPrice"]);
                                 <input type="number" hidden="hidden" name="total-money" value="@finalPrice" />
-                                @finalPrice
+                                @String.Format("{0:0,0}", finalPrice)
                                 <span>VND</span>
                             }
                             else
                             {
                                 double finalPrice = Model.TotalMoney() + Convert.ToDouble(Session["DeliveryPrice"]);
-                                @finalPrice
+                                @String.Format("{0:0,0}",finalPrice)
                                 <input hidden="hidden" type="number" name="total-money" value="@finalPrice" />
                                 <span>VND</span>
                             }
