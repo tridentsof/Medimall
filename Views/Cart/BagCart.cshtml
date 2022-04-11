@@ -8,6 +8,17 @@
         </div>
     </a>
 }
+else if (ViewBag.QuantityCart == 0)
+{
+    <a href="@Url.Action("ShowCart","Cart")">
+        <div class="cart">
+            <div>
+                Giỏ hàng
+            </div>
+            <img src="~/Vendor/img/icon/shopping-cart.png" />
+        </div>
+    </a>
+}
 else
 {
     <a href="@Url.Action("ShowCart","Cart")">
