@@ -2321,6 +2321,7 @@
     <Content Include="Views\AdminBillings\Details.cshtml" />
     <Content Include="Views\AdminBillings\EditBilling.cshtml" />
     <Content Include="Views\AdminBillings\Index.cshtml" />
+    <Content Include="Views\Home\SearchProduct.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
