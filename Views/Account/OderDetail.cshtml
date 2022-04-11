@@ -1,0 +1,210 @@
+﻿@model IEnumerable<Medimall.Models.BillDetail>
+
+@{ 
+    ViewBag.Title = "Chi Tiết Đơn Hàng";
+    Layout = "~/Views/Shared/_LayoutCustomer.cshtml";
+}
+<style>
+    :root {
+        --blue: #0f62f9;
+        --darkblue: #003cbf;
+        --green: #5dac46;
+        --gray: #ededed;
+        --black: #112950;
+    }
+
+    * {
+        font-family: 'Dosis', sans-serif;
+    }
+
+    p {
+        margin: 0;
+        padding: 0;
+    }
+
+    body {
+        background: var(--gray);
+    }
+
+    .title {
+        font-size: 17px;
+        font-weight: 600;
+        margin-bottom: 12px;
+        color: var(--black);
+    }
+
+    .container {
+        border-radius: 12px;
+        margin: 50px auto;
+        width: 775px;
+        padding: 24px;
+        height: auto;
+        background: #fff;
+        display: flex;
+        flex-direction: column;
+    }
+
+    .navigation-header {
+        color: var(--black);
+        display: flex;
+        margin-bottom: 19px;
+    }
+
+        .navigation-header svg {
+            -webkit-transform: rotate(180deg);
+            -moz-transform: rotate(180deg);
+            transform: rotate(180deg);
+        }
+
+    .title-wrap,
+    .item-wrap,
+    .detail-wrap,
+    .info-wrap {
+        border-top: 1px solid #ddd;
+    }
+
+    .order-contain {
+      margin:0 auto;
+    }
+
+    .title-wrap {
+        display: flex;
+        padding: 20px 0;
+    }
+
+        .title-wrap h4 {
+            font-weight: 700;
+        }
+
+            .title-wrap h4:last-child {
+                margin-left: 10px;
+                color: var(--green);
+            }
+
+    .info-wrap,
+    .detail-wrap,
+    .item-wrap {
+        padding: 20px 0;
+    }
+
+    .span-wrap {
+        display: flex;
+    }
+
+    .span1-item {
+        display: flex;
+        justify-content: flex-start;
+        align-items: center;
+        color: #8e9aab;
+    }
+
+    .span1-item,
+    .span2 div {
+        margin-bottom: 10px;
+    }
+
+    .span1 {
+        width: 200px;
+        margin-right: 50px;
+        line-height: 24px;
+    }
+
+    .span2 {
+        line-height: 24px;
+        color: var(--black);
+        width: 500px;
+    }
+
+    .span-item {
+        display: flex;
+        align-items: flex-start;
+        justify-content: space-between;
+        margin-bottom: 40px;
+    }
+
+        .span-item img {
+            width: 12%;
+            height: 12%;
+            object-fit: cover;
+        }
+
+    .name-item {
+        width: 400px;
+    }
+
+    .money {
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+        font-size: 13px;
+    }
+
+        .money p:first-child {
+            color: var(--blue);
+        }
+
+        .money p:last-child {
+            margin-left: 10px;
+        }
+
+    .status {
+        font-size: 14px;
+        text-align: center;
+        border-radius: 12px;
+        width: 120px;
+        padding: 0 2px;
+        background: var(--green);
+        color: #fff;
+    }
+
+    .status2 {
+        font-size: 14px;
+        text-align: center;
+        border-radius: 12px;
+        width: 120px;
+        padding: 0 2px;
+        background: #f6b93b;
+        color: #fff;
+    }
+
+    .order-money-detail {
+        border: 1px solid #0f62f9;
+        border-radius: 12px;
+        width: 416px;
+        padding: 25px;
+        box-shadow: #0f3c912f 0px 0px 10px 0px;
+    }
+
+        .order-money-detail em {
+            color: #8e9aab;
+            font-style: normal;
+        }
+
+    .order-money-item {
+        display: flex;
+        justify-content: space-between;
+        margin-bottom: 15px;
+    }
+</style>
+<div class="container">
+    <a href="@Url.Action("Account","Account")">< Trở lại</a>
+    @Html.Action("OderDetailHeader", "Account")
+    <div class="item-wrap">
+        <div class="title">Sản phẩm đã mua</div>
+        @foreach (var item in Model)
+        {
+            <div class="span-item">
+                <img src="~/Vendor/img/products/@(item.ProductId).png" alt="" />
+                <div class="name-item">
+                    @item.ProductName
+                </div>
+                <div class="money">
+                    <p>@String.Format("{0:0,0}", item.Price) VND</p>
+                    <p>x @(item.Quantity)</p>
+                </div>
+            </div>
+        }
+    </div>
+    <hr />
+    @Html.Action("OderDetailTotal","Account")
+</div>

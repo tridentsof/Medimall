@@ -17,15 +17,15 @@
                     </div>
                     <p>
                         Mã đơn hàng:
-                        <span class="oderid"> @(item.BillId)</span>
+                        <span class="oderid">#MMDH0@(item.BillId)</span>
                     </p>
                     <p>
                         Giá trị đơn:
-                        <span class="priceoder">@(item.Total) VND</span>
+                        <span class="priceoder">@String.Format("{0:0,0}", item.Total) VND</span>
                     </p>
                 </div>
                 <div class="listoder-bot">
-                    <a href="http://">
+                    <a href="@Url.Action("OderDetail","Account",new {id=item.BillId})">
                         Xem chi tiết
                         <i class="fas fa-chevron-right"></i>
                     </a>

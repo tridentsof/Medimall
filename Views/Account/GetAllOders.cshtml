@@ -1,7 +1,7 @@
 ﻿@model IEnumerable<Medimall.Models.Billing>
 @if (Model != null)
 {
-    <div>
+    <div class="oder-history">
         @foreach (var item in Model)
         {
             <fieldset class="detailsorder">
@@ -10,7 +10,7 @@
                     case 1:<legend>Chờ xác nhận</legend> break;
                     case 2:<legend>Đang giao</legend>break;
                     case 3:<legend>Hoàn thành</legend>break;
-                    case 4:<legend>Đã hủy</legend>break;
+                    case 0:<legend>Đã hủy</legend>break;
                 }
                 <div class="listoder-header">
                     <div class="d-flex justify-content-between">
@@ -22,21 +22,21 @@
                         {
                             case 1:
                             case 2:
-                            case 4:<p class="state2">Chưa hoàn thành</p> break;
+                            case 0:<p class="state2">Chưa hoàn thành</p> break;
                             case 3:<p class="state">Hoàn thành</p>break;
                         }
                     </div>
                     <p>
                         Mã đơn hàng:
-                        <span class="oderid"> @(item.BillId)</span>
+                        <span class="oderid"> #MMDH0@(item.BillId)</span>
                     </p>
                     <p>
                         Giá trị đơn:
-                        <span class="priceoder">@(item.Total) VND</span>
+                        <span class="priceoder">@String.Format("{0:0,0}", item.Total) VND</span>
                     </p>
                 </div>
                 <div class="listoder-bot">
-                    <a href="http://">
+                    <a href="@Url.Action("OderDetail","Account",new {id=item.BillId})" onclick="viewdetail()">
                         Xem chi tiết
                         <i class="fas fa-chevron-right"></i>
                     </a>
@@ -52,3 +52,10 @@ else
         <p>Bạn chưa có đơn hàng nào rồi</p>
     </div>
 }
+
+
+<script type="text/javascript">
+    function viewdatail() {
+        var oder=document.getElementsByClassName("")
+    }
+</script>

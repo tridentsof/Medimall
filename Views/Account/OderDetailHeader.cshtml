@@ -1,0 +1,32 @@
+﻿@model Medimall.Models.Billing
+<div class="detail-wrap">
+    <div class="title">Chi tiết đơn hàng</div>
+    <div class="span-wrap">
+        <div class="span1">
+            <div class="span1-item">
+                <p>Mã đơn hàng</p>
+            </div>
+            <div class="span1-item">
+                <p>Nơi mua hàng</p>
+            </div>
+            <div class="span1-item">
+                <p>Ngày mua hàng</p>
+            </div>
+            <div class="span1-item">
+                <p>Trạng thái</p>
+            </div>
+        </div>
+        <div class="span2">
+            <div>#MMDH0@(Model.BillId)</div>
+            <div>@(Model.Address)</div>
+            <div>@(Model.PurchaseDate)</div>
+            @switch (Model.Status)
+            {
+                case 1:
+                case 2:
+                case 0:<p class="status2">Chưa hoàn thành</p> break;
+                case 3:<p class="status">Hoàn thành</p>break;
+            }
+        </div>
+    </div>
+</div>
