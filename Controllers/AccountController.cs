@@ -50,7 +50,7 @@ namespace Medimall.Controllers
         public ActionResult GetCancleOders()
         {
             var accountId = int.Parse(Session["UserId"].ToString());
-            var displayoder = db.Billings.Where(p => p.AccountId == accountId).Where(p => p.Status == 4).ToList();
+            var displayoder = db.Billings.Where(p => p.AccountId == accountId).Where(p => p.Status == 0).ToList();
             return PartialView(displayoder);
         }
         public ActionResult GetAddressOder()
@@ -62,7 +62,7 @@ namespace Medimall.Controllers
         public ActionResult Edit()
         {
             var accountId = int.Parse(Session["UserId"].ToString());
-            var displayuser = db.Accounts.Where(p => p.AccountId == accountId).ToList();
+            var displayuser = db.Accounts.Where(p => p.AccountId == accountId).FirstOrDefault();
             return PartialView("Edit", displayuser);
         }
         [HttpPost]
@@ -122,6 +122,37 @@ namespace Medimall.Controllers
 
             var voucher = db.Vouchers.Where(p => p.VoucherId == voucherid).ToList();
              return PartialView(voucher);
+        }
+        public ActionResult OderDetail()
+        {
+            int id = int.Parse(this.RouteData.Values["id"].ToString());
+            var diplasydetail = db.BillDetails.Where(p => p.BillId == id).ToList();
+            return PartialView(diplasydetail);
+        }
+        public ActionResult OderDetailHeader()
+        {
+            int id = int.Parse(this.RouteData.Values["id"].ToString());
+            var diplasydetail = db.Billings.Where(p => p.BillId == id).FirstOrDefault();
+            return PartialView(diplasydetail);
+        }
+        public ActionResult OderDetailTotal()
+        {
+            int  id = int.Parse(this.RouteData.Values["id"].ToString());
+            decimal Total = (decimal)db.BillDetails.Where(p=>p.BillId==id)
+            .Select(p => p.Total)
+            .DefaultIfEmpty()
+            .Sum();
+             int ? getiddeli = db.Billings.Where(u => u.BillId == id).Select(u => u.DeliveryId).FirstOrDefault();
+
+            decimal DeliPrice = (decimal)db.Deliveries.Where(p => p.DeliveryId == getiddeli).Select(p => p.DeliveryPrice).FirstOrDefault();
+
+            ViewBag.Total = Total;
+            ViewBag.PriceDeli = DeliPrice;
+
+            decimal SumTotal = Total + DeliPrice;
+            ViewBag.Sumtotal = SumTotal;
+            var diplasydetail = db.BillDetails.Where(p => p.BillId == id).ToList();
+            return PartialView(diplasydetail);
         }
     }
 }

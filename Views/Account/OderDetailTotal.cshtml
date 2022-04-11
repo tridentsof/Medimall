@@ -1,0 +1,27 @@
+﻿@model IEnumerable<Medimall.Models.BillDetail>
+
+<div class="order-contain">
+    <div class="order-money-detail">
+        <div class="title">Tổng tiền</div>
+        <div class="order-money-item">
+            <p>Hàng hoá</p>
+            <p>@String.Format("{0:0,0}",ViewBag.Total) VND</p>
+        </div>
+        <div class="order-money-item">
+            <p>
+                Phí vận chuyển <br />
+            </p>
+            <p style="color: #5dac46">@String.Format("{0:0,0}", ViewBag.PriceDeli) VND</p>
+        </div>
+        <div class="order-money-item">
+            <p>Thành tiền</p>
+            <h5 style="color: #feaa48; font-weight: 700">
+                @String.Format("{0:0,0}", ViewBag.Sumtotal) VND
+            </h5>
+        </div>
+        <div class="order-money-item">
+            <p>(Điểm tích lũy)</p>
+            <p style="font-weight: 600">Đang cập nhật</p>
+        </div>
+    </div>
+</div>
