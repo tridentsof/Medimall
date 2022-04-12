@@ -181,11 +181,12 @@
 
     .wrappre_readmore_transport {
         width: 100%;
-        height: 150px;
+        height: 100px;
         padding: 10px;
         border: 1px #e5e5e5 solid;
         margin-top: 20px;
         border-radius: 20px;
+        text-align:center;
     }
 
     .category_delivery {
@@ -204,11 +205,12 @@
         cursor: not-allowed !important;
     }
 
-    .ghn, .Ahamove {
+    .ghn{
         padding: 4px 10px;
         border: 1px #e5e5e5 solid;
         border-radius: 20px;
         font-size: 13px;
+        width:100px;
     }
 
     .Ahamove {
@@ -432,7 +434,44 @@
         height: auto;
         margin-left: 20px;
     }
+    .viewall-header {
+        background-color: #ededed;
+        padding: 15px;
+        margin-top: -20px;
+    }
+
+        .viewall-header ul {
+            display: flex;
+            list-style: none;
+            margin-left: 150px;
+            margin-top: 5px;
+        }
+
+            .viewall-header ul li {
+                margin-left: 9px;
+                line-height: 20px;
+                font-weight: 700;
+                text-transform: uppercase;
+            }
+
+                .viewall-header ul li i {
+                    color: #112950;
+                    font-size: 4px;
+                    margin-right: 9px;
+                }
+
+                .viewall-header ul li:first-child {
+                    color: #112950;
+                    opacity: 0.5
+                }
 </style>
+<div class="container-fluid viewall-header">
+    <ul>
+        <li>Medimall</li>
+        <li><i class="fas fa-circle"></i>@ViewBag.CategoryName</li>
+        <li><i class="fas fa-circle"></i>@Model.ProductName</li>
+    </ul>
+</div>
 <section class="wrapper_all">
     <div class="container">
         <div class="wrapper">
@@ -441,7 +480,7 @@
                     <img src="~/Vendor/img/products/@(Model.ProductId).png" alt="" class="img-product">
                 </div>
                 <div class="wrappre_content col-4">
-                    <h4 class="wrappre_content_title">@(Model.ProductName)</h4>
+                    <h4 class="wrappre_content_title" style="font-weight:bold">@(Model.ProductName)</h4>
                     <div class="wrappre_content-product">
                         <div class="wrappre_content_price">@String.Format("{0:0,0}", Model.Price) VND</div>
                         <p class="wrappre_content-text">
