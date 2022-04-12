@@ -3,8 +3,9 @@
 @foreach (var item in Model)
 {
     <div class="item">
-        <a href="@Url.Action("GetDetailProductPage","Home",new {id=item.ProductId})"></a>
+        <a href="@Url.Action("GetDetailProductPage","Home",new {id=item.ProductId})">
             <img src="~/Vendor/img/products/@(item.ProductId).png" />
+        </a>
             <div>
                 <p>@item.ProductName</p>
                 <h4>@String.Format("{0:0,0}", item.Price)đ/Sản phẩm</h4>
