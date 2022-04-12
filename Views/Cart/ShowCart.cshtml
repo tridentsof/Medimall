@@ -203,9 +203,14 @@ else
                             </h3>
                         </div>
                         <input id="payment-method" type="number" hidden="hidden" value="1" name="pay-id" />
-                        <button type="submit" class="btn-order">ĐẶT HÀNG</button>
+                        <div class="popup-purchase" id="popup-purchase">
+                            <h4>Xác nhận mua hàng</h4>
+                            <p>Bạn có xác nhận mua sản phẩm này không ?</p>
+                            <input type="button" class="back" value="Quay Lại" onclick="CanclePurchase()">
+                            <input type="submit" class="deleteall" value="Xác nhận">
+                        </div>
                     }
-
+                    <button onclick="PurchaseFunction()" class="btn-order">ĐẶT HÀNG</button>
                 </div>
             </div>
         </div>
@@ -268,8 +273,18 @@ else
         var blur = document.getElementById("blur");
         blur.classList.add("blur")
     }
-
-
+    function PurchaseFunction() {
+        var popuppurchase = document.getElementById("popup-purchase");
+        popuppurchase.classList.add("active-popup-purchase");
+        var blur = document.getElementById("blur");
+        blur.classList.add("blur")
+    }
+    function CanclePurchase() {
+        var back = document.getElementById("popup-purchase")
+        back.classList.remove("active-popup-purchase");
+        var blur = document.getElementById("blur");
+        blur.classList.remove("blur")
+    }
 
 </script>
 
