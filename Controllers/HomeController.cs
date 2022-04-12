@@ -29,7 +29,8 @@ namespace Medimall.Controllers
         {
             var product = db.Products.Where(m => string.IsNullOrEmpty(searchString)
                                             || m.ProductName.ToUpper().Contains(searchString.ToUpper().Trim())
-                                            || m.Category.CategoryName.ToUpper().Contains(searchString.ToUpper().Trim())).ToList();
+                                            || m.Category.CategoryName.ToUpper().Contains(searchString.ToUpper().Trim())
+                                            || m.UsesFor.ToUpper().Contains(searchString.ToUpper().Trim())).ToList();
 
             ViewBag.ResultCount = product.Count();
             return View("~/Views/Home/ListProduct.cshtml", product);
