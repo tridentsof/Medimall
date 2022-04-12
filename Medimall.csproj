@@ -424,6 +424,7 @@
     <Content Include="Vendor\img\undraw_profile_3.svg" />
     <Content Include="Vendor\img\undraw_rocket.svg" />
     <Content Include="Vendor\js\cart.js" />
+    <Content Include="Vendor\js\chitietsanpham.js" />
     <Content Include="Vendor\js\demo\chart-area-demo.js" />
     <Content Include="Vendor\js\demo\chart-bar-demo.js" />
     <Content Include="Vendor\js\demo\chart-pie-demo.js" />

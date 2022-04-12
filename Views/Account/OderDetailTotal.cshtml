@@ -4,14 +4,20 @@
     <div class="order-money-detail">
         <div class="title">Tổng tiền</div>
         <div class="order-money-item">
-            <p>Hàng hoá</p>
-            <p>@String.Format("{0:0,0}",ViewBag.Total) VND</p>
+            <p>Tạm tính</p>
+            <p>@String.Format("{0:0,0}", ViewBag.Total) VND</p>
         </div>
         <div class="order-money-item">
             <p>
                 Phí vận chuyển <br />
             </p>
             <p style="color: #5dac46">@String.Format("{0:0,0}", ViewBag.PriceDeli) VND</p>
+        </div>
+        <div class="order-money-item">
+            <p>
+               Giảm giá <br />
+            </p>
+            <p style="color: #74b9ff">-@String.Format("{0:0,0}", ViewBag.TotalVoucher) VND</p>
         </div>
         <div class="order-money-item">
             <p>Thành tiền</p>

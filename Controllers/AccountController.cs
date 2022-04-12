@@ -138,18 +138,35 @@ namespace Medimall.Controllers
         public ActionResult OderDetailTotal()
         {
             int  id = int.Parse(this.RouteData.Values["id"].ToString());
-            decimal Total = (decimal)db.BillDetails.Where(p=>p.BillId==id)
-            .Select(p => p.Total)
-            .DefaultIfEmpty()
-            .Sum();
+
+            List<BillDetail> billDetails = db.BillDetails.Where(u => u.BillId == id).ToList();
+            decimal? Total = 0;
+            foreach(var item in billDetails)
+            {
+                for (int i = 0; i < billDetails.Count; i++)
+                {
+                    Total = Total+(item.Price * item.Quantity);
+                    i++;
+                }
+            }    
              int ? getiddeli = db.Billings.Where(u => u.BillId == id).Select(u => u.DeliveryId).FirstOrDefault();
 
             decimal DeliPrice = (decimal)db.Deliveries.Where(p => p.DeliveryId == getiddeli).Select(p => p.DeliveryPrice).FirstOrDefault();
 
+            int? voucherid = db.BillDetails.Where(u => u.BillId == id).Select(p => p.VoucherId).FirstOrDefault();
+            decimal? PercentVoucher = 0;
+            if (voucherid !=null)
+            {
+                PercentVoucher = db.Vouchers.Where(p => p.VoucherId == voucherid).Select(p => p.Percent).FirstOrDefault();
+            }
+            decimal? TotalVoucher = (Total * PercentVoucher / 100);
+
+            ViewBag.TotalVoucher = TotalVoucher;
+
             ViewBag.Total = Total;
             ViewBag.PriceDeli = DeliPrice;
 
-            decimal SumTotal = Total + DeliPrice;
+            decimal ? SumTotal = Total + DeliPrice-TotalVoucher;
             ViewBag.Sumtotal = SumTotal;
             var diplasydetail = db.BillDetails.Where(p => p.BillId == id).ToList();
             return PartialView(diplasydetail);
