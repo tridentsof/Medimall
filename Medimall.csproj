@@ -188,6 +188,7 @@
     <Compile Include="Models\ListDrug.cs">
       <DependentUpon>DbContext.tt</DependentUpon>
     </Compile>
+    <Compile Include="Models\ListProductViewModel.cs" />
     <Compile Include="Models\News.cs">
       <DependentUpon>DbContext.tt</DependentUpon>
     </Compile>
@@ -236,7 +237,9 @@
     <Content Include="Content\bootstrap.min.css" />
     <Content Include="Content\usercss\cart.css" />
     <Content Include="Content\usercss\checkout.css" />
+    <Content Include="Content\usercss\emptycart.css" />
     <Content Include="Content\usercss\home-customer.css" />
+    <Content Include="Content\usercss\list-product.css" />
     <Content Include="favicon.ico" />
     <Content Include="FE\css\cart.css" />
     <Content Include="FE\css\dathang%28checkout%29.css" />
@@ -328,6 +331,7 @@
     </Content>
     <Content Include="Scripts\cart.js" />
     <Content Include="Scripts\checkout.js" />
+    <Content Include="Scripts\Product.js" />
     <Content Include="Vendor\css\cart.css" />
     <Content Include="Vendor\img\banners\1.png" />
     <Content Include="Vendor\img\banners\2.png" />
@@ -2324,6 +2328,7 @@
     <Content Include="Views\Account\OderDetail.cshtml" />
     <Content Include="Views\Account\OderDetailHeader.cshtml" />
     <Content Include="Views\Account\OderDetailTotal.cshtml" />
+    <Content Include="Views\Home\ListProduct.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />

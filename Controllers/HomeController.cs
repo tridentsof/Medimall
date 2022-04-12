@@ -25,6 +25,22 @@ namespace Medimall.Controllers
         }
 
         [HttpPost]
+        public ActionResult ListProductSearch(string searchString)
+        {
+            var product = db.Products.Where(m => string.IsNullOrEmpty(searchString)
+                                            || m.ProductName.ToUpper().Contains(searchString.ToUpper().Trim())
+                                            || m.Category.CategoryName.ToUpper().Contains(searchString.ToUpper().Trim())).ToList();
+
+            ViewBag.ResultCount = product.Count();
+            return View("~/Views/Home/ListProduct.cshtml", product);
+        }
+
+        public ActionResult ProductSearch()
+        {
+            return View();
+        }
+
+        [HttpPost]
         public ActionResult Login(AccountViewModel model)
         {
             if (ModelState.IsValid)
@@ -129,7 +145,7 @@ namespace Medimall.Controllers
         {
             var product = db.Products.SingleOrDefault(p => p.ProductId == id);
 
-            if(product != null)
+            if (product != null)
             {
                 GetCart().Add(product);
             }
