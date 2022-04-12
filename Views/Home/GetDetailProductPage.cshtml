@@ -1,0 +1,606 @@
+﻿@model Medimall.Models.Product
+@{
+    ViewBag.Title = "GetDetailProductPage";
+    Layout = "~/Views/Shared/_LayoutCustomer.cshtml";
+}
+<style>
+    /* //section */
+    .wrapper_all {
+        width: 100%;
+    }
+
+    .container {
+        margin: auto;
+    }
+
+    .wrapper {
+        width: 100%;
+        display: flex;
+        margin-top: 20px;
+    }
+
+    .wrappre_img {
+        width: 40%;
+        border: solid 1px #e5e5e5;
+        border-radius: 20px;
+        padding: 12px 20px;
+        height: 500px;
+    }
+
+    .img-product {
+        width: 100%;
+    }
+
+    .wrappre_content {
+        width: 35%;
+        padding-left: 20px;
+    }
+
+    .wrappre_content-product {
+        padding: 15px;
+        background-color: #f2f4f5;
+        border-radius: 8px;
+    }
+
+    .wrappre_content_price {
+        font-size: 23px;
+        font-weight: 700;
+        color: #5dac46;
+    }
+
+    .wrappre_content-text {
+        font-size: 12px;
+    }
+
+    .point {
+        color: #5dac46;
+        font-size: 13px;
+        font-weight: 800;
+    }
+
+    .wrappre_content_title-detail {
+        font-size: 15px;
+        padding: 10px;
+        font-weight: 400;
+        color: #000000;
+    }
+
+    .quantity {
+        margin: auto;
+        width: 100%;
+        display: flex;
+        justify-self: center;
+        align-items: center;
+    }
+
+    .quantity-product {
+        border: solid 1px #e5e5e5;
+        /* width: 25%; */
+        padding: 5px 20px;
+        border-radius: 5px;
+    }
+
+    .minus, .plus {
+        background: none;
+        border: none;
+        padding: 2px;
+        font-size: 14px;
+    }
+
+    .num {
+        border: none;
+        background: #0065ff;
+        color: #fff;
+        height: 24px;
+        font-size: 10px;
+        width: 46px;
+        border-radius: 5px;
+        padding-left: 15px;
+        margin-right: 10px;
+        margin-left: 10px;
+        text-align: center;
+    }
+
+
+    .quantity-product .btn {
+        font-family: inherit;
+        cursor: pointer;
+        background-color: transparent;
+        border: none;
+    }
+
+    .wrappre_content-button {
+        display: flex;
+        align-items: center;
+        margin-top: 20px;
+        width: 100%;
+        justify-content: space-between;
+    }
+
+    .buy_now {
+        padding: 10px 15px;
+        border: 1px #0f62f9 solid;
+        color: #0f62f9;
+        border-radius: 10px;
+        cursor: pointer;
+        background-color: #f2f6fe;
+    }
+
+    .add_cart {
+        margin-left: 10px;
+    }
+
+    .add_cart_all {
+        border: 1px #0f62f9 solid;
+        border-radius: 10px;
+        padding: 10px 25px;
+        color: #fff;
+        display: flex;
+        background-color: #0f62f9;
+        cursor: pointer;
+    }
+
+    /* // wrappre_readmore */
+    .wrappre_readmore {
+        width: 30%;
+        height: 400px;
+        padding: 20px;
+        /* position: relative; */
+    }
+
+    .wrappre_readmore_category {
+        /* position: absolute; */
+        height: 150px;
+        color: #0065ff;
+        width: 100%;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        padding: 10px;
+        border: 1px #e5e5e5 solid;
+        border-radius: 20px;
+    }
+
+    .wrappre_readmore_category-img {
+        width: 40%;
+        height: 80%;
+        border: 1px #e5e5e5 solid;
+        border-radius: 10px;
+    }
+
+    .wrappre_readmore_category-title {
+        font-size: 14px;
+        margin-left: 10px;
+        text-decoration: none !important;
+    }
+
+    .wrappre_readmore_transport-text {
+        font-size: 15px;
+    }
+
+    .wrappre_readmore_transport {
+        width: 100%;
+        height: 150px;
+        padding: 10px;
+        border: 1px #e5e5e5 solid;
+        margin-top: 20px;
+        border-radius: 20px;
+    }
+
+    .category_delivery {
+        display: flex;
+        width: 70%;
+        justify-content: first baseline;
+        margin-top: 10px;
+    }
+
+    .wrappre_readmore_transport_title {
+        font-size: 16px;
+        font-weight: 600;
+    }
+
+    .disable_btn {
+        cursor: not-allowed !important;
+    }
+
+    .ghn, .Ahamove {
+        padding: 4px 10px;
+        border: 1px #e5e5e5 solid;
+        border-radius: 20px;
+        font-size: 13px;
+    }
+
+    .Ahamove {
+        margin-left: 10px;
+    }
+
+    .freeship, .money_freeship {
+        color: rgb(158, 204, 88);
+    }
+
+    .detail_product_info {
+        height: 300px;
+        background-color: #fff;
+        border-radius: 12px;
+        padding: 10px;
+    }
+    /* //////////////// */
+    .detail_product_wraper {
+        width: 100%;
+        background-color: #f0f2f5;
+        padding-top: 20px;
+    }
+
+    .detail_product {
+        border-radius: 20px;
+        height: auto;
+        width: 1000px;
+        margin-left: 50px;
+        margin-right: 40px;
+    }
+
+    .similar_product {
+        width: 100%;
+        text-align: center;
+        background-color: #fff;
+        border-radius: 20px;
+        /* margin-left: 10px; */
+        padding: 10px;
+    }
+
+    .all_item {
+        overflow-y: scroll;
+        /* display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center; */
+        height: 700px;
+        width: 100%;
+    }
+
+    .item {
+        box-sizing: border-box;
+        width: 100%;
+        height: 435px;
+        box-shadow: rgba(99, 99, 99, 0.2) 0px 2px 8px 0px;
+        border-radius: 12px;
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        justify-content: space-between;
+        background: #fff;
+        padding: 10px;
+        margin-top: 10px;
+    }
+
+        .item div {
+            padding: 0px 10px;
+        }
+
+        .item img {
+            margin-bottom: 20px;
+            width: 190px;
+            height: 200px;
+            object-fit: cover;
+        }
+
+        .item p {
+            font-weight: 500;
+            line-height: 24px;
+            margin-bottom: 20px;
+        }
+
+        .item h4 {
+            color: var(--blue);
+            font-weight: 700;
+            font-size: 20px;
+        }
+
+        .item button {
+            width: 199px;
+            height: 44px;
+            background: var(--green);
+            color: #fff;
+            line-height: 24px;
+            padding: 1px 6px;
+            text-align: center;
+            border-radius: 12px;
+            border: none;
+        }
+
+        .item:hover {
+            cursor: pointer;
+            border: 2px solid var(--green);
+        }
+    /* Slide */
+    .ct5-wrap {
+        background: #fff;
+        padding: 48px 20px;
+        width: 100%;
+        margin-top: 20px;
+        border-radius: 12px;
+    }
+
+        .ct5-wrap .title,
+        .ct5-wrap .carousel {
+            width: 100%;
+            margin: 0 auto;
+        }
+
+            .ct5-wrap .title h1 {
+                color: #112950;
+                font-weight: 700;
+                font-size: 28px;
+            }
+
+        .ct5-wrap .carousel-item {
+            width: 100%;
+            height: 460px;
+            padding: 5px 0;
+        }
+
+    .nav-link.active {
+        color: var(--blue);
+        font-weight: 700;
+        border-bottom: 1px solid var(--blue);
+    }
+
+    .nav-link {
+        color: #000;
+    }
+
+    .active {
+        display: flex !important;
+        justify-content: space-between;
+    }
+
+    .ct5-wrap .carousel-inner {
+        height: 460px;
+        width: 101%;
+    }
+
+    .ct5-wrap .carousel {
+        height: 445px;
+    }
+
+    .ct5-wrap .carousel-indicators {
+        bottom: -44px;
+    }
+
+        .ct5-wrap .carousel-indicators li {
+            background: #000;
+            border: none;
+        }
+
+    .ct5-wrap .carousel-control-next,
+    .ct5-wrap .carousel-control-prev {
+        width: 1%;
+    }
+
+    .carousel,
+    .carousel-inner {
+        width: 100%;
+        height: 258px;
+    }
+
+    .carousel-control-prev-icon,
+    .carousel-control-next-icon {
+        opacity: 1;
+        background: #fff;
+        width: 44px;
+        height: 44px;
+        color: #000;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        border-radius: 50%;
+    }
+
+        .carousel-control-prev-icon img,
+        .carousel-control-next-icon img {
+            width: 10px;
+            height: 16px;
+        }
+
+    .carousel-item img {
+        width: 100%;
+        border-radius: 12px;
+    }
+
+    .ct5-wrap .item {
+        width: 32%;
+    }
+
+    .ct5-wrap button {
+        width: 95%
+    }
+
+    .detail_product_info_readmore {
+        padding: 10px;
+        height: 300px;
+    }
+
+    .tab-pane {
+        display: flex;
+        flex-direction: column;
+        overflow-y: auto;
+        height: 230px;
+    }
+
+    .same-product {
+        width: 310px;
+        height: auto;
+    }
+</style>
+<section class="wrapper_all">
+    <div class="container">
+        <div class="wrapper">
+            <div class="row">
+                <div class="wrappre_img col-5">
+                    <img src="~/Vendor/img/products/@(Model.ProductId).png" alt="" class="img-product">
+                </div>
+                <div class="wrappre_content col-4">
+                    <h4 class="wrappre_content_title">@(Model.ProductName)</h4>
+                    <div class="wrappre_content-product">
+                        <div class="wrappre_content_price">@String.Format("{0:0,0}", Model.Price) VND</div>
+                        <p class="wrappre_content-text">
+                                Mua hàng và tích <span class="point">Điểm</span> thành
+                                viên
+                            </p>
+                    </div>
+                    <h5 class="wrappre_content_title-detail">
+                        @Model.UsesFor
+                    </h5>
+                    <div class="col-md-6 quantity-product" style="margin:0">
+                        <input type="button" value="-" class="btn quantity-left-minus" data-type="minus" data-field="">
+                        <input readonly="" type="number" class="num" name="quantity" value="1" id="quantity">
+                        <input type="button" value="+" class="btn quantity-right-plus" data-type="plus" data-field="" id="">
+                    </div>
+
+                    <div class="wrappre_content-button">
+                        @if (Model.Quantity > 0)
+                        {
+
+                        <button class="add_cart_all" onclick="addToCart(@Model.ProductId)">
+                            Thêm vào giỏ hàng
+                        </button>
+                        }
+                        else
+                        {
+                            <button disabled class="add_cart_all" style="background-color: #b2bec3;border:none;cursor:not-allowed">
+                                Tạm hết hàng
+                            </button>
+                        }
+                    </div>
+                    <hr />
+                </div>
+                <div class="wrappre_readmore col-3">
+                    @Html.Action("GetDelivery", "Home")
+                </div>
+            </div>
+
+        </div>
+    </div>
+</section>
+<div class="detail_product_wraper">
+    <div class="container-fluid">
+        <div class="row">
+            <div class=" detail_product">
+                <div class="detail_product_info">
+                    <div class="nav" id="v-pills-tab" role="tablist" aria-orientation="vertical">
+                        <a class="nav-link active" id="v-pills1" data-toggle="pill" href="#v-pills-1" role="tab"
+                           aria-controls="v-pills-1" aria-selected="true">
+                            Mô tả
+                        </a>
+                        <a class="nav-link " id="v-pills2" data-toggle="pill" href="#v-pills-2" role="tab"
+                           aria-controls="v-pills-1" aria-selected="true">
+                            Thương hiệu
+                        </a>
+                    </div>
+                    <div class="detail_product_info_readmore">
+                        <div class="tab-content" id="v-pills-tabContent">
+                            <div class="tab-pane fade show active" id="v-pills-1" role="tabpanel"
+                                 aria-labelledby="v-pills1">
+                                <div>
+                                    <p style="font-weight: 700; font-size: 17px;">Thành phần</p>
+                                    <p>@Model.Ingredient</p>
+                                </div>
+                                <div>
+                                    <p style="font-weight: 700; font-size: 17px;">Công dụng</p>
+                                    <p>
+                                        @Model.UsesFor
+                                    </p>
+                                </div>
+                            </div>
+                            <div class="tab-pane fade" id="v-pills-2" role="tabpanel" aria-labelledby="v-pills2">
+                                <div>
+                                    <p style="font-weight:bold">Brand</p>
+                                    <p>Medimall</p>
+                                </div>
+
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="ct5-wrap">
+                    <div class="title">
+                        <h1>Sản phẩm bán chạy của Medimall</h1>
+                    </div>
+                    <div id="carousel2" class="carousel slide" data-ride="carousel">
+                        <ol class="carousel-indicators">
+                            <li data-target="#carousel2" data-slide-to="0" class="active"></li>
+                            <li data-target="#carousel2" data-slide-to="1"></li>
+                            <li data-target="#carousel2" data-slide-to="2"></li>
+                        </ol>
+                        <div class="carousel-inner">
+                            <div class="carousel-item active">
+                                @Html.Action("GetBestSaleProductPageOne", "Home")
+                            </div>
+                            <div class="carousel-item">
+                                @Html.Action("GetBestSaleProductPageTwo", "Home")
+                            </div>
+                            <div class="carousel-item">
+                                @Html.Action("GetBestSaleProductPageThree", "Home")
+                            </div>
+                        </div>
+                        <a class="carousel-control-prev" href="#carousel2" role="button" data-slide="prev">
+                            <span class="carousel-control-prev-icon" aria-hidden="true">
+                                <img src="~/Vendor/img/icon/left-arrow.png" />
+                            </span>
+                            <span class="sr-only">Previous</span>
+                        </a>
+                        <a class="carousel-control-next" href="#carousel2" role="button" data-slide="next">
+                            <span class="carousel-control-next-icon" aria-hidden="true">
+                                <img src="~/Vendor/img/icon/right-arrow.png" />
+                            </span>
+                            <span class="sr-only">Next</span>
+                        </a>
+                    </div>
+                </div>
+            </div>
+            <div class="same-product">
+                <div class="similar_product">
+                    <p style="font-size: 17px; font-weight: 700;">
+                        Sản phẩm tương tự
+                    </p>
+                    <div class="all_item">
+                        @Html.Action("SameProductPartial", "Home")
+                    </div>
+                </div>
+
+            </div>
+        </div>
+
+    </div>
+    <canvas height="180" width="180" style="height: 144px; width: 144px;"></canvas>
+</div>
+<script>
+    $(document).ready(function () {
+
+        var quantitiy = 1;
+        $('.quantity-right-plus').click(function (e) {
+            // Stop acting like a button
+            e.preventDefault();
+            // Get the field name
+            var quantity = parseInt($('#quantity').val());
+            $('#quantity').val(quantity + 1);
+
+        });
+
+        $('.quantity-left-minus').click(function (e) {
+            // Stop acting like a button
+            e.preventDefault();
+            // Get the field name
+            var quantity = parseInt($('#quantity').val());
+            // Increment
+            if (quantity > 1) {
+                $('#quantity').val(quantity - 1);
+                $(".quantity-left-minus").css("cursor", "pointer")
+            }
+            else if (quantitiy == 1) {
+                $(".quantity-left-minus").css("cursor", "not-allowed")
+
+            }
+        });
+    });
+</script>

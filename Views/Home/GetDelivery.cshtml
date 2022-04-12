@@ -1,0 +1,15 @@
+﻿@model IEnumerable<Medimall.Models.Delivery>
+
+<div class="wrappre_readmore_transport">
+    <div class="wrappre_readmore_transport_title">Các hình thức giao hàng</div>
+    <div class="category_delivery">
+        @foreach (var item in Model)
+        {
+            <div class="ghn" style="margin-right: 5px; color: #5dac46">@item.DeliveryName</div>
+        }
+    </div>
+
+</div>
+
+
+
