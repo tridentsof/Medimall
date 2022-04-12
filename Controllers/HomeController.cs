@@ -240,6 +240,12 @@ namespace Medimall.Controllers
         public ActionResult GetDetailProductPage()
         {
             int id = int.Parse(this.RouteData.Values["id"].ToString());
+            string categoryid = db.Products.Where(p => p.ProductId == id).Select(u => u.CategoryId).FirstOrDefault();
+
+            string categoryname = db.Categories.Where(p => p.CategoryId == categoryid).Select(u => u.CategoryName).FirstOrDefault();
+
+            ViewBag.CategoryName = categoryname;
+
             var productdetail = db.Products.Where(p => p.ProductId == id).FirstOrDefault();
             return View(productdetail);
         }
