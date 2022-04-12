@@ -258,5 +258,25 @@ namespace Medimall.Controllers
 
             return PartialView(getsameproduct);
         }
+        public ActionResult ViewAllCovidProduct()
+        {
+            List<Product> listProduct = db.Products.Where(p => p.IsForCovid == true).OrderBy(p => p.ProductId).ToList();
+            return PartialView(listProduct);
+        }
+        public ActionResult ViewBestSaleProduct()
+        {
+            List<Product> listProduct = db.Products.Where(p => p.QuantitySold > 5).OrderBy(p => p.ProductId).ToList();
+            return PartialView(listProduct);
+        }
+        public ActionResult ViewNewProduct()
+        {
+            List<Product> listProduct = db.Products.OrderByDescending(p => p.ProductId).ToList();
+            return PartialView(listProduct);
+        }
+        public ActionResult ViewSkinCareProduct()
+        {
+            List<Product> listProduct = db.Products.Where(p => p.CategoryId == "SkinCare").OrderBy(p => p.ProductId).ToList();
+            return PartialView(listProduct);
+        }
     }
 }
