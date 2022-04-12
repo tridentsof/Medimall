@@ -237,5 +237,26 @@ namespace Medimall.Controllers
             List<News> listnews = db.News.Where(p => p.NewsCategoryId == 8).OrderByDescending(p => p.NewsCategoryId).Take(5).ToList();
             return PartialView(listnews);
         }
+        public ActionResult GetDetailProductPage()
+        {
+            int id = int.Parse(this.RouteData.Values["id"].ToString());
+            var productdetail = db.Products.Where(p => p.ProductId == id).FirstOrDefault();
+            return View(productdetail);
+        }
+        public ActionResult GetDelivery()
+        {
+            var delivery = db.Deliveries.ToList();
+            return PartialView(delivery);
+        }
+        public ActionResult SameProductPartial()
+        {
+            int id = int.Parse(this.RouteData.Values["id"].ToString());
+
+            string getcategoryid = db.Products.Where(p => p.ProductId == id).Select(u => u.CategoryId).FirstOrDefault();
+
+            var getsameproduct = db.Products.Where(u => u.CategoryId == getcategoryid).Where(p=>p.ProductId != id).ToList();
+
+            return PartialView(getsameproduct);
+        }
     }
 }
