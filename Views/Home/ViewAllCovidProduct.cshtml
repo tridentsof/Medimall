@@ -1,0 +1,84 @@
+﻿@model IEnumerable<Medimall.Models.Product>
+
+@{
+    Layout = "~/Views/Shared/_LayoutCustomer.cshtml";
+}
+<style>
+    .viewall-header {
+        background-color: #ededed;
+        padding: 15px;
+        margin-top: -20px;
+    }
+
+        .viewall-header ul {
+            display: flex;
+            list-style: none;
+            margin-left:150px;
+            margin-top:5px;
+        }
+
+            .viewall-header ul li {
+                margin-left: 9px;
+                line-height: 20px;
+                font-weight: 700;
+                text-transform:uppercase;
+            }
+                .viewall-header ul li i {
+                    color: #112950;
+                    font-size: 4px;
+                    margin-right: 9px;
+                }
+                .viewall-header ul li:first-child {
+                    color: #112950;
+                    opacity:0.5
+                }
+    .viewall {
+        display: grid;
+        grid-template-columns: repeat(5,minmax(0,1fr));
+        grid-gap: 1rem;
+        margin: auto;
+    }
+    .viewall-body{
+        margin-top:70px;
+    }
+    .viewall-body h3{
+        padding-left:150px;
+        padding-bottom:50px;
+        font-weight:bold;
+    }
+</style>
+<div class="container-fluid viewall-header">
+    <ul>
+        <li>Medimall</li>
+        <li><i class="fas fa-circle"></i>Top Sản Phẩm Phòng Dịch</li>
+    </ul>
+</div>
+<div class="container-fluid viewall-body">
+    <h3>TOP SẢN PHẨM PHÒNG DỊCH</h3>
+    <div class="row">
+        <div class="col-md-10 viewall">
+            @foreach (var item in Model)
+            {
+                <div class="item">
+                    <a href="@Url.Action("GetDetailProductPage","Home",new {id=item.ProductId})"><img src="~/Vendor/img/products/@(item.ProductId).png" />    </a>
+                    <div>
+                        <p>@item.ProductName</p>
+                        <h4>@String.Format("{0:0,0}", item.Price)/Sản phẩm</h4>
+                    </div>
+                    @if (item.Quantity > 0)
+                    {
+                        <button onclick="addToCart(@item.ProductId)">
+                            Thêm vào giỏ hàng
+                        </button>
+                    }
+                    else
+                    {
+                        <button style="background-color: #b2bec3 ">
+                            Tạm hết hàng
+                        </button>
+                    }
+                </div>
+            }
+        </div>
+    </div>
+</div>

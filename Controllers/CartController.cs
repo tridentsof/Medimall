@@ -201,7 +201,7 @@ namespace Medimall.Controllers
                 }
 
                 db.SaveChanges();
-                TempData["SuccessCart"] = "Thanh toán thành công, mời bạn vào lịch sử đơn hàng để theo dõi";
+                TempData["SuccessCart"] = "Đặt hàng thành công, mời bạn vào lịch sử đơn hàng để theo dõi";
                 cart.ClearCart();
                 Session["DiscountPrice"] = null;
                 Session["VoucherId"] = null;
