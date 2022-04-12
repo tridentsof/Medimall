@@ -38,6 +38,9 @@
     @Scripts.Render("~/bundles/jquery")
     <link href="~/Content/alertifyjs/alertify.min.css" rel="stylesheet" />
     <link href="~/Content/alertifyjs/themes/default.min.css" rel="stylesheet" />
+
+    <script src="~/Scripts/Product.js"></script>
+
 </head>
 
 <body>
@@ -94,7 +97,7 @@
                     </div>
                 </div>
                 <div class="search">
-                    <input type="text" placeholder="Bạn đang tìm gì hôm nay...">
+                    <input id="txt-search-product" type="text" placeholder="Bạn đang tìm gì hôm nay...">
                 </div>
                 @Html.Action("BagCart", "Cart")
 
@@ -204,6 +207,7 @@
             </div>
         </div>
     </div>
+    
     <script src="~/Scripts/home-customer.js"></script>
     <script src="~/Scripts/alertify.min.js"></script>
 

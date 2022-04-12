@@ -1,0 +1,28 @@
+﻿@model IEnumerable<Medimall.Models.Product>
+
+<link href="~/Content/usercss/list-product.css" rel="stylesheet" />
+<script src="~/Scripts/Product.js"></script>
+
+<div class="wrap-header">
+    <p id="null-text" style="color:black;margin-left:6%"></p>
+    <p id="found-text" style="color:black;margin-left:6%">Tìm thấy <strong>@((int?)ViewBag.ResultCount) </strong> kết quả phù hợp với từ khóa "<strong id="search-key"></strong>" </p>
+</div>
+<div class="container-main">
+    <div id="list-products" class="container-item">
+        @if (Model != null)
+        {
+            foreach (var item in Model)
+            {
+                <div class="item">
+                    <img src="~/Vendor/img/products/@(item.ProductId).png" alt="">
+                    <div>
+                        <p>@item.ProductName</p>
+                        <h4>@String.Format("{0:0,0}", item.Price) VND/Sản phẩm</h4>
+                    </div>
+                    <button onclick="addToCart(@item.ProductId)">Thêm vào giỏ hàng</button>
+                </div>
+            }
+        }
+
+    </div>
+</div>

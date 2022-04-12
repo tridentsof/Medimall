@@ -18,6 +18,14 @@ body {
 	background: var(--gray);
 }
 
+.hide-product{
+	display: none!important;
+}
+.show-product{
+	display: block!important;
+}
+
+
 .wrap-header,
 .container-main {
 	background: #fff;
@@ -26,8 +34,10 @@ body {
 	padding: 10px;
 	margin-bottom: 32px;
 	min-height: 100px;
+	display:none;
 }
 .container-main {
+	display:none;
 	width: 100%;
 	padding: 20px 20px 0;
 }
