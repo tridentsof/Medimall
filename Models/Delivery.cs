@@ -26,7 +26,6 @@ namespace Medimall.Models
         public string DeliveryName { get; set; }
 
         [Display(Name = "Phí vận chuyển")]
-        [DisplayFormat(DataFormatString = "{0:0,0}",ApplyFormatInEditMode =true)]
         public Nullable<decimal> DeliveryPrice { get; set; }
     
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
