@@ -107,7 +107,7 @@ namespace Medimall.Controllers
 
         public ActionResult GetVoucher()
         {
-            List<Voucher> listVoucher = db.Vouchers.Where(v => v.EndDate < DateTime.Now).ToList();
+            List<Voucher> listVoucher = db.Vouchers.Where(v => v.EndDate > DateTime.Now).ToList();
             return PartialView(listVoucher);
         }
 
@@ -283,6 +283,13 @@ namespace Medimall.Controllers
         public ActionResult ViewSkinCareProduct()
         {
             List<Product> listProduct = db.Products.Where(p => p.CategoryId == "SkinCare").OrderBy(p => p.ProductId).ToList();
+            return PartialView(listProduct);
+        }
+        public ActionResult ViewProductForCategory()
+        {
+            string id = this.RouteData.Values["id"].ToString();
+            string categoryid = db.Categories.Where(p => p.CategoryName == id).Select(u => u.CategoryId).FirstOrDefault();
+            List<Product> listProduct = db.Products.Where(p => p.CategoryId == categoryid).ToList();
             return PartialView(listProduct);
         }
     }

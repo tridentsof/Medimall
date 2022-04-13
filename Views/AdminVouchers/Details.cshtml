@@ -1,0 +1,75 @@
+﻿@model Medimall.Models.Voucher
+
+@{
+    ViewBag.Title = "Details";
+    Layout = "~/Views/Shared/_LayoutAdmin.cshtml";
+}
+
+<h2>Details</h2>
+
+<div>
+    <h4>Voucher</h4>
+    <hr />
+    <dl class="dl-horizontal">
+        <dt>
+            @Html.DisplayNameFor(model => model.VoucherCode)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.VoucherCode)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.Percent)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Percent)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.VoucherDetail)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.VoucherDetail)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.StartDate)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.StartDate)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.EndDate)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.EndDate)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.StartFrom)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.StartFrom)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.Account.UserName)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Account.UserName)
+        </dd>
+
+    </dl>
+</div>
+<p>
+    @Html.ActionLink("Edit", "Edit", new { id = Model.VoucherId }) |
+    @Html.ActionLink("Back to List", "Index")
+</p>
