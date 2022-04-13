@@ -19,6 +19,9 @@ p {
 header {
     background: var(--blue);
     width: 100%;
+    position: fixed;
+    top: 0;
+    z-index: 10;
 }
 
 .container-header {
@@ -36,7 +39,7 @@ header {
     display: flex;
     justify-content: space-between;
     font-size: 16px;
-    font-weight: 550;
+    font-weight: 500;
     color: #fff;
     margin-bottom: 10px;
 }
@@ -299,14 +302,14 @@ header {
         border-radius: 30px;
         width: 160px;
         height: 51px;
-        padding: 0px 2px;
+        padding: 0px;
         display: flex;
         align-items: center;
         justify-content: center;
     }
 
     .logo img {
-        width: 70%;
+        width: 75%;
         height: 70%;
         object-fit: cover;
     }
@@ -334,12 +337,12 @@ header {
 .dropdown-content {
     display: none;
     position: absolute;
-    top: 55px;
-    left: -13px;
+    top: 54px;
+    left: -22px;
     background-color: #fff;
     min-width: 176px;
     box-shadow: 0px 8px 16px 0px rgba(0, 0, 0, 0.2);
-    z-index: 1;
+    z-index: 20;
     border-radius: 12px;
     box-shadow: rgba(0, 0, 0, 0.24) 0px 3px 8px;
 }
@@ -348,12 +351,13 @@ header {
     .dropdown-content a {
         border-radius: 12px;
         color: #000;
-        padding: 12px 16px;
+        padding: 9px 16px;
         text-decoration: none;
         display: block;
         background: #fff;
         font-size: 16px;
-        font-weight: 500
+        font-weight: 500;
+        z-index: 20;
     }
 
         .dropdown-content a:hover {
@@ -398,6 +402,7 @@ header {
 /* Body */
 .container-body {
     padding: 20px 0;
+    margin-top: 155px;
 }
 
 .carousel,
@@ -713,8 +718,8 @@ header {
 }
 
 .ct5-wrap .carousel-inner {
-    height: 460px;
-    width: 101%;
+    height: 480px;
+    width: 104%;
 }
 
 .ct5-wrap .carousel {
@@ -723,6 +728,7 @@ header {
 
 .ct5-wrap .carousel-indicators {
     bottom: -44px;
+    z-index: 7 !important;
 }
 
     .ct5-wrap .carousel-indicators li {
@@ -733,6 +739,10 @@ header {
 .ct5-wrap .carousel-control-next,
 .ct5-wrap .carousel-control-prev {
     width: 1%;
+}
+
+.ct5-wrap .carousel-control-next {
+    right: -30px
 }
 
 .title {
