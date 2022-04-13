@@ -99,12 +99,18 @@
         $.getJSON("/AdminBillings/GetPaggedData", { pageNumber: pageNum, pageSize: pageSize }, function (response) {
             var rowData = "";
             for (var i = 0; i < response.Data.length; i++) {
-
+                var convertStatus = function () {
+                    if (response.Data[i].Status == 1)
+                        return 'Mở'
+                    else {
+                        return 'Đóng'
+                    }
+                }
                 rowData = rowData +
                     '<tr><td>' + response.Data[i].BillId + '</td>' +
                     '<td>' + response.Data[i].AccountId + '</td>' +
                     '<td>' + response.Data[i].PurchaseDate + '</td>' +
-                    '<td>' + response.Data[i].Status + '</td>' +
+                    '<td>' + convertStatus() + '</td>' +
                     '<td>' + '<a onclick = "EditBilling(' + response.Data[i].BillId + ')" class="d-none d-sm-inline-block btn btn-sm btn btn-info">' + 'Sửa <i class="fas fa-edit"></i></a>' +
                     '<a style="margin-left:15px" onclick = "DeleteBilling(' + response.Data[i].BillId + ')" class="d-none d-sm-inline-block btn btn-sm btn btn-danger ">' + 'Xóa <i class="fas fa-minus-circle"></i></a>' +
                     '</td>' +

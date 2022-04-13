@@ -1,31 +1,28 @@
-﻿@model IEnumerable<Medimall.Models.Account>
+﻿@model IEnumerable<Medimall.Models.Delivery>
 
 @{
     ViewBag.Title = "Index";
     Layout = "~/Views/Shared/_LayoutAdmin.cshtml";
 }
+
 <link href="~/Vendor/css/admin-site.css" rel="stylesheet" />
-<h2 class="text-center">Quản lý tài khoản</h2>
+<h2 class="text-center">Quản lý đơn vị vận chuyển</h2>
 
 <p>
-    @Html.ActionLink("Tạo mới", "Create", "AdminAccounts", new { @class = "d-none d-sm-inline-block btn btn-sm btn-primary shadow-sm" })
+    @Html.ActionLink("Tạo mới", "Create", "AdminDelivery", new { @class = "d-none d-sm-inline-block btn btn-sm btn-primary shadow-sm" })
 </p>
 <table class="table table-striped">
     <thead>
 
         <tr>
             <th>
-                @Html.DisplayNameFor(model => model.UserName)
+                @Html.DisplayNameFor(model => model.DeliveryId)
             </th>
             <th>
-                @Html.DisplayNameFor(model => model.FullName)
+                @Html.DisplayNameFor(model => model.DeliveryName)
             </th>
             <th>
-                @Html.DisplayNameFor(model => model.Phone)
-            </th>
-
-            <th>
-                @Html.DisplayNameFor(model => model.Status)
+                @Html.DisplayNameFor(model => model.DeliveryPrice)
             </th>
             <th>
                 Tùy chỉnh
@@ -51,35 +48,37 @@
     });
 
     $(function() {
-            var successMess = '@TempData["SuccessMess"]'
+                  var successMess = '@TempData["SuccessCreate"]'
         if (successMess != '') {
             alertify.success(successMess);
             successMess = '';
         }
+    var edit ='@TempData["SuccessEdit"]';
+    if (edit != '') {
+        alertify.success(edit);
+        edit = '';
+        }
+        var dele ='@TempData["SuccessDelete"]';
+    if (dele != '') {
+        alertify.success(dele);
+        dele = '';
+    }
 
         });
 
     function GetPageData(pageNum, pageSize) {
         $("#tblData").empty();
         $("#paged").empty();
-        $.getJSON("/AdminAccounts/GetPaggedData", { pageNumber: pageNum, pageSize: pageSize }, function (response) {
+        $.getJSON("/AdminDeliveries/GetPaggedData", { pageNumber: pageNum, pageSize: pageSize }, function (response) {
             var rowData = "";
             for (var i = 0; i < response.Data.length; i++) {
-                var convertStatus = function () {
-                    if (response.Data[i].Status == 1)
-                        return 'Mở'
-                    else {
-                        return 'Đóng'
-                    }
-                }
 
                 rowData = rowData +
-                    '<tr><td>' + response.Data[i].UserName + '</td>'
-                    + '<td>' + response.Data[i].FullName + '</td>' +
-                    '<td>' + response.Data[i].Phone + '</td>' +
-                    '<td>' + convertStatus() + '</td>' +
-                    '<td>' + '<a onclick = "EditAccount(' + response.Data[i].AccountId + ')" class="d-none d-sm-inline-block btn btn-sm btn btn-info">' + 'Sửa <i class="fas fa-edit"></i></a>' +
-                    '<a style="margin-left:15px" onclick = "DeleteAccountt(' + response.Data[i].AccountId + ')" class="d-none d-sm-inline-block btn btn-sm btn btn-danger ">' + 'Xóa <i class="fas fa-minus-circle"></i></a>' +
+                    '<tr><td>' + response.Data[i].DeliveryId + '</td>'
+                    + '<td>' + response.Data[i].DeliveryName + '</td>' +
+                    '<td>' + (Math.round(response.Data[i].DeliveryPrice * 100) / 100).toLocaleString() +' VND' + '</td>' +
+                    '<td>' + '<a onclick = "Edit(' + response.Data[i].DeliveryId + ')" class="d-none d-sm-inline-block btn btn-sm btn btn-info">' + 'Sửa <i class="fas fa-edit"></i></a>' +
+                    '<a style="margin-left:15px" onclick = "Delete(' + response.Data[i].DeliveryId + ')" class="d-none d-sm-inline-block btn btn-sm btn btn-danger ">' + 'Xóa <i class="fas fa-minus-circle"></i></a>' +
                     '</td>' +
                     '</tr>';
 
@@ -89,24 +88,24 @@
         });
     }
 
-    function EditAccount(id) {
-        window.location.href = '@Url.Action("Edit","AdminAccounts")/' + id;
+    function Edit(id) {
+        window.location.href = '@Url.Action("Edit", "AdminDeliveries")/' + id;
     }
 
-    function DeleteAccount(id) {
+    function Delete(id) {
         alertify.confirm("Xóa", "Bạn có muốn xóa không?", function () {
-            window.location.href = '@Url.Action("Delete","AdminAccounts")/' + id;
+            window.location.href = '@Url.Action("Delete", "AdminDeliveries")/' + id;
         },null);
     }
 
-    function DeleteAccountt(id) {
+    function Delete(id) {
         alertify.confirm("Xóa", "Bạn có muốn xóa không?", function () {
             $.ajax({
                 type: "POST",
-                url: "/AdminAccounts/DeleteAccount/" + id,
+                url: "/AdminDeliveries/Delete/" + id,
                 data: id,
                 success: function (result) {
-                    window.location.href = '@Url.Action("Index","AdminAccounts")';
+                    window.location.href = '@Url.Action("Index", "AdminDeliveries")';
                 }
             })
         },null);
@@ -155,5 +154,4 @@
         });
     }
 </script>
-
 
