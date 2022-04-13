@@ -64,27 +64,35 @@ namespace Medimall.Controllers
         [ValidateAntiForgeryToken]
         public ActionResult Create([Bind(Include = "AccountId,UserName,Password,FullName,Phone,Email,Address,BirthDay,Status,ActiveCode,PowerPoint,Photo")] Account account)
         {
-            if (ModelState.IsValid)
+            var usernamecheck = db.Accounts.Any(p => p.UserName == account.UserName);
+            if(usernamecheck)
             {
-                db.Accounts.Add(account);
-                db.SaveChanges();
-                if(account != null)
-                {
-                    TempData["SuccessMess"] = "Tạo thành công!";
-                }
-
-                var extension = Path.GetExtension(account.Photo.FileName);
-                var path = Path.Combine(Server.MapPath("~/Vendor/img/avatar"));
-
-                if (!Directory.Exists(path))
-                    Directory.CreateDirectory(path);
-                account.Photo.SaveAs(path + account.AccountId + extension);
-
-                ModelState.Clear();
-
-                return RedirectToAction("Index");
+                ModelState.AddModelError("UserName", "Đã tồn tại tên đăng nhập");
             }
             else
+            {
+                if (ModelState.IsValid)
+                {
+                    db.Accounts.Add(account);
+                    db.SaveChanges();
+                    if (account != null)
+                    {
+                        TempData["SuccessMess"] = "Tạo thành công!";
+                    }
+
+                    var extension = Path.GetExtension(account.Photo.FileName);
+                    var path = Path.Combine(Server.MapPath("~/Vendor/img/avatar"));
+
+                    if (!Directory.Exists(path))
+                        Directory.CreateDirectory(path);
+                    account.Photo.SaveAs(path + account.AccountId + extension);
+
+                    ModelState.Clear();
+
+                    return RedirectToAction("Index");
+                }
+            }
+        
                 return View(account);
         }
 

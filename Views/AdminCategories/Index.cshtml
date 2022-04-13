@@ -1,31 +1,24 @@
-﻿@model IEnumerable<Medimall.Models.Account>
+﻿@model IEnumerable<Medimall.Models.Category>
 
 @{
     ViewBag.Title = "Index";
     Layout = "~/Views/Shared/_LayoutAdmin.cshtml";
 }
 <link href="~/Vendor/css/admin-site.css" rel="stylesheet" />
-<h2 class="text-center">Quản lý tài khoản</h2>
+<h2 class="text-center">Quản lý danh mục</h2>
 
 <p>
-    @Html.ActionLink("Tạo mới", "Create", "AdminAccounts", new { @class = "d-none d-sm-inline-block btn btn-sm btn-primary shadow-sm" })
+    @Html.ActionLink("Tạo mới", "Create", "AdminCategories", new { @class = "d-none d-sm-inline-block btn btn-sm btn-primary shadow-sm" })
 </p>
 <table class="table table-striped">
     <thead>
 
         <tr>
             <th>
-                @Html.DisplayNameFor(model => model.UserName)
+                @Html.DisplayNameFor(model => model.CategoryId)
             </th>
             <th>
-                @Html.DisplayNameFor(model => model.FullName)
-            </th>
-            <th>
-                @Html.DisplayNameFor(model => model.Phone)
-            </th>
-
-            <th>
-                @Html.DisplayNameFor(model => model.Status)
+                @Html.DisplayNameFor(model => model.CategoryName)
             </th>
             <th>
                 Tùy chỉnh
@@ -51,35 +44,36 @@
     });
 
     $(function() {
-            var successMess = '@TempData["SuccessMess"]'
+            var successMess = '@TempData["SuccessCreate"]'
         if (successMess != '') {
             alertify.success(successMess);
             successMess = '';
         }
+    var edit ='@TempData["SuccessEdit"]';
+    if (edit != '') {
+        alertify.success(edit);
+        edit = '';
+        }
+        var dele ='@TempData["SuccessDelete"]';
+    if (dele != '') {
+        alertify.success(dele);
+        dele = '';
+    }
 
         });
 
     function GetPageData(pageNum, pageSize) {
         $("#tblData").empty();
         $("#paged").empty();
-        $.getJSON("/AdminAccounts/GetPaggedData", { pageNumber: pageNum, pageSize: pageSize }, function (response) {
+        $.getJSON("/AdminCategories/GetPaggedData", { pageNumber: pageNum, pageSize: pageSize }, function (response) {
             var rowData = "";
             for (var i = 0; i < response.Data.length; i++) {
-                var convertStatus = function () {
-                    if (response.Data[i].Status == 1)
-                        return 'Mở'
-                    else {
-                        return 'Đóng'
-                    }
-                }
 
                 rowData = rowData +
-                    '<tr><td>' + response.Data[i].UserName + '</td>'
-                    + '<td>' + response.Data[i].FullName + '</td>' +
-                    '<td>' + response.Data[i].Phone + '</td>' +
-                    '<td>' + convertStatus() + '</td>' +
-                    '<td>' + '<a onclick = "EditAccount(' + response.Data[i].AccountId + ')" class="d-none d-sm-inline-block btn btn-sm btn btn-info">' + 'Sửa <i class="fas fa-edit"></i></a>' +
-                    '<a style="margin-left:15px" onclick = "DeleteAccountt(' + response.Data[i].AccountId + ')" class="d-none d-sm-inline-block btn btn-sm btn btn-danger ">' + 'Xóa <i class="fas fa-minus-circle"></i></a>' +
+                    '<tr><td>' + response.Data[i].CategoryId + '</td>'
+                    + '<td>' + response.Data[i].CategoryName + '</td>' +
+                    '<td>' + '<a onclick = "EditCategory(\'' + response.Data[i].CategoryId + '\')" class="d-none d-sm-inline-block btn btn-sm btn btn-info">' + 'Sửa <i class="fas fa-edit"></i></a>' +
+                    '<a style="margin-left:15px" onclick = "DeleteCategory(\'' + response.Data[i].CategoryId + '\')" class="d-none d-sm-inline-block btn btn-sm btn btn-danger ">' + 'Xóa <i class="fas fa-minus-circle"></i></a>' +
                     '</td>' +
                     '</tr>';
 
@@ -89,24 +83,24 @@
         });
     }
 
-    function EditAccount(id) {
-        window.location.href = '@Url.Action("Edit","AdminAccounts")/' + id;
+    function EditCategory(id) {
+        window.location.href = '@Url.Action("Edit","AdminCategories")/' + id;
     }
 
-    function DeleteAccount(id) {
+    function DeleteCategory(id) {
         alertify.confirm("Xóa", "Bạn có muốn xóa không?", function () {
-            window.location.href = '@Url.Action("Delete","AdminAccounts")/' + id;
+            window.location.href = '@Url.Action("DeleteCategory","AdminCategories")/' + id;
         },null);
     }
 
-    function DeleteAccountt(id) {
+    function DeleteCategory(id) {
         alertify.confirm("Xóa", "Bạn có muốn xóa không?", function () {
             $.ajax({
                 type: "POST",
-                url: "/AdminAccounts/DeleteAccount/" + id,
+                url: "/AdminCategories/DeleteCategory/" + id,
                 data: id,
                 success: function (result) {
-                    window.location.href = '@Url.Action("Index","AdminAccounts")';
+                    window.location.href = '@Url.Action("Index","AdminCategories")';
                 }
             })
         },null);
