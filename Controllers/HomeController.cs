@@ -288,9 +288,15 @@ namespace Medimall.Controllers
         public ActionResult ViewProductForCategory()
         {
             string id = this.RouteData.Values["id"].ToString();
+            ViewBag.categoryname = id;
             string categoryid = db.Categories.Where(p => p.CategoryName == id).Select(u => u.CategoryId).FirstOrDefault();
             List<Product> listProduct = db.Products.Where(p => p.CategoryId == categoryid).ToList();
             return PartialView(listProduct);
+        }
+        public ActionResult GetCategoryName()
+        {
+            List<Category> categories = db.Categories.ToList();
+            return PartialView(categories);
         }
     }
 }
