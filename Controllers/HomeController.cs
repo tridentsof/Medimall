@@ -155,17 +155,17 @@ namespace Medimall.Controllers
         }
         public ActionResult GetSkinCareProductPageOne()
         {
-            List<Product> listProduct = db.Products.Where(p => p.CategoryId == "SkinCare").OrderBy(p => p.ProductId).Take(5).ToList();
+            List<Product> listProduct = db.Products.Where(p => p.CategoryId == "SD01").OrderBy(p => p.ProductId).Take(5).ToList();
             return PartialView(listProduct);
         }
         public ActionResult GetSkinCareProductPageTwo()
         {
-            List<Product> listProduct = db.Products.Where(p => p.CategoryId == "SkinCare").OrderBy(p => p.ProductId).Skip(5).Take(5).ToList();
+            List<Product> listProduct = db.Products.Where(p => p.CategoryId == "SD01").OrderBy(p => p.ProductId).Skip(5).Take(5).ToList();
             return PartialView(listProduct);
         }
         public ActionResult GetSkinCareProductPageThree()
         {
-            List<Product> listProduct = db.Products.Where(p => p.CategoryId == "SkinCare").OrderBy(p => p.ProductId).Skip(10).Take(5).ToList();
+            List<Product> listProduct = db.Products.Where(p => p.CategoryId == "SD01").OrderBy(p => p.ProductId).Skip(10).Take(5).ToList();
             return PartialView(listProduct);
         }
         public ActionResult GetBestSaleProductPageOne()
@@ -282,7 +282,7 @@ namespace Medimall.Controllers
         }
         public ActionResult ViewSkinCareProduct()
         {
-            List<Product> listProduct = db.Products.Where(p => p.CategoryId == "SkinCare").OrderBy(p => p.ProductId).ToList();
+            List<Product> listProduct = db.Products.Where(p => p.CategoryId == "SD01").OrderBy(p => p.ProductId).ToList();
             return PartialView(listProduct);
         }
         public ActionResult ViewProductForCategory()
