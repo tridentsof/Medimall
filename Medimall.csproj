@@ -133,8 +133,11 @@
     <Compile Include="Controllers\AccountController.cs" />
     <Compile Include="Controllers\AdminAccountsController.cs" />
     <Compile Include="Controllers\AdminBillingsController.cs" />
+    <Compile Include="Controllers\AdminCategoriesController.cs" />
+    <Compile Include="Controllers\AdminDeliveriesController.cs" />
     <Compile Include="Controllers\AdminHomeController.cs" />
     <Compile Include="Controllers\AdminProductsController.cs" />
+    <Compile Include="Controllers\AdminVouchersController.cs" />
     <Compile Include="Controllers\CartController.cs" />
     <Compile Include="Controllers\HomeController.cs" />
     <Compile Include="Controllers\NewsController.cs" />
@@ -2330,6 +2333,28 @@
     <Content Include="Views\Account\OderDetailHeader.cshtml" />
     <Content Include="Views\Account\OderDetailTotal.cshtml" />
     <Content Include="Views\Home\ListProduct.cshtml" />
+    <Content Include="Views\Home\SameProductPartial.cshtml" />
+    <Content Include="Views\Home\ViewAllCovidProduct.cshtml" />
+    <Content Include="Views\Home\ViewBestSaleProduct.cshtml" />
+    <Content Include="Views\Home\ViewNewProduct.cshtml" />
+    <Content Include="Views\Home\ViewSkinCareProduct.cshtml" />
+    <Content Include="Views\Home\GetDelivery.cshtml" />
+    <Content Include="Views\Home\GetDetailProductPage.cshtml" />
+    <Content Include="Views\AdminCategories\Create.cshtml" />
+    <Content Include="Views\AdminCategories\Delete.cshtml" />
+    <Content Include="Views\AdminCategories\Details.cshtml" />
+    <Content Include="Views\AdminCategories\Edit.cshtml" />
+    <Content Include="Views\AdminCategories\Index.cshtml" />
+    <Content Include="Views\AdminDeliveries\Create.cshtml" />
+    <Content Include="Views\AdminDeliveries\Delete.cshtml" />
+    <Content Include="Views\AdminDeliveries\Details.cshtml" />
+    <Content Include="Views\AdminDeliveries\Edit.cshtml" />
+    <Content Include="Views\AdminDeliveries\Index.cshtml" />
+    <Content Include="Views\AdminVouchers\Create.cshtml" />
+    <Content Include="Views\AdminVouchers\Delete.cshtml" />
+    <Content Include="Views\AdminVouchers\Details.cshtml" />
+    <Content Include="Views\AdminVouchers\Edit.cshtml" />
+    <Content Include="Views\AdminVouchers\Index.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
