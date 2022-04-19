@@ -1,0 +1,147 @@
+﻿@model Medimall.Models.Account
+
+@{
+    ViewBag.Title = "Create";
+    Layout = "~/Views/Shared/_LayoutCustomer.cshtml";
+}
+
+
+@Scripts.Render("~/bundles/modernizr")
+@Scripts.Render("~/bundles/jquery")
+
+
+
+<div class="container">
+    <div style="font-size:18px">
+        @Html.ActionLink("< Trở lại", "Login", "Home")
+    </div>
+    <div class="card o-hidden border-0 shadow-lg my-5">
+        <div class="card-body p-0">
+            <!-- Nested Row within Card Body -->
+            <div class="row">
+                <div class="col-lg-5 d-none d-lg-block">
+                    <img src="~/Vendor/img/icon/Icon.png" style="margin:110px 150px;" />
+                </div>
+                <div class="col-lg-7">
+                    <div class="p-5">
+                        <div class="text-center">
+                            <h1 class="h4 text-gray-900 mb-4">Tạo tài khoản</h1>
+                        </div>
+                        <form id="register">
+                            <div class="form-group">
+                                <input type="text" class="form-control form-control-user" id="txtFullname"
+                                       placeholder="Họ và tên (*)" name="FullName">
+                            </div>
+                            <div class="form-group row">
+                                <div class="col-sm-6">
+                                    <input type="text" class="form-control form-control-user"
+                                           id="txtUsername" placeholder="Tên đăng nhập (*)" name="UserName">
+                                </div>
+                                <div class="col-sm-6 mb-3">
+                                    <input type="password" class="form-control form-control-user"
+                                           id="txtPassword" placeholder="Mật khẩu (*)" name="Password">
+                                </div>
+                            </div>
+                            <div class="form-group">
+                                <input type="email" class="form-control form-control-user" id="txtEmail"
+                                       placeholder="Email (*)" name="Email">
+                            </div>
+                            <div class="form-group">
+                                <input type="radio" name="Gender" checked value="1" style="margin-left:30px"> Nam
+                                <input type="radio" name="Gender" value="2" style="margin-left:30px"> Nữ
+                                <input type="radio" name="Gender" value="3" style="margin-left:30px"> Khác
+                            </div>
+                            <div class="form-group row">
+                                <div class="col-sm-6">
+                                    <input type="date" class="form-control form-control-user"
+                                           id="txtBirthday" placeholder="Ngày sinh(*)" name="BirthDay">
+                                </div>
+                                <div class="col-sm-6 mb-3">
+                                    <input type="text" class="form-control form-control-user"
+                                           id="txtPhone" placeholder="Điện thoại(*)" name="Phone">
+                                </div>
+                            </div>
+                            <div class="form-group">
+                                <input type="text" class="form-control form-control-user" id="txtAddress"
+                                       placeholder="Địa chỉ(*)" name="Address">
+                            </div>
+                            <button type="button" class="btn btn-primary btn-user btn-block" onclick="Register()">Đăng ký</button>
+                        </form>
+                        <hr>
+                        <div class="text-center">
+                            <a class="small" href="@Url.Action("Login","Home")" style="font-size:18px">Bạn đã có tài khoản! Đăng nhập</a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+<script type="text/javascript">
+    $(document).ready(function () {
+        $(function () {
+            var successMess = '@TempData["SuccessCreate"]'
+            if (successMess != '') {
+                alertify.success(successMess);
+                successMess = '';
+            }
+        })
+    });
+
+    function Register() {
+        var full = $("#txtFullname").val();
+        var pass = $("#txtPassword").val();
+        var user = $("#txtUsername").val();
+        var phone = $("#txtPhone").val();
+        var email = $("#txtEmail").val();
+        var birthday = $("#txtBirthday").val();
+        var address = $("#txtAddress").val();
+        FullName = document.getElementById("txtFullname");
+        UserName = document.getElementById("txtUsername");
+        Password = document.getElementById("txtPassword");
+        BirthDay = document.getElementById("txtBirthday");
+        Phone = document.getElementById("txtPhone");
+        Email = document.getElementById("txtEmail");
+        Address = document.getElementById("txtAddress");
+        var Status = 0;
+        var Gender
+        var ele = document.getElementsByTagName('input');
+        for (i = 0; i < ele.length; i++) {
+
+            if (ele[i].type = "radio") {
+
+                if (ele[i].checked)
+                    Gender = ele[i].value;
+            }
+        }
+        var customer = {
+            "fullname": FullName.value,
+            "username": UserName.value,
+            "password": Password.value,
+            "birthday": BirthDay.value,
+            "phone": Phone.value,
+            "email": Email.value,
+            "gender": Gender,
+            "address": Address.value,
+            "status": Status
+        };
+        if (full == "" || user == "" || pass == "" || email == "" || phone == "" || birthday == "" || address == "") {
+            var errorMess = "Vui lòng điền đầy đủ thông tin";
+                        alertify.error(errorMess);
+                        errorMess = '';
+            return false;
+        }
+
+        $.ajax({
+            type: "POST",
+            url: "/CustomerAccountRegister/CreateAccount",
+            data: customer,
+            success: function (result) {
+                alertify.success(result);
+                result = '';
+                $("#register")[0].reset();
+            }
+        });
+    }
+</script>

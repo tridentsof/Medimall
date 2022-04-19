@@ -1,0 +1,31 @@
+﻿
+@{
+    ViewBag.Title = "Confirm";
+    Layout = "~/Views/Shared/_LayoutCustomer.cshtml";
+}
+
+<br />
+<div  style="margin:auto;width:100%">
+    <div class="alert alert-warning" id="prev" style="width:100%;text-align:center">
+        <strong>Click vào để xác nhận Email</strong>
+        <input type="submit" class="btn btn-warning" style="margin-left:10px;" value="Xác nhận" onclick="Verified()">
+    </div>
+    <div class="alert alert-success" id="after" style="display: none; width: 100%; text-align: center ">
+        <span class="glyphicon glyphicon-ok"></span><strong>Tài khoản của bạn đã được xác thực </strong>
+    </div>
+</div>
+<script>
+    function Verified() {
+        $.ajax({
+            type: "post",
+            url: "/CustomerAccountRegister/RegisterConfirm",
+            data: { 'accountId': '@ViewBag.ID' },
+            success: function (msg) {
+                $("#prev").hide();
+                $("#after").show();
+                alert(msg);
+            }
+        })
+    }
+</script>
+
