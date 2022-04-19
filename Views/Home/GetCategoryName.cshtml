@@ -1,0 +1,11 @@
+﻿@model IEnumerable<Medimall.Models.Category>
+
+
+    @foreach (var item in Model)
+    {
+        <a class="span-item" href="@Url.Action("ViewProductForCategory","Home",new {id=item.CategoryName})">
+            <img src="" alt="" />
+            <p>@item.CategoryName</p>
+        </a>
+    }
+
