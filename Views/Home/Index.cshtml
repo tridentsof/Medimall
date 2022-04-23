@@ -284,6 +284,7 @@
     $(document).ready(function () {
         var successMess = '@TempData["SuccessMessVoucher"]';
         var successCart = '@TempData["SuccessCart"]';
+        var failCart = '@TempData["FailCart"]';
 
         if (successCart != '') {
             alertify.success(successCart);
@@ -293,6 +294,11 @@
         if (successMess != '') {
             alertify.success(successMess);
             successMess = '';
+        }
+
+        if (failCart != '') {
+            alertify.error(failCart);
+            failCart = '';
         }
     })
 </script>

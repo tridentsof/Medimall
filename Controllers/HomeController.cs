@@ -46,7 +46,7 @@ namespace Medimall.Controllers
         {
             if (ModelState.IsValid)
             {
-                Account account = db.Accounts.Where(a => a.UserName == model.UserName && a.Password == model.Password).FirstOrDefault();
+                Account account = db.Accounts.Where(a => a.UserName == model.UserName && a.Password == model.Password && a.Status == 1).FirstOrDefault();
 
                 if (account != null)
                 {

@@ -139,7 +139,7 @@ else
                             <h5>Tiền Mặt</h5>
                             <p>Thanh toán bằng tiền mặt khi nhận hàng</p>
                         </div>
-                        <input checked="checked" id="money-pay" type="radio" value="1" name="payment" onclick="handleClick(this)">
+                        <input checked="checked" id="money-pay" type="radio" value="1" name="payment" onclick="paymentClick(this)">
                         <span class="checkmark"></span>
                     </label>
                     <label class="box-discount box-money">
@@ -148,7 +148,7 @@ else
                             <h5>Thẻ Tín Dụng</h5>
                             <p>Bạn sẽ thanh toán trước số tiền của đơn hàng qua thẻ tín dụng</p>
                         </div>
-                        <input id="credit-pay" type="radio" value="2" name="payment" onclick="handleClick(this)">
+                        <input id="credit-pay" type="radio" value="2" name="payment" onclick="paymentClick(this)">
                         <span class="checkmark"></span>
                     </label>
                 </div>
@@ -223,7 +223,7 @@ else
 <script type="text/javascript" src="~/Scripts/cart.js"></script>
 
 <script>
-    handleClick = (obj) => {
+    paymentClick = (obj) => {
         $('#payment-method').val(obj.value);
     }
 
