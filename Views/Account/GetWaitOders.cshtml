@@ -1,6 +1,6 @@
 ﻿@model IEnumerable<Medimall.Models.Billing>
 
-@if (Model != null)
+@if (Model.Any())
 {
     <div>
         @foreach (var item in Model)

@@ -1,20 +1,28 @@
 ﻿@model IEnumerable<Medimall.Models.Voucher>
 
+@if (Model.Any())
+{
+    <div class="coupon_box">
+        @foreach (var item in Model)
+        {
+            <div class="couponItem">
 
-<div class="coupon_box">
-    @foreach (var item in Model)
-    {
-        <div class="couponItem">
-
-            <div class="couponItem_name">
-                <p>@(item.VoucherDetail)</p>
-                <p class="hsd">Hạn sử dụng: <span>@(item.EndDate)</span></p>
-                <p class="expried">Có thể dùng</p>
+                <div class="couponItem_name">
+                    <p>@(item.VoucherDetail)</p>
+                    <p class="hsd">Hạn sử dụng: <span>@(item.EndDate)</span></p>
+                    <p class="expried">Có thể dùng</p>
+                </div>
+                <div class="couponItem_code">
+                    <p>@(item.VoucherCode)</p>
+                </div>
             </div>
-            <div class="couponItem_code">
-                <p>@(item.VoucherCode)</p>
-            </div>
-        </div>
-    }
-</div>
-
+        }
+    </div>
+}
+else
+{
+    <div class="empty-result">
+        <img src="~/Vendor/img/icon/empty-image.png" alt="">
+        <p>Bạn chưa có mã khuyến mãi nào rồi</p>
+    </div>
+}
