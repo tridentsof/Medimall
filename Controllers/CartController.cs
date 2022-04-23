@@ -5,6 +5,8 @@ using System.Linq;
 using System.Web;
 using System.Web.Mvc;
 using Medimall.Infrastructure;
+using System.Configuration;
+using Medimall.Helper;
 
 namespace Medimall.Controllers
 {
@@ -153,60 +155,167 @@ namespace Medimall.Controllers
         {
             try
             {
+                var deliveryId = Convert.ToInt32(Session["DeliveryId"]);
                 var userName = Session["UserNameCustomer"];
                 var userId = Session["UserId"].ToString();
                 var userInfor = db.Accounts.FirstOrDefault(x => x.AccountId.ToString() == userId);
                 var voucherId = Convert.ToInt32(Session["VoucherId"]);
                 var voucher = db.Vouchers.FirstOrDefault(m => m.VoucherId == voucherId);
-                var deliveryId = Convert.ToInt32(Session["DeliveryId"]);
                 var delivery = db.Deliveries.FirstOrDefault(m => m.DeliveryId == deliveryId);
 
-                Cart cart = Session["Cart"] as Cart;
-                Billing billing = new Billing();
-
-                billing.AccountId = userInfor.AccountId;
-                billing.PurchaseDate = DateTime.Now;
-                //Can replace if adress in form collection == null
-                billing.Address = userInfor.Address;
-                billing.PayId = int.Parse(form["pay-id"]);
-                billing.DeliveryId = deliveryId;
-                billing.Total = int.Parse(form["total-money"]);
-                billing.Phone = userInfor.Phone;
-                billing.UserName = userInfor.UserName;
-
-                billing.Status = 1;
-                db.Billings.Add(billing);
-
-                foreach (var item in cart.Items)
+                if (deliveryId == 1)
                 {
-                    BillDetail billDetail = new BillDetail();
+                    //Normal Payment
+                    Cart cart = Session["Cart"] as Cart;
+                    Billing billing = new Billing();
 
-                    var product = db.Products.Single(x => x.ProductId == item._shopping_product.ProductId);
+                    billing.AccountId = userInfor.AccountId;
+                    billing.PurchaseDate = DateTime.Now;
+                    //Can replace if adress in form collection == null
+                    billing.Address = userInfor.Address;
+                    billing.PayId = int.Parse(form["pay-id"]);
+                    billing.DeliveryId = deliveryId;
+                    billing.Total = int.Parse(form["total-money"]);
+                    billing.Phone = userInfor.Phone;
+                    billing.UserName = userInfor.UserName;
 
-                    product.QuantitySold += item._shopping_quantity;
-                    product.Quantity -= item._shopping_quantity;
+                    billing.Status = 1;
+                    db.Billings.Add(billing);
 
-                    var voucherPercent = voucher?.Percent ?? 0;
-                    var deliveryPrice = delivery?.DeliveryPrice ?? 0;
-                    var totalMoney = Convert.ToDecimal(item._shopping_product.Price * (100 - voucherPercent) / 100 + deliveryPrice);
+                    foreach (var item in cart.Items)
+                    {
+                        BillDetail billDetail = new BillDetail();
 
-                    billDetail.BillId = billing.BillId;
-                    billDetail.ProductId = item._shopping_product.ProductId;
-                    billDetail.Price = item._shopping_product.Price;
-                    billDetail.Quantity = item._shopping_quantity;
-                    billDetail.ProductName = item._shopping_product.ProductName;
-                    billDetail.Total = totalMoney;
+                        var product = db.Products.Single(x => x.ProductId == item._shopping_product.ProductId);
 
-                    db.BillDetails.Add(billDetail);
+                        product.QuantitySold += item._shopping_quantity;
+                        product.Quantity -= item._shopping_quantity;
+
+                        var voucherPercent = voucher?.Percent ?? 0;
+                        var deliveryPrice = delivery?.DeliveryPrice ?? 0;
+                        var totalMoney = Convert.ToDecimal(item._shopping_product.Price * (100 - voucherPercent) / 100 + deliveryPrice);
+
+                        billDetail.BillId = billing.BillId;
+                        billDetail.ProductId = item._shopping_product.ProductId;
+                        billDetail.Price = item._shopping_product.Price;
+                        billDetail.Quantity = item._shopping_quantity;
+                        billDetail.ProductName = item._shopping_product.ProductName;
+                        billDetail.Total = totalMoney;
+
+                        db.BillDetails.Add(billDetail);
+                    }
+
+                    db.SaveChanges();
+                    TempData["SuccessCart"] = "Đặt hàng thành công, mời bạn vào lịch sử đơn hàng để theo dõi";
+                    cart.ClearCart();
+                    Session["DiscountPrice"] = null;
+                    Session["VoucherId"] = null;
+                    Session["DeliveryPrice"] = null;
+                    Session["DeliveryId"] = null;
+
+                    return RedirectToAction("Index", "Home");
                 }
+                else if(deliveryId == 2)
+                {
+                    //Online Payment
+                    string vnp_Returnurl = ConfigurationManager.AppSettings["vnp_Returnurl"]; //URL nhan ket qua tra ve 
+                    string vnp_Url = ConfigurationManager.AppSettings["vnp_Url"]; //URL thanh toan cua VNPAY 
+                    string vnp_TmnCode = ConfigurationManager.AppSettings["vnp_TmnCode"]; //Ma website
+                    string vnp_HashSecret = ConfigurationManager.AppSettings["vnp_HashSecret"]; //Chuoi bi mat
 
-                db.SaveChanges();
-                TempData["SuccessCart"] = "Đặt hàng thành công, mời bạn vào lịch sử đơn hàng để theo dõi";
-                cart.ClearCart();
-                Session["DiscountPrice"] = null;
-                Session["VoucherId"] = null;
-                Session["DeliveryPrice"] = null;
-                Session["DeliveryId"] = null;
+                    Cart cart = Session["Cart"] as Cart;
+                    Billing billing = new Billing();
+                    billing.AccountId = userInfor.AccountId;
+                    billing.PurchaseDate = DateTime.Now;
+                    //Can replace if adress in form collection == null
+                    billing.Address = userInfor.Address;
+                    billing.PayId = int.Parse(form["pay-id"]);
+                    billing.DeliveryId = deliveryId;
+                    billing.Total = int.Parse(form["total-money"]);
+                    billing.Phone = userInfor.Phone;
+                    billing.UserName = userInfor.UserName;
+                    billing.Status = 1;
+                    db.Billings.Add(billing);
+                    foreach (var item in cart.Items)
+                    {
+                        BillDetail billDetail = new BillDetail();
+
+                        var product = db.Products.Single(x => x.ProductId == item._shopping_product.ProductId);
+
+                        product.QuantitySold += item._shopping_quantity;
+                        product.Quantity -= item._shopping_quantity;
+
+                        var voucherPercent = voucher?.Percent ?? 0;
+                        var deliveryPrice = delivery?.DeliveryPrice ?? 0;
+                        var totalMoney = Convert.ToDecimal(item._shopping_product.Price * (100 - voucherPercent) / 100 + deliveryPrice);
+
+                        billDetail.BillId = billing.BillId;
+                        billDetail.ProductId = item._shopping_product.ProductId;
+                        billDetail.Price = item._shopping_product.Price;
+                        billDetail.Quantity = item._shopping_quantity;
+                        billDetail.ProductName = item._shopping_product.ProductName;
+                        billDetail.Total = totalMoney;
+
+                        db.BillDetails.Add(billDetail);
+                    }
+
+                    db.SaveChanges();
+
+                    //Build URL for VNPay
+                    string locale = "vn";
+                    VnPayLibrary vnpay = new VnPayLibrary();
+                    vnpay.AddRequestData("vnp_Version", VnPayLibrary.VERSION);
+                    vnpay.AddRequestData("vnp_Command", "pay");
+                    vnpay.AddRequestData("vnp_TmnCode", vnp_TmnCode);
+                    vnpay.AddRequestData("vnp_Amount", ((int.Parse(form["total-money"])) * 100).ToString());
+                    vnpay.AddRequestData("vnp_CreateDate", DateTime.Now.ToString("yyyyMMddHHmmss"));
+                    vnpay.AddRequestData("vnp_CurrCode", "VND");
+                    vnpay.AddRequestData("vnp_IpAddr", Utils.GetIpAddress());
+                    if (!string.IsNullOrEmpty(locale))
+                    {
+                        vnpay.AddRequestData("vnp_Locale", locale);
+                    }
+                    else
+                    {
+                        vnpay.AddRequestData("vnp_Locale", "vn");
+                    }
+                    vnpay.AddRequestData("vnp_OrderInfo", "Thanh toan don hang tu Medimall");
+                    vnpay.AddRequestData("vnp_OrderType", "other"); //default value: other
+                    vnpay.AddRequestData("vnp_ReturnUrl", vnp_Returnurl);
+                    vnpay.AddRequestData("vnp_TxnRef", DateTime.Now.Ticks.ToString());
+                    //Add Params of 2.1.0 Version
+                    vnpay.AddRequestData("vnp_ExpireDate", DateTime.Now.AddDays(1).ToString("yyyyMMddHHmmss"));
+                    //Billing
+                    vnpay.AddRequestData("vnp_Bill_Mobile", userInfor.Phone.ToString());
+                    vnpay.AddRequestData("vnp_Bill_Email", userInfor.Email.ToString());
+                    var fullName = userInfor.FullName;
+                    if (!String.IsNullOrEmpty(fullName))
+                    {
+                        var indexof = fullName.IndexOf(' ');
+                        vnpay.AddRequestData("vnp_Bill_FirstName", fullName.Substring(0, indexof));
+                        vnpay.AddRequestData("vnp_Bill_LastName", fullName.Substring(indexof + 1, fullName.Length - indexof - 1));
+                    }
+                    vnpay.AddRequestData("vnp_Bill_Address", userInfor.Address.Trim().ToString());
+                    vnpay.AddRequestData("vnp_Bill_City", "Tam Ky");
+                    vnpay.AddRequestData("vnp_Bill_Country", "Viet Nam");
+                    vnpay.AddRequestData("vnp_Bill_State", "");
+                    vnpay.AddRequestData("vnp_Inv_Phone", userInfor.Phone.Trim().ToString());
+                    vnpay.AddRequestData("vnp_Inv_Email", userInfor.Email.Trim().ToString());
+                    vnpay.AddRequestData("vnp_Inv_Customer", userInfor.UserName.Trim().ToString());
+                    vnpay.AddRequestData("vnp_Inv_Address", userInfor.Address.Trim().ToString());
+                    vnpay.AddRequestData("vnp_Inv_Company", "");
+                    vnpay.AddRequestData("vnp_Inv_Taxcode", "0102182292");
+                    vnpay.AddRequestData("vnp_Inv_Type", "I");
+
+
+                    string paymentUrl = vnpay.CreateRequestUrl(vnp_Url, vnp_HashSecret);
+                    cart.ClearCart();
+                    Session["DiscountPrice"] = null;
+                    Session["VoucherId"] = null;
+                    Session["DeliveryPrice"] = null;
+                    Session["DeliveryId"] = null;
+                    return Redirect(paymentUrl);
+                }
 
                 return RedirectToAction("Index", "Home");
 
@@ -215,6 +324,55 @@ namespace Medimall.Controllers
             {
                 throw;
             }
+        }
+
+        public ActionResult PaymentConfirm()
+        {
+            if (Request.QueryString.Count > 0)
+            {
+                string vnp_HashSecret = ConfigurationManager.AppSettings["vnp_HashSecret"]; //Chuoi bi mat
+                var vnpayData = Request.QueryString;
+                VnPayLibrary vnpay = new VnPayLibrary();
+
+                foreach (string s in vnpayData)
+                {
+                    //get all querystring data
+                    if (!string.IsNullOrEmpty(s) && s.StartsWith("vnp_"))
+                    {
+                        vnpay.AddResponseData(s, vnpayData[s]);
+                    }
+                }
+
+                long orderId = Convert.ToInt64(vnpay.GetResponseData("vnp_TxnRef"));
+                long vnpayTranId = Convert.ToInt64(vnpay.GetResponseData("vnp_TransactionNo"));
+                string vnp_ResponseCode = vnpay.GetResponseData("vnp_ResponseCode");
+                string vnp_TransactionStatus = vnpay.GetResponseData("vnp_TransactionStatus");
+                String vnp_SecureHash = Request.QueryString["vnp_SecureHash"];
+                String TerminalID = Request.QueryString["vnp_TmnCode"];
+                long vnp_Amount = Convert.ToInt64(vnpay.GetResponseData("vnp_Amount")) / 100;
+                String bankCode = Request.QueryString["vnp_BankCode"];
+
+                bool checkSignature = vnpay.ValidateSignature(vnp_SecureHash, vnp_HashSecret);
+                if (checkSignature)
+                {
+                    if (vnp_ResponseCode == "00" && vnp_TransactionStatus == "00")
+                    {
+                        //Thanh toán thành công
+                        TempData["SuccessCart"] = "Đặt hàng thành công, mời bạn vào lịch sử đơn hàng để theo dõi";
+                    }
+                    else
+                    {
+                        //Thanh toán không thành công. Mã lỗi: vnp_ResponseCode
+                        TempData["FailCart"] = "Đặt hàng thất bại";
+                    }
+                }
+                else
+                {
+                    TempData["FailCart"] = "Có lỗi xảy ra trong quá trình xử lý";
+                }
+            }
+
+            return RedirectToAction("Index", "Home");
         }
     }
 }
