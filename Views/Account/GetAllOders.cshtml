@@ -1,5 +1,5 @@
 ﻿@model IEnumerable<Medimall.Models.Billing>
-@if (Model != null)
+@if (Model.Any())
 {
     <div class="oder-history">
         @foreach (var item in Model)

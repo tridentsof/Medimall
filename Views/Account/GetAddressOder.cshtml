@@ -1,82 +1,99 @@
 ﻿@model IEnumerable<Medimall.Models.Billing>
 
 <style>
- 
-    .main-deliadress{
-        width:900px;
-        display:block;
+
+    .main-deliadress {
+        width: 900px;
+        display: block;
     }
-    .main-deliadress h3 {
-        font-size: 24px;
-        font-weight: 600;
-        line-height: 32px;
-         padding-left: 30px;
-    }
+
+        .main-deliadress h3 {
+            font-size: 24px;
+            font-weight: 600;
+            line-height: 32px;
+            padding-left: 30px;
+        }
+
         .main-deliadress p {
             color: #4b7bec;
             font-size: 17px;
             font-weight: 700;
-            text-align:center;
+            text-align: center;
         }
+
     .box-address {
-        display:flex;
-        margin:20px;
-        margin-bottom:25px;
+        display: flex;
+        margin: 20px;
+        margin-bottom: 25px;
         border: 1px solid transparent;
         box-shadow: 0 0 12px rgb(15 61 145 / 12%);
     }
-    .icon-adrress{
-        margin:10px;
+
+    .icon-adrress {
+        margin: 10px;
     }
+
     .info-address {
         margin: 10px;
     }
-     .info-address h3 {
-         font-size: 12px;
-         line-height: 18px;
-         font-weight: 400;
-         color: #fff;
-         background-color: #5dac46;
-         padding: 0 12px;
-         border-radius: 6px;
-         margin-bottom: 12px;
-         display: inline-block;
-     }
+
+        .info-address h3 {
+            font-size: 12px;
+            line-height: 18px;
+            font-weight: 400;
+            color: #fff;
+            background-color: #5dac46;
+            padding: 0 12px;
+            border-radius: 6px;
+            margin-bottom: 12px;
+            display: inline-block;
+        }
+
     .detail-address {
         display: flex;
         font-size: 14px;
         font-weight: 400;
         line-height: 24px;
     }
-    .detail-address p 
-    {
-        text-align:left;
-        width:100px;
-        margin-right: 10px;
-    }
-    .detail-address span {
-        font-size: 16px;
-        font-weight: 400;
-        line-height: 24px;
-    }
-</style>
 
-<div class="main-deliadress">
-    <h3>Sổ địa chỉ nhận hàng</h3>
-    <p>Giao hàng tận nơi</p>
-    <hr />
-    @foreach (var item in Model)
-    {
-        <div class="box-address">
-            <div class="icon-adrress">
-                <figure><svg width="40" height="40" viewBox="0 0 40 40" fill="none"><rect width="40" height="40" rx="10" fill="#D7FFCB"></rect><path fill-rule="evenodd" clip-rule="evenodd" d="M22.5098 18.7114C22.5098 17.3302 21.3905 16.2109 20.0093 16.2109C18.629 16.2109 17.5098 17.3302 17.5098 18.7114C17.5098 20.0917 18.629 21.2109 20.0093 21.2109C21.3905 21.2109 22.5098 20.0917 22.5098 18.7114Z" stroke="#112950" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"></path><path fill-rule="evenodd" clip-rule="evenodd" d="M19.9995 29C17.1015 29 12.5 23.9587 12.5 18.5986C12.5 14.4025 15.8571 11 19.9995 11C24.1419 11 27.5 14.4025 27.5 18.5986C27.5 23.9587 22.8985 29 19.9995 29Z" stroke="#112950" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"></path></svg></figure>
+        .detail-address p {
+            text-align: left;
+            width: 100px;
+            margin-right: 10px;
+        }
+
+        .detail-address span {
+            font-size: 16px;
+            font-weight: 400;
+            line-height: 24px;
+        }
+</style>
+@if (Model.Any())
+{
+    <div class="main-deliadress">
+        <h3>Sổ địa chỉ nhận hàng</h3>
+        <p>Giao hàng tận nơi</p>
+        <hr />
+        @foreach (var item in Model)
+        {
+            <div class="box-address">
+                <div class="icon-adrress">
+                    <figure><svg width="40" height="40" viewBox="0 0 40 40" fill="none"><rect width="40" height="40" rx="10" fill="#D7FFCB"></rect><path fill-rule="evenodd" clip-rule="evenodd" d="M22.5098 18.7114C22.5098 17.3302 21.3905 16.2109 20.0093 16.2109C18.629 16.2109 17.5098 17.3302 17.5098 18.7114C17.5098 20.0917 18.629 21.2109 20.0093 21.2109C21.3905 21.2109 22.5098 20.0917 22.5098 18.7114Z" stroke="#112950" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"></path><path fill-rule="evenodd" clip-rule="evenodd" d="M19.9995 29C17.1015 29 12.5 23.9587 12.5 18.5986C12.5 14.4025 15.8571 11 19.9995 11C24.1419 11 27.5 14.4025 27.5 18.5986C27.5 23.9587 22.8985 29 19.9995 29Z" stroke="#112950" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"></path></svg></figure>
+                </div>
+                <div class="info-address">
+                    <h3>Khác</h3>
+                    <div class="detail-address"><p>Người Nhận:</p><span>@(item.UserName)</span></div>
+                    <div class="detail-address"><p>Số điện thoại:</p><span>@(item.Phone) </span></div>
+                    <div class="detail-address"><p>Địa chỉ:</p><span>@(item.Address)</span></div>
+                </div>
             </div>
-            <div class="info-address">
-                <h3>Khác</h3>
-                <div class="detail-address"><p>Người Nhận:</p><span>@(item.UserName)</span></div>
-                <div class="detail-address"><p>Số điện thoại:</p><span>@(item.Phone) </span></div>
-                <div class="detail-address"><p>Địa chỉ:</p><span>@(item.Address)</span></div>
-            </div>
-        </div>
-    }
-</div>
+        }
+    </div>
+}
+else
+{
+    <div class="empty-result">
+        <img src="~/Vendor/img/icon/empty-image.png" alt="">
+        <p>Bạn chưa có địa chỉ nào </p>
+    </div>
+}
