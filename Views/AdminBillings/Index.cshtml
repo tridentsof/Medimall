@@ -69,9 +69,9 @@
                         $.each(result, function (index, value) {
                             var convertPayment = function () {
                                 if (value.PayId == 1)
-                                    return 'Cash'
+                                    return 'Tiền Mặt'
                                 else {
-                                    return 'ATM'
+                                    return 'VNPAY'
                                 }
                             }
                             var convertStatus = function () {
@@ -130,9 +130,9 @@
                 }
                 var convertPayment = function () {
                     if (response.Data[i].PayId == 1)
-                        return 'Cash'
+                        return 'Tiền mặt'
                     else {
-                        return 'ATM'
+                        return 'VNPAY'
                     }
                 }
                 rowData = rowData +
