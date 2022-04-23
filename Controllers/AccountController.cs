@@ -171,5 +171,29 @@ namespace Medimall.Controllers
             var diplasydetail = db.BillDetails.Where(p => p.BillId == id).ToList();
             return PartialView(diplasydetail);
         }
+        public JsonResult UpdatePassword(string oldPass,string newPass) 
+        {
+            db.Configuration.ProxyCreationEnabled = false;
+            var accountId = int.Parse(Session["UserId"].ToString());
+            var checkvalid = db.Accounts.Any(p => p.AccountId == accountId && p.Password == oldPass);
+            Account account = (from c in db.Accounts
+                               where c.AccountId == accountId
+                               select c).FirstOrDefault();
+            if(checkvalid)
+            {
+                if (account != null)
+                {
+                    account.Password = newPass;
+                    db.SaveChanges();
+                    return Json(true);
+                }
+            }   
+            return Json(false);
+        }
+        public ActionResult LogOut()
+        {
+            Session.Abandon();
+            return RedirectToAction("Login","Home");
+        }
     }
 }
