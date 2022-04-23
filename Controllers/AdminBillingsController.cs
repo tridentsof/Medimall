@@ -26,7 +26,7 @@ namespace MedimallAdmin.Controllers
         public ActionResult GetPaggedData(int pageNumber = 1, int pageSize = 6)
         {
             db.Configuration.ProxyCreationEnabled = false;
-            List<Billing> listData = db.Billings.ToList();
+            var listData = db.Billings.ToList();
             var pagedData = Pagination.PagedResult(listData, pageNumber, pageSize);
 
             return Json(pagedData, JsonRequestBehavior.AllowGet);

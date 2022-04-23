@@ -24,8 +24,9 @@
     <thead style="background-color: #4e73df;color:aliceblue ">
         <tr>
             <th>@Html.DisplayNameFor(model => model.BillId)</th>
-            <th>@Html.DisplayNameFor(model => model.Account)</th>
-            <th>@Html.DisplayNameFor(model => model.PurchaseDate)</th>
+            <th>@Html.DisplayNameFor(model => model.AccountId)</th>
+             <th>@Html.DisplayNameFor(model => model.Total)</th>
+            <th>Phương thức thanh toán</th>
             <th>@Html.DisplayNameFor(model => model.Status)</th>
             <th>Chức năng</th>
         </tr>
@@ -66,10 +67,28 @@
                     }
                     else {
                         $.each(result, function (index, value) {
+                            var convertPayment = function () {
+                                if (value.PayId == 1)
+                                    return 'Tiền Mặt'
+                                else {
+                                    return 'VNPAY'
+                                }
+                            }
+                            var convertStatus = function () {
+                                if (value.Status == 1)
+                                    return 'Chờ xác nhận'
+                                if (value.Status == 2)
+                                    return 'Đang giao'
+                                if (value.Status == 3)
+                                    return 'Đã giao'
+                                else
+                                    return 'Đã hủy'
+                            }
                             var data = '<tr><td>' + value.BillId + '</td>' +
                                 '<td>' + value.AccountId + '</td>' +
-                                '<td>' + value.PurchaseDate + '</td>' +
-                                '<td>' + value.Status + '</td>' +
+                                '<td>' + (Math.round(value.Total * 100) / 100).toLocaleString() + ' VND' + '</td>' +
+                                '<td>' + convertPayment() + '</td>' +
+                                '<td>' + convertStatus() + '</td>' +
                                 '<td>' + '<a onclick = "EditBilling(' + value.BillId + ')" class="d-none d-sm-inline-block btn btn-sm btn btn-info">' + 'Sửa <i class="fas fa-edit"></i></a>' +
                                 '<a style="margin-left:15px" onclick = "DeleteBilling(' + value.BillId + ')" class="d-none d-sm-inline-block btn btn-sm btn btn-danger ">' + 'Xóa <i class="fas fa-minus-circle"></i></a>' +
                                 '</td>' +
@@ -101,15 +120,26 @@
             for (var i = 0; i < response.Data.length; i++) {
                 var convertStatus = function () {
                     if (response.Data[i].Status == 1)
-                        return 'Mở'
+                        return 'Chờ xác nhận'
+                    if (response.Data[i].Status == 2)
+                        return 'Đang giao'
+                    if (response.Data[i].Status == 3)
+                        return 'Đã giao'
+                    else
+                        return 'Đã hủy'
+                }
+                var convertPayment = function () {
+                    if (response.Data[i].PayId == 1)
+                        return 'Tiền mặt'
                     else {
-                        return 'Đóng'
+                        return 'VNPAY'
                     }
                 }
                 rowData = rowData +
                     '<tr><td>' + response.Data[i].BillId + '</td>' +
                     '<td>' + response.Data[i].AccountId + '</td>' +
-                    '<td>' + response.Data[i].PurchaseDate + '</td>' +
+                    '<td>' + (Math.round(response.Data[i].Total * 100) / 100).toLocaleString() + ' VND' + '</td>' +
+                    '<td>' + convertPayment() + '</td>' +
                     '<td>' + convertStatus() + '</td>' +
                     '<td>' + '<a onclick = "EditBilling(' + response.Data[i].BillId + ')" class="d-none d-sm-inline-block btn btn-sm btn btn-info">' + 'Sửa <i class="fas fa-edit"></i></a>' +
                     '<a style="margin-left:15px" onclick = "DeleteBilling(' + response.Data[i].BillId + ')" class="d-none d-sm-inline-block btn btn-sm btn btn-danger ">' + 'Xóa <i class="fas fa-minus-circle"></i></a>' +
