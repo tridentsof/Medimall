@@ -195,7 +195,7 @@ namespace Medimall.Controllers
         public ActionResult LogOut()
         {
             Session.Abandon();
-            return RedirectToAction("Login","Home");
+            return RedirectToAction("Index","Home");
         }
     }
 }
