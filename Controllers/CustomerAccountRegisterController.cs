@@ -23,7 +23,7 @@ namespace Medimall.Controllers
             var checkuser = db.Accounts.Any(p => p.UserName == customer.UserName);
             Account account = (from c in db.Accounts
                                select c).FirstOrDefault();
-            string result = checkuser ? "Trùng tên đăng nhập,đăng kí thất bại":"Đăng kí thành công,vui lòng xác thực email";
+            bool result = checkuser ? false : true;
             if (checkuser)
             {
                 return Json(result, JsonRequestBehavior.AllowGet);

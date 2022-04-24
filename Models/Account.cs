@@ -50,7 +50,7 @@ namespace Medimall.Models
         [Display(Name = "Ngày sinh")]
         [DataType(DataType.Date)]
         [DisplayFormat(DataFormatString = "{0:yyyy-MM-dd}", ApplyFormatInEditMode = true)]
-        public Nullable<System.DateTime> BirthDay { get; set; }
+        public System.DateTime BirthDay { get; set; }
         [Display(Name = "Trạng thái")]
         public Nullable<int> Status { get; set; }
         [Display(Name = "Mã xác nhận")]

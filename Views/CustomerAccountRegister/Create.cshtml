@@ -125,8 +125,11 @@
         };
         if (full == "" || user == "" || pass == "" || email == "" || phone == "" || birthday == "" || address == "") {
             var errorMess = "Vui lòng điền đầy đủ thông tin";
-                        alertify.error(errorMess);
-                        errorMess = '';
+            alertify.error(errorMess);
+            window.setTimeout(function () {
+                 window.location.href = '@Url.Action("Create", "CustomerAccountRegister")';
+            },1000)
+            errorMess = '';
             return false;
         }
 
@@ -135,9 +138,22 @@
             url: "/CustomerAccountRegister/CreateAccount",
             data: customer,
             success: function (result) {
-                alertify.success(result);
-                result = '';
-                $("#register")[0].reset();
+                if (result == true) {
+                    var succmess = "Đăng kí thành công!Xác thực email để có thể đăng nhập";
+                    alertify.success(succmess);
+                    succmess = '';
+                       window.setTimeout(function () {
+                 window.location.href = '@Url.Action("Create", "CustomerAccountRegister")';
+            },1000)
+                }
+                else {
+                    var errormess = "Trùng tên đăng nhập";
+                    alertify.error(errormess);
+                    errormess = '';
+                       window.setTimeout(function () {
+                 window.location.href = '@Url.Action("Create", "CustomerAccountRegister")';
+            },1000)
+                }
             }
         });
     }
