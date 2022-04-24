@@ -124,8 +124,81 @@
                         <label for="msg">Tin nhắn *</label>
                         <textarea placeholder="Bạn hãy nhập lời nhắn.." name="msg" required></textarea>
                     </div>
-                    <button type="submit" class="btn">Bắt đầu chat</button>
+                    <button onclick="startChat()" type="submit" class="btn">Bắt đầu chat</button>
                 </form>
+            </div>
+            <div id="boxChat" class="boxChat">
+                <div class="header-chat" style="display: flex; flex-direction: column;">
+                    <div style="display: flex;">
+                        <h5>Chat cùng Medimall</h5>
+                        <button type="button" class="btn nut-dong-chatbox" style="padding: 0 9px; height: 29px;" onclick="dongBoxChat()">
+                            <i class="fas fa-minus"></i>
+                        </button>
+                    </div>
+                    <div class="chatWel">
+                        <div style="box-shadow: rgba(0, 0, 0, 0.02) 0px 1px 3px 0px, rgba(27, 31, 35, 0.15) 0px 0px 0px 1px; padding: 5px;border-radius: 5px;    position: absolute;
+                        bottom: 11px;
+                        left: 13px;
+                        background: #fff;">
+                            <img style="    width: 50px; height: 50px;
+                            object-fit: contain;" src="../img/Logo.png" alt="">
+                        </div>
+                        <h5 style="font-size: 15px;text-align: left; font-weight: bold; margin-left: 60px;color: #0f62f9;">MEDIMALL <p style="font-weight: normal;color: #000;">Xin chào!</p></h4>
+                    </div>
+                </div> 
+                <div class="bodyChat">  
+                    <div class="conversation">
+                        <div class="customer-chat">
+                            <div class="chat">
+                                <span>
+                                    <h5>
+                                        Vy 
+                                    </h5>
+                                    Lorem ipsum dolor sit amet, consectetur adipisicing elit. Laudantium aliquid ipsum suscipit labore quidem, illum possimus laborum veniam iure, similique, explicabo amet quam magnam eius aspernatur nostrum. Magnam, quam neque.
+                                    Loremss ipsum dolor sit, amet consectetur adipisicing elit. Animi perferendis sapiente quis porro necessitatibus rerum consequatur beatae modi, maxime error a similique? Consequuntur, quis error iste soluta illum voluptates facilis.</span>
+                                    <div class="arrow-right"></div>
+                                </div>
+                            <img src="../img/3.png">
+                        </div>
+                        <div class="medimall-chat">
+                            <img src="../img/2.png">
+                            <div class="chat">
+                                <div class="arrow-left"></div>
+                                <span>
+                                    <h5>
+                                        Livechat - Tư vấn Đặt Hàng
+                                    </h5>
+                                    Bộ phận CSKH của Pharmacity làm việc từ 7:00 – 22:00 từ Thứ Hai – Chủ Nhật. Tin nhắn gửi ngoài giờ có thể chưa được gửi đến chuyên viên hỗ trợ, Quý Khách vui lòng liên hệ lại sau 7:00 vào ngày làm việc kế tiếp. Xin chân thành cảm ơn và chúc Quý Khách nhiều sức khỏe!</span>
+                                </div>
+                            </div>
+                        <div class="customer-chat">
+                            <div class="chat">
+                                <span>
+                                    <h5>
+                                        Vy 
+                                    </h5>
+                                    Lorem ipsum dolor sit amet, consectetur adipisicing elit. Laudantium aliquid ipsum suscipit labore quidem, illum possimus laborum veniam iure, similique, explicabo amet quam magnam eius aspernatur nostrum. Magnam, quam neque.
+                                    Loremss ipsum dolor sit, amet consectetur adipisicing elit. Animi perferendis sapiente quis porro necessitatibus rerum consequatur beatae modi, maxime error a similique? Consequuntur, quis error iste soluta illum voluptates facilis.</span>
+                                    <div class="arrow-right"></div>
+                                </div>
+                            <img src="../img/3.png">
+                        </div>
+                        <div class="medimall-chat">
+                            <img src="../img/2.png">
+                            <div class="chat">
+                                <div class="arrow-left"></div>
+                                <span>
+                                    <h5>
+                                        Livechat - Tư vấn Đặt Hàng
+                                    </h5>
+                                    Bộ phận CSKH của Pharmacity làm việc từ 7:00 – 22:00 từ Thứ Hai – Chủ Nhật. Tin nhắn gửi ngoài giờ có thể chưa được gửi đến chuyên viên hỗ trợ, Quý Khách vui lòng liên hệ lại sau 7:00 vào ngày làm việc kế tiếp. Xin chân thành cảm ơn và chúc Quý Khách nhiều sức khỏe!</span>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="input-boxChat">
+                            <input  type="text" placeholder="Hãy nhập tin nhắn để chat" id="">
+                        </div>
+                    </div>
             </div>
             <div class="header-main">
                 <div class="logo">
@@ -2276,6 +2349,14 @@
             document.getElementById("myForm").style.display = "block";
         }
         function dongForm() {
+            document.getElementById("myForm").style.display = "none";
+        }
+        function startChat() {
+            document.getElementById("myForm").style.display = "none";
+            document.getElementById("boxChat").style.display = "block";
+        }
+        function dongBoxChat() {
+            document.getElementById("boxChat").style.display = "none";
             document.getElementById("myForm").style.display = "none";
         }
     </script>

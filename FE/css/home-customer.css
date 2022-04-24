@@ -1099,7 +1099,7 @@ header {
 	bottom: 0;
 	right: 40px;
 	width: 280px;
-	z-index: 999;
+	z-index: 30;
 	border-top-left-radius: 5px;
 	border-top-right-radius: 5px;
 }
@@ -1181,4 +1181,126 @@ header {
 	padding: 10px;
 	overflow: auto;
 	max-height: 500px;
+}
+#boxChat {
+	display: none;
+}
+.boxChat {
+	width: 320px;
+	position: fixed;
+	right: 32px;
+	bottom: 0;
+	background: #fff;
+	color: #000;
+	box-shadow: rgba(99, 99, 99, 0.2) 0px 2px 8px 0px;
+	z-index: 35;
+}
+.chatWel {
+	padding: 5px 5px 5px 20px;
+	width: 100%;
+	height: auto;
+	position: absolute;
+	top: 31px;
+	background-color: #fff;
+	display: flex;
+	justify-content: space-around;
+	color: #000;
+    box-shadow: rgba(33, 35, 38, 0.1) 0px 10px 10px -10px;
+}
+.nut-dong-chatbox{
+    color: #fff;
+}
+.bodyChat {
+	padding: 15px 5px 0px;
+	/* height: 350px; */
+	margin-top: 54px;
+}
+.conversation {
+	display: flex;
+	flex-direction: column;
+	justify-content: space-between;
+	overflow: auto;
+	height: 290px;
+}
+.input-boxChat{
+    height: 80px;
+    padding: 9px 10px ;
+    box-shadow: rgba(33, 35, 38, 0.1) 0px -10px 10px -10px;
+    position: sticky;
+    bottom: 0;
+    background: #fff;
+}
+.input-boxChat input{
+    color: #333;
+    width: 287px;
+    height: 60px;
+    border-radius: 5px;
+    border: 1px solid #ddd;
+    box-shadow: rgb(206, 206, 206) 2px 3px 7px -3px inset;
+}
+.input-boxChat input::placeholder{
+    padding-left: 5px;
+    font-style: italic;
+}
+.input-boxChat input:focus{
+    outline: none;
+}
+.customer-chat {
+	justify-content: flex-end;
+}
+.customer-chat,
+.medimall-chat {
+    display: flex;
+	margin-bottom: 20px;
+}
+.medimall-chat {
+    justify-content: flex-start;
+    margin-bottom: 10px;
+}
+.customer-chat img,
+.medimall-chat img {
+	width: 50px;
+	height: 50px;
+	object-fit: cover;
+	border-radius: 4px;
+}
+
+.arrow-right {
+	width: 0;
+	height: 0;
+	border-top: 10px solid transparent;
+	border-bottom: 10px solid transparent;
+	border-left: 10px solid #1b1f230e;
+}
+
+.arrow-left {
+	width: 0;
+	height: 0;
+	border-top: 10px solid transparent;
+	border-bottom: 10px solid transparent;
+	border-right: 10px solid #ddd;
+}
+.chat {
+	display: flex;
+	margin: 12px 5px;
+}
+
+.customer-chat .chat span {
+	padding: 5px 0 5px 8px;
+	text-align: left;
+	background: #1b1f230e;
+	border-radius: 5px;
+	border-top-right-radius: 0;
+}
+.medimall-chat .chat span {
+	padding: 5px 0 5px 8px;
+	text-align: left;
+	background: #ddd;
+	border-radius: 5px;
+	border-top-left-radius: 0;
+}
+.chat span h5 {
+	font-weight: bold;
+	text-align: left;
+    font-size: 15px;
 }
