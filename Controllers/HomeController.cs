@@ -19,11 +19,6 @@ namespace Medimall.Controllers
             return View();
         }
 
-        public ActionResult Login()
-        {
-            return View();
-        }
-
         [HttpPost]
         public ActionResult ListProductSearch(string searchString)
         {
@@ -37,6 +32,11 @@ namespace Medimall.Controllers
         }
 
         public ActionResult ProductSearch()
+        {
+            return View();
+        }
+        
+        public ActionResult Login()
         {
             return View();
         }
@@ -63,6 +63,25 @@ namespace Medimall.Controllers
             }
             else
                 return View(model);
+        }
+
+        [HttpPost]
+        public JsonResult LoginAjax(string userName,string passWord)
+        {
+            bool result = false;
+            Account account = db.Accounts.Where(a => a.UserName == userName && a.Password == passWord && a.Status == 1).FirstOrDefault();
+            if (account != null)
+            {
+                Session["UserNameCustomer"] = account.UserName;
+                Session["UserId"] = account.AccountId;
+                result = true;
+
+                return Json(result, JsonRequestBehavior.AllowGet);
+            }
+            else
+            {
+                return Json(result, JsonRequestBehavior.AllowGet);
+            }
         }
 
         [CustomAuthenticationCustomerFilter]

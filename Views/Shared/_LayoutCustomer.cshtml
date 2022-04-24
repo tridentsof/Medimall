@@ -40,10 +40,53 @@
     <link href="~/Content/alertifyjs/themes/default.min.css" rel="stylesheet" />
 
     <script src="~/Scripts/Product.js"></script>
-
+    <script src="~/Scripts/Home.js"></script>
 </head>
 
 <body>
+    <div id="myModal" class="modal fade " role="dialog">
+        <div class="modal-dialog modal-dialog-centered modal-lg">
+            <!-- Đăng nhập content-->
+            <div class="modal-content center">
+                <div class="modal-body">
+                    <div class="modal-left">
+                        <img src="../img/banner.png">
+                        <div class="modal-left-text">
+                            <h2>Medimall xin chào !</h2>
+                            <p>
+                                Hãy đăng nhập để được hưởng các đặc quyền riêng dành cho thành viên
+                            </p>
+                            <div>
+                                Bạn đã là thành viên Medicall vui lòng nhấp <a href="#">tạo mật khẩu</a> để tiếp tục sử dụng.
+                                Tất cả thông tin tài khoản và điểm tích lũy đều không thay đổi
+                            </div>
+                        </div>
+                    </div>
+                    <div class="form-login">
+                        <h1>Đăng nhập</h1>
+                        <form class="needs-validation" novalidate>
+                            <div class="form-group">
+                                <input type="text" class="form-control" id="uname" placeholder="Số điện thoại của bạn"
+                                       name="uname" required>
+                                <div class="valid-feedback">Hợp lệ.</div>
+                                <div class="invalid-feedback">Vui lòng điền vào trường này.</div>
+                            </div>
+                            <div class="form-group">
+                                <input type="password" class="form-control" id="pwd" placeholder="Mật khẩu" name="pswd"
+                                       required>
+                                <div class="valid-feedback">Hợp lệ.</div>
+                                <div class="invalid-feedback">Vui lòng điền vào trường này.</div>
+                            </div>
+                            <h2><a href="#">Quên mật khẩu?</a></h2>
+                            <button onclick="loginHandle()" type="button" class="btn">Đăng Nhập</button>
+                            <h3>Bạn chưa có tài khoản Pharmacity?</h3>
+                            <a href="#">Đăng ký ngay</a>
+                        </form>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
     <header>
         <div class="container-header">
             <div class="header-top">
@@ -69,17 +112,24 @@
                             </div>
                         </div>
                     </div>
-                    @if (Session["UserNameCustomer"] != null)
-                    {
-                        <a href="@Url.Action("Account","Account/")" style="display: flex; color: #fff; width: auto">
-                            <p style="text-transform:capitalize">@Session["UserNameCustomer"]&ensp;<i class="far fa-user fa-fw fa-lg"></i></p>
-                        </a>
 
-                    }
-                    else
-                    {
-                        <a style="color:inherit!important;text-decoration:inherit;margin-left:10px" href="@Url.Action("Login","Home")">Đăng nhập</a>
-                    }
+                    <div id="login-session">
+                        <a id="user-session" href="@Url.Action("Account","Account/")" style="display: none; color: #fff; width: auto">
+                            <p style="text-transform:capitalize"><span id="user-name"></span> @Session["UserNameCustomer"]&ensp;<i class="far fa-user fa-fw fa-lg"></i></p>
+                        </a>
+                        @if ((Session["UserNameCustomer"]) != null)
+                        {
+                            <a id="user-session" href="@Url.Action("Account","Account/")" style="display: flex; color: #fff; width: auto">
+                                <p style="text-transform:capitalize"><span id="user-name"></span> @Session["UserNameCustomer"]&ensp;<i class="far fa-user fa-fw fa-lg"></i></p>
+                            </a>
+                        }
+                        else
+                        {
+                            <button id="btn-login" type="button" class="login-btn" data-toggle="modal" data-target="#myModal">
+                                &ensp;Đăng nhập&ensp;<i class="far fa-user fa-fw fa-lg"></i>
+                            </button>
+                        }
+                    </div>
 
                 </div>
             </div>
@@ -207,9 +257,11 @@
             </div>
         </div>
     </div>
-    
+
     <script src="~/Scripts/home-customer.js"></script>
     <script src="~/Scripts/alertify.min.js"></script>
+
+
 
     @RenderSection("scripts", required: false)
 </body>

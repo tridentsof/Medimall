@@ -1,5 +1,4 @@
-﻿
-$(window).ready(function () {
+﻿$(window).ready(function () {
     $("#txt-search-product").on('keypress', function (e) {
 
         if (e.which == 13 && $("#txt-search-product").val() != "") {
