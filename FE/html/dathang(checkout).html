@@ -247,9 +247,20 @@
             Mã giảm giá của Medimall
           </p>
           <div class="discount-wrap">
-            <p>Mã giảm giá</p>
-            <button class="btn-discount" type="button" data-toggle="modal" data-target="#btn-discount">Chọn mã giảm
-              giá</button>
+            <div style="display: flex;flex-direction: column;">
+                <div class="discount-point">
+                    <p>Mã giảm giá:</p>
+                    <button class="btn-discount" type="button" data-toggle="modal" data-target="#btn-discount">Chọn mã giảm
+                      giá</button>
+                </div>
+                <div class="discount-point">
+                    <p>Điểm tích luỹ:</p>
+                    <div style="text-align: right;">
+                        <h5 style="color: #5dac46; margin-bottom: 5px;">1000</h5>
+                        <button class="btn-point">Sử dụng điểm</button>
+                    </div>
+                </div>
+            </div>
             <div class="modal fade" id="btn-discount">
               <div class="modal-dialog modal-dialog-centered">
                 <div class="modal-content">
