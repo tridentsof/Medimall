@@ -18,8 +18,10 @@ namespace Medimall.Controllers
         public ActionResult Account()
         {
             var accountId = int.Parse(Session["UserId"].ToString());
-            var displayuser = db.Accounts.Where(p => p.AccountId == accountId).ToList();
-            return PartialView(displayuser);
+            var user = db.Accounts.Where(p => p.AccountId == accountId).FirstOrDefault();
+            var pointToVIP = 2000000 - user.PowerPoint.GetValueOrDefault();
+            TempData["PointToVIP"] = String.Format("{0:0,0}",pointToVIP);
+            return PartialView(user);
         }
         public ActionResult GetAllOders()
         {

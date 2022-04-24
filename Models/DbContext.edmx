@@ -19,8 +19,10 @@
           <Property Name="BirthDay" Type="datetime" />
           <Property Name="Status" Type="int" />
           <Property Name="ActiveCode" Type="nvarchar" MaxLength="50" />
-          <Property Name="PowerPoint" Type="int" />
+          <Property Name="PowerPoint" Type="decimal" Precision="18" Scale="0" />
           <Property Name="Gender" Type="int" />
+          <Property Name="IsVIP" Type="bit" />
+          <Property Name="UsedPoint" Type="decimal" Precision="18" Scale="0" />
         </EntityType>
         <EntityType Name="Admin">
           <Key>
@@ -131,6 +133,7 @@
           <Property Name="Quantity" Type="int" />
           <Property Name="QuantitySold" Type="int" />
           <Property Name="IsForCovid" Type="bit" />
+          <Property Name="PercentSalePoint" Type="decimal" Precision="18" Scale="2" />
         </EntityType>
         <EntityType Name="Role">
           <Key>
@@ -406,8 +409,11 @@
           <Property Name="BirthDay" Type="DateTime" Precision="3" />
           <Property Name="Status" Type="Int32" />
           <Property Name="ActiveCode" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
-          <Property Name="PowerPoint" Type="Int32" />
+          <Property Name="PowerPoint"  Type="Decimal" Precision="18" Scale="0" />
           <Property Name="Gender" Type="Int32" />
+          <Property Name="IsVIP" Type="Boolean" />
+          <Property Name="UsedPoint"  Type="Decimal" Precision="18" Scale="0" />    
+          
           <NavigationProperty Name="HealthBooks" Relationship="Self.FK_Acc" FromRole="Account" ToRole="HealthBook" />
           <NavigationProperty Name="ListDrugs" Relationship="Self.FK_Acc1" FromRole="Account" ToRole="ListDrug" />
           <NavigationProperty Name="Billings" Relationship="Self.FK_kh" FromRole="Account" ToRole="Billing" />
@@ -538,6 +544,7 @@
           <Property Name="Quantity" Type="Int32" />
           <Property Name="QuantitySold" Type="Int32" />
           <Property Name="IsForCovid" Type="Boolean" />
+          <Property Name="PercentSalePoint" Type="Decimal" Precision="18" Scale="2" />
           <NavigationProperty Name="BillDetails" Relationship="Self.FK_SP" FromRole="Product" ToRole="BillDetail" />
           <NavigationProperty Name="Category" Relationship="Self.FK_Category" FromRole="Product" ToRole="Category" />
           <NavigationProperty Name="ListDrugs" Relationship="Self.FK_Pro" FromRole="Product" ToRole="ListDrug" />
@@ -821,6 +828,8 @@
                 <ScalarProperty Name="ActiveCode" ColumnName="ActiveCode" />
                 <ScalarProperty Name="PowerPoint" ColumnName="PowerPoint" />
                 <ScalarProperty Name="Gender" ColumnName="Gender" />
+                <ScalarProperty Name="IsVIP" ColumnName="IsVIP" />
+                <ScalarProperty Name="UsedPoint" ColumnName="UsedPoint" />      
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>
@@ -942,6 +951,7 @@
                 <ScalarProperty Name="Quantity" ColumnName="Quantity" />
                 <ScalarProperty Name="QuantitySold" ColumnName="QuantitySold" />
                 <ScalarProperty Name="IsForCovid" ColumnName="IsForCovid" />
+                <ScalarProperty Name="PercentSalePoint" ColumnName="PercentSalePoint" />
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>

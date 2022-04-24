@@ -75,7 +75,7 @@ namespace Medimall.Controllers
             if (product != null)
             {
                 db.Products.Remove(product);
-                TempData["SuccessMess"] = "Xóa thành công!";
+                TempData["DeleteSuccess"] = "Xóa thành công!";
                 db.SaveChanges();
                 result = true;
             }
@@ -158,12 +158,13 @@ namespace Medimall.Controllers
         // more details see https://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult Edit([Bind(Include = "ProductId,CategoryId,ProductName,UsesFor,Ingredient,Price,Quantity,QuantitySold,Photo")] Product product)
+        public ActionResult Edit([Bind(Include = "ProductId,CategoryId,ProductName,UsesFor,Ingredient,Price,Quantity,QuantitySold,Photo,IsForCovid,PercentSalePoint")] Product product)
         {
             if (ModelState.IsValid)
             {
+                TempData["EditSuccess"] = "Lưu thành công";
                 db.Entry(product).State = EntityState.Modified;
-                db.SaveChanges();
+                db.SaveChanges();      
                 return RedirectToAction("Index");
             }
             ViewBag.CategoryId = new SelectList(db.Categories, "CategoryId", "CategoryName", product.CategoryId);

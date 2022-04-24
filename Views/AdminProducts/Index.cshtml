@@ -83,6 +83,19 @@
         })
     });
 
+    $(function() {
+        var editSuccess = '@TempData["EditSuccess"]';
+        var deleteSuccess = '@TempData["DeleteSuccess"] ';
+        if (editSuccess != '') {
+            alertify.success(editSuccess);
+            editSuccess = '';
+        }
+        if (deleteSuccess != '') {
+            alertify.success(deleteSuccess);
+            deleteSuccess = '';
+        }
+    });
+
     function EditProduct(id) {
         window.location.href = '@Url.Action("Edit","AdminProducts")/' + id;
     }
@@ -99,14 +112,6 @@
             })
         },null);
     }
-
-    $(function() {
-        var successMess = '@TempData["SuccessMess"]'
-        if (successMess != '') {
-            alertify.success(successMess);
-            successMess = '';
-        }
-    });
 
     function GetPageData(pageNum, pageSize) {
         $("#tblProduct").empty();
@@ -157,7 +162,7 @@
             BackwardOne = currentPage - 1;
         }
 
-        
+
         template = template + '<ul class="pager">' +
             '<li class="previous"><a href="#" onclick="GetPageData(' + FirstPage + ')"><i class="fas fa-caret-left"></i>&nbsp;Đầu</a></li>' +
             '<li><a href="#" onclick="GetPageData(' + BackwardOne + ')"><i class="glyphicon glyphicon-backward"></i></a>';

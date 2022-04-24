@@ -1,4 +1,4 @@
-﻿@model IEnumerable<Medimall.Models.Account>
+﻿@model Medimall.Models.Account
 @{
     ViewBag.Title = "Account";
     Layout = "~/Views/Shared/_LayoutCustomer.cshtml";
@@ -427,8 +427,9 @@
         .span-input:nth-child(1) div {
             width: 198px;
         }
-        .span-input.name input{
-            width:400px;
+
+        .span-input.name input {
+            width: 400px;
         }
 
         .span-input:nth-child(3) input,
@@ -695,16 +696,18 @@
     .tabs .tab-content .tab-pane.active {
         display: block !important;
     }
+
     .deli-address .tab-content .tab-pane.active {
         display: block !important;
     }
-    .my-voucher{
-        display:block!important;
-        padding-left:25px;
+
+    .my-voucher {
+        display: block !important;
+        padding-left: 25px;
     }
 </style>
 
-<div class="container-body">
+<div style="margin-top:8%" class="container-body">
     <div class="body-header">
         <ul>
             <li>Trang chủ</li>
@@ -715,12 +718,8 @@
     <div class="content-body">
         <div class="sidebar-wrap">
             <div class="info-user-wrap">
-                @foreach (var item in Model)
-                {
-                    <img src="~/Vendor/img/avatar/@(item.AccountId.ToString()).png">
-                    <h2>@(item.UserName)</h2>
-                }
-
+                <img src="~/Vendor/img/avatar/@(Model.AccountId.ToString()).png">
+                <h2>@(Model.UserName)</h2>
                 <div class="point-wrap">
                     <div>
                         <div class="barPoint">
@@ -734,8 +733,15 @@
                                 <p>Thành viên</p>
                             </div>
                             <div>
-                                <p>Để lên hạng bạn cần chi tiêu thêm</p>
-                                <p>8.000.000 VND</p>
+                                @if (Model.IsVIP == false || Model.IsVIP == null)
+                                {
+                                    <p>Để lên hạng bạn cần chi tiêu thêm</p>
+                                    <p>@TempData["PointToVIP"] VND</p>
+                                }
+                                else
+                                {
+                                    <p>Bạn đã là thành viên VIP</p>
+                                }
                             </div>
                             <div class="imgthanhvien">
                                 <img src="~/FE/img/thethanhvien_yellow.png" alt="">
@@ -752,21 +758,42 @@
                         <div class="accumulated-points">
                             <div>
                                 <p>Điểm tích lũy</p>
-                                <p>0</p>
+                                @if (Model.PowerPoint != null)
+                                {
+                                    <p>@String.Format("{0:0,0}", Model.PowerPoint)</p>
+                                }
+                                else
+                                {
+                                    <p>0</p>
+                                }
                             </div>
                             <div>
                                 <p>Điểm có thể dùng</p>
-                                <p>0</p>
+                                @if (Model.PowerPoint != null)
+                                {
+                                    <p>@String.Format("{0:0,0}", Model.PowerPoint)</p>
+                                }
+                                else
+                                {
+                                    <p>0</p>
+                                }
                             </div>
                             <div>
                                 <p>Điểm đã dùng</p>
-                                <p>0</p>
+                                @if (Model.UsedPoint != null)
+                                {
+                                    <p>@String.Format("{0:0,0}", Model.UsedPoint)</p>
+                                }
+                                else
+                                {
+                                    <p>0</p>
+                                }
                             </div>
                         </div>
                     </div>
                 </div>
             </div>
-           
+
             <div class="sidebar1">
                 <div class="nav flex-column nav-pills" id="v-pills-tab" role="tablist" aria-orientation="vertical">
                     <a class="nav-link active" id="v-pills-personalinformation" data-toggle="pill"
@@ -823,7 +850,7 @@
                        role="tab" aria-controls="v-pills-voucher" aria-selected="false">
                         <div>
                             <svg width="24" height="24" viewBox="0 0 24 24" fill="none"><path d="M13.8496 4.25V6.67" stroke="#112950" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"></path><path d="M13.8496 17.7598V19.7838" stroke="#112950" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"></path><path d="M13.8496 14.3249V9.50391" stroke="#112950" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"></path><path fill-rule="evenodd" clip-rule="evenodd" d="M18.7021 20C20.5242 20 22 18.5426 22 16.7431V14.1506C20.7943 14.1506 19.8233 13.1917 19.8233 12.001C19.8233 10.8104 20.7943 9.85039 22 9.85039L21.999 7.25686C21.999 5.45745 20.5221 4 18.7011 4H5.29892C3.47789 4 2.00104 5.45745 2.00104 7.25686L2 9.93485C3.20567 9.93485 4.17668 10.8104 4.17668 12.001C4.17668 13.1917 3.20567 14.1506 2 14.1506V16.7431C2 18.5426 3.4758 20 5.29787 20H18.7021Z" stroke="#112950" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"></path></svg>
-                            Mã khuyễn mãi của bạn
+                            Mã khuyến mãi của bạn
                         </div>
                         <i class="fas fa-chevron-right"></i>
                     </a>
@@ -870,115 +897,115 @@
             </div>
 
             <div class="sidebar3">
-                    <div>
-                        <svg width="24" height="24" viewBox="0 0 24 24" fill="none">
-                            <g>
-                                <path d="M21.8906 7.07745H20.4407C19.9659 5.94791 19.2585 4.90634 18.3626 4.03789C16.9544 2.67284 15.1312 1.78339 13.229 1.53336C10.0768 1.11903 6.98733 2.3263 4.96486 4.76277C4.38445 5.462 3.91214 6.24449 3.56348 7.07745H2.10938C0.946266 7.07745 0 8.02372 0 9.18683V11.9993C0 13.1624 0.946266 14.1087 2.10938 14.1087H4.98984L4.68863 13.1871C3.81084 10.5015 4.30594 7.75836 6.04692 5.66094C7.75889 3.59844 10.3754 2.57666 13.0457 2.92761C16.3905 3.36725 19.0988 5.99403 19.6316 9.3155C19.9953 11.582 19.3609 13.8722 17.891 15.599C16.4178 17.3299 14.2746 18.3243 12.0108 18.3275C10.8418 18.329 9.89067 19.2754 9.89067 20.4368C9.89067 21.5999 10.8369 22.5462 12 22.5462C13.1632 22.5462 14.1094 21.5999 14.1094 20.4368V19.4869C15.9825 19.0421 17.6853 18.0103 18.9619 16.5105C19.582 15.782 20.0757 14.9771 20.4378 14.1087H21.8906C23.0537 14.1087 24 13.1624 24 11.9993V9.18678C24 8.02372 23.0537 7.07745 21.8906 7.07745ZM3.0968 12.7025H2.10938C1.72167 12.7025 1.40625 12.387 1.40625 11.9993V9.18683C1.40625 8.79913 1.72167 8.4837 2.10938 8.4837H3.10519C3.08016 8.58908 3.057 8.69502 3.03581 8.80124C2.77917 10.0871 2.80003 11.3956 3.0968 12.7025ZM12.7031 20.4368C12.7031 20.8245 12.3877 21.14 12 21.14C11.6123 21.14 11.2969 20.8245 11.2969 20.4368C11.2969 20.0496 11.618 19.7342 12.0127 19.7337C12.244 19.7334 12.4744 19.7243 12.7031 19.7067V20.4368ZM22.5938 11.9993C22.5938 12.387 22.2783 12.7025 21.8906 12.7025H20.8943C21.1735 11.5282 21.2164 10.3162 21.0201 9.0927C20.9873 8.88842 20.9467 8.68531 20.8992 8.4837H21.8906C22.2783 8.4837 22.5938 8.79913 22.5938 9.18683V11.9993Z"
-                                      fill="#112950"></path>
-                                <path d="M8 13C8.5 14.5 9.79 16 12 16C14.21 16 15.5 14.5 16 13" stroke="#112950" stroke-width="1.5"
-                                      stroke-linecap="round"></path>
-                                <path d="M9 10C9.55228 10 10 9.32843 10 8.5C10 7.67157 9.55228 7 9 7C8.44772 7 8 7.67157 8 8.5C8 9.32843 8.44772 10 9 10Z"
-                                      fill="#112950"></path>
-                                <path d="M15 10C15.5523 10 16 9.32843 16 8.5C16 7.67157 15.5523 7 15 7C14.4477 7 14 7.67157 14 8.5C14 9.32843 14.4477 10 15 10Z"
-                                      fill="#112950"></path>
-                            </g>
-                        </svg>
-                        <h5>1780 1111</h5>
-                        <p>Tư vấn đặt hàng</p>
+                <div>
+                    <svg width="24" height="24" viewBox="0 0 24 24" fill="none">
+                        <g>
+                            <path d="M21.8906 7.07745H20.4407C19.9659 5.94791 19.2585 4.90634 18.3626 4.03789C16.9544 2.67284 15.1312 1.78339 13.229 1.53336C10.0768 1.11903 6.98733 2.3263 4.96486 4.76277C4.38445 5.462 3.91214 6.24449 3.56348 7.07745H2.10938C0.946266 7.07745 0 8.02372 0 9.18683V11.9993C0 13.1624 0.946266 14.1087 2.10938 14.1087H4.98984L4.68863 13.1871C3.81084 10.5015 4.30594 7.75836 6.04692 5.66094C7.75889 3.59844 10.3754 2.57666 13.0457 2.92761C16.3905 3.36725 19.0988 5.99403 19.6316 9.3155C19.9953 11.582 19.3609 13.8722 17.891 15.599C16.4178 17.3299 14.2746 18.3243 12.0108 18.3275C10.8418 18.329 9.89067 19.2754 9.89067 20.4368C9.89067 21.5999 10.8369 22.5462 12 22.5462C13.1632 22.5462 14.1094 21.5999 14.1094 20.4368V19.4869C15.9825 19.0421 17.6853 18.0103 18.9619 16.5105C19.582 15.782 20.0757 14.9771 20.4378 14.1087H21.8906C23.0537 14.1087 24 13.1624 24 11.9993V9.18678C24 8.02372 23.0537 7.07745 21.8906 7.07745ZM3.0968 12.7025H2.10938C1.72167 12.7025 1.40625 12.387 1.40625 11.9993V9.18683C1.40625 8.79913 1.72167 8.4837 2.10938 8.4837H3.10519C3.08016 8.58908 3.057 8.69502 3.03581 8.80124C2.77917 10.0871 2.80003 11.3956 3.0968 12.7025ZM12.7031 20.4368C12.7031 20.8245 12.3877 21.14 12 21.14C11.6123 21.14 11.2969 20.8245 11.2969 20.4368C11.2969 20.0496 11.618 19.7342 12.0127 19.7337C12.244 19.7334 12.4744 19.7243 12.7031 19.7067V20.4368ZM22.5938 11.9993C22.5938 12.387 22.2783 12.7025 21.8906 12.7025H20.8943C21.1735 11.5282 21.2164 10.3162 21.0201 9.0927C20.9873 8.88842 20.9467 8.68531 20.8992 8.4837H21.8906C22.2783 8.4837 22.5938 8.79913 22.5938 9.18683V11.9993Z"
+                                  fill="#112950"></path>
+                            <path d="M8 13C8.5 14.5 9.79 16 12 16C14.21 16 15.5 14.5 16 13" stroke="#112950" stroke-width="1.5"
+                                  stroke-linecap="round"></path>
+                            <path d="M9 10C9.55228 10 10 9.32843 10 8.5C10 7.67157 9.55228 7 9 7C8.44772 7 8 7.67157 8 8.5C8 9.32843 8.44772 10 9 10Z"
+                                  fill="#112950"></path>
+                            <path d="M15 10C15.5523 10 16 9.32843 16 8.5C16 7.67157 15.5523 7 15 7C14.4477 7 14 7.67157 14 8.5C14 9.32843 14.4477 10 15 10Z"
+                                  fill="#112950"></path>
+                        </g>
+                    </svg>
+                    <h5>1780 1111</h5>
+                    <p>Tư vấn đặt hàng</p>
+                </div>
+                <h3><a href="/Account/LogOut">Đăng xuất</a></h3>
+            </div>
+
+        </div>
+        <div class="main-content">
+            <div class="tab-content" id="v-pills-tabContent">
+                <div class="tab-pane fade show active" id="v-pills-personal-information" role="tabpanel"
+                     aria-labelledby="v-pills-personalinformation">
+                    <div class="title">
+                        <h4>Chỉnh sửa thông tin cá nhân</h4>
                     </div>
-                    <h3><a href="/Account/LogOut">Đăng xuất</a></h3>
+                    <div class="upload-wrap">
+                        @Html.Action("Edit", "Account")
+                    </div>
                 </div>
 
-            </div>
-            <div class="main-content">
-                <div class="tab-content" id="v-pills-tabContent">
-                    <div class="tab-pane fade show active" id="v-pills-personal-information" role="tabpanel"
-                         aria-labelledby="v-pills-personalinformation">
-                        <div class="title">
-                            <h4>Chỉnh sửa thông tin cá nhân</h4>
+                <div class="tab-pane fade" id="v-pills-order-history" role="tabpanel" aria-labelledby="v-pills-orderhistory">
+                    <div class="title">
+                        <h4>Lịch sử đơn hàng</h4>
+                    </div>
+                    <div class="tabs">
+                        <div class="nav  nav-pills" id="v-pills-tab" role="tablist" aria-orientation="vertical">
+                            <a class="nav-link active" id="v-pills1" data-toggle="pill" href="#v-pills-1" role="tab"
+                               aria-controls="v-pills-1" aria-selected="true">
+                                Tất cả
+                            </a>
+                            <a class="nav-link" id="v-pills2" data-toggle="pill" href="#v-pills-2" role="tab"
+                               aria-controls="v-pills-2" aria-selected="false">
+                                Chờ xác nhận
+                            </a>
+                            <a class="nav-link" id="v-pills3" data-toggle="pill" href="#v-pills-3" role="tab"
+                               aria-controls="v-pills-3" aria-selected="false">
+                                Đang giao
+                            </a>
+                            <a class="nav-link" id="v-pills4" data-toggle="pill" href="#v-pills-4" role="tab"
+                               aria-controls="v-pills-4" aria-selected="false">
+                                Hoàn thành
+                            </a>
+                            <a class="nav-link" id="v-pills5" data-toggle="pill" href="#v-pills-5" role="tab"
+                               aria-controls="v-pills-5" aria-selected="false">
+                                Đã hủy
+                            </a>
                         </div>
-                        <div class="upload-wrap">
-                             @Html.Action("Edit", "Account")
+                        <div class="searchbox">
+                            <svg width="20" height="20" viewBox="0 0 20 20" fill="none">
+                                <path d="M18.129 17.1715L15.2645 14.3709L15.1973 14.2688C15.0725 14.1445 14.9018 14.0745 14.7237 14.0745C14.5455 14.0745 14.3748 14.1445 14.25 14.2688C11.8156 16.5021 8.06447 16.6235 5.48435 14.5524C2.90423 12.4814 2.29574 8.86049 4.06242 6.09116C5.8291 3.32183 9.42274 2.26339 12.4601 3.6178C15.4974 4.9722 17.0359 8.31917 16.0552 11.439C15.9846 11.6644 16.0423 11.9095 16.2066 12.082C16.371 12.2545 16.6169 12.3282 16.8519 12.2753C17.0868 12.2224 17.2751 12.0509 17.3457 11.8255C18.518 8.12322 16.7475 4.13898 13.1794 2.45023C9.61143 0.761484 5.31671 1.87504 3.07356 5.07053C0.830408 8.26602 1.312 12.5845 4.20679 15.2323C7.10159 17.8801 11.5408 18.0626 14.6528 15.6618L17.1891 18.1414C17.451 18.3964 17.8745 18.3964 18.1364 18.1414C18.3981 17.8829 18.3981 17.4665 18.1364 17.2079L18.129 17.1715Z"
+                                      fill="#112950"></path>
+                            </svg>
+                            <input placeholder="Nhập tên sản phẩm,mã đơn..." value="" class="search">
+                        </div>
+                        <div class="sortbox">
+                            <svg stroke="#112950" id="toggleMenuMobile" width="24" height="24" viewBox="0 0 24 24"
+                                 fill="none">
+                                <path d="M3 7L21 7" stroke="inherit" stroke-width="1.5" stroke-linecap="round"></path>
+                                <path d="M3 12H15" stroke="inherit" stroke-width="1.5" stroke-linecap="round"></path>
+                                <path d="M3 17H7" stroke="inherit" stroke-width="1.5" stroke-linecap="round"></path>
+                            </svg>
+                            <select class="select-sort">
+                                <option value="1">Đơn hàng mới nhất</option>
+                                <option value="2">Đơn hàng cũ nhất</option>
+                            </select>
+                        </div>
+                        <div class="tab-content" id="v-pills-tabContent">
+                            <div class="tab-pane fade show active" id="v-pills-1" role="tabpanel"
+                                 aria-labelledby="v-pills1">
+                                @Html.Action("GetAllOders", "Account")
+                            </div>
+                            <div class="tab-pane fade" id="v-pills-2" role="tabpanel" aria-labelledby="v-pills2">
+                                @Html.Action("GetWaitOders", "Account")
+                            </div>
+                            <div class="tab-pane fade" id="v-pills-3" role="tabpanel" aria-labelledby="v-pills3">
+                                @Html.Action("GetDeliOder", "Account")
+                            </div>
+                            <div class="tab-pane fade" id="v-pills-4" role="tabpanel" aria-labelledby="v-pills4">
+                                @Html.Action("GetSuccesOders", "Account")
+                            </div>
+                            <div class="tab-pane fade" id="v-pills-5" role="tabpanel" aria-labelledby="v-pills5">
+                                @Html.Action("GetCancleOders", "Account")
+                            </div>
                         </div>
                     </div>
+                </div>
 
-                    <div class="tab-pane fade" id="v-pills-order-history" role="tabpanel" aria-labelledby="v-pills-orderhistory">
-                        <div class="title">
-                            <h4>Lịch sử đơn hàng</h4>
-                        </div>
-                        <div class="tabs">
-                            <div class="nav  nav-pills" id="v-pills-tab" role="tablist" aria-orientation="vertical">
-                                <a class="nav-link active" id="v-pills1" data-toggle="pill" href="#v-pills-1" role="tab"
-                                   aria-controls="v-pills-1" aria-selected="true">
-                                    Tất cả
-                                </a>
-                                <a class="nav-link" id="v-pills2" data-toggle="pill" href="#v-pills-2" role="tab"
-                                   aria-controls="v-pills-2" aria-selected="false">
-                                    Chờ xác nhận
-                                </a>
-                                <a class="nav-link" id="v-pills3" data-toggle="pill" href="#v-pills-3" role="tab"
-                                   aria-controls="v-pills-3" aria-selected="false">
-                                    Đang giao
-                                </a>
-                                <a class="nav-link" id="v-pills4" data-toggle="pill" href="#v-pills-4" role="tab"
-                                   aria-controls="v-pills-4" aria-selected="false">
-                                    Hoàn thành
-                                </a>
-                                <a class="nav-link" id="v-pills5" data-toggle="pill" href="#v-pills-5" role="tab"
-                                   aria-controls="v-pills-5" aria-selected="false">
-                                    Đã hủy
-                                </a>
-                            </div>
-                            <div class="searchbox">
-                                <svg width="20" height="20" viewBox="0 0 20 20" fill="none">
-                                    <path d="M18.129 17.1715L15.2645 14.3709L15.1973 14.2688C15.0725 14.1445 14.9018 14.0745 14.7237 14.0745C14.5455 14.0745 14.3748 14.1445 14.25 14.2688C11.8156 16.5021 8.06447 16.6235 5.48435 14.5524C2.90423 12.4814 2.29574 8.86049 4.06242 6.09116C5.8291 3.32183 9.42274 2.26339 12.4601 3.6178C15.4974 4.9722 17.0359 8.31917 16.0552 11.439C15.9846 11.6644 16.0423 11.9095 16.2066 12.082C16.371 12.2545 16.6169 12.3282 16.8519 12.2753C17.0868 12.2224 17.2751 12.0509 17.3457 11.8255C18.518 8.12322 16.7475 4.13898 13.1794 2.45023C9.61143 0.761484 5.31671 1.87504 3.07356 5.07053C0.830408 8.26602 1.312 12.5845 4.20679 15.2323C7.10159 17.8801 11.5408 18.0626 14.6528 15.6618L17.1891 18.1414C17.451 18.3964 17.8745 18.3964 18.1364 18.1414C18.3981 17.8829 18.3981 17.4665 18.1364 17.2079L18.129 17.1715Z"
-                                          fill="#112950"></path>
-                                </svg>
-                                <input placeholder="Nhập tên sản phẩm,mã đơn..." value="" class="search">
-                            </div>
-                            <div class="sortbox">
-                                <svg stroke="#112950" id="toggleMenuMobile" width="24" height="24" viewBox="0 0 24 24"
-                                     fill="none">
-                                    <path d="M3 7L21 7" stroke="inherit" stroke-width="1.5" stroke-linecap="round"></path>
-                                    <path d="M3 12H15" stroke="inherit" stroke-width="1.5" stroke-linecap="round"></path>
-                                    <path d="M3 17H7" stroke="inherit" stroke-width="1.5" stroke-linecap="round"></path>
-                                </svg>
-                                <select class="select-sort">
-                                    <option value="1">Đơn hàng mới nhất</option>
-                                    <option value="2">Đơn hàng cũ nhất</option>
-                                </select>
-                            </div>
-                            <div class="tab-content" id="v-pills-tabContent">
-                                <div class="tab-pane fade show active" id="v-pills-1" role="tabpanel"
-                                     aria-labelledby="v-pills1">
-                                    @Html.Action("GetAllOders", "Account")
-                                </div>
-                                <div class="tab-pane fade" id="v-pills-2" role="tabpanel" aria-labelledby="v-pills2">
-                                    @Html.Action("GetWaitOders", "Account")
-                                </div>
-                                <div class="tab-pane fade" id="v-pills-3" role="tabpanel" aria-labelledby="v-pills3">
-                                    @Html.Action("GetDeliOder", "Account")
-                                </div>
-                                <div class="tab-pane fade" id="v-pills-4" role="tabpanel" aria-labelledby="v-pills4">
-                                    @Html.Action("GetSuccesOders", "Account")
-                                </div>
-                                <div class="tab-pane fade" id="v-pills-5" role="tabpanel" aria-labelledby="v-pills5">
-                                    @Html.Action("GetCancleOders", "Account")
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-
-                    <div class="tab-pane fade deli-address" id="v-pills-delivery-address" role="tabpanel"
-                         aria-labelledby="v-pills-deliveryaddress">
-                        @Html.Action("GetAddressOder", "Account")
-                    </div>
-                    <div class="tab-pane fade my-voucher" id="v-pills-my-voucher" role="tabpanel"
-                         aria-labelledby="v-pills-voucher">
-                        @Html.Action("Voucher", "Account")
-                    </div>
+                <div class="tab-pane fade deli-address" id="v-pills-delivery-address" role="tabpanel"
+                     aria-labelledby="v-pills-deliveryaddress">
+                    @Html.Action("GetAddressOder", "Account")
+                </div>
+                <div class="tab-pane fade my-voucher" id="v-pills-my-voucher" role="tabpanel"
+                     aria-labelledby="v-pills-voucher">
+                    @Html.Action("Voucher", "Account")
                 </div>
             </div>
         </div>
+    </div>
 </div>
 
