@@ -5,10 +5,12 @@
     <div class="ct2-wrap">
         @foreach (var item in Model)
         {
-        <div class="ct2-item">
-            <img src="~/Vendor/img/categories/@(item.CategoryId).png" />
-            <p>@item.CategoryName</p>
-        </div>
+        <a href="@Url.Action("ViewProductForCategory","Home",new {id=item.CategoryName})" style="text-decoration:none;color:black">
+            <div class="ct2-item">
+                <img src="~/Vendor/img/categories/@(item.CategoryId).png" />
+                <p>@item.CategoryName</p>
+            </div>
+        </a>
         }
     </div>
 </div>
