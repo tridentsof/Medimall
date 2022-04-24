@@ -130,10 +130,17 @@
                  window.location.href = '@Url.Action("Create", "CustomerAccountRegister")';
             },1000)
             errorMess = '';
-            return false;
         }
-
-        $.ajax({
+        else if (pass.length < 6) {
+            var errorMess = "Mật khẩu phải đủ 6 kí tự trở lên";
+            alertify.error(errorMess);
+            window.setTimeout(function () {
+                window.location.href = '@Url.Action("Create", "CustomerAccountRegister")';
+            }, 1000)
+            errorMess = '';
+        }
+        else {
+            $.ajax({
             type: "POST",
             url: "/CustomerAccountRegister/CreateAccount",
             data: customer,
@@ -156,5 +163,7 @@
                 }
             }
         });
+        }
+
     }
 </script>
