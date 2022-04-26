@@ -28,7 +28,7 @@ body {
     background: var(--gray);
     color: var(--black);
     width: 1296px;
-    margin: 0 auto;
+    margin: 60px auto 0;
     font-weight: 600;
 }
 
@@ -841,19 +841,21 @@ textarea {
         font-size: 15px;
     }
 .disblur {
-    width: 1519px;
     height: 1700px;
     position: absolute;
+    top: 0;
+    left: 0;
     z-index: 1;
     background-color: #0f62f9;
     opacity: 0;
     visibility: hidden;
     transition: 0.5s;
-    margin-left: -112px;
-    margin-top: -200px;
+    margin: 0 auto;
 }
 
 .blur {
+    width: 100%;
+    height: 1700px;
     opacity: .3;
     visibility: visible;
 }
@@ -867,7 +869,7 @@ textarea {
     opacity: 0;
     border: 1px solid #dfe6e9;
     margin-left: -410px;
-    margin-top: -300px;
+    margin-top: -174px;
     visibility: hidden;
     transition: 0.5s;
     z-index:100
