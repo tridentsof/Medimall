@@ -4,6 +4,7 @@ using Medimall.Models;
 using Microsoft.Ajax.Utilities;
 using System;
 using System.Collections.Generic;
+using System.Data.Entity;
 using System.Linq;
 using System.Web;
 using System.Web.Mvc;
@@ -19,11 +20,11 @@ namespace Medimall.Controllers
         public ActionResult Index()
         {
             var account = db.Accounts.Where(p=>p.Status==1).ToList();
-            ViewBag.account = account.Count();
+            ViewBag.Account = account.Count();
             var staff = db.Admins.Where(p => p.RoleId == 2).ToList();
-            ViewBag.staff = staff.Count();
+            ViewBag.Staff = staff.Count();
             var admin = db.Admins.Where(p => p.RoleId == 1).ToList();
-            ViewBag.admin = admin.Count();
+            ViewBag.Admin = admin.Count();
             return View();
         }
         public JsonResult GetSearchingData(string Startday,string Endday )
