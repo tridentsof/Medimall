@@ -65,3 +65,30 @@
     margin-left:3%;
     text-align:center;
 }
+
+.statistics-main {
+    margin: 0 auto;
+    padding: 20px;
+    background-color: white;
+    box-shadow: rgba(0, 0, 0, 0.24) 0px 3px 8px;
+    border-radius: 10px;
+}
+
+.statistics-tab {
+    display: flex;
+    margin-top:20px;
+    justify-content: center;
+}
+
+.bottom-content {
+    background-color: white;
+    box-shadow: rgba(0, 0, 0, 0.24) 0px 3px 8px;
+    padding: 15px;
+    border-radius: 10px;
+    margin-bottom: 20px;
+    margin-top:20px;
+}   
+.block-item:hover {
+    box-shadow: 0 0 11px rgba(33,33,33,.2);
+    transform: scale(1.1);
+}
