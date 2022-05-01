@@ -7,82 +7,82 @@
 <div class="news-body">
     @foreach (var item in Model)
     {
-    <div class="news-header">
-        <ul>
-            <li>Medimall</li>
-            <li><i class="fas fa-circle"></i>Sống khỏe</li>
+        <div class="news-header">
+            <ul>
+                <li>Medimall</li>
+                <li><i class="fas fa-circle"></i>Sống khỏe</li>
+                @switch (item.NewsCategoryId)
+                {
+                    case 1:
+                        <li><i class="fas fa-circle"></i>Tin tức</li>
+                        break;
+                    case 2:
+                        <li><i class="fas fa-circle"></i>Mẹ và bé</li>
+                        break;
+                    case 3:
+                        <li><i class="fas fa-circle"></i>Làm đẹp</li>
+                        break;
+                    case 4:
+                        <li><i class="fas fa-circle"></i>Gia đình và giới tính</li>
+                        break;
+                    case 5:
+                        <li><i class="fas fa-circle"></i>Dinh dưỡng</li>
+                        break;
+                    case 6:
+                        <li><i class="fas fa-circle"></i>COVID-19</li>
+                        break;
+                    case 7:
+                        <li><i class="fas fa-circle"></i>Bệnh thường gặp</li>
+                        break;
+                    case 8:
+                        <li><i class="fas fa-circle"></i>Bệnh mãn tính</li>
+                        break;
+
+                }
+            </ul>
+        </div>
+        <div class="news-body1">
             @switch (item.NewsCategoryId)
             {
                 case 1:
-                    <li><i class="fas fa-circle"></i>Tin tức</li>
+                    <h3>Tin tức</h3>
                     break;
                 case 2:
-                    <li><i class="fas fa-circle"></i>Mẹ và bé</li>
+                    <h3>Mẹ và bé</h3>
                     break;
                 case 3:
-                    <li><i class="fas fa-circle"></i>Làm đẹp</li>
+                    <h3>Làm đẹp</h3>
                     break;
                 case 4:
-                    <li><i class="fas fa-circle"></i>Gia đình và giới tính</li>
+                    <h3>Gia đình và giới tính</h3>
                     break;
                 case 5:
-                    <li><i class="fas fa-circle"></i>Dinh dưỡng</li>
+                    <h3>Dinh dưỡng</h3>
                     break;
                 case 6:
-                    <li><i class="fas fa-circle"></i>COVID-19</li>
+                    <h3>COVID-19</h3>
                     break;
                 case 7:
-                    <li><i class="fas fa-circle"></i>Bệnh thường gặp</li>
+                    <h3>Bệnh thường gặp</h3>
                     break;
                 case 8:
-                    <li><i class="fas fa-circle"></i>Bệnh mãn tính</li>
+                    <h3>Bệnh mãn tính</h3>
                     break;
 
             }
-        </ul>
-    </div>
-    <div class="news-body">
-        @switch (item.NewsCategoryId)
-        {
-            case 1:
-                <h3>Tin tức</h3>
-                break;
-            case 2:
-                <h3>Mẹ và bé</h3>
-                break;
-            case 3:
-                <h3>Làm đẹp</h3>
-                break;
-            case 4:
-                <h3>Gia đình và giới tính</h3>
-                break;
-            case 5:
-                <h3>Dinh dưỡng</h3>
-                break;
-            case 6:
-                <h3>COVID-19</h3>
-                break;
-            case 7:
-                <h3>Bệnh thường gặp</h3>
-                break;
-            case 8:
-                <h3>Bệnh mãn tính</h3>
-                break;
-
-        }
-        <h1>@(item.NewTiTle)</h1>
-        <div class="hr"></div>
-        <div class="news-content">
-            <div class="news-img">
-                <img src="~/Vendor/img/news/@(item.NewsId).png" />
-            </div>
-            <div class="news-content-title">
-                <p>
-                    @(item.Content);
-                </p>
+            <h1>@(item.NewTiTle)</h1>
+            <div class="hr"></div>
+            <div class="news-content">
+                <div class="news-img">
+                    <img src="~/Vendor/img/news/@(item.NewsId).png" />
+                </div>
+                <div class="news-content-title">
+                    <p>
+                        @(item.Content);
+                    </p>
+                </div>
             </div>
         </div>
-    </div>
     }
 </div>
 
