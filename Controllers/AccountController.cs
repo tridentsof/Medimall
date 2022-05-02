@@ -20,7 +20,20 @@ namespace Medimall.Controllers
             var accountId = int.Parse(Session["UserId"].ToString());
             var user = db.Accounts.Where(p => p.AccountId == accountId).FirstOrDefault();
             var pointToVIP = 2000000 - user.PowerPoint.GetValueOrDefault();
+            decimal useablePoint = 0;
             TempData["PointToVIP"] = String.Format("{0:0,0}",pointToVIP);
+
+            if(pointToVIP < 0)
+            {
+                useablePoint = Math.Abs(pointToVIP);
+                TempData["UseablePoint"] = String.Format("{0:0,0}", useablePoint);
+            }
+            else
+            {
+                useablePoint = 0;
+                TempData["UseablePoint"] = String.Format("{0:0,0}", useablePoint);
+            }
+            
             return PartialView(user);
         }
         public ActionResult GetAllOders()

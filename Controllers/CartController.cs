@@ -26,6 +26,30 @@ namespace Medimall.Controllers
                 return RedirectToAction("ShowCart", "Cart");
             }
 
+            var userId = Session["UserId"]?.ToString() ?? "0";
+            var userInfor = db.Accounts.Where(m => m.AccountId.ToString() == userId).FirstOrDefault();
+
+            if(userInfor != null)
+            {
+                var isVipCustomer = db.Accounts.Any(n => n.IsVIP == true);
+                ViewBag.IsVipCustomer = isVipCustomer;
+
+                var pointToVIP = 2000000 - userInfor.PowerPoint.GetValueOrDefault();
+                decimal useablePoint = 0;
+
+                if (pointToVIP < 0)
+                {
+                    useablePoint = Math.Abs(pointToVIP);
+                    TempData["PowerPoint"] = useablePoint;
+                }
+                else
+                {
+                    useablePoint = 0;
+                    TempData["PowerPoint"] = useablePoint;
+                }
+            }
+
+
             Cart cart = Session["Cart"] as Cart;
 
             return View(cart);
@@ -83,29 +107,24 @@ namespace Medimall.Controllers
         {
             Cart cart = Session["Cart"] as Cart;
             cart.RemoveItem(id);
+            Session["DeliveryPrice"] = null;
+            Session["DeliveryId"] = null;
+            Session["VoucherId"] = null;
+            Session["DiscountPrice"] = null;
 
             return RedirectToAction("ShowCart", "Cart");
         }
 
         public ActionResult Voucher()
         {
-            var voucher = db.Vouchers.ToList();
+            var voucher = db.Vouchers.Where(m => m.EndDate > DateTime.Now).ToList();
 
             return PartialView("Voucher", voucher);
         }
 
         public ActionResult Address()
         {
-            string userId = String.Empty;
-            if (Session["UserId"] == null)
-            {
-                userId = "0";
-            }
-            else
-            {
-                userId = Session["UserId"].ToString();
-            }
-
+            var userId = Session["UserId"]?.ToString() ?? "0";
             var userInfor = db.Accounts.Where(m => m.AccountId.ToString() == userId).FirstOrDefault();
 
             return PartialView("Address", userInfor);
@@ -123,7 +142,6 @@ namespace Medimall.Controllers
 
             var deliveryId = int.Parse(form["delivery-id"]);
             var delivery = db.Deliveries.Where(m => m.DeliveryId == deliveryId).FirstOrDefault();
-
             var deliveryPrice = delivery.DeliveryPrice;
 
             Session["DeliveryPrice"] = deliveryPrice;
@@ -133,14 +151,12 @@ namespace Medimall.Controllers
 
         public PartialViewResult BagCart()
         {
-            int totalItem = 0;
-            double totalMoney = 0;
             Cart cart = Session["Cart"] as Cart;
 
             if (cart != null)
             {
-                totalItem = cart.TotalQuantity();
-                totalMoney = cart.TotalMoney();
+                int totalItem = cart.TotalQuantity();
+                double totalMoney = cart.TotalMoney();
                 ViewBag.QuantityCart = totalItem;
                 ViewBag.TotalMoney = totalMoney;
             }
@@ -156,30 +172,40 @@ namespace Medimall.Controllers
             try
             {
                 var deliveryId = Convert.ToInt32(Session["DeliveryId"]);
-                var userName = Session["UserNameCustomer"];
+                var paymentMethod = int.Parse(form["pay-id"]);
+                var userName = form["user-name"];
+                var phoneNumber = form["user-phone"];
+                var address = form["user-address"];
                 var userId = Session["UserId"].ToString();
                 var userInfor = db.Accounts.FirstOrDefault(x => x.AccountId.ToString() == userId);
                 var voucherId = Convert.ToInt32(Session["VoucherId"]);
                 var voucher = db.Vouchers.FirstOrDefault(m => m.VoucherId == voucherId);
                 var delivery = db.Deliveries.FirstOrDefault(m => m.DeliveryId == deliveryId);
+                var isUsePoint = int.Parse(form["is-use-point"]);
+                var pointUsed = int.Parse(form["point-used"]);
+                if (isUsePoint == Constants.IsUsePoint.Use)
+                {
+                    userInfor.PowerPoint -= Convert.ToDecimal(pointUsed);
+                    userInfor.UsedPoint = pointUsed;
+                }
+                
 
-                if (deliveryId == 1)
+                if (paymentMethod == Constants.PaymentMethod.PayLater)
                 {
                     //Normal Payment
                     Cart cart = Session["Cart"] as Cart;
-                    Billing billing = new Billing();
 
+                    Billing billing = new Billing();
                     billing.AccountId = userInfor.AccountId;
                     billing.PurchaseDate = DateTime.Now;
-                    //Can replace if adress in form collection == null
-                    billing.Address = userInfor.Address;
+                    billing.Address = address;
                     billing.PayId = int.Parse(form["pay-id"]);
                     billing.DeliveryId = deliveryId;
                     billing.Total = int.Parse(form["total-money"]);
-                    billing.Phone = userInfor.Phone;
-                    billing.UserName = userInfor.UserName;
-
+                    billing.Phone = phoneNumber;
+                    billing.UserName = userName;
                     billing.Status = 1;
+
                     db.Billings.Add(billing);
 
                     foreach (var item in cart.Items)
@@ -191,16 +217,12 @@ namespace Medimall.Controllers
                         product.QuantitySold += item._shopping_quantity;
                         product.Quantity -= item._shopping_quantity;
 
-                        var voucherPercent = voucher?.Percent ?? 0;
-                        var deliveryPrice = delivery?.DeliveryPrice ?? 0;
-                        var totalMoney = Convert.ToDecimal(item._shopping_product.Price * (100 - voucherPercent) / 100 + deliveryPrice);
-
                         billDetail.BillId = billing.BillId;
                         billDetail.ProductId = item._shopping_product.ProductId;
                         billDetail.Price = item._shopping_product.Price;
                         billDetail.Quantity = item._shopping_quantity;
                         billDetail.ProductName = item._shopping_product.ProductName;
-                        billDetail.Total = totalMoney;
+                        billDetail.Total = item._shopping_product.Price * item._shopping_quantity;
 
                         db.BillDetails.Add(billDetail);
                     }
@@ -215,7 +237,7 @@ namespace Medimall.Controllers
 
                     return RedirectToAction("Index", "Home");
                 }
-                else if(deliveryId == 2)
+                else if(paymentMethod == Constants.PaymentMethod.Online)
                 {
                     //Online Payment
                     string vnp_Returnurl = ConfigurationManager.AppSettings["vnp_Returnurl"]; //URL nhan ket qua tra ve 
@@ -224,18 +246,20 @@ namespace Medimall.Controllers
                     string vnp_HashSecret = ConfigurationManager.AppSettings["vnp_HashSecret"]; //Chuoi bi mat
 
                     Cart cart = Session["Cart"] as Cart;
+
                     Billing billing = new Billing();
                     billing.AccountId = userInfor.AccountId;
                     billing.PurchaseDate = DateTime.Now;
-                    //Can replace if adress in form collection == null
-                    billing.Address = userInfor.Address;
+                    billing.Address = address;
                     billing.PayId = int.Parse(form["pay-id"]);
                     billing.DeliveryId = deliveryId;
                     billing.Total = int.Parse(form["total-money"]);
-                    billing.Phone = userInfor.Phone;
-                    billing.UserName = userInfor.UserName;
+                    billing.Phone = phoneNumber;
+                    billing.UserName = userName;
                     billing.Status = 1;
+
                     db.Billings.Add(billing);
+
                     foreach (var item in cart.Items)
                     {
                         BillDetail billDetail = new BillDetail();
@@ -245,16 +269,12 @@ namespace Medimall.Controllers
                         product.QuantitySold += item._shopping_quantity;
                         product.Quantity -= item._shopping_quantity;
 
-                        var voucherPercent = voucher?.Percent ?? 0;
-                        var deliveryPrice = delivery?.DeliveryPrice ?? 0;
-                        var totalMoney = Convert.ToDecimal(item._shopping_product.Price * (100 - voucherPercent) / 100 + deliveryPrice);
-
                         billDetail.BillId = billing.BillId;
                         billDetail.ProductId = item._shopping_product.ProductId;
                         billDetail.Price = item._shopping_product.Price;
                         billDetail.Quantity = item._shopping_quantity;
                         billDetail.ProductName = item._shopping_product.ProductName;
-                        billDetail.Total = totalMoney;
+                        billDetail.Total = item._shopping_product.Price * item._shopping_quantity;
 
                         db.BillDetails.Add(billDetail);
                     }
