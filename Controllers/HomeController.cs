@@ -270,6 +270,10 @@ namespace Medimall.Controllers
             var earnPoint = productdetail.Price * productdetail.PercentSalePoint / 100;
             TempData["EarnPoint"] = String.Format("{0:0,0}", earnPoint);
 
+            decimal GetMaxQuantity = (decimal)db.Products.Where(P => P.ProductId == id).Select(u => u.Quantity).FirstOrDefault();
+
+            ViewBag.GetMaxQuantity = GetMaxQuantity;
+
             return View(productdetail);
         }
         public ActionResult GetDelivery()

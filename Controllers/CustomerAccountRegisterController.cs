@@ -46,6 +46,7 @@ namespace Medimall.Controllers
             Account account = db.Accounts.Where(x => x.AccountId == accountId).FirstOrDefault();
             account.Status = 1;
             db.SaveChanges();
+            TempData["SuccessEmail"] = "Tài khoản của bạn đã được xác nhận";
             var msg = "Email đã được xác thực";
             return Json(msg, JsonRequestBehavior.AllowGet);
         }
