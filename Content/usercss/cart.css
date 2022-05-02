@@ -30,6 +30,7 @@ body {
     width: 1296px;
     margin: 60px auto 0;
     font-weight: 600;
+    margin-top:5%;
 }
 
 .body-header {
@@ -895,3 +896,52 @@ textarea {
     color: #112950;
     margin-bottom: 10px;
 }
+.discount-point {
+    display: flex;
+    justify-content: space-between;
+    width: 146%;
+    margin: 20px 0 5px;
+}
+
+.btn-point {
+    font-size: 12px;
+    padding: 4px 16px;
+    box-shadow: inset 0 0 0 1px #5dac46;
+    border-radius: 2px;
+    position: relative;
+    overflow: hidden;
+    border: none;
+    outline: none;
+    background-color: transparent;
+    color: #5dac46;
+    line-height: 24px;
+    cursor: pointer;
+    width: 128px;
+}
+
+    .btn-point::before {
+        top: 0;
+        -webkit-transform: translateY(-50%);
+        -moz-transform: translateY(-50%);
+        transform: translateY(-50%);
+    }
+
+    .btn-point::after {
+        bottom: 0;
+        -webkit-transform: translateY(50%);
+        -moz-transform: translateY(50%);
+        transform: translateY(50%);
+    }
+
+    .btn-point::after,
+    .btn-point::before {
+        content: '';
+        display: block;
+        position: absolute;
+        width: 8px;
+        height: 8px;
+        border-radius: 50%;
+        box-shadow: 0 0 0 1px #5dac46;
+        left: 75%;
+        background-color: #fff;
+    }

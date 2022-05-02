@@ -751,10 +751,20 @@
                     </div>
                     <hr class="hrpb">
                     <div>
-                        <div class="imgthanhvien1">
-                            <img src="~/FE/img/thethanhvien_green.png" alt="">
-                            <p>Thành viên</p>
-                        </div>
+                        @if (Model.IsVIP == true)
+                        {
+                            <div class="imgthanhvien1">
+                                <img src="~/Vendor/img/icon/thethanhvien_yellow.png" />
+                                <p>V.I.P</p>
+                            </div>
+                        }
+                        else
+                        {
+                            <div class="imgthanhvien1">
+                                <img src="~/Vendor/img/icon/thethanhvien_green.png" />
+                                <p>Thành viên</p>
+                            </div>
+                        }
                         <div class="accumulated-points">
                             <div>
                                 <p>Điểm tích lũy</p>
@@ -771,7 +781,7 @@
                                 <p>Điểm có thể dùng</p>
                                 @if (Model.PowerPoint != null)
                                 {
-                                    <p>@String.Format("{0:0,0}", Model.PowerPoint)</p>
+                                    <p>@TempData["UseablePoint"]</p>
                                 }
                                 else
                                 {

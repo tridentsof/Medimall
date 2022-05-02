@@ -1,6 +1,6 @@
 ﻿@model IEnumerable<Medimall.Models.Delivery>
 
-@using (Html.BeginForm("ApplyDelivery", "Cart",FormMethod.Post,new { id = "DeliveryForm" }))
+@using (Html.BeginForm("ApplyDelivery", "Cart", FormMethod.Post, new { id = "DeliveryForm" }))
 {
     <div class="modal fade " id="modal-delivery">
         <div class="modal-dialog modal-dialog-centered">
@@ -13,7 +13,7 @@
                 <div class="modal-body">
                     @foreach (var item in Model)
                     {
-                        <h5><i class="fas fa-caret-right"></i>&ensp; Giao hàng nhanh</h5>
+                        <h5><i class="fas fa-caret-right"></i>&ensp; @item.DeliveryName</h5>
                         <label class="box-discount box-delivery">
                             <i class="fas fa-shipping-fast"></i>
                             <div class="delivery-item1">
@@ -24,7 +24,7 @@
                                 <p>@item.DeliveryName</p>
                                 <p>@item.DeliveryPrice</p>
                             </div>
-                            <input type="radio" value="@item.DeliveryId" checked  name="delivery-id">
+                            <input type="radio" value="@item.DeliveryId" checked name="delivery-id">
                             <span class="checkmark"></span>
                         </label>
                     }
