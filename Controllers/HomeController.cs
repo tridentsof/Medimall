@@ -267,6 +267,9 @@ namespace Medimall.Controllers
             ViewBag.CategoryName = categoryname;
 
             var productdetail = db.Products.Where(p => p.ProductId == id).FirstOrDefault();
+            var earnPoint = productdetail.Price * productdetail.PercentSalePoint / 100;
+            TempData["EarnPoint"] = String.Format("{0:0,0}", earnPoint);
+
             return View(productdetail);
         }
         public ActionResult GetDelivery()

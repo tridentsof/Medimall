@@ -17,7 +17,7 @@
         width: 100%;
         display: flex;
         margin-top: 20px;
-        margin-bottom:40px;
+        margin-bottom: 40px;
     }
 
     .wrappre_img {
@@ -50,7 +50,7 @@
     }
 
     .wrappre_content-text {
-         font-size: .75rem;
+        font-size: .75rem;
     }
 
     .point {
@@ -205,13 +205,13 @@
         cursor: not-allowed !important;
     }
 
-    .ghn{
+    .ghn {
         padding: 4px 10px;
         border: 1px #e5e5e5 solid;
         border-radius: 20px;
         font-size: 13px;
-        width:150px;
-        font-weight:500
+        width: 150px;
+        font-weight: 500
     }
 
     .Ahamove {
@@ -435,6 +435,7 @@
         height: auto;
         margin-left: 20px;
     }
+
     .viewall-header {
         background-color: #ededed;
         padding: 15px;
@@ -465,6 +466,56 @@
                     color: #112950;
                     opacity: 0.5
                 }
+
+    .point {
+        color: #5dac46;
+        font-size: 13px;
+        font-weight: 800;
+    }
+
+    .box-hover {
+        background: #000;
+    }
+
+    .box-tooltip {
+        display: none;
+        position: absolute;
+        top: 86px;
+        right: -98px;
+        padding: 16px;
+        background: #f2f6fe;
+        box-shadow: 0 0 16px rgb(0 0 0 / 20%);
+        border-radius: 12px;
+        border: 1px solid #0f62f9;
+        min-width: 275px;
+        -webkit-transition: all 0.5s;
+        -moz-transition: all 0.5s;
+        transition: all 0.5s;
+        -webkit-transform: translateY(25px);
+        -moz-transform: translateY(25px);
+        transform: translateY(25px);
+        z-index: 10;
+    }
+
+        .box-tooltip:before {
+            position: absolute;
+            content: '';
+            width: 8px;
+            height: 8px;
+            background-color: #f2f6fe;
+            border-top: 1px solid #0f62f9;
+            border-right: 1px solid #0f62f9;
+            top: -5px;
+            left: calc(50% - 6px);
+            -webkit-transform: rotate(-45deg);
+            -moz-transform: rotate(-45deg);
+            transform: rotate(-45deg);
+        }
+
+    .show-tooltip {
+        display: flex;
+        flex-direction: column;
+    }
 </style>
 <div class="container-fluid viewall-header">
     <ul>
@@ -485,9 +536,23 @@
                     <div class="wrappre_content-product">
                         <div class="wrappre_content_price">@String.Format("{0:0,0}", Model.Price) VND</div>
                         <p class="wrappre_content-text">
-                                Mua hàng và tích điểm thành
-                                viên
-                            </p>
+                            Mua hàng và tích <span class="point">@TempData["EarnPoint"] Điểm</span> thành
+                            viên
+                            <svg style="margin-left:70px;margin-bottom:5px" id="tooltip" class="QuestionTooltip_icon__1bfKF" width="16" height="16" viewBox="0 0 16 16" fill="#112950"><g opacity="0.2"><path d="M16 8C16 10.1217 15.1571 12.1566 13.6569 13.6569C12.1566 15.1571 10.1217 16 8 16C5.87827 16 3.84344 15.1571 2.34315 13.6569C0.842855 12.1566 0 10.1217 0 8C0 5.87827 0.842855 3.84344 2.34315 2.34315C3.84344 0.842855 5.87827 0 8 0C10.1217 0 12.1566 0.842855 13.6569 2.34315C15.1571 3.84344 16 5.87827 16 8ZM5.496 6.033H6.321C6.459 6.033 6.569 5.92 6.587 5.783C6.677 5.127 7.127 4.649 7.929 4.649C8.615 4.649 9.243 4.992 9.243 5.817C9.243 6.452 8.869 6.744 8.278 7.188C7.605 7.677 7.072 8.248 7.11 9.175L7.113 9.392C7.11405 9.45761 7.14085 9.52017 7.18762 9.5662C7.23439 9.61222 7.29738 9.63801 7.363 9.638H8.174C8.2403 9.638 8.30389 9.61166 8.35078 9.56478C8.39766 9.51789 8.424 9.4543 8.424 9.388V9.283C8.424 8.565 8.697 8.356 9.434 7.797C10.043 7.334 10.678 6.82 10.678 5.741C10.678 4.23 9.402 3.5 8.005 3.5C6.738 3.5 5.35 4.09 5.255 5.786C5.25363 5.81829 5.25888 5.85053 5.27043 5.88072C5.28198 5.91091 5.29958 5.93841 5.32216 5.96155C5.34473 5.98468 5.3718 6.00296 5.40169 6.01524C5.43159 6.02753 5.46368 6.03357 5.496 6.033ZM7.821 12.476C8.431 12.476 8.85 12.082 8.85 11.549C8.85 10.997 8.43 10.609 7.821 10.609C7.237 10.609 6.812 10.997 6.812 11.549C6.812 12.082 7.237 12.476 7.822 12.476H7.821Z" fill="inherit"></path></g></svg>
+                            <div class="box-tooltip">
+                                <div class="ProductPrice_tooltip-content-header__DsEup">
+                                    <h5 class="ProductPrice_title__2gXsg">Quyền lợi khi là thành viên</h5>
+                                </div>
+                                <ul style="font-size: 15px; margin-bottom: 0px; padding: 20px;">
+                                    <li>Quà tặng sinh nhật</li>
+                                    <li>Mua sản phẩm thứ 2 giá 1k</li>
+                                    <li>Sản phẩm giảm giá đến 50%</li>
+                                    <li>Ưu đãi bất ngờ, thiết kế riêng cho từng thành viên</li>
+                                    <li>Quà tặng nâng hạng VIP</li>
+                                    <li>Tích điểm đến 6% cho khách hàng VIP</li>
+                                </ul>
+                            </div>
+                        </p>
                     </div>
                     <h5 class="wrappre_content_title-detail">
                         @Model.UsesFor
@@ -502,9 +567,9 @@
                         @if (Model.Quantity > 0)
                         {
 
-                        <button class="add_cart_all" onclick="addToCart(@Model.ProductId)">
-                            Thêm vào giỏ hàng
-                        </button>
+                            <button class="add_cart_all" onclick="addToCart(@Model.ProductId)">
+                                Thêm vào giỏ hàng
+                            </button>
                         }
                         else
                         {
@@ -617,6 +682,22 @@
 </div>
 <script>
     $(document).ready(function () {
+        $("#tooltip").hover(
+            function () {
+                $('.box-tooltip').addClass("show-tooltip");
+            },
+            function () {
+                $('.box-tooltip').removeClass("show-tooltip");
+            }
+        );
+        $(".box-tooltip").hover(
+            function () {
+                $('.box-tooltip').addClass("show-tooltip");
+            },
+            function () {
+                $('.box-tooltip').removeClass("show-tooltip");
+            }
+        );
 
         var quantitiy = 1;
         $('.quantity-right-plus').click(function (e) {
