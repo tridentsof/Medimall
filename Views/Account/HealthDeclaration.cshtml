@@ -1,0 +1,83 @@
+﻿<style>
+    .span-declaration {
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        margin-bottom: 20px;
+        box-shadow: rgba(99, 99, 99, 0.2) 0px 2px 8px 0px;
+        padding: 35px 20px;
+        border-radius: 10px;
+    }
+
+    .input-declaration {
+        width: 37%;
+    }
+
+    .input, textarea {
+        width: 100%;
+    }
+</style>
+<div class="span-declaration">
+    <h5><i class="fas fa-first-aid" style="color:#5DAC46"></i>&ensp;Đã tiêm vaccin:</h5>
+    <div style="width: 25%">
+        <div>
+            <input type="radio" name="vaccin">
+            <label>
+                Có
+            </label>
+        </div>
+        <div>
+            <input type="radio" name="vaccin">
+            <label>
+                Không
+            </label>
+        </div>
+    </div>
+</div>
+<div class="span-declaration">
+    <h5><i class="fas fa-viruses"style="color:#5DAC46"></i>&ensp;Đã từng bị covid:</h5>
+    <div style="width: 25%">
+        <div>
+            <input type="radio" name="covid">
+            <label>
+                Có
+            </label>
+        </div>
+        <div>
+            <input type="radio" name="covid">
+            <label>
+                Không
+            </label>
+        </div>
+    </div>
+</div>
+<div class="span-declaration">
+    <h5><i class="fas fa-syringe" style="color:#5DAC46"></i>&ensp;Mũi một:</h5>
+    <div class="input-declaration">
+        <input class="form-control input" type="text" />
+    </div>
+</div>
+<div class="span-declaration">
+    <h5><i class="fas fa-syringe" style="color:#5DAC46"></i>&ensp;Mũi hai:</h5>
+    <div class="input-declaration">
+        <input class="form-control input" type="text" />
+    </div>
+</div>
+<div class="span-declaration">
+    <h5><i class="fas fa-syringe" style="color:#5DAC46"></i>&ensp;Mũi ba:</h5>
+    <div class="input-declaration">
+        <input class="form-control input" type="text" />
+    </div>
+</div>
+<div class="span-declaration">
+    <h5><i class="fas fa-file-medical-alt" style="color:#5DAC46"></i>&ensp;Lịch sử bệnh:</h5>
+    <div class="input-declaration">
+        <textarea class="form-control" placeholder="Nhập lịch sử bệnh..."></textarea>
+    </div>
+</div>
+<div class="span-declaration">
+    <h5><i class="fas fa-head-side-cough" style="color:#5DAC46"></i>&ensp;Triệu chứng:</h5>
+    <div class="input-declaration">
+        <textarea class="form-control" placeholder="Nhập triệu chứng..."></textarea>
+    </div>
+</div>

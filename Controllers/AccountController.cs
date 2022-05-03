@@ -246,5 +246,13 @@ namespace Medimall.Controllers
             Session.Abandon();
             return RedirectToAction("Index","Home");
         }
+        public ActionResult HealthDeclaration()
+        {
+            return PartialView();
+        }
+        public ActionResult HealthBook()
+        {
+            return PartialView();
+        }
     }
 }
