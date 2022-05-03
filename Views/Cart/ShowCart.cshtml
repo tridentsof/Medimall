@@ -39,7 +39,7 @@
 else
 {
     <div id="blur" class="disblur"></div>
-    <div class="container-body">
+    <div class="container-body" style="margin-top:12%">
         <div class="body-header">
             <li>Trang chủ</li>
             <li><i class="fas fa-circle"></i>Giỏ hàng</li>
@@ -216,6 +216,17 @@ else
                             <h3>@String.Format("{0:0,0}", Model.TotalMoney()) VND</h3>
                         </div>
                         <div class="right-box-item">
+                            <p>Giá giảm khuyến mãi</p>
+                            @if (Session["PriceSale"] == null)
+                            {
+                                <h3>@String.Format("{0:0,0}", 0) VND</h3>
+                            }
+                            else if (Session["PriceSale"] != null)
+                            {
+                                <h3>@String.Format("{0:0,0}", Session["PriceSale"]) VND</h3>
+                            }
+                        </div>
+                        <div class="right-box-item">
                             <p>Thành tiền</p>
                             <h3 class="total-money">
                                 @if (Session["DiscountPrice"] != null)
@@ -237,6 +248,7 @@ else
                         <input id="payment-method" type="number" hidden="hidden" value="1" name="pay-id" />
                         <input id="is-use-point" type="number" hidden="hidden" name="is-use-point" value="0" />
                         <input id="point-used" type="number" hidden="hidden" name="point-used" value="" />
+                        <input id="sales-price" type="number" hidden="hidden" name="sales-price" value="@Session["PriceSale"]" />
                         <div class="popup-purchase" id="popup-purchase">
                             <h4>Xác nhận mua hàng</h4>
                             <p>Bạn có xác nhận mua sản phẩm này không ?</p>

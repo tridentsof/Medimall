@@ -31,7 +31,7 @@ namespace Medimall.Controllers
 
             if(userInfor != null)
             {
-                var isVipCustomer = db.Accounts.Any(n => n.IsVIP == true);
+                var isVipCustomer = db.Accounts.Any(n => n.AccountId == userInfor.AccountId && n.IsVIP == true);
                 ViewBag.IsVipCustomer = isVipCustomer;
 
                 var pointToVIP = 2000000 - userInfor.PowerPoint.GetValueOrDefault();
@@ -97,6 +97,7 @@ namespace Medimall.Controllers
             {
                 double discountPrice = cart.TotalMoney() * (100 - percentDiscount) / 100;
                 Session["DiscountPrice"] = discountPrice;
+                Session["PriceSale"] = cart.TotalMoney() - discountPrice;
                 TempData["SuccessVoucher"] = "Áp dụng thành công!";
                 Session["VoucherId"] = idVoucher;
                 return RedirectToAction("ShowCart", "Cart");
@@ -111,6 +112,7 @@ namespace Medimall.Controllers
             Session["DeliveryId"] = null;
             Session["VoucherId"] = null;
             Session["DiscountPrice"] = null;
+            Session["PriceSale"] = null;
 
             return RedirectToAction("ShowCart", "Cart");
         }
@@ -182,12 +184,14 @@ namespace Medimall.Controllers
                 var voucher = db.Vouchers.FirstOrDefault(m => m.VoucherId == voucherId);
                 var delivery = db.Deliveries.FirstOrDefault(m => m.DeliveryId == deliveryId);
                 var isUsePoint = int.Parse(form["is-use-point"]);
-                var pointUsed = int.Parse(form["point-used"]);
+                var pointUsed = 0; 
                 if (isUsePoint == Constants.IsUsePoint.Use)
                 {
+                    pointUsed = int.Parse(form["point-used"]); ;
                     userInfor.PowerPoint -= Convert.ToDecimal(pointUsed);
-                    userInfor.UsedPoint = pointUsed;
+                    userInfor.UsedPoint += pointUsed;
                 }
+                var salePrice = Convert.ToDecimal(form["sales-price"]);
                 
 
                 if (paymentMethod == Constants.PaymentMethod.PayLater)
@@ -205,6 +209,7 @@ namespace Medimall.Controllers
                     billing.Phone = phoneNumber;
                     billing.UserName = userName;
                     billing.Status = 1;
+                    billing.PromotionPrice = salePrice;
 
                     db.Billings.Add(billing);
 
@@ -213,6 +218,7 @@ namespace Medimall.Controllers
                         BillDetail billDetail = new BillDetail();
 
                         var product = db.Products.Single(x => x.ProductId == item._shopping_product.ProductId);
+                        var earnPoint = item._shopping_product.Price * item._shopping_product.PercentSalePoint / 100;
 
                         product.QuantitySold += item._shopping_quantity;
                         product.Quantity -= item._shopping_quantity;
@@ -223,6 +229,7 @@ namespace Medimall.Controllers
                         billDetail.Quantity = item._shopping_quantity;
                         billDetail.ProductName = item._shopping_product.ProductName;
                         billDetail.Total = item._shopping_product.Price * item._shopping_quantity;
+                        userInfor.PowerPoint += earnPoint;
 
                         db.BillDetails.Add(billDetail);
                     }
@@ -257,6 +264,7 @@ namespace Medimall.Controllers
                     billing.Phone = phoneNumber;
                     billing.UserName = userName;
                     billing.Status = 1;
+                    billing.PromotionPrice = salePrice;
 
                     db.Billings.Add(billing);
 
@@ -265,6 +273,7 @@ namespace Medimall.Controllers
                         BillDetail billDetail = new BillDetail();
 
                         var product = db.Products.Single(x => x.ProductId == item._shopping_product.ProductId);
+                        var earnPoint = item._shopping_product.Price * item._shopping_product.PercentSalePoint / 100;
 
                         product.QuantitySold += item._shopping_quantity;
                         product.Quantity -= item._shopping_quantity;
@@ -275,6 +284,7 @@ namespace Medimall.Controllers
                         billDetail.Quantity = item._shopping_quantity;
                         billDetail.ProductName = item._shopping_product.ProductName;
                         billDetail.Total = item._shopping_product.Price * item._shopping_quantity;
+                        userInfor.PowerPoint += earnPoint;
 
                         db.BillDetails.Add(billDetail);
                     }
