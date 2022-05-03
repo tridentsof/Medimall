@@ -17,17 +17,17 @@
             <p>
                Giảm giá <br />
             </p>
-            <p style="color: #74b9ff">-@String.Format("{0:0,0}", ViewBag.TotalVoucher) VND</p>
+            <p style="color: #74b9ff">-@String.Format("{0:0,0}", ViewBag.PromotionPrice) VND</p>
         </div>
         <div class="order-money-item">
             <p>Thành tiền</p>
-            <h5 style="color: #feaa48; font-weight: 700">
+            <h5 style="color: #feaa48; font-weight: 700;font-size:26px">
                 @String.Format("{0:0,0}", ViewBag.Sumtotal) VND
             </h5>
         </div>
         <div class="order-money-item">
             <p>(Điểm tích lũy)</p>
-            <p style="font-weight: 600">Đang cập nhật</p>
+            <p style="font-weight: 600; font-size: 20px; color: #112950">@String.Format("{0:0,0}", ViewBag.EarnPoint) điểm</p>
         </div>
     </div>
 </div>

@@ -108,35 +108,57 @@ namespace Medimall.Controllers
         public ActionResult ForceVoucher()
         {
             var accountId = int.Parse(Session["UserId"].ToString());
-            int? bill = db.Billings.Where(u => u.AccountId == accountId).Select(u => u.BillId).FirstOrDefault();
+            //int? bill = db.Billings.Where(u => u.AccountId == accountId).Select(u => u.BillId).FirstOrDefault();
 
 
-            int? voucherid = db.BillDetails.Where(u => u.BillId == bill).Select(u => u.VoucherId).FirstOrDefault();
+            //int? voucherid = db.BillDetails.Where(u => u.BillId == bill).Select(u => u.VoucherId).FirstOrDefault();
 
-            var voucher = db.Vouchers.Where(p => p.AccountId == accountId).Where(p=>p.EndDate > DateTime.Now).Where(p=>p.VoucherId != voucherid).ToList();
+            var voucher = db.Vouchers.Where(p => p.EndDate > DateTime.Now).ToList();
             return PartialView(voucher);
         }
+
         public ActionResult ExpireVoucher()
         {
             var accountId = int.Parse(Session["UserId"].ToString());
-            int? bill = db.Billings.Where(u => u.AccountId == accountId).Select(u => u.BillId).FirstOrDefault();
+            //int? bill = db.Billings.Where(u => u.AccountId == accountId).Select(u => u.BillId).FirstOrDefault();
 
 
-            int? voucherid = db.BillDetails.Where(u => u.BillId == bill).Select(u => u.VoucherId).FirstOrDefault();
+            //int? voucherid = db.BillDetails.Where(u => u.BillId == bill).Select(u => u.VoucherId).FirstOrDefault();
 
-            var voucher = db.Vouchers.Where(p => p.AccountId == accountId).Where(p => p.EndDate < DateTime.Now).Where(p => p.VoucherId != voucherid).ToList();
+            var voucher = db.Vouchers.Where(p => p.EndDate < DateTime.Now).ToList();
             return PartialView(voucher);
         }
         public ActionResult UsedVoucher()
         {
             var accountId = int.Parse(Session["UserId"].ToString());
-            int ? bill = db.Billings.Where(u => u.AccountId == accountId).Select(u => u.BillId).FirstOrDefault();
+            var getbillid = db.Billings.Where(u => u.AccountId == accountId).Select(u => u.BillId).ToList();
+            var getbilldetail = db.BillDetails.ToList();
+            List<BillDetail> getAllDetail = new List<BillDetail>();
+            var getAllVocuher = db.Vouchers.ToList();
+            List<Voucher> getVoucher = new List<Voucher>();
+            foreach (var item in getbillid)
+            {
 
-
-            int ? voucherid = db.BillDetails.Where(u => u.BillId == bill).Select(u => u.VoucherId).FirstOrDefault();
-
-            var voucher = db.Vouchers.Where(p => p.VoucherId == voucherid).ToList();
-             return PartialView(voucher);
+                for (int i = 0; i < getbilldetail.Count; i++)
+                {
+                    if (item == getbilldetail[i].BillId)
+                    {
+                        getAllDetail.Add(getbilldetail[i]);
+                    }
+                }
+            }
+            foreach (var item in getAllDetail)
+            {
+                for (int i = 0; i < getAllVocuher.Count; i++)
+                {
+                    if (item.VoucherId == getAllVocuher[i].VoucherId)
+                    {
+                        getVoucher.Add(getAllVocuher[i]);
+                    }
+                }
+            }
+            var getDistinctVoucher = getVoucher.Distinct().ToList();
+            return PartialView(getDistinctVoucher);
         }
         public ActionResult OderDetail()
         {
@@ -168,23 +190,37 @@ namespace Medimall.Controllers
 
             decimal DeliPrice = (decimal)db.Deliveries.Where(p => p.DeliveryId == getiddeli).Select(p => p.DeliveryPrice).FirstOrDefault();
 
-            int? voucherid = db.BillDetails.Where(u => u.BillId == id).Select(p => p.VoucherId).FirstOrDefault();
-            decimal? PercentVoucher = 0;
-            if (voucherid !=null)
-            {
-                PercentVoucher = db.Vouchers.Where(p => p.VoucherId == voucherid).Select(p => p.Percent).FirstOrDefault();
-            }
-            decimal? TotalVoucher = (Total * PercentVoucher / 100);
+            decimal? PromotionPrice = db.Billings.Where(p => p.BillId == id).Select(p => p.PromotionPrice).FirstOrDefault();
 
-            ViewBag.TotalVoucher = TotalVoucher;
+            ViewBag.PromotionPrice = PromotionPrice;
 
             ViewBag.Total = Total;
             ViewBag.PriceDeli = DeliPrice;
 
-            decimal ? SumTotal = Total + DeliPrice-TotalVoucher;
+            decimal ? SumTotal = Total + DeliPrice- PromotionPrice;
             ViewBag.Sumtotal = SumTotal;
-            var diplasydetail = db.BillDetails.Where(p => p.BillId == id).ToList();
-            return PartialView(diplasydetail);
+            var displayDetail = db.BillDetails.Where(p => p.BillId == id).ToList();
+
+            var ListProduct = db.Products.ToList();
+            decimal? sumEarnPoint = 0;
+
+            foreach (var item in billDetails)
+            { 
+                foreach(var itemProduct in ListProduct)
+                {
+                    if(item.ProductId == itemProduct.ProductId)
+                    {
+                        var product = db.Products.Where(p => p.ProductId == itemProduct.ProductId).FirstOrDefault();
+
+
+                        var earnPoint = (product.PercentSalePoint/100) * product.Price;
+                        sumEarnPoint += earnPoint;
+                    }    
+                }  
+            }
+            ViewBag.EarnPoint = sumEarnPoint;
+
+                return PartialView(displayDetail);
         }
         public JsonResult UpdatePassword(string oldPass,string newPass) 
         {
