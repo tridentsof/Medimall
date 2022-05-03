@@ -715,6 +715,12 @@
         margin-top: 70px;
         width: 85%;
     }
+    .health-book {
+        margin: 0 auto;
+        display: flex;
+        flex-direction: column;
+        margin-top: 30px;
+    }
 </style>
 
 <div style="margin-top:10%" class="container-body">
@@ -1055,7 +1061,7 @@
                     <div class="title">
                         <h4>Sổ sức khoẻ</h4>
                     </div>
-                    <div class="upload-wrap">
+                    <div class="health-book">
                         @Html.Action("HealthBook", "Account")
                     </div>
                 </div>
