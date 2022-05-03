@@ -63,6 +63,8 @@ namespace Medimall.Models
         public Nullable<bool> IsVIP { get; set; }
         [Display(Name = "Điểm đã sử dụng")]
         public Nullable<decimal> UsedPoint { get; set; }
+        [Display(Name = "Đã khai báo")]
+        public Nullable<bool> IsHealthCare { get; set; }
 
         [Display(Name = "Avatar")]
         [NotMapped]

@@ -23,6 +23,7 @@
           <Property Name="Gender" Type="int" />
           <Property Name="IsVIP" Type="bit" />
           <Property Name="UsedPoint" Type="decimal" Precision="18" Scale="0" />
+          <Property Name="IsHealthCare" Type="bit" />
         </EntityType>
         <EntityType Name="Admin">
           <Key>
@@ -413,7 +414,8 @@
           <Property Name="PowerPoint"  Type="Decimal" Precision="18" Scale="0" />
           <Property Name="Gender" Type="Int32" />
           <Property Name="IsVIP" Type="Boolean" />
-          <Property Name="UsedPoint"  Type="Decimal" Precision="18" Scale="0" />    
+          <Property Name="UsedPoint"  Type="Decimal" Precision="18" Scale="0" />
+          <Property Name="IsHealthCare" Type="Boolean" />
           
           <NavigationProperty Name="HealthBooks" Relationship="Self.FK_Acc" FromRole="Account" ToRole="HealthBook" />
           <NavigationProperty Name="ListDrugs" Relationship="Self.FK_Acc1" FromRole="Account" ToRole="ListDrug" />
@@ -831,7 +833,8 @@
                 <ScalarProperty Name="PowerPoint" ColumnName="PowerPoint" />
                 <ScalarProperty Name="Gender" ColumnName="Gender" />
                 <ScalarProperty Name="IsVIP" ColumnName="IsVIP" />
-                <ScalarProperty Name="UsedPoint" ColumnName="UsedPoint" />      
+                <ScalarProperty Name="UsedPoint" ColumnName="UsedPoint" />
+                <ScalarProperty Name="IsHealthCare" ColumnName="IsHealthCare" />
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>
