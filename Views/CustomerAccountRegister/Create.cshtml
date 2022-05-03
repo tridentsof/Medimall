@@ -17,7 +17,7 @@
             <!-- Nested Row within Card Body -->
             <div class="row">
                 <div class="col-lg-5 d-none d-lg-block">
-                    <img src="~/Vendor/img/icon/Icon.png" style="margin:110px 150px;" />
+                    <img src="~/Vendor/img/banners/banner.png" style="margin:180px 70px;" />
                 </div>
                 <div class="col-lg-7">
                     <div class="p-5">
@@ -26,6 +26,7 @@
                         </div>
                         <form id="register">
                             <div class="form-group">
+                               
                                 <input type="text" class="form-control form-control-user" id="txtFullname"
                                        placeholder="Họ và tên (*)" name="FullName">
                             </div>
@@ -146,7 +147,7 @@
             data: customer,
             success: function (result) {
                 if (result == true) {
-                    var succmess = "Đăng kí thành công!Xác thực email để có thể đăng nhập";
+                    var succmess = "Đăng kí thành công ! Xác thực email để có thể đăng nhập";
                     alertify.success(succmess);
                     succmess = '';
                        window.setTimeout(function () {

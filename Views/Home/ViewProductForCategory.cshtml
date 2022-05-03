@@ -229,7 +229,7 @@
                 @foreach (var item in Model)
                 {
                 <div class="item">
-                    <img src="~/Vendor/img/products/@(item.ProductId).png" alt="" />
+                    <a href="@Url.Action("GetDetailProductPage","Home",new {id=item.ProductId})"><img src="~/Vendor/img/products/@(item.ProductId).png" /></a>
                     <div>
                         <p>
                             @item.ProductName
