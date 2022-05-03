@@ -63,6 +63,49 @@
     @Html.Action("GetVoucher", "Home")
 
     <div class="main-content" style="background: #fff; width: 1255px; margin: 0 auto">
+        @if ((bool?)(ViewBag.IsHealthCare) == null)
+        {
+            <div></div>
+        }
+        else if ((bool?)(ViewBag.IsHealthCare) == true)
+        {
+            <div class="ct5-wrap">
+            <div class="title">
+                <h1>SẢN PHẨM GỢI Ý CHO SỨC KHỎE CỦA BẠN</h1>
+                <a href="@Url.Action("AllSuggestProduct","Home")">Xem tất cả ></a>
+            </div>
+            <div id="carousel0" class="carousel slide" data-ride="carousel">
+                <ol class="carousel-indicators">
+                    <li data-target="#carousel0" data-slide-to="0" class="active"></li>
+                    <li data-target="#carousel0" data-slide-to="1"></li>
+                    <li data-target="#carousel0" data-slide-to="2"></li>
+                </ol>
+                <div class="carousel-inner">
+                    <div class="carousel-item active">
+                        @Html.Action("GetCovidProductPageOne", "Home")
+                    </div>
+                    <div class="carousel-item">
+                        @Html.Action("GetCovidProductPageTwo", "Home")
+                    </div>
+                    <div class="carousel-item">
+                        @Html.Action("GetCovidProductPageThree", "Home")
+                    </div>
+                </div>
+                <a class="carousel-control-prev" href="#carousel0" role="button" data-slide="prev">
+                    <span class="carousel-control-prev-icon" aria-hidden="true">
+                        <img src="~/Vendor/img/icon/left-arrow.png" />
+                    </span>
+                    <span class="sr-only">Previous</span>
+                </a>
+                <a class="carousel-control-next" href="#carousel0" role="button" data-slide="next">
+                    <span class="carousel-control-next-icon" aria-hidden="true">
+                        <img src="~/Vendor/img/icon/right-arrow.png" />
+                    </span>
+                    <span class="sr-only">Next</span>
+                </a>
+            </div>
+        </div>
+    }
         <div class="ct5-wrap">
             <div class="title">
                 <h1>TOP SẢN PHẨM PHÒNG DỊCH</h1>
@@ -418,9 +461,9 @@
             </div>
         </div>
     </div>
-</div>
+    </div>
 
-<script>
+    <script>
     $(document).ready(function () {
         var successMess = '@TempData["SuccessMessVoucher"]';
         var successCart = '@TempData["SuccessCart"]';
@@ -441,4 +484,4 @@
             failCart = '';
         }
     })
-</script>
+    </script>

@@ -22,6 +22,7 @@
 
                 $('#user-session').css('display','flex');
                 $('#user-name').append(userName);
+                window.location.href = "/Home/Index"
             }
             else {
                 alertify.error('Sai tên đăng nhập hoặc mật khẩu');

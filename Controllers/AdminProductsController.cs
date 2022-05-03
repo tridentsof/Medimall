@@ -110,7 +110,7 @@ namespace Medimall.Controllers
         // more details see https://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult Create([Bind(Include = "ProductId,CategoryId,ProductName,UsesFor,Ingredient,Price,Quantity,QuantitySold,Photo")] Product product)
+        public ActionResult Create([Bind(Include = "ProductId,CategoryId,ProductName,UsesFor,Ingredient,Price,Quantity,QuantitySold,Photo,IsForCovid,PercentSalePoint,Symptoms")] Product product)
         {
             if (ModelState.IsValid)
             {
@@ -158,7 +158,7 @@ namespace Medimall.Controllers
         // more details see https://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult Edit([Bind(Include = "ProductId,CategoryId,ProductName,UsesFor,Ingredient,Price,Quantity,QuantitySold,Photo,IsForCovid,PercentSalePoint")] Product product)
+        public ActionResult Edit([Bind(Include = "ProductId,CategoryId,ProductName,UsesFor,Ingredient,Price,Quantity,QuantitySold,Photo,IsForCovid,PercentSalePoint,Symptoms")] Product product)
         {
             if (ModelState.IsValid)
             {

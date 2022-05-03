@@ -89,6 +89,8 @@
           <Property Name="DoseOne" Type="datetime" />
           <Property Name="DoseTwo" Type="datetime" />
           <Property Name="DoseThree" Type="datetime" />
+          <Property Name="MedicalHistory" Type="nvarchar(max)" />
+          <Property Name="Symptoms" Type="nvarchar(max)" />
         </EntityType>
         <EntityType Name="ListDrug">
           <Key>
@@ -136,6 +138,7 @@
           <Property Name="QuantitySold" Type="int" />
           <Property Name="IsForCovid" Type="bit" />
           <Property Name="PercentSalePoint" Type="decimal" Precision="18" Scale="2" />
+          <Property Name="Symptoms" Type="nvarchar(max)" />
         </EntityType>
         <EntityType Name="Role">
           <Key>
@@ -496,6 +499,8 @@
           <Property Name="DoseOne" Type="DateTime" Precision="3" />
           <Property Name="DoseTwo" Type="DateTime" Precision="3" />
           <Property Name="DoseThree" Type="DateTime" Precision="3" />
+          <Property Name="MedicalHistory" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Name="Symptoms" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
           <NavigationProperty Name="Account" Relationship="Self.FK_Acc" FromRole="HealthBook" ToRole="Account" />
         </EntityType>
         <EntityType Name="ListDrug">
@@ -548,6 +553,7 @@
           <Property Name="Quantity" Type="Int32" />
           <Property Name="QuantitySold" Type="Int32" />
           <Property Name="IsForCovid" Type="Boolean" />
+          <Property Name="Symptoms" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
           <Property Name="PercentSalePoint" Type="Decimal" Precision="18" Scale="2" />
           <NavigationProperty Name="BillDetails" Relationship="Self.FK_SP" FromRole="Product" ToRole="BillDetail" />
           <NavigationProperty Name="Category" Relationship="Self.FK_Category" FromRole="Product" ToRole="Category" />
@@ -906,6 +912,8 @@
                 <ScalarProperty Name="DoseOne" ColumnName="DoseOne" />
                 <ScalarProperty Name="DoseTwo" ColumnName="DoseTwo" />
                 <ScalarProperty Name="DoseThree" ColumnName="DoseThree" />
+                <ScalarProperty Name="MedicalHistory" ColumnName="MedicalHistory" />
+                <ScalarProperty Name="Symptoms" ColumnName="Symptoms" />
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>
@@ -958,6 +966,7 @@
                 <ScalarProperty Name="QuantitySold" ColumnName="QuantitySold" />
                 <ScalarProperty Name="IsForCovid" ColumnName="IsForCovid" />
                 <ScalarProperty Name="PercentSalePoint" ColumnName="PercentSalePoint" />
+                <ScalarProperty Name="Symptoms" ColumnName="Symptoms" />
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>

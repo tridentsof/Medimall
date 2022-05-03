@@ -14,7 +14,12 @@ namespace Medimall.Controllers
         // GET: Home
         public ActionResult Index()
         {
-            List<Product> listPD = db.Products.ToList();
+            var userId = Session["UserId"]?.ToString() ?? "0";
+            var userInfor = db.Accounts.Where(m => m.AccountId.ToString() == userId).FirstOrDefault();
+            if (userInfor != null)
+            {
+                ViewBag.IsHealthCare = userInfor.IsHealthCare ?? false;
+            }
 
             return View();
         }
@@ -35,7 +40,7 @@ namespace Medimall.Controllers
         {
             return View();
         }
-        
+
         public ActionResult Login()
         {
             return View();
@@ -66,7 +71,7 @@ namespace Medimall.Controllers
         }
 
         [HttpPost]
-        public JsonResult LoginAjax(string userName,string passWord)
+        public JsonResult LoginAjax(string userName, string passWord)
         {
             bool result = false;
             Account account = db.Accounts.Where(a => a.UserName == userName && a.Password == passWord && a.Status == 1).FirstOrDefault();
@@ -287,7 +292,7 @@ namespace Medimall.Controllers
 
             string getcategoryid = db.Products.Where(p => p.ProductId == id).Select(u => u.CategoryId).FirstOrDefault();
 
-            var getsameproduct = db.Products.Where(u => u.CategoryId == getcategoryid).Where(p=>p.ProductId != id).ToList();
+            var getsameproduct = db.Products.Where(u => u.CategoryId == getcategoryid).Where(p => p.ProductId != id).ToList();
 
             return PartialView(getsameproduct);
         }
@@ -323,6 +328,114 @@ namespace Medimall.Controllers
         {
             List<Category> categories = db.Categories.ToList();
             return PartialView(categories);
+        }
+
+        public ActionResult SuggestProductPageOne()
+        {
+            var userId = Session["UserId"]?.ToString() ?? "0";
+            var listProduct = db.Products.ToList();
+            var userHealthBook = db.HealthBooks.Where(m => m.AccountId.ToString() == userId).FirstOrDefault();
+            var symptoms = userHealthBook.Symptoms.ToString();
+            var listSuggestProduct = new List<Product>();
+
+            var listSymptom = symptoms.Split(' ');
+            foreach (var symptom in listSymptom)
+            {
+                foreach (var item in listProduct)
+                {
+                    if (!(string.IsNullOrEmpty(item.Symptoms)))
+                    {
+                        if (item.Symptoms.Trim().Contains(symptom.Trim()))
+                        {
+                            listSuggestProduct.Add(item);
+                        }
+                    }
+
+                }
+            }
+
+            return PartialView(listSuggestProduct.Take(5));
+        }
+
+        public ActionResult SuggestProductPageTwo()
+        {
+            var userId = Session["UserId"]?.ToString() ?? "0";
+            var listProduct = db.Products.ToList();
+            var userHealthBook = db.HealthBooks.Where(m => m.AccountId.ToString() == userId).FirstOrDefault();
+            var symptoms = userHealthBook.Symptoms.ToString();
+            var listSuggestProduct = new List<Product>();
+
+            var listSymptom = symptoms.Split(',');
+            foreach (var symptom in listSymptom)
+            {
+                foreach (var item in listProduct)
+                {
+                    if (!(string.IsNullOrEmpty(item.Symptoms)))
+                    {
+                        if (item.Symptoms.Trim().Contains(symptom.Trim()))
+                        {
+                            listSuggestProduct.Add(item);
+                        }
+                    }
+
+                }
+            }
+
+            return PartialView(listSuggestProduct.Skip(5).Take(5));
+        }
+
+        public ActionResult SuggestProductPageThree()
+        {
+            var userId = Session["UserId"]?.ToString() ?? "0";
+            var listProduct = db.Products.ToList();
+            var userHealthBook = db.HealthBooks.Where(m => m.AccountId.ToString() == userId).FirstOrDefault();
+            var symptoms = userHealthBook.Symptoms.ToString();
+            var listSuggestProduct = new List<Product>();
+
+            var listSymptom = symptoms.Split(',');
+            foreach (var symptom in listSymptom)
+            {
+                foreach (var item in listProduct)
+                {
+                    if (!(string.IsNullOrEmpty(item.Symptoms)))
+                    {
+                        if (item.Symptoms.Trim().Contains(symptom.Trim()))
+                        {
+                            listSuggestProduct.Add(item);
+                        }
+                    }
+
+                }
+            }
+
+            return PartialView(listSuggestProduct.Skip(10).Take(5));
+        }
+
+        public ActionResult AllSuggestProduct()
+        {
+            var userId = Session["UserId"]?.ToString() ?? "0";
+            var listProduct = db.Products.ToList();
+            var userHealthBook = db.HealthBooks.Where(m => m.AccountId.ToString() == userId).FirstOrDefault();
+            var symptoms = userHealthBook.Symptoms.ToString();
+            var listSuggestProduct = new List<Product>();
+
+            var listSymptom = symptoms.Split(',');
+            foreach (var symptom in listSymptom)
+            {
+                foreach (var item in listProduct)
+                {
+                    if (!(string.IsNullOrEmpty(item.Symptoms)))
+                    {
+                        if (item.Symptoms.Trim().Contains(symptom.Trim()))
+                        {
+                            listSuggestProduct.Add(item);
+                        }
+                    }
+
+                }
+            }
+
+            return PartialView(listSuggestProduct);
         }
     }
 }
