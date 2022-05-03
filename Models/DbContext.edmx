@@ -60,6 +60,7 @@
           <Property Name="Status" Type="int" />
           <Property Name="Phone" Type="nvarchar" MaxLength="50" />
           <Property Name="UserName" Type="nvarchar" MaxLength="200" />
+          <Property Name="PromotionPrice" Type="decimal" Precision="18" Scale="0" />
         </EntityType>
         <EntityType Name="Category">
           <Key>
@@ -459,6 +460,7 @@
           <Property Name="Status" Type="Int32" />
           <Property Name="Phone" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
           <Property Name="UserName" Type="String" MaxLength="200" FixedLength="false" Unicode="true" />
+          <Property Name="PromotionPrice" Type="Decimal" Precision="18" Scale="0" />
           <NavigationProperty Name="Account" Relationship="Self.FK_kh" FromRole="Billing" ToRole="Account" />
           <NavigationProperty Name="BillDetails" Relationship="Self.FK_HD" FromRole="Billing" ToRole="BillDetail" />
           <NavigationProperty Name="Delivery" Relationship="Self.FK_DVVC" FromRole="Billing" ToRole="Delivery" />
@@ -870,6 +872,7 @@
                 <ScalarProperty Name="Status" ColumnName="Status" />
                 <ScalarProperty Name="Phone" ColumnName="Phone" />
                 <ScalarProperty Name="UserName" ColumnName="UserName" />
+                <ScalarProperty Name="PromotionPrice" ColumnName="PromotionPrice" />
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>
