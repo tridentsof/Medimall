@@ -50,6 +50,8 @@ namespace Medimall.Models
         public Nullable<bool> IsForCovid { get; set; }
         [Display(Name = "Phần trăm giảm giá")]
         public Nullable<decimal> PercentSalePoint { get; set; }
+        [Display(Name = "Triệu chứng")]
+        public string Symptoms { get; set; }
 
         [Display(Name = "Picture")]
         [NotMapped]
