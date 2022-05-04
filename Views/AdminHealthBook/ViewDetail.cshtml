@@ -1,0 +1,93 @@
+﻿@model Medimall.Models.HealthBook
+@{
+    Layout = "~/Views/Shared/_LayoutAdmin.cshtml";
+}
+<h2 class="text-center">Chi tiết sổ sức khỏe</h2>
+
+<div class="form-group">
+    Tên Người Bệnh
+
+    <div class="col-md-10">
+        <input class="form-control" value="@ViewBag.FullName" readonly="" />
+    </div>
+</div>
+<div class="form-group">
+    Số điện thoại
+
+    <div class="col-md-10">
+        <input class="form-control" value="@ViewBag.Phone" readonly="" type="number" />
+    </div>
+</div>
+<div class="form-group">
+    Tuổi
+
+    <div class="col-md-10">
+        <input class="form-control" value="@ViewBag.Age" readonly="" />
+    </div>
+</div>
+<div class="form-group">
+    Địa chỉ
+
+    <div class="col-md-10">
+        <input class="form-control" value="@ViewBag.Address" readonly="" />
+    </div>
+</div>
+<div class="form-group">
+    Đã tiêm vaccin
+
+    <div class="col-md-10">
+        @Html.RadioButtonFor(modelItem => Model.IsVaccinated, true, new { @class = "radio", name = "vaccin" }) <span style="font-size:18px;">Có</span> &ensp;
+        @Html.RadioButtonFor(modelItem => Model.IsVaccinated, false, new { @class = "radio", name = "vaccin" }) <span style="font-size:18px;">Không</span> &ensp;
+    </div>
+</div>
+<div class="form-group">
+    Đã nhiễm covid
+
+    <div class="col-md-10">
+        @Html.RadioButtonFor(modelItem => Model.IsCovid, true, new { @class = "radio", name = "vaccin" }) <span style="font-size:18px;">Có</span> &ensp;
+        @Html.RadioButtonFor(modelItem => Model.IsCovid, false, new { @class = "radio", name = "vaccin" }) <span style="font-size:18px;">Không</span> &ensp;
+    </div>
+</div>
+<div class="form-group">
+    Thời gian tiêm mũi 1
+
+    <div class="col-md-10">
+        @Html.EditorFor(modelItem => Model.DoseOne, new { htmlAttributes = new { @class = "form-control", @readonly = "" } })
+    </div>
+</div>
+<div class="form-group">
+    Thời gian tiêm mũi 2
+
+    <div class="col-md-10">
+        @Html.EditorFor(modelItem => Model.DoseTwo, new { htmlAttributes = new { @class = "form-control", @readonly = "" } })
+    </div>
+</div>
+<div class="form-group">
+    Thời gian tiêm mũi 3
+
+    <div class="col-md-10">
+        @Html.EditorFor(modelItem => Model.DoseThree, new { htmlAttributes = new { @class = "form-control", @readonly = "" } })
+    </div>
+</div>
+<div class="form-group">
+    Triệu chứng bệnh
+
+    <div class="col-md-10">
+        @Html.EditorFor(modelItem => Model.Symptoms, new { htmlAttributes = new { @class = "form-control", @readonly = "" } })
+    </div>
+</div>
+<div class="form-group">
+    Lịch sử bệnh
+
+    <div class="col-md-10">
+        @Html.EditorFor(modelItem => Model.MedicalHistory, new { htmlAttributes = new { @class = "form-control", @readonly = "" } })
+    </div>
+</div>
+<div class="col-md-offset-2 col-md-10">
+    @Html.ActionLink("Trở về", "Index", null, new { @class = "d-none d-sm-inline-block btn btn-sm btn-outline-primary shadow-sm" })
+</div>
+<script>
+    $(document).ready(function () {
+        $(':radio:not(:checked)').attr('disabled', true);
+    })
+</script>
