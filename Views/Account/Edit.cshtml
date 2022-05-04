@@ -104,7 +104,7 @@
         </div>
         <div class="span-input">
             <p>Ngày tháng năm sinh (ngày/tháng/năm)</p>
-            @Html.TextBoxFor(modelItem => modelItem.BirthDay, new { id = "txtbirthday", name = "Birthday", type = "date", Value = Model.BirthDay.ToString("yyyy-MM-dd") })
+            @Html.EditorFor(model => model.BirthDay, new { htmlAttributes = new { @class = "form-control input", @type = "date", id = "txtbirthday" } })
         </div>
         <div class="span-input">
             <p>Số điện thoại</p>
