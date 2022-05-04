@@ -1,4 +1,5 @@
-﻿<style>
+﻿@model Medimall.Models.HealthBook
+<style>
     .span-declaration {
         display: flex;
         justify-content: space-between;
@@ -16,68 +17,227 @@
     .input, textarea {
         width: 100%;
     }
+
+    .cbSym {
+        width: 20px;
+        height: 20px;
+    }
+
+    .radio {
+        width: 20px;
+        height: 20px;
+    }
 </style>
 <div class="span-declaration">
     <h5><i class="fas fa-first-aid" style="color:#5DAC46"></i>&ensp;Đã tiêm vaccin:</h5>
     <div style="width: 25%">
-        <div>
-            <input type="radio" name="vaccin">
-            <label>
-                Có
-            </label>
-        </div>
-        <div>
-            <input type="radio" name="vaccin">
-            <label>
-                Không
-            </label>
-        </div>
+        @Html.RadioButtonFor(modelItem => Model.IsVaccinated, true, new { @class = "radio", name = "vaccin" }) <span style="font-size:18px;">Có</span> &ensp;
+        @Html.RadioButtonFor(modelItem => Model.IsVaccinated, false, new { @class = "radio", name = "vaccin" }) <span style="font-size:18px;">Không</span> &ensp;
     </div>
 </div>
 <div class="span-declaration">
-    <h5><i class="fas fa-viruses"style="color:#5DAC46"></i>&ensp;Đã từng bị covid:</h5>
+    <h5><i class="fas fa-viruses" style="color:#5DAC46"></i>&ensp;Đã từng bị covid:</h5>
     <div style="width: 25%">
-        <div>
-            <input type="radio" name="covid">
-            <label>
-                Có
-            </label>
-        </div>
-        <div>
-            <input type="radio" name="covid">
-            <label>
-                Không
-            </label>
-        </div>
+        @Html.RadioButtonFor(modelItem => Model.IsCovid, true, new { @class = "radio", name = "covid" }) <span style="font-size:18px;">Có</span> &ensp;
+        @Html.RadioButtonFor(modelItem => Model.IsCovid, false, new { @class = "radio", name = "covid" }) <span style="font-size:18px;">Không</span> &ensp;
     </div>
 </div>
 <div class="span-declaration">
     <h5><i class="fas fa-syringe" style="color:#5DAC46"></i>&ensp;Mũi một:</h5>
     <div class="input-declaration">
-        <input class="form-control input" type="text" />
+        @Html.EditorFor(model => model.DoseOne, new { htmlAttributes = new { @class = "form-control input", @type = "date", id = "DoseOne" } })
     </div>
 </div>
 <div class="span-declaration">
     <h5><i class="fas fa-syringe" style="color:#5DAC46"></i>&ensp;Mũi hai:</h5>
     <div class="input-declaration">
-        <input class="form-control input" type="text" />
+        @Html.EditorFor(model => model.DoseTwo, new { htmlAttributes = new { @class = "form-control input", @type = "date", id = "DoseTwo" } })
     </div>
 </div>
 <div class="span-declaration">
     <h5><i class="fas fa-syringe" style="color:#5DAC46"></i>&ensp;Mũi ba:</h5>
     <div class="input-declaration">
-        <input class="form-control input" type="text" />
+        @Html.EditorFor(model => model.DoseThree, new { htmlAttributes = new { @class = "form-control input", @type = "date", id = "DoseThree" } })
     </div>
 </div>
 <div class="span-declaration">
     <h5><i class="fas fa-file-medical-alt" style="color:#5DAC46"></i>&ensp;Lịch sử bệnh:</h5>
     <div class="input-declaration">
-        <textarea class="form-control" placeholder="Nhập lịch sử bệnh..."></textarea>
+        @Html.TextAreaFor(model => model.MedicalHistory, new { htmlAttributes = new { @class = "form-control", @type = "text", @placeholder = "Nhập lịch sử bệnh của bạn" } })
     </div>
 </div>
 <div class="span-declaration">
     <h5><i class="fas fa-head-side-cough" style="color:#5DAC46"></i>&ensp;Triệu chứng:</h5>
     <div class="input-declaration">
-        <textarea class="form-control" placeholder="Nhập triệu chứng..."></textarea>
+        @*@Html.TextAreaFor(model => model.Symptoms, new { htmlAttributes = new { @class = "form-control", @type = "text" ,@placeholder="Nhập triệu chứng của bạn"} })*@
+        <input type="checkbox" class="cbSym" id="txtHo" value="Ho" /><span style="font-size:18px;margin-right:53px;"> Ho</span> 
+        <input type="checkbox" class="cbSym" id="txtSot" value="Sốt" /><span style="font-size:18px;"> Sốt</span> <br />
+        <input type="checkbox" class="cbSym" id="txtDau" value="Đau đầu" /><span style="font-size:18px;margin-right:15px;"> Đau đầu</span>
+        <input type="checkbox" class="cbSym" id="txtTieuChay" value="Tiêu chảy" /><span style="font-size:18px;"> Tiêu chảy</span><br />
+        <input type="checkbox" class="cbSym" id="txtKhoTho" value="Khó thở" /><span style="font-size:18px;margin-right:19px;"> Khó thở</span> 
+        <input type="checkbox" class="cbSym" id="txtDauNguc" value="Đau ngực" /> <span style="font-size:19px;"> Đau ngực</span>
     </div>
 </div>
+@if (Model != null)
+{
+    <div class="" style="margin-bottom:30px;">
+        <button class="btn btn-primary btn-block" id="btnDeclare">Cập nhật khai báo</button>
+    </div>
+}
+else
+{
+    <div class="" style="margin-bottom:30px;">
+        <button class="btn btn-primary btn-block" id="btnDeclare">Khai báo</button>
+    </div>
+}
+
+<script>
+    $(document).ready(function () {
+        //check null doseone
+        if ($('#DoseOne').val() == "") {
+            $('#DoseTwo').prop('disabled', true);
+        }
+        $('#DoseOne').on('change', function () {
+            $('#DoseTwo').prop('disabled', false);
+        })
+        // checknull dosetwo
+        if ($('#DoseTwo').val() == "") {
+            $('#DoseThree').prop('disabled', true);
+        }
+        $('#DoseTwo').on('change', function () {
+            $('#DoseThree').prop('disabled', false);
+        })
+
+        //Declare
+        $('#btnDeclare').click(function () {
+            var CheckCovid = $('#IsCovid').is(':checked') ? 1 : 0;
+            var Covid
+            if (CheckCovid == 1) {
+                Covid = true
+            }
+            else
+                Covid = false;
+            //
+            var CheckVacxin = $('#IsVaccinated').is(':checked') ? 1 : 0;
+            var Vacxin
+            if (CheckVacxin == 1) {
+                Vacxin = true
+            }
+            else
+                Vacxin = false;
+            //
+            var DoseOne = $('#DoseOne').val();
+            var DoseTwo = $('#DoseTwo').val();
+            var DoseThree = $('#DoseThree').val();
+            var MedicalHistory = $('#MedicalHistory').val();
+            var Symptoms = $('#Symptoms').val();
+            //
+            var arr = []
+            $(":checkbox").each(function () {
+                if ($(this).is(":checked")) {
+                    arr.push($(this).val())
+                }
+            })
+            var vals = arr.join(",")
+            //
+            var data =
+            {
+                "IsVaccinated": Vacxin,
+                "IsCovid": Covid,
+                "DoseOne": DoseOne,
+                "DoseTwo": DoseTwo,
+                "DoseThree": DoseThree,
+                "MedicalHistory": MedicalHistory,
+                "Symptoms": vals
+            };
+            //
+            var getDose1 = new Date($('#DoseOne').val());
+            var getDose2 = new Date($('#DoseTwo').val())
+            var getDose3 = new Date($('#DoseThree').val())
+            //
+            var getMonthDose1 = getDose1.getMonth()+1;
+            var getMonthDose2 = getDose2.getMonth()+1;
+            var getMonthDose3 = getDose3.getMonth() + 1;
+            //
+            var getYearDose1 = getDose1.getFullYear();
+            var getYearDose2 = getDose2.getFullYear();
+            var getYearDose3 = getDose3.getFullYear();
+            //
+            var valid = 1;
+            //Check Thoi Gian Cach Nhau Cua Tung Mui
+
+
+            if (DoseOne != "" && DoseTwo != "")
+            {
+                if (getYearDose1 == getYearDose2) {
+                    if (getMonthDose2 - getMonthDose1 < 2) {
+                        var checkDay = "Thời gian tiêm mũi 1 và mũi 2 phải cách nhau 2 tháng trở lên";
+                        alertify.error(checkDay);
+                        checkDay = '';
+                        valid = 0;
+                    }
+                }
+                else if (getYearDose2 - getYearDose1 == 1 && getMonthDose1 == 12 && getMonthDose2 == 1)
+                {
+                    var checkDay = "Thời gian tiêm mũi 1 và mũi 2 phải cách nhau 2 tháng trở lên";
+                    alertify.error(checkDay);
+                    checkDay = '';
+                    valid = 0;
+                }
+            }
+            if (DoseOne != "" && DoseThree != "") {
+                if (getYearDose1 == getYearDose3) {
+                    if (getMonthDose3 - getMonthDose1 < 4) {
+                        var checkDay = "Thời gian tiêm mũi 1 và mũi 3 phải cách nhau 4 tháng trở lên";
+                        alertify.error(checkDay);
+                        checkDay = '';
+                        valid = 0;
+                    }
+                }
+                else if (getYearDose3 - getYearDose1 == 1 && getMonthDose1 == 12 && getMonthDose3 == 3) {
+                    var checkDay = "Thời gian tiêm mũi 1 và mũi 3 phải cách nhau 4 tháng trở lên";
+                    alertify.error(checkDay);
+                    checkDay = '';
+                    valid = 0;
+                }
+            }
+
+            if (DoseTwo != "" && DoseThree != "") {
+                if (getYearDose2 == getYearDose3) {
+                    if (getMonthDose3 - getMonthDose2 < 2) {
+                        var checkDay = "Thời gian tiêm mũi 2 và mũi 3 phải cách nhau 2 tháng trở lên";
+                        alertify.error(checkDay);
+                        checkDay = '';
+                        valid = 0;
+                    }
+                }
+                else if (getYearDose3 - getYearDose2 == 1 && getMonthDose2 == 12 && getMonthDose3 == 1) {
+                    var checkDay = "Thời gian tiêm mũi 2 và mũi 3 phải cách nhau 2 tháng trở lên";
+                    alertify.error(checkDay);
+                    checkDay = '';
+                    valid = 0;
+                }
+            }
+
+            if (valid == 1)
+            {
+                $.ajax({
+                    type: "POST",
+                    url: "/Account/UpdateHealthBook",
+                    data: data,
+                    success: function (result) {
+                        if (result == true) {
+                            var succmess = "Cập nhập thành công";
+                            alertify.success(succmess);
+                            succmess = '';
+                                 window.setTimeout(function () {
+                        window.location.href = '@Url.Action("Account", "Account")';
+                                 }, 2000)
+
+                        }
+                    }
+                })
+            }
+        })
+    })
+</script>

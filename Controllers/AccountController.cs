@@ -42,30 +42,93 @@ namespace Medimall.Controllers
             var displayoder = db.Billings.Where(p => p.AccountId == accountId).OrderByDescending(m => m.PurchaseDate).ToList();
             Billing status = db.Billings.Find(accountId);
 
+            var checkVip = db.Accounts.Any(p => p.AccountId == accountId && p.IsVIP == true);
+
+            if (checkVip)
+            {
+                ViewBag.CheckVip = "Xem chi tiết để biết điểm tích lũy";
+                ViewBag.CSSClass = "point2";
+            }    
+            else
+            {
+                ViewBag.CheckVip = "Bạn cần lên vip để tích điểm";
+                ViewBag.CSSClass = "point";
+            }    
             return PartialView(displayoder);
         }
+
         public ActionResult GetWaitOders()
         {
             var accountId = int.Parse(Session["UserId"].ToString());
             var displayoder = db.Billings.Where(p => p.AccountId == accountId).OrderByDescending(m => m.PurchaseDate).Where(p => p.Status == 1).ToList();
+            var checkVip = db.Accounts.Any(p => p.AccountId == accountId && p.IsVIP == true);
+
+            if (checkVip)
+            {
+                ViewBag.CheckVip = "Xem chi tiết để biết điểm tích lũy";
+                ViewBag.CSSClass = "point2";
+            }
+            else
+            {
+                ViewBag.CheckVip = "Bạn cần lên vip để tích điểm";
+                ViewBag.CSSClass = "point";
+            }
             return PartialView(displayoder);
         }
+
         public ActionResult GetDeliOder()
         {
             var accountId = int.Parse(Session["UserId"].ToString());
             var displayoder = db.Billings.Where(p => p.AccountId == accountId).Where(p => p.Status == 2).ToList();
+            var checkVip = db.Accounts.Any(p => p.AccountId == accountId && p.IsVIP == true);
+
+            if (checkVip)
+            {
+                ViewBag.CheckVip = "Xem chi tiết để biết điểm tích lũy";
+                ViewBag.CSSClass = "point2";
+            }
+            else
+            {
+                ViewBag.CheckVip = "Bạn cần lên vip để tích điểm";
+                ViewBag.CSSClass = "point";
+            }
             return PartialView(displayoder);
         }
+
         public ActionResult GetSuccesOders()
         {
             var accountId = int.Parse(Session["UserId"].ToString());
             var displayoder = db.Billings.Where(p => p.AccountId == accountId).Where(p => p.Status == 3).ToList();
+            var checkVip = db.Accounts.Any(p => p.AccountId == accountId && p.IsVIP == true);
+
+            if (checkVip)
+            {
+                ViewBag.CheckVip = "Xem chi tiết để biết điểm tích lũy";
+                ViewBag.CSSClass = "point2";
+            }
+            else
+            {
+                ViewBag.CheckVip = "Bạn cần lên vip để tích điểm";
+                ViewBag.CSSClass = "point";
+            }
             return PartialView(displayoder);
         }
         public ActionResult GetCancleOders()
         {
             var accountId = int.Parse(Session["UserId"].ToString());
             var displayoder = db.Billings.Where(p => p.AccountId == accountId).Where(p => p.Status == 0).ToList();
+            var checkVip = db.Accounts.Any(p => p.AccountId == accountId && p.IsVIP == true);
+
+            if (checkVip)
+            {
+                ViewBag.CheckVip = "Xem chi tiết để biết điểm tích lũy";
+                ViewBag.CSSClass = "point2";
+            }
+            else
+            {
+                ViewBag.CheckVip = "Bạn cần lên vip để tích điểm";
+                ViewBag.CSSClass = "point";
+            }
             return PartialView(displayoder);
         }
         public ActionResult GetAddressOder()
@@ -174,10 +237,13 @@ namespace Medimall.Controllers
         }
         public ActionResult OderDetailTotal()
         {
+            var accountId = int.Parse(Session["UserId"].ToString());
             int  id = int.Parse(this.RouteData.Values["id"].ToString());
 
             List<BillDetail> billDetails = db.BillDetails.Where(u => u.BillId == id).ToList();
+
             decimal? Total = 0;
+
             foreach(var item in billDetails)
             {
                 for (int i = 0; i < billDetails.Count; i++)
@@ -189,36 +255,47 @@ namespace Medimall.Controllers
              int ? getiddeli = db.Billings.Where(u => u.BillId == id).Select(u => u.DeliveryId).FirstOrDefault();
 
             decimal DeliPrice = (decimal)db.Deliveries.Where(p => p.DeliveryId == getiddeli).Select(p => p.DeliveryPrice).FirstOrDefault();
-
             decimal? PromotionPrice = db.Billings.Where(p => p.BillId == id).Select(p => p.PromotionPrice).FirstOrDefault();
 
             ViewBag.PromotionPrice = PromotionPrice;
-
             ViewBag.Total = Total;
             ViewBag.PriceDeli = DeliPrice;
 
             decimal ? SumTotal = Total + DeliPrice- PromotionPrice;
             ViewBag.Sumtotal = SumTotal;
+
             var displayDetail = db.BillDetails.Where(p => p.BillId == id).ToList();
 
+            var checkVip = db.Accounts.Any(p => p.AccountId == accountId && p.IsVIP == true);
+
             var ListProduct = db.Products.ToList();
+
             decimal? sumEarnPoint = 0;
 
-            foreach (var item in billDetails)
-            { 
-                foreach(var itemProduct in ListProduct)
+            if (checkVip)
+            {
+
+                foreach (var item in billDetails)
                 {
-                    if(item.ProductId == itemProduct.ProductId)
+                    foreach (var itemProduct in ListProduct)
                     {
-                        var product = db.Products.Where(p => p.ProductId == itemProduct.ProductId).FirstOrDefault();
+                        if (item.ProductId == itemProduct.ProductId)
+                        {
+                            var product = db.Products.Where(p => p.ProductId == itemProduct.ProductId).FirstOrDefault();
 
 
-                        var earnPoint = (product.PercentSalePoint/100) * product.Price;
-                        sumEarnPoint += earnPoint;
-                    }    
-                }  
-            }
-            ViewBag.EarnPoint = sumEarnPoint;
+                            var earnPoint = (product.PercentSalePoint / 100) * product.Price;
+                            sumEarnPoint += earnPoint;
+                        }
+                    }
+                }
+                ViewBag.EarnPoint = sumEarnPoint;
+            }    
+            else
+            {
+                ViewBag.EarnPoint = "Đang cập nhật";
+            }    
+
 
                 return PartialView(displayDetail);
         }
@@ -248,11 +325,77 @@ namespace Medimall.Controllers
         }
         public ActionResult HealthDeclaration()
         {
-            return PartialView();
+            var accountId = int.Parse(Session["UserId"].ToString());
+            var healthBook = db.HealthBooks.Where(p => p.AccountId == accountId).FirstOrDefault();
+
+            return PartialView(healthBook);
+        } 
+
+        public JsonResult UpdateHealthBook(HealthBook data)
+        {
+            var accountId = int.Parse(Session["UserId"].ToString());
+            HealthBook healthBook = new HealthBook();
+            HealthBook healthBook2 = (from c in db.HealthBooks
+                                     where c.AccountId == accountId
+                                     select c).FirstOrDefault();
+            Account account = (from c in db.Accounts
+                               where c.AccountId == accountId
+                               select c).FirstOrDefault();
+            if(healthBook2 == null)
+            {
+                account.IsHealthCare = true;
+                healthBook.AccountId = accountId;
+                healthBook.IsVaccinated = data.IsVaccinated;
+                healthBook.IsCovid = data.IsCovid;
+                healthBook.DoseOne = data.DoseOne;
+                healthBook.DoseTwo = data.DoseTwo;
+                healthBook.DoseThree = data.DoseThree;
+                healthBook.MedicalHistory = data.MedicalHistory;
+                healthBook.Symptoms = data.Symptoms;
+                db.HealthBooks.Add(healthBook);
+                db.SaveChanges();
+                return Json(true);
+            }    
+            else
+            {
+                healthBook2.IsVaccinated = data.IsVaccinated;
+                healthBook2.IsCovid = data.IsCovid;
+                healthBook2.DoseOne = data.DoseOne;
+                healthBook2.DoseTwo = data.DoseTwo;
+                healthBook2.DoseThree = data.DoseThree;
+                healthBook2.MedicalHistory = data.MedicalHistory;
+                healthBook2.Symptoms = data.Symptoms;
+                db.SaveChanges();
+                return Json(true);
+            }
         }
+
         public ActionResult HealthBook()
         {
-            return PartialView();
+            var accountId = int.Parse(Session["UserId"].ToString());
+            var healthBook = db.HealthBooks.Where(p => p.AccountId == accountId).FirstOrDefault();
+            var accountCheck = db.Accounts.Where(p => p.AccountId == accountId).FirstOrDefault();
+
+            var getCovid = accountCheck.IsHealthCare;
+
+            if (getCovid == true)
+            {
+                ViewBag.Covid = "Đã mắc covid";
+            }
+            else ViewBag.Covid = "Chưa mắc covid";
+
+            if(healthBook != null)
+            {
+                var getSymptoms = healthBook.Symptoms;
+
+                if (getSymptoms == null)
+                {
+
+                    ViewBag.Symptoms = "Không có triệu chứng";
+                }
+            }    
+
+            return PartialView(healthBook);
         }
     }
 }

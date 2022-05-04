@@ -9,19 +9,20 @@
                 <legend>Đang giao</legend>
                 <div class="listoder-header">
                     <div class="d-flex justify-content-between">
-                        <div class="d-flex listoder-item">
-                            <p>Điểm tích lũy: </p> &nbsp;
-                            <p class="point">Bạn cần lên VIP để tích điểm</p>
-                        </div>
+                        <p>
+                            Mã đơn hàng:
+                            <span class="oderid">#MMDH0@(item.BillId)</span>
+                        </p>
                         <p class="state2">Chưa hoàn thành</p>
                     </div>
-                    <p>
-                        Mã đơn hàng:
-                        <span class="oderid">#MMDH0@(item.BillId)</span>
-                    </p>
+
                     <p>
                         Giá trị đơn:
                         <span class="priceoder">@String.Format("{0:0,0}", item.Total) VND</span>
+                    </p>
+                    <p>
+                        Địa chỉ nhận hàng
+                        <span class="priceoder">@item.Address</span>
                     </p>
                 </div>
                 <div class="listoder-bot">
