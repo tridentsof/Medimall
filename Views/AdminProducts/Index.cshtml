@@ -10,13 +10,15 @@
     @Html.ActionLink("Tạo mới", "Create", "AdminProducts", new { @class = "d-none d-sm-inline-block btn btn-sm btn-primary shadow-sm" })
 </p>
 
-<b>Tìm theo: </b>
-<select id="search-by">
-    <option value="Name">Tên</option>
-    <option value="Id">Danh mục sản phẩm</option>
-</select>
-@Html.TextBox("Search")
-<input type="submit" id="search-btn" value="Tìm" />
+<div class="d-flex align-items-center">
+    <b>Tìm theo: </b>
+    <select class="btn btn-primary  ml-3 mr-2" style="width: 227px; height:35px; padding:6px 12px" id="search-by">
+        <option style="background: #fff; color: #000" value="Name">Tên</option>
+        <option style="background: #fff; color: #000" value="Id">Danh mục sản phẩm</option>
+    </select>
+    @Html.TextBox("Search", null, new { @class = "mr-2 form-control", @style = "width: 227px; height:35px" })
+    <input type="submit" id="search-btn" class="btn btn-outline-primary" style=" border: 1px solid; border-radius: 5px; width:60px; height: 35px;padding:5px 12px" value="Tìm" />
+</div>
 <br />
 <br />
 
