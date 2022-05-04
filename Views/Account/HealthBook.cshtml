@@ -1,4 +1,5 @@
-﻿<style>
+﻿@model Medimall.Models.HealthBook
+<style>
     .health-book {
         padding: 20px;
         width: 100%;
@@ -27,6 +28,8 @@
         display: flex
     }
 </style>
+@if (Model != null)
+{
 <div class=" health-book">
     <div class="btn-dose" type="button" data-toggle="collapse" data-target="#dose1">
         <div class="d-flex align-items-center">
@@ -45,23 +48,16 @@
             <div class="info-dose">
                 <div class="d-flex align-items-center">
                     <i class="fas fa-circle" style="color: #ffd211; font-size: 7px"></i>
-                    &ensp;Date:
+                    &ensp;Thời gian tiêm:
                 </div>
-                <p>&ensp;20-10-2021</p>
+                &ensp;@Convert.ToDateTime(Model.DoseOne).ToString("dd/MM/yyyy")
             </div>
             <div class="info-dose">
                 <div class="d-flex align-items-center">
                     <i class="fas fa-circle" style="color: #ffd211; font-size: 7px"></i>
-                    &ensp;Triệu chứng:
+                    &ensp;Đã bị covid
                 </div>
-                <p>&ensp;Không</p>
-            </div>
-            <div class="info-dose">
-                <div class="d-flex align-items-center">
-                    <i class="fas fa-circle" style="color: #ffd211; font-size: 7px"></i>
-                    &ensp;Đã bị covid:
-                </div>
-                <p>&ensp;Không</p>
+                <p>&ensp;@ViewBag.Covid</p>
             </div>
         </div>
     </div>
@@ -82,23 +78,16 @@
             <div class="info-dose">
                 <div class="d-flex align-items-center">
                     <i class="fas fa-circle" style="color: #5DAC46; font-size: 7px"></i>
-                    &ensp;Date:
+                    &ensp;Thời gian tiêm:
                 </div>
-                <p>&ensp;20-10-2021</p>
-            </div>
-            <div class="info-dose">
-                <div class="d-flex align-items-center">
-                    <i class="fas fa-circle" style="color: #5DAC46; font-size: 7px"></i>
-                    &ensp;Triệu chứng:
-                </div>
-                <p>&ensp;Không</p>
+                &ensp;@Convert.ToDateTime(Model.DoseTwo).ToString("dd/MM/yyyy")
             </div>
             <div class="info-dose">
                 <div class="d-flex align-items-center">
                     <i class="fas fa-circle" style="color: #5DAC46; font-size: 7px"></i>
                     &ensp;Đã bị covid:
                 </div>
-                <p>&ensp;Không</p>
+                <p>&ensp;@ViewBag.Covid</p>
             </div>
         </div>
     </div>
@@ -119,25 +108,95 @@
             <div class="info-dose">
                 <div class="d-flex align-items-center">
                     <i class="fas fa-circle" style="color: #0f62f9; font-size: 7px"></i>
-                    &ensp;Date:
+                    &ensp;Thời gian tiêm:
                 </div>
-                <p>&ensp;20-10-2021</p>
-            </div>
-            <div class="info-dose">
-                <div class="d-flex align-items-center">
-                    <i class="fas fa-circle" style="color: #0f62f9; font-size: 7px"></i>
-                    &ensp;Triệu chứng:
-                </div>
-                <p>&ensp;Không</p>
+                &ensp;@Convert.ToDateTime(Model.DoseThree).ToString("dd/MM/yyyy")
+
             </div>
             <div class="info-dose">
                 <div class="d-flex align-items-center">
                     <i class="fas fa-circle" style="color: #0f62f9; font-size: 7px"></i>
                     &ensp;Đã bị covid:
                 </div>
-                <p>&ensp;Không</p>
+                <p>&ensp;@ViewBag.Covid</p>
+            </div>
+        </div>
+    </div>
+    <div class="btn-dose" type="button" data-toggle="collapse" data-target="#symptoms">
+        <div class="d-flex align-items-center">
+            <span class="fa-stack fa-lg">
+                <img src="~/Vendor/img/icon/symptoms.png" style="width:50px;" />
+            </span>&ensp;
+            <h5>
+                Triệu chứng
+            </h5>
+        </div>
+        <i class="fas fa-chevron-down"></i>
+    </div>
+    <div id="symptoms" class="collapse">
+        <div class=" detail-dose">
+            <div class="info-dose">
+                <div class="d-flex align-items-center">
+                    @if(Model.Symptoms == null)
+                    {
+                        @ViewBag.Symptoms
+                    }
+                    else
+                    {
+                        var sym = Model.Symptoms.Split(',');
+                        <ul style="list-style:none;display:flex">
+                        @for(int i =0;i<sym.Length;i++)
+                        {
+                            <li style="margin:5px;font-size:16px"><i class="fas fa-circle" style="color: #9b59b6; font-size: 10px "></i>  @sym[i]</li>
+                        }
+                        </ul>
+                    }
+                </div>
+
+            </div>
+        </div>
+    </div>
+    <div class="btn-dose" type="button" data-toggle="collapse" data-target="#medicalhistory">
+        <div class="d-flex align-items-center">
+            <span class="fa-stack fa-lg">
+                <img src="~/Vendor/img/icon/medicalHistory.png" style="width:50px;" />
+            </span>&ensp;
+            <h5>
+                Lịch sử bệnh
+            </h5>
+        </div>
+        <i class="fas fa-chevron-down"></i>
+    </div>
+    <div id="medicalhistory" class="collapse">
+        <div class=" detail-dose">
+            <div class="info-dose">
+                <div class="d-flex align-items-center">
+                    @if (Model.MedicalHistory == null)
+                    {
+                         <p> Không có lịch sử bệnh </p>
+                     }
+                    else
+                    {
+                        var medic = Model.MedicalHistory.Split(',');
+                        <ul style="list-style:none; display:flex">
+                            @for (int i = 0; i < medic.Length; i++)
+                            {
+                                <li style="margin:5px;font-size:16px"><i class="fas fa-circle" style="color: #e74c3c; font-size: 10px;margin-top:-5px"></i>  @medic[i]</li>
+                            }
+                        </ul>
+                    }
+                </div>
+
             </div>
         </div>
     </div>
 </div>
+}
+else
+{
+    <div class="empty-result">
+        <img src="~/Vendor/img/icon/empty-image.png" alt="">
+        <p>Bạn chưa khai báo y tế ! Hãy khai báo để xem sổ sức khỏe </p>
+    </div>
+}
 
