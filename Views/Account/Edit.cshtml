@@ -44,9 +44,10 @@
 @Scripts.Render("~/bundles/modernizr")
 @Scripts.Render("~/bundles/jquery")
 
-<div id="changpassword" class="Changepassword" style="display:none">
-    <a href="" onclick="BackToEdit()">< Đổi mật khẩu</a><br />
-    <form id="ChangePassForm">
+<div id="changpassword" class="Changepassword" style="display:none;margin-top:20px; margin-left:20px;">
+    <a href="" onclick="BackToEdit()"><</a>
+    <span style="font-size: 24px; font-weight: 700; line-height: 32px;color:black"> Đổi mật khẩu</span>
+    <form id="ChangePassForm" style="margin-left:20px;">
         <label>Mật khẩu hiện tại &nbsp; </label><span>*</span>
         <div class="input-pass">
             <svg width="16" height="18" viewBox="0 0 16 18" fill="none"><path d="M11.7239 6.83548V5.04464C11.698 2.94548 9.97471 1.26548 7.87638 1.29131C5.82055 1.31714 4.15805 2.97214 4.12305 5.02798V6.83548" stroke="#8894A7" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"></path><path d="M7.92448 10.7969V12.6477" stroke="#8894A7" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"></path><path fill-rule="evenodd" clip-rule="evenodd" d="M7.92435 6.35352C3.13685 6.35352 1.54102 7.66018 1.54102 11.5793C1.54102 15.4993 3.13685 16.806 7.92435 16.806C12.7118 16.806 14.3085 15.4993 14.3085 11.5793C14.3085 7.66018 12.7118 6.35352 7.92435 6.35352Z" stroke="#8894A7" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"></path></svg>
@@ -97,9 +98,9 @@
         <div class="span-input">
             <p>Giới tính</p>
             <div>
-                @Html.RadioButtonFor(modelItem => Model.Gender, 1, new { name = "gender" }) Nam
-                @Html.RadioButtonFor(modelItem => Model.Gender, 2, new { name = "gender" }) Nữ
-                @Html.RadioButtonFor(modelItem => Model.Gender, 3, new { name = "gender" }) Khác
+                @Html.RadioButtonFor(modelItem => Model.Gender, 1, new { htmlAttributes = new { name = "gender", value = "1" } }) Nam
+                @Html.RadioButtonFor(modelItem => Model.Gender, 2, new { htmlAttributes = new { name = "gender", value = "2" } }) Nữ
+                @Html.RadioButtonFor(modelItem => Model.Gender, 3, new { htmlAttributes = new { name = "gender", value = "3" } }) Khác
             </div>
         </div>
         <div class="span-input">
@@ -120,23 +121,16 @@
     </div>
 </div>
 <script type="text/javascript">
-    clickA = () => {
-        console.log('l')
-    };
     function UpdateCustomer(id) {
         FullName = document.getElementById("txtname");
         BirthDay = document.getElementById("txtbirthday");
         Phone = document.getElementById("txtphone");
         Email = document.getElementById("txtemail");
-        var Gender
-        var ele = document.getElementsByTagName('input');
+        var Gender;
+        var ele = document.getElementsByName("Gender");
         for (i = 0; i < ele.length; i++) {
-
-            if (ele[i].type = "radio") {
-
                 if (ele[i].checked)
                     Gender=ele[i].value;
-            }
         }
         var customer = {
             "fullname": FullName.value,
@@ -183,7 +177,7 @@
             errormess = '';
         }
         if (newPass.value.length > 1 && newPass.value.length < 6) {
-            document.getElementById("checkpass").style.display = "block";
+            document.getElementById("checkpass").style.display = "block"; 
         }
         if (newPass.value != newPass2.value) {
             document.getElementById("recheckpass").style.display="block";
