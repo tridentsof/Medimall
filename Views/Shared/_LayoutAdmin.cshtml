@@ -54,7 +54,7 @@
 
             <!-- Nav Item - Dashboard -->
             <li id="li-insligt" class="nav-item active">
-                <a class="nav-link" href="index.html">
+                <a class="nav-link" href="@Url.Action("Index","AdminStatistics")">
                     <i class="fas fa-fw fa-tachometer-alt"></i>
                     <span>Thống kê</span>
                 </a>
@@ -82,6 +82,7 @@
                         <h6 class="collapse-header">Quản lý:</h6>
                         <a class="collapse-item" href="@Url.Action("Index","AdminStatistics")">Thống kê</a>
                         <a class="collapse-item" href="@Url.Action("Index","AdminBillings")">Quản lý hóa đơn</a>
+                        <a class="collapse-item" href="@Url.Action("Index","AdminVouchers")">Sổ sức khỏe</a>
                         <div class="collapse-divider"></div>
                         <h6 class="collapse-header">Admin:</h6>
                         <a class="collapse-item" href="@Url.Action("Index","AdminAccounts")">Người dùng</a>
@@ -89,7 +90,6 @@
                         <a class="collapse-item" href="@Url.Action("Index","AdminCategories")">Danh mục</a>
                         <a class="collapse-item" href="@Url.Action("Index","AdminDeliveries")">Đơn vị vận chuyển</a>
                         <a class="collapse-item" href="@Url.Action("Index","AdminVouchers")">Khuyến mãi</a>
-
                     </div>
                 </div>
             </li>
