@@ -26,7 +26,7 @@
                         </div>
                         <form id="register">
                             <div class="form-group">
-                               
+
                                 <input type="text" class="form-control form-control-user" id="txtFullname"
                                        placeholder="Họ và tên (*)" name="FullName">
                             </div>
@@ -55,7 +55,7 @@
                                            id="txtBirthday" placeholder="Ngày sinh(*)" name="BirthDay">
                                 </div>
                                 <div class="col-sm-6 mb-3">
-                                    <input type="text" class="form-control form-control-user"
+                                    <input type="number" class="form-control form-control-user"
                                            id="txtPhone" placeholder="Điện thoại(*)" name="Phone">
                                 </div>
                             </div>
@@ -86,6 +86,15 @@
             }
         })
     });
+        //function ValidateEmail(mail)
+        //{
+        //    if (/^\w+([\.-]?\w+)\w+([\.-]?\w+)*(\.\w{2,3})+$/.test(myForm.emailAddr.value))
+        //        {
+        //            return (true)
+        //        }
+        //            alert("You have entered an invalid email address!")
+        //    return (false)
+        //}
 
     function Register() {
         var full = $("#txtFullname").val();
@@ -113,6 +122,8 @@
                     Gender = ele[i].value;
             }
         }
+
+        //
         var customer = {
             "fullname": FullName.value,
             "username": UserName.value,
@@ -124,13 +135,21 @@
             "address": Address.value,
             "status": Status
         };
-        if (full == "" || user == "" || pass == "" || email == "" || phone == "" || birthday == "" || address == "") {
+        //check username
+        var EmailCheck = /^([\w-\.]+)@@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.)|(([\w-]+\.)+))([a-zA-Z]{2,4}|[0-9]{1,3})(\]?)$/;
+         if (full == "" || user == "" || pass == "" || email == "" || phone == "" || birthday == "" || address == "") {
             var errorMess = "Vui lòng điền đầy đủ thông tin";
             alertify.error(errorMess);
             window.setTimeout(function () {
                  window.location.href = '@Url.Action("Create", "CustomerAccountRegister")';
             },1000)
             errorMess = '';
+         }
+         else if (user.match(/(.*[!,%,&,@@,#,$,^,*,?,_,~].*[!,%,&,@@,#,$,^,*,?,_,~])/)) {
+            alertify.error("Tên đăng nhập có chứa kí tự đặc biệt");
+            window.setTimeout(function () {
+                 window.location.href = '@Url.Action("Create", "CustomerAccountRegister")';
+            },1000)
         }
         else if (pass.length < 6) {
             var errorMess = "Mật khẩu phải đủ 6 kí tự trở lên";
@@ -139,6 +158,12 @@
                 window.location.href = '@Url.Action("Create", "CustomerAccountRegister")';
             }, 1000)
             errorMess = '';
+         }
+        else if (!EmailCheck.test(email)) {
+             alertify.error("Email không hợp lệ");
+            window.setTimeout(function () {
+                 window.location.href = '@Url.Action("Create", "CustomerAccountRegister")';
+            },1000)
         }
         else {
             $.ajax({
