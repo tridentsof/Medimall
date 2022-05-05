@@ -338,7 +338,7 @@ namespace Medimall.Controllers
             var symptoms = userHealthBook.Symptoms.ToString();
             var listSuggestProduct = new List<Product>();
 
-            var listSymptom = symptoms.Split(' ');
+            var listSymptom = symptoms.Split(',');
             foreach (var symptom in listSymptom)
             {
                 foreach (var item in listProduct)
@@ -354,7 +354,7 @@ namespace Medimall.Controllers
                 }
             }
 
-            return PartialView(listSuggestProduct.Take(5));
+            return PartialView(listSuggestProduct.Take(5).ToList());
         }
 
         public ActionResult SuggestProductPageTwo()
@@ -381,7 +381,7 @@ namespace Medimall.Controllers
                 }
             }
 
-            return PartialView(listSuggestProduct.Skip(5).Take(5));
+            return PartialView(listSuggestProduct.Skip(5).Take(5).ToList());
         }
 
         public ActionResult SuggestProductPageThree()
@@ -408,7 +408,7 @@ namespace Medimall.Controllers
                 }
             }
 
-            return PartialView(listSuggestProduct.Skip(10).Take(5));
+            return PartialView(listSuggestProduct.Skip(10).Take(5).ToList());
         }
 
         public ActionResult AllSuggestProduct()
