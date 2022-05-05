@@ -596,6 +596,7 @@
         font-size: .75rem;
         border-radius: 0.75rem
     }
+
     .point2 {
         color: #fff !important;
         background-color: #5dac46;
@@ -722,11 +723,17 @@
         margin-top: 70px;
         width: 85%;
     }
+
     .health-book {
         margin: 0 auto;
         display: flex;
         flex-direction: column;
         margin-top: 30px;
+    }
+    .rank-rule {
+        margin: 0 auto;
+        margin-top: 60px;
+        width: 100%;
     }
 </style>
 
@@ -907,7 +914,8 @@
                 </div>
             </div>
             <div class="sidebar2">
-                <div class="nav-link">
+                <a class="nav-link" id="v-pills-rankRule" data-toggle="pill" href="#v-pills-rank-rule"
+                   role="tab" aria-controls="v-pills-rank-rule" aria-selected="false">
                     <svg width="24" height="24" viewBox="0 0 24 24" stroke="#333333" fill="none">
                         <path d="M12 15C15.7279 15 18.75 12.0899 18.75 8.5C18.75 4.91015 15.7279 2 12 2C8.27208 2 5.25 4.91015 5.25 8.5C5.25 12.0899 8.27208 15 12 15Z"
                               stroke="inherit" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"></path>
@@ -915,10 +923,10 @@
                               stroke="inherit" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"></path>
                     </svg>
                     <div>
-                        <p>Quy chế xếp hạng <p> &nbspThẻ thành viên</p>
+                        <p>Quy chế xếp hạng <p style=" color: #17479e; font-weight: 700;"> &nbsp;Thẻ thành viên</p>
                     </div>
                     <i class="fas fa-chevron-right"></i>
-                </div>
+                </a>
                 <div class="nav-link">
                     <svg width="24" height="24" viewBox="0 0 24 24">
                         <path d="M14.68 22.75H8C4.35 22.75 2.25 20.65 2.25 17V7.5C2.25 3.85 4.35 1.75 8 1.75H16C19.65 1.75 21.75 3.85 21.75 7.5V13.63C21.75 13.92 21.58 14.18 21.33 14.31C21.07 14.43 20.76 14.4 20.54 14.22C18.96 12.96 16.53 12.96 14.95 14.25C13.87 15.1 13.26 16.37 13.26 17.76C13.26 18.58 13.48 19.38 13.91 20.07C14.24 20.61 14.65 21.06 15.13 21.4C15.39 21.59 15.51 21.93 15.41 22.24C15.29 22.54 15.01 22.75 14.68 22.75ZM8 3.25C5.14 3.25 3.75 4.64 3.75 7.5V17C3.75 19.86 5.14 21.25 8 21.25H12.89C12.79 21.12 12.7 20.98 12.62 20.84C12.05 19.92 11.75 18.85 11.75 17.75C11.75 15.9 12.57 14.2 14.01 13.07C15.72 11.68 18.25 11.38 20.25 12.3V7.5C20.25 4.64 18.86 3.25 16 3.25H8Z"
@@ -1070,6 +1078,15 @@
                     </div>
                     <div class="health-book">
                         @Html.Action("HealthBook", "Account")
+                    </div>
+                </div>
+                <div class="tab-pane fade " id="v-pills-rank-rule" role="tabpanel"
+                     aria-labelledby="v-pills-rankRule">
+                    <div class="title">
+                        <h4>Quy chế xếp hạng</h4>
+                    </div>
+                    <div class="rank-rule">
+                        @Html.Action("RankRule", "Account")
                     </div>
                 </div>
             </div>

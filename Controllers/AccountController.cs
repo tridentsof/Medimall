@@ -397,5 +397,9 @@ namespace Medimall.Controllers
 
             return PartialView(healthBook);
         }
+        public ActionResult RankRule()
+        {
+            return PartialView();
+        }
     }
 }
