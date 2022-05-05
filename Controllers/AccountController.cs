@@ -399,7 +399,9 @@ namespace Medimall.Controllers
         }
         public ActionResult RankRule()
         {
-            return PartialView();
+            var accountId = int.Parse(Session["UserId"].ToString());
+            var user = db.Accounts.Where(p => p.AccountId == accountId).FirstOrDefault();
+            return PartialView(user);
         }
     }
 }
