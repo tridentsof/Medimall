@@ -1,0 +1,75 @@
+﻿@model Medimall.Models.Account
+@{
+    Layout = "~/Views/Shared/_LayoutAdmin.cshtml";
+}
+<link href="~/Vendor/css/admin-site.css" rel="stylesheet" />
+<h2 class="text-center">Chi tiết khách hàng Vip</h2>
+<div class="form-group">
+    Tên Khách hàng
+
+    <div class="col-md-10">
+        <input class="form-control" value="@Model.FullName" readonly="" />
+    </div>
+</div>
+<div class="form-group">
+    Sinh nhật
+
+    <div class="col-md-10">
+        @Html.EditorFor(model => model.BirthDay, new { htmlAttributes = new { @class = "form-control" ,@readonly=""} })
+    </div>
+</div>
+<div class="form-group">
+  Địa chỉ
+
+    <div class="col-md-10">
+        <input class="form-control" value="@Model.Address" readonly="" />
+    </div>
+</div>
+<div class="form-group">
+   Điểm tích lũy
+
+    <div class="col-md-10">
+        @Html.EditorFor(model => model.PowerPoint, new { htmlAttributes = new { @class = "form-control", @type="number"} })
+    </div>
+</div>
+<div class="form-group">
+    Điểm đã sử dụng
+
+    <div class="col-md-10">
+        @Html.EditorFor(model => model.UsedPoint,new { htmlAttributes = new { @class = "form-control", @type = "number"} })
+    </div>
+</div>
+<div class="col-md-offset-2 col-md-10">
+    <button class="d-none d-sm-inline-block btn btn-md btn-outline-primary shadow-sm " onclick="UpdateVip(@Model.AccountId)">Cập nhật</button> 
+    @Html.ActionLink("Trở về", "Index", null, new { @class = "d-none d-sm-inline-block btn btn-md btn-outline-danger shadow-sm" })
+</div>
+
+<script>
+    function UpdateVip(id) {
+        var PowerPoint = $('#PowerPoint').val();
+        var UsedPoint = $('#UsedPoint').val();
+        var data =
+        {
+             "PowerPoint":PowerPoint,
+             "UsedPoint":UsedPoint
+        }
+
+        if (PowerPoint < 0 || UsedPoint < 0)
+        {
+            var alert = "Điểm tích lũy phải lớn hơn 0"
+            alertify.error(alert);
+            alert = "";
+        }
+        else
+        {
+                   $.ajax({
+                    type: "POST",
+                    url: "/AdminCustomerVip/UpdatePoint/"+id,
+                    data: data,
+                       success: function (result) {
+                           window.location.href = '@Url.Action("Index", "AdminCustomerVip")';
+                    }
+                })
+        }
+    }
+</script>

@@ -1,25 +1,23 @@
-﻿@model IEnumerable < Medimall.Models.HealthBook>
+﻿@model IEnumerable<Medimall.Models.Account>
 @{
-    ViewBag.Title = "Index";
     Layout = "~/Views/Shared/_LayoutAdmin.cshtml";
 }
 <link href="~/Vendor/css/admin-site.css" rel="stylesheet" />
-<h2 class="text-center">Sổ sức khỏe điện tử</h2>
+
+<h2 class="text-center">Khách hàng thân thiết</h2>
 
 <table class="table table-striped ">
     <thead style="background-color: #4e73df;color:aliceblue ">
         <tr>
-            <th>@Html.DisplayNameFor(model => model.BookId)</th>
             <th>@Html.DisplayNameFor(model => model.AccountId)</th>
-            <th>Đã tiêm vacin</th>
-            <th>Đã nhiễm covid</th>
-            <th>@Html.DisplayNameFor(model => model.MedicalHistory)</th>
-            <th>@Html.DisplayNameFor(model => model.Symptoms)</th>
+            <th>@Html.DisplayNameFor(model => model.FullName)</th>
+            <th>@Html.DisplayNameFor(model => model.PowerPoint)</th>
+            <th>@Html.DisplayNameFor(model => model.UsedPoint)</th>
             <th>Chức năng</th>
         </tr>
     </thead>
 
-    <tbody id="tblHealthBook">
+    <tbody id="tblData">
     </tbody>
 </table>
 <div id="paged">
@@ -28,62 +26,52 @@
 <script>
     $(document).ready(function () {
         GetPageData(1);
-    });
-   $(function() {
-            var successMess = '@TempData["SuccessMess"]'
-        if (successMess != '') {
-            alertify.success(successMess);
-            successMess = '';
+        var SuccessUpdate ='@TempData["SuccessUpdate"]'
+        if (SuccessUpdate != '')
+        {
+            alertify.success(SuccessUpdate);
+            SuccessUpdate = '';
         }
-
-        });
+         var SuccessBlock ='@TempData["SuccessBlock"]'
+        if (SuccessBlock != '')
+        {
+            alertify.success(SuccessBlock);
+            SuccessBlock = '';
+        }
+    });
     function GetPageData(pageNum, pageSize) {
-        $("#tblHealthBook").empty();
+        $("#tblData").empty();
         $("#paged").empty();
-        $.getJSON("/AdminHealthBook/GetPaggedData", { pageNumber: pageNum, pageSize: pageSize }, function (response) {
+        $.getJSON("/AdminCustomerVip/GetPaggedData", { pageNumber: pageNum, pageSize: pageSize }, function (response) {
             var rowData = "";
             for (var i = 0; i < response.Data.length; i++) {
-                var isCovid = function () {
-                    if (response.Data[i].IsCovid == true)
-                        return 'Đã mắc covid'
-                    else
-                        return 'Chưa mắc covid'
-                }
-                var isVaccin = function () {
-                    if (response.Data[i].IsVaccinated == true)
-                        return 'Đã tiêm vaccin'
-                    else {
-                        return 'Chưa tiêm vacxin'
-                    }
-                }
+
                 rowData = rowData +
-                    '<tr><td>' + response.Data[i].BookId + '</td>' +
-                    '<td>' + response.Data[i].AccountId + '</td>' +
-                    '<td>' + isVaccin() + '</td>' +
-                    '<td>' + isCovid() + '</td>' +
-                    '<td>' + response.Data[i].MedicalHistory + '</td>' +
-                    '<td>' + response.Data[i].Symptoms + '</td>' +
-                    '<td>' + '<a onclick = "ViewHealthBook(' + response.Data[i].BookId + ')" class="d-none d-sm-inline-block btn btn-sm btn btn-info">' + 'Xem chi tiết <i class="fas fa-eye"></i></a>' +
-                    '<a style="margin-left:15px" onclick = "DeleteHealthBook(' + response.Data[i].BookId + ')" class="d-none d-sm-inline-block btn btn-sm btn btn-danger ">' + 'Xóa <i class="fas fa-minus-circle"></i></a>' +
+                    '<tr><td>' + response.Data[i].AccountId + '</td>'
+                    + '<td>' + response.Data[i].FullName + '</td>'
+                    + '<td>' + response.Data[i].PowerPoint + '</td>'
+                    + '<td>' + response.Data[i].UsedPoint + '</td>'
+                    + '<td>' + '<a onclick = "Detail(\'' + response.Data[i].AccountId + '\')" class="d-none d-sm-inline-block btn btn-sm btn btn-info">' + 'Xem <i class="fas fa-edit"></i></a>' +
+                    '<a style="margin-left:15px" onclick = "BlockVip(\'' + response.Data[i].AccountId + '\')" class="d-none d-sm-inline-block btn btn-sm btn btn-danger ">' + 'Khóa <i class="fas fa-minus-circle"></i></a>' +
                     '</td>' +
                     '</tr>';
 
             }
-            $("#tblHealthBook").append(rowData);
+            $("#tblData").append(rowData);
             PaggingTemplate(response.TotalPages, response.CurrentPage);
         });
     }
-    function ViewHealthBook(id) {
-        window.location.href = '@Url.Action("ViewDetail","AdminHealthBook")/' + id;
+    function Detail(id) {
+        window.location.href = '@Url.Action("Details","AdminCustomerVip")/' + id;
     }
-    function DeleteHealthBook(id) {
-        alertify.confirm("Xóa", "Bạn có muốn xóa không?", function () {
+    function BlockVip(id) {
+        alertify.confirm("Khóa", "Bạn có muốn khóa vip không?", function () {
             $.ajax({
                 type: "POST",
-                url: "/AdminHealthBook/DeleteHealthBook/" + id,
+                url: "/AdminCustomerVip/BlockVip/" + id,
                 data: id,
                 success: function (result) {
-                    window.location.href = '@Url.Action("Index","AdminHealthBook")';
+                    window.location.href = '@Url.Action("Index", "AdminCustomerVip")';
                 }
             })
         },null);
