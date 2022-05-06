@@ -47,7 +47,7 @@
 
         .viewall-body h3 {
             padding-left: 150px;
-            padding-bottom: 50px;
+            padding-bottom: 15px;
             font-weight: bold;
         }
 </style>
@@ -58,8 +58,20 @@
     </ul>
 </div>
 <div class="container-fluid viewall-body">
-    <h3>SẢN PHẨM ĐỀ XUẤT CHO BẠN</h3>
-    <div class="row">
+    <h3>SẢN PHẨM ĐỀ XUẤT CHO BẠN DỰA TRÊN CÁC TRIỆU CHỨNG CỦA BẠN:</h3>
+    <div style="margin-left:150px;">
+        @if (ViewBag.Symptoms != null)
+        {
+            var sym = ViewBag.Symptoms.Split(',');
+            <ul style="list-style:none;display:flex">
+                @for (int i = 0; i < sym.Length; i++)
+                {
+                    <li style="margin:5px;font-size:20px;"><i class="fas fa-circle" style="color: #9b59b6; font-size: 10px "></i>  @sym[i]</li>
+                }
+            </ul>
+        }
+    </div>
+    <div class="row" style="margin-bottom:40px;">
         <div class="col-md-10 viewall">
             @foreach (var item in Model)
             {

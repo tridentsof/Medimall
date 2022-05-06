@@ -435,6 +435,7 @@ namespace Medimall.Controllers
                 }
             }
 
+            ViewBag.Symptoms = userHealthBook.Symptoms;
             return PartialView(listSuggestProduct);
         }
     }
