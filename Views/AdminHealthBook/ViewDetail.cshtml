@@ -84,10 +84,54 @@
     </div>
 </div>
 <div class="col-md-offset-2 col-md-10">
-    @Html.ActionLink("Trở về", "Index", null, new { @class = "d-none d-sm-inline-block btn btn-sm btn-outline-primary shadow-sm" })
+    @if (Model.IsValid == 0)
+    {
+        <button class="d-none d-sm-inline-block btn btn-md btn-outline-success shadow-sm " onclick="ConfirmReport(@Model.BookId)">Xác thực khai cáo</button>
+        <button class="d-none d-sm-inline-block btn btn-md btn-outline-danger shadow-sm " onclick="NotConfirmReport(@Model.BookId)">Khai báo chưa chính xác</button><br /><br />
+    }
+    else if (Model.IsValid == 1)
+    {
+        <button class="d-none d-sm-inline-block btn btn-md btn-outline-danger shadow-sm " onclick="NotConfirmReport(@Model.BookId)">Khai báo chưa chính xác</button><br /><br />
+    }
+    else
+    {
+        <button class="d-none d-sm-inline-block btn btn-md btn-outline-success shadow-sm " onclick="ConfirmReport(@Model.BookId)">Xác thực khai cáo</button>
+    }
+    @Html.ActionLink("Trở về", "Index", null, new { @class = "d-none d-sm-inline-block btn btn-md btn-outline-primary shadow-sm" })
 </div>
 <script>
     $(document).ready(function () {
         $(':radio:not(:checked)').attr('disabled', true);
-    })
+    });
+     $(function() {
+            var successMess = '@TempData["SuccessMess"]'
+        if (successMess != '') {
+            alertify.success(successMess);
+            successMess = '';
+        }
+
+        });
+
+    function ConfirmReport(id)
+    {
+      $.ajax({
+           type: "POST",
+           url: "/AdminHealthBook/ConfirmReport/" + id,
+           data: id,
+           success: function (result) {
+                    window.location.href = '@Url.Action("Index","AdminHealthBook")';
+            }
+       })
+    }
+       function NotConfirmReport(id)
+    {
+      $.ajax({
+           type: "POST",
+           url: "/AdminHealthBook/NotConfirmReport/" + id,
+           data: id,
+           success: function (result) {
+                    window.location.href = '@Url.Action("Index","AdminHealthBook")';
+            }
+       })
+    }
 </script>

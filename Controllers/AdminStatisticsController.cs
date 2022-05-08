@@ -36,7 +36,7 @@ namespace Medimall.Controllers
             .DefaultIfEmpty()
             .Sum(p => p.Total);
             ViewBag.Total = gettotal;
-            var getbillid = db.Billings.Where(p => p.PurchaseDate > FromDay && p.PurchaseDate < EndDay && p.Status == 3).Select(p => p.BillId).ToList();
+            var getbillid = db.Billings.Where(p => p.PurchaseDate > FromDay && p.PurchaseDate < EndDay && p.Status == 3).ToList();
 
             var getbilldetail = db.BillDetails.ToList();
 
@@ -47,13 +47,23 @@ namespace Medimall.Controllers
 
                 for (int i = 0; i < getbilldetail.Count; i++)
                 {
-                    if (item == getbilldetail[i].BillId)
+                    if (item.BillId == getbilldetail[i].BillId)
                     { 
                         getalldetail.Add(getbilldetail[i]);
                     }
                 }
             }
-            var result = new { data= getalldetail, total= gettotal };
+
+            List<BillDetail> getRevenue = getalldetail
+                .GroupBy(p => p.ProductId)
+                .Select(m => new BillDetail
+                { 
+                    ProductName=m.First().ProductName,
+                    Price=m.First().Price,
+                    Quantity=m.Sum(c=>c.Quantity),
+                }).ToList();
+
+            var result = new { data= getRevenue, total= gettotal };
             return Json(result, JsonRequestBehavior.AllowGet);
         }
     }

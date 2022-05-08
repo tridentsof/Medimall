@@ -44,6 +44,41 @@ namespace Medimall.Controllers
 
             return View(bookid);
         }
+
+        public ActionResult ConfirmReport(int id)
+        {
+            bool result = false;
+            HealthBook healthBook = db.HealthBooks.Where(a => a.BookId == id).SingleOrDefault();
+
+            if (healthBook != null)
+            {
+                healthBook.IsValid = 1;
+                db.SaveChanges();
+                TempData["SuccessMess"] = "Cập nhật thành công!";
+                db.SaveChanges();
+                result = true;
+            }
+
+            return Json(result, JsonRequestBehavior.AllowGet);
+        }
+
+        public ActionResult NotConfirmReport(int id)
+        {
+            bool result = false;
+            HealthBook healthBook = db.HealthBooks.Where(a => a.BookId == id).SingleOrDefault();
+
+            if (healthBook != null)
+            {
+                healthBook.IsValid = 2;
+                db.SaveChanges();
+                TempData["SuccessMess"] = "Cập nhật thành công!";
+                db.SaveChanges();
+                result = true;
+            }
+
+            return Json(result, JsonRequestBehavior.AllowGet);
+        }
+
         public ActionResult DeleteHealthBook(int id)
         {
             bool result = false;

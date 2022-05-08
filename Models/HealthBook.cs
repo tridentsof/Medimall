@@ -33,6 +33,9 @@ namespace Medimall.Models
         [Display(Name = "Triệu chứng")]
         public string Symptoms { get; set; }
 
+        [Display(Name = "Xác thực")]
+        public int IsValid { get; set; }
+
         public virtual Account Account { get; set; }
     }
 }

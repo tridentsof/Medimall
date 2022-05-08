@@ -327,6 +327,17 @@ namespace Medimall.Controllers
         {
             var accountId = int.Parse(Session["UserId"].ToString());
             var healthBook = db.HealthBooks.Where(p => p.AccountId == accountId).FirstOrDefault();
+            
+            if(healthBook.IsValid == 0)
+            {
+                ViewBag.Valid = "Chờ xác thực";
+            }    
+            else if(healthBook.IsValid==2)
+            {
+                ViewBag.Valid = "Khai báo về mũi tiêm của bạn không chính xác,mời bạn khai báo lại";
+            }    
+
+
 
             return PartialView(healthBook);
         } 
@@ -358,13 +369,26 @@ namespace Medimall.Controllers
             }    
             else
             {
-                healthBook2.IsVaccinated = data.IsVaccinated;
-                healthBook2.IsCovid = data.IsCovid;
-                healthBook2.DoseOne = data.DoseOne;
-                healthBook2.DoseTwo = data.DoseTwo;
-                healthBook2.DoseThree = data.DoseThree;
-                healthBook2.MedicalHistory = data.MedicalHistory;
-                healthBook2.Symptoms = data.Symptoms;
+                if(data.Symptoms != null)
+                {
+                    healthBook2.IsVaccinated = data.IsVaccinated;
+                    healthBook2.IsCovid = data.IsCovid;
+                    healthBook2.DoseOne = data.DoseOne;
+                    healthBook2.DoseTwo = data.DoseTwo;
+                    healthBook2.DoseThree = data.DoseThree;
+                    healthBook2.MedicalHistory = data.MedicalHistory;
+                    healthBook2.Symptoms = data.Symptoms;
+                }
+                else 
+                {
+                    healthBook2.IsVaccinated = data.IsVaccinated;
+                    healthBook2.IsCovid = data.IsCovid;
+                    healthBook2.DoseOne = data.DoseOne;
+                    healthBook2.DoseTwo = data.DoseTwo;
+                    healthBook2.DoseThree = data.DoseThree;
+                    healthBook2.MedicalHistory = data.MedicalHistory;
+                }
+
                 db.SaveChanges();
                 return Json(true);
             }
@@ -373,7 +397,7 @@ namespace Medimall.Controllers
         public ActionResult HealthBook()
         {
             var accountId = int.Parse(Session["UserId"].ToString());
-            var healthBook = db.HealthBooks.Where(p => p.AccountId == accountId).FirstOrDefault();
+            var healthBook = db.HealthBooks.Where(p => p.AccountId == accountId && p.IsValid==1).FirstOrDefault();
             var accountCheck = db.Accounts.Where(p => p.AccountId == accountId).FirstOrDefault();
 
             var getCovid = accountCheck.IsHealthCare;
