@@ -6,9 +6,6 @@
 
 
 <h2 class="text-center">Đơn hàng</h2>
-<p>
-    @Html.ActionLink("Tạo mới", "Create", "AdminProducts", new { @class = "d-none d-sm-inline-block btn btn-sm btn-primary shadow-sm" })
-</p>
 
 <div class="d-flex align-items-center">
     <b>Tìm theo: </b>
@@ -155,7 +152,6 @@
     }
 
     function EditBilling(id) {
-        debugger
         window.location.href = '@Url.Action("EditBilling","AdminBillings")/' + id;
     }
 

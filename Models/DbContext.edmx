@@ -91,6 +91,7 @@
           <Property Name="DoseThree" Type="datetime" />
           <Property Name="MedicalHistory" Type="nvarchar(max)" />
           <Property Name="Symptoms" Type="nvarchar(max)" />
+		  <Property Name="IsValid" Type="int" />
         </EntityType>
         <EntityType Name="ListDrug">
           <Key>
@@ -501,6 +502,7 @@
           <Property Name="DoseThree" Type="DateTime" Precision="3" />
           <Property Name="MedicalHistory" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
           <Property Name="Symptoms" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+		  <Property Name="IsValid" Type="Int32" />
           <NavigationProperty Name="Account" Relationship="Self.FK_Acc" FromRole="HealthBook" ToRole="Account" />
         </EntityType>
         <EntityType Name="ListDrug">
@@ -914,6 +916,7 @@
                 <ScalarProperty Name="DoseThree" ColumnName="DoseThree" />
                 <ScalarProperty Name="MedicalHistory" ColumnName="MedicalHistory" />
                 <ScalarProperty Name="Symptoms" ColumnName="Symptoms" />
+				<ScalarProperty Name="IsValid" ColumnName="IsValid" />
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>

@@ -67,7 +67,7 @@
         </div>
     </div>
     <div class="bottom-content">
-        <h2 class="text-center" >Thống Kê Doanh Thu Sản Phẩm Theo Tháng</h2>
+        <h2 class="text-center" >Thống Kê Doanh Thu</h2>
         <div style="margin:auto;text-align:center">
             <span>Từ ngày </span>&emsp;
             <input type="date" id="txtstartday" value="" style="height:40px;">&emsp;
@@ -85,9 +85,6 @@
                         </th>
                         <th>
                             Tên sản phẩm
-                        </th>
-                        <th>
-                            Giá bán
                         </th>
                         <th>
                             Số Lượng Bán
@@ -108,7 +105,8 @@
         var Endday = $("#txtendday").val();
         var SetData = $("#tblStas");
         var SetTotal = $("#tbltotal")
-        SetData.html("");
+            SetData.html("");
+            SetTotal.html("");
             var valid=1
         if (Startday == "" || Endday == "") {
             var CheckDay = "Bạn phải nhập đầy đủ ngày tháng năm để thống kê";
@@ -119,7 +117,7 @@
                 var CheckDay = "Ngày kết thúc phải nhỏ hơn ngày hiện tại";
             alertify.error(CheckDay);
             valid = 0;
-            }
+        }
             if (valid == 1) {
                 $("#table-statistics").show();
                 $.ajax({
@@ -134,12 +132,11 @@
                         for (var i = 0; i < result.data.length; i++) {
                             rowData = '<tr><td>' + (i + 1) + '</td > ' +
                                 '<td>' + result.data[i].ProductName + '</td>' +
-                                '<td>' + (Math.round(result.data[i].Price * 100) / 100).toLocaleString() + ' VND' + '</td>' +
                                 '<td>' + result.data[i].Quantity + '</td>' +
                                 '</tr>';
                             SetData.append(rowData);
                         }
-                        var total = '<tr>' + '<td colspan="3" style="background-color:#4e73df; color: white"> Doanh Thu(đã bao gồm phí vận chuyển và Voucher)  </td>' +
+                        var total = '<tr>' + '<td colspan="2" style="background-color:#4e73df; color: white"> Doanh Thu (đã bao gồm phí vận chuyển và Voucher)  </td>' +
                             '<td>' + (Math.round(result.total * 100) / 100).toLocaleString() + ' VND' + '</td>' + '</tr>';
                         SetTotal.append(total)
                     }

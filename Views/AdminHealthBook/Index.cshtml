@@ -15,6 +15,7 @@
             <th>Đã nhiễm covid</th>
             <th>@Html.DisplayNameFor(model => model.MedicalHistory)</th>
             <th>@Html.DisplayNameFor(model => model.Symptoms)</th>
+            <th>@Html.DisplayNameFor(model => model.IsValid)</th>
             <th>Chức năng</th>
         </tr>
     </thead>
@@ -56,6 +57,17 @@
                         return 'Chưa tiêm vacxin'
                     }
                 }
+                var convertStatus = function () {
+                    if (response.Data[i].IsValid == 1)
+                        return 'Đã xác thực'
+                    else if (response.Data[i].IsValid == 2) {
+                        return 'Không chính xác'
+                    }
+                    else
+                    {
+                        return 'Chờ xác thực'
+                    }
+                }
                 rowData = rowData +
                     '<tr><td>' + response.Data[i].BookId + '</td>' +
                     '<td>' + response.Data[i].AccountId + '</td>' +
@@ -63,6 +75,7 @@
                     '<td>' + isCovid() + '</td>' +
                     '<td>' + response.Data[i].MedicalHistory + '</td>' +
                     '<td>' + response.Data[i].Symptoms + '</td>' +
+                    '<td>' + convertStatus() + '</td>' +
                     '<td>' + '<a onclick = "ViewHealthBook(' + response.Data[i].BookId + ')" class="d-none d-sm-inline-block btn btn-sm btn btn-info">' + 'Xem chi tiết <i class="fas fa-eye"></i></a>' +
                     '<a style="margin-left:15px" onclick = "DeleteHealthBook(' + response.Data[i].BookId + ')" class="d-none d-sm-inline-block btn btn-sm btn btn-danger ">' + 'Xóa <i class="fas fa-minus-circle"></i></a>' +
                     '</td>' +

@@ -30,173 +30,173 @@
 </style>
 @if (Model != null)
 {
-<div class=" health-book">
-    <div class="btn-dose" type="button" data-toggle="collapse" data-target="#dose1">
-        <div class="d-flex align-items-center">
-            <span class="fa-stack fa-lg">
-                <i class="fas fa-circle fa-stack-2x" style="color: #ffd21138"></i>
-                <i class="fas fa-shield-virus fa-stack-1x" style="color: #ffd211"></i>
-            </span>&ensp;
-            <h5>
-                Mũi một
-            </h5>
-        </div>
-        <i class="fas fa-chevron-down"></i>
-    </div>
-    <div id="dose1" class="collapse">
-        <div class=" detail-dose">
-            <div class="info-dose">
-                <div class="d-flex align-items-center">
-                    <i class="fas fa-circle" style="color: #ffd211; font-size: 7px"></i>
-                    &ensp;Thời gian tiêm:
-                </div>
-                &ensp;@Convert.ToDateTime(Model.DoseOne).ToString("dd/MM/yyyy")
+    <div class=" health-book">
+        <div class="btn-dose" type="button" data-toggle="collapse" data-target="#dose1">
+            <div class="d-flex align-items-center">
+                <span class="fa-stack fa-lg">
+                    <i class="fas fa-circle fa-stack-2x" style="color: #ffd21138"></i>
+                    <i class="fas fa-shield-virus fa-stack-1x" style="color: #ffd211"></i>
+                </span>&ensp;
+                <h5>
+                    Mũi một
+                </h5>
             </div>
-            <div class="info-dose">
-                <div class="d-flex align-items-center">
-                    <i class="fas fa-circle" style="color: #ffd211; font-size: 7px"></i>
-                    &ensp;Đã bị covid
-                </div>
-                <p>&ensp;@ViewBag.Covid</p>
-            </div>
+            <i class="fas fa-chevron-down"></i>
         </div>
-    </div>
-    <div class="btn-dose" type="button" data-toggle="collapse" data-target="#dose2">
-        <div class="d-flex align-items-center">
-            <span class="fa-stack fa-lg">
-                <i class="fas fa-circle fa-stack-2x" style="color: #5dac463b"></i>
-                <i class="fas fa-shield-virus fa-stack-1x" style="color: #5DAC46"></i>
-            </span>&ensp;
-            <h5>
-                Mũi hai
-            </h5>
-        </div>
-        <i class="fas fa-chevron-down"></i>
-    </div>
-    <div id="dose2" class="collapse">
-        <div class=" detail-dose">
-            <div class="info-dose">
-                <div class="d-flex align-items-center">
-                    <i class="fas fa-circle" style="color: #5DAC46; font-size: 7px"></i>
-                    &ensp;Thời gian tiêm:
+        <div id="dose1" class="collapse">
+            <div class=" detail-dose">
+                <div class="info-dose">
+                    <div class="d-flex align-items-center">
+                        <i class="fas fa-circle" style="color: #ffd211; font-size: 7px"></i>
+                        &ensp;Thời gian tiêm:
+                    </div>
+                    &ensp;@Convert.ToDateTime(Model.DoseOne).ToString("dd/MM/yyyy")
                 </div>
-                &ensp;@Convert.ToDateTime(Model.DoseTwo).ToString("dd/MM/yyyy")
-            </div>
-            <div class="info-dose">
-                <div class="d-flex align-items-center">
-                    <i class="fas fa-circle" style="color: #5DAC46; font-size: 7px"></i>
-                    &ensp;Đã bị covid:
+                <div class="info-dose">
+                    <div class="d-flex align-items-center">
+                        <i class="fas fa-circle" style="color: #ffd211; font-size: 7px"></i>
+                        &ensp;Đã bị covid
+                    </div>
+                    <p>&ensp;@ViewBag.Covid</p>
                 </div>
-                <p>&ensp;@ViewBag.Covid</p>
             </div>
         </div>
-    </div>
-    <div class="btn-dose" type="button" data-toggle="collapse" data-target="#dose3">
-        <div class="d-flex align-items-center">
-            <span class="fa-stack fa-lg">
-                <i class="fas fa-circle fa-stack-2x" style="color: #0f62f93d"></i>
-                <i class="fas fa-shield-virus fa-stack-1x" style="color: #0f62f9"></i>
-            </span>&ensp;
-            <h5>
-                Mũi ba
-            </h5>
+        <div class="btn-dose" type="button" data-toggle="collapse" data-target="#dose2">
+            <div class="d-flex align-items-center">
+                <span class="fa-stack fa-lg">
+                    <i class="fas fa-circle fa-stack-2x" style="color: #5dac463b"></i>
+                    <i class="fas fa-shield-virus fa-stack-1x" style="color: #5DAC46"></i>
+                </span>&ensp;
+                <h5>
+                    Mũi hai
+                </h5>
+            </div>
+            <i class="fas fa-chevron-down"></i>
         </div>
-        <i class="fas fa-chevron-down"></i>
-    </div>
-    <div id="dose3" class="collapse">
-        <div class=" detail-dose">
-            <div class="info-dose">
-                <div class="d-flex align-items-center">
-                    <i class="fas fa-circle" style="color: #0f62f9; font-size: 7px"></i>
-                    &ensp;Thời gian tiêm:
+        <div id="dose2" class="collapse">
+            <div class=" detail-dose">
+                <div class="info-dose">
+                    <div class="d-flex align-items-center">
+                        <i class="fas fa-circle" style="color: #5DAC46; font-size: 7px"></i>
+                        &ensp;Thời gian tiêm:
+                    </div>
+                    &ensp;@Convert.ToDateTime(Model.DoseTwo).ToString("dd/MM/yyyy")
                 </div>
-                &ensp;@Convert.ToDateTime(Model.DoseThree).ToString("dd/MM/yyyy")
+                <div class="info-dose">
+                    <div class="d-flex align-items-center">
+                        <i class="fas fa-circle" style="color: #5DAC46; font-size: 7px"></i>
+                        &ensp;Đã bị covid:
+                    </div>
+                    <p>&ensp;@ViewBag.Covid</p>
+                </div>
+            </div>
+        </div>
+        <div class="btn-dose" type="button" data-toggle="collapse" data-target="#dose3">
+            <div class="d-flex align-items-center">
+                <span class="fa-stack fa-lg">
+                    <i class="fas fa-circle fa-stack-2x" style="color: #0f62f93d"></i>
+                    <i class="fas fa-shield-virus fa-stack-1x" style="color: #0f62f9"></i>
+                </span>&ensp;
+                <h5>
+                    Mũi ba
+                </h5>
+            </div>
+            <i class="fas fa-chevron-down"></i>
+        </div>
+        <div id="dose3" class="collapse">
+            <div class=" detail-dose">
+                <div class="info-dose">
+                    <div class="d-flex align-items-center">
+                        <i class="fas fa-circle" style="color: #0f62f9; font-size: 7px"></i>
+                        &ensp;Thời gian tiêm:
+                    </div>
+                    &ensp;@Convert.ToDateTime(Model.DoseThree).ToString("dd/MM/yyyy")
 
-            </div>
-            <div class="info-dose">
-                <div class="d-flex align-items-center">
-                    <i class="fas fa-circle" style="color: #0f62f9; font-size: 7px"></i>
-                    &ensp;Đã bị covid:
                 </div>
-                <p>&ensp;@ViewBag.Covid</p>
+                <div class="info-dose">
+                    <div class="d-flex align-items-center">
+                        <i class="fas fa-circle" style="color: #0f62f9; font-size: 7px"></i>
+                        &ensp;Đã bị covid:
+                    </div>
+                    <p>&ensp;@ViewBag.Covid</p>
+                </div>
             </div>
         </div>
-    </div>
-    <div class="btn-dose" type="button" data-toggle="collapse" data-target="#symptoms">
-        <div class="d-flex align-items-center">
-            <span class="fa-stack fa-lg">
-                <img src="~/Vendor/img/icon/symptoms.png" style="width:50px;" />
-            </span>&ensp;
-            <h5>
-                Triệu chứng
-            </h5>
+        <div class="btn-dose" type="button" data-toggle="collapse" data-target="#symptoms">
+            <div class="d-flex align-items-center">
+                <span class="fa-stack fa-lg">
+                    <img src="~/Vendor/img/icon/symptoms.png" style="width:50px;" />
+                </span>&ensp;
+                <h5>
+                    Triệu chứng
+                </h5>
+            </div>
+            <i class="fas fa-chevron-down"></i>
         </div>
-        <i class="fas fa-chevron-down"></i>
-    </div>
-    <div id="symptoms" class="collapse">
-        <div class=" detail-dose">
-            <div class="info-dose">
-                <div class="d-flex align-items-center">
-                    @if(Model.Symptoms == null)
-                    {
-                        @ViewBag.Symptoms
-                    }
-                    else
-                    {
-                        var sym = Model.Symptoms.Split(',');
-                        <ul style="list-style:none;display:flex">
-                        @for(int i =0;i<sym.Length;i++)
+        <div id="symptoms" class="collapse">
+            <div class=" detail-dose">
+                <div class="info-dose">
+                    <div class="d-flex align-items-center">
+                        @if (Model.Symptoms == null)
                         {
-                            <li style="margin:5px;font-size:16px"><i class="fas fa-circle" style="color: #9b59b6; font-size: 10px "></i>  @sym[i]</li>
+                            @ViewBag.Symptoms
                         }
-                        </ul>
-                    }
-                </div>
+                        else
+                        {
+                            var sym = Model.Symptoms.Split(',');
+                            <ul style="list-style:none;display:flex">
+                                @for (int i = 0; i < sym.Length; i++)
+                                {
+                                    <li style="margin:5px;font-size:16px"><i class="fas fa-circle" style="color: #9b59b6; font-size: 10px "></i>  @sym[i]</li>
+                                }
+                            </ul>
+                        }
+                    </div>
 
+                </div>
+            </div>
+        </div>
+        <div class="btn-dose" type="button" data-toggle="collapse" data-target="#medicalhistory">
+            <div class="d-flex align-items-center">
+                <span class="fa-stack fa-lg">
+                    <img src="~/Vendor/img/icon/medicalHistory.png" style="width:50px;" />
+                </span>&ensp;
+                <h5>
+                    Lịch sử bệnh
+                </h5>
+            </div>
+            <i class="fas fa-chevron-down"></i>
+        </div>
+        <div id="medicalhistory" class="collapse">
+            <div class=" detail-dose">
+                <div class="info-dose">
+                    <div class="d-flex align-items-center">
+                        @if (Model.MedicalHistory == null)
+                        {
+                            <p> Không có lịch sử bệnh </p>
+                        }
+                        else
+                        {
+                            var medic = Model.MedicalHistory.Split(',');
+                            <ul style="list-style:none; display:flex">
+                                @for (int i = 0; i < medic.Length; i++)
+                                {
+                                    <li style="margin:5px;font-size:16px"><i class="fas fa-circle" style="color: #e74c3c; font-size: 10px;margin-top:-5px"></i>  @medic[i]</li>
+                                }
+                            </ul>
+                        }
+                    </div>
+
+                </div>
             </div>
         </div>
     </div>
-    <div class="btn-dose" type="button" data-toggle="collapse" data-target="#medicalhistory">
-        <div class="d-flex align-items-center">
-            <span class="fa-stack fa-lg">
-                <img src="~/Vendor/img/icon/medicalHistory.png" style="width:50px;" />
-            </span>&ensp;
-            <h5>
-                Lịch sử bệnh
-            </h5>
-        </div>
-        <i class="fas fa-chevron-down"></i>
-    </div>
-    <div id="medicalhistory" class="collapse">
-        <div class=" detail-dose">
-            <div class="info-dose">
-                <div class="d-flex align-items-center">
-                    @if (Model.MedicalHistory == null)
-                    {
-                         <p> Không có lịch sử bệnh </p>
-                     }
-                    else
-                    {
-                        var medic = Model.MedicalHistory.Split(',');
-                        <ul style="list-style:none; display:flex">
-                            @for (int i = 0; i < medic.Length; i++)
-                            {
-                                <li style="margin:5px;font-size:16px"><i class="fas fa-circle" style="color: #e74c3c; font-size: 10px;margin-top:-5px"></i>  @medic[i]</li>
-                            }
-                        </ul>
-                    }
-                </div>
-
-            </div>
-        </div>
-    </div>
-</div>
 }
 else
 {
     <div class="empty-result">
         <img src="~/Vendor/img/icon/empty-image.png" alt="">
-        <p>Bạn chưa khai báo y tế ! Hãy khai báo để xem sổ sức khỏe </p>
+        <p>Bạn chưa khai báo y tế hoặc khai báo của bạn đang chờ xác thực </p>
     </div>
 }
 
