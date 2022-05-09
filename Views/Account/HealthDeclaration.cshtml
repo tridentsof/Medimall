@@ -33,9 +33,14 @@
 
     <h5>Trạng thái:</h5>&nbsp;
 
-    @if (ViewBag.Valid != null)
+    @if (Model.IsValid == 0)
     {
-        <h5 style="color: #e17055">@ViewBag.Valid</h5>
+        <h5 style="color: #f1c40f">Chờ xác thực <i style="font-size:17px" class="fas fa-spinner"></i> </h5>
+        <br />
+    }
+    else if (Model.IsValid == 2)
+    {
+        <h5 style="color: #e17055">Khai báo của bạn chưa chính xác <i style="font-size:17px" class="fas fa-exclamation"></i> </h5>
         <br />
     }
     else
