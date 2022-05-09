@@ -139,6 +139,7 @@
     border-radius: 3px;
     padding: 5px;
     margin: auto;
+    width:150px;
 }
 
 #btn-update-quantity {
@@ -151,13 +152,13 @@
 
 .quantity-product .num {
     border: none;
-    width: 45px;
+    width: 60px;
     background: #0065ff;
     color: #fff;
     height: 24px;
     font-size: 12px;
     border-radius: 5px;
-    padding-left: 15px;
+    padding-left: 22px;
 }
 
 .quantity-product .btn {
