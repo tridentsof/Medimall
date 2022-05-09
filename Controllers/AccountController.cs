@@ -327,17 +327,6 @@ namespace Medimall.Controllers
         {
             var accountId = int.Parse(Session["UserId"].ToString());
             var healthBook = db.HealthBooks.Where(p => p.AccountId == accountId).FirstOrDefault();
-            
-            if(healthBook.IsValid == 0)
-            {
-                ViewBag.Valid = "Chờ xác thực";
-            }    
-            else if(healthBook.IsValid==2)
-            {
-                ViewBag.Valid = "Khai báo về mũi tiêm của bạn không chính xác,mời bạn khai báo lại";
-            }    
-
-
 
             return PartialView(healthBook);
         } 
@@ -370,8 +359,6 @@ namespace Medimall.Controllers
             }    
             else
             {
-                if(data.Symptoms != null)
-                {
                     healthBook2.IsVaccinated = data.IsVaccinated;
                     healthBook2.IsCovid = data.IsCovid;
                     healthBook2.DoseOne = data.DoseOne;
@@ -380,17 +367,6 @@ namespace Medimall.Controllers
                     healthBook2.MedicalHistory = data.MedicalHistory;
                     healthBook2.Symptoms = data.Symptoms;
                     healthBook2.IsValid = 0;
-                }
-                else 
-                {
-                    healthBook2.IsVaccinated = data.IsVaccinated;
-                    healthBook2.IsCovid = data.IsCovid;
-                    healthBook2.DoseOne = data.DoseOne;
-                    healthBook2.DoseTwo = data.DoseTwo;
-                    healthBook2.DoseThree = data.DoseThree;
-                    healthBook2.MedicalHistory = data.MedicalHistory;
-                    healthBook2.IsValid = 0;
-                }
 
                 db.SaveChanges();
                 return Json(true);

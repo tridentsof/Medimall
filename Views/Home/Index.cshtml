@@ -63,11 +63,11 @@
     @Html.Action("GetVoucher", "Home")
 
     <div class="main-content" style="background: #fff; width: 1255px; margin: 0 auto">
-        @if ((bool?)(ViewBag.IsHealthCare) == null)
+        @if (ViewBag.Symptoms == null)
         {
             <div></div>
         }
-        else if ((bool?)(ViewBag.IsHealthCare) == true)
+        else if (ViewBag.Symptoms != null)
         {
             <div class="ct5-wrap">
             <div class="title">
