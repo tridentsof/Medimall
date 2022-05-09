@@ -22,10 +22,14 @@
                 @Html.DisplayNameFor(model => model.VoucherCode)
             </th>
             <th>
-                @Html.DisplayNameFor(model => model.Percent)
+                @Html.DisplayNameFor(model => model.StartDate)
             </th>
             <th>
-                @Html.DisplayNameFor(model => model.VoucherDetail)
+                @Html.DisplayNameFor(model => model.EndDate)
+            </th>
+
+            <th>
+                @Html.DisplayNameFor(model => model.Percent)
             </th>
             <th>
                 Tùy chỉnh
@@ -75,12 +79,26 @@
         $.getJSON("/AdminVouchers/GetPaggedData", { pageNumber: pageNum, pageSize: pageSize }, function (response) {
             var rowData = "";
             for (var i = 0; i < response.Data.length; i++) {
+                $.formattedDate = function (dateToFormat) {
+                    var dateObject = new Date(dateToFormat);
+                    var day = dateObject.getDate();
+                    var month = dateObject.getMonth() + 1;
+                    var year = dateObject.getFullYear();
+                    day = day < 10 ? "0" + day : day;
+                    month = month < 10 ? "0" + month : month;
+                    var formattedDate = day + "/" + month + "/" + year;
+                    return formattedDate;
+                };
+
+                var getStartDay = $.formattedDate(new Date(parseInt(response.Data[i].StartDate.substr(6))));
+                var getEndDay = $.formattedDate(new Date(parseInt(response.Data[i].EndDate.substr(6))))
 
                 rowData = rowData +
                     '<tr><td>' + response.Data[i].VoucherId + '</td>'
                     + '<td>' + response.Data[i].VoucherCode + '</td>' +
+                    '<td>' + getStartDay + '</td>' +
+                    '<td>' + getEndDay + '</td>' +
                     '<td>' + response.Data[i].Percent + '%' + '</td>' +
-                    '<td>' + response.Data[i].VoucherDetail  + '</td>' +
                     '<td>' + '<a onclick = "Edit(' + response.Data[i].VoucherId + ')" class="d-none d-sm-inline-block btn btn-sm btn btn-info">' + 'Sửa <i class="fas fa-edit"></i></a>' +
                     '<a style="margin-left:15px" onclick = "Delete(' + response.Data[i].VoucherId + ')" class="d-none d-sm-inline-block btn btn-sm btn btn-danger ">' + 'Xóa <i class="fas fa-minus-circle"></i></a>' +
                     '</td>' +

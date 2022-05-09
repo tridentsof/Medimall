@@ -363,6 +363,7 @@ namespace Medimall.Controllers
                 healthBook.DoseThree = data.DoseThree;
                 healthBook.MedicalHistory = data.MedicalHistory;
                 healthBook.Symptoms = data.Symptoms;
+                healthBook.IsValid = 0;
                 db.HealthBooks.Add(healthBook);
                 db.SaveChanges();
                 return Json(true);
@@ -378,6 +379,7 @@ namespace Medimall.Controllers
                     healthBook2.DoseThree = data.DoseThree;
                     healthBook2.MedicalHistory = data.MedicalHistory;
                     healthBook2.Symptoms = data.Symptoms;
+                    healthBook2.IsValid = 0;
                 }
                 else 
                 {
@@ -387,6 +389,7 @@ namespace Medimall.Controllers
                     healthBook2.DoseTwo = data.DoseTwo;
                     healthBook2.DoseThree = data.DoseThree;
                     healthBook2.MedicalHistory = data.MedicalHistory;
+                    healthBook2.IsValid = 0;
                 }
 
                 db.SaveChanges();
