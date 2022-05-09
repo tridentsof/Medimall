@@ -16,9 +16,11 @@ namespace Medimall.Controllers
         {
             var userId = Session["UserId"]?.ToString() ?? "0";
             var userInfor = db.Accounts.Where(m => m.AccountId.ToString() == userId).FirstOrDefault();
-            if (userInfor != null)
+
+            var userHealthBook = db.HealthBooks.Where(m => m.AccountId.ToString() == userId).FirstOrDefault();
+            if (userHealthBook != null)
             {
-                ViewBag.IsHealthCare = userInfor.IsHealthCare ?? false;
+                ViewBag.Symptoms = userHealthBook.Symptoms;
             }
 
             return View();
@@ -194,17 +196,17 @@ namespace Medimall.Controllers
         }
         public ActionResult GetBestSaleProductPageOne()
         {
-            List<Product> listProduct = db.Products.Where(p => p.QuantitySold > 5).OrderBy(p => p.ProductId).Take(5).ToList();
+            List<Product> listProduct = db.Products.Where(p => p.QuantitySold > 5).OrderByDescending(p => p.QuantitySold).Take(5).ToList();
             return PartialView(listProduct);
         }
         public ActionResult GetBestSaleProductPageTwo()
         {
-            List<Product> listProduct = db.Products.Where(p => p.QuantitySold > 5).OrderBy(p => p.ProductId).Skip(5).Take(5).ToList();
+            List<Product> listProduct = db.Products.Where(p => p.QuantitySold > 5).OrderByDescending(p => p.QuantitySold).Skip(5).Take(5).ToList();
             return PartialView(listProduct);
         }
         public ActionResult GetBestSaleProductPageThree()
         {
-            List<Product> listProduct = db.Products.Where(p => p.QuantitySold > 5).OrderBy(p => p.ProductId).Skip(10).Take(5).ToList();
+            List<Product> listProduct = db.Products.Where(p => p.QuantitySold > 5).OrderByDescending(p => p.QuantitySold).Skip(10).Take(5).ToList();
             return PartialView(listProduct);
         }
         public ActionResult GetNewProductPageOne()
