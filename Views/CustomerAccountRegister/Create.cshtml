@@ -86,15 +86,6 @@
             }
         })
     });
-        //function ValidateEmail(mail)
-        //{
-        //    if (/^\w+([\.-]?\w+)\w+([\.-]?\w+)*(\.\w{2,3})+$/.test(myForm.emailAddr.value))
-        //        {
-        //            return (true)
-        //        }
-        //            alert("You have entered an invalid email address!")
-        //    return (false)
-        //}
 
     function Register() {
         var full = $("#txtFullname").val();
@@ -104,6 +95,7 @@
         var email = $("#txtEmail").val();
         var birthday = $("#txtBirthday").val();
         var address = $("#txtAddress").val();
+
         FullName = document.getElementById("txtFullname");
         UserName = document.getElementById("txtUsername");
         Password = document.getElementById("txtPassword");
@@ -122,6 +114,17 @@
                     Gender = ele[i].value;
             }
         }
+
+        //getCurrent Day
+        const today = new Date();
+        const yyyy = today.getFullYear();
+        let mm = today.getMonth() + 1; // Months start at 0!
+        let dd = today.getDate();
+
+        if (dd < 10) dd = '0' + dd;
+        if (mm < 10) mm = '0' + mm;
+
+        const getToday = yyyy + '-' + mm + '-' + dd;
 
         //
         var customer = {
@@ -164,7 +167,21 @@
             window.setTimeout(function () {
                  window.location.href = '@Url.Action("Create", "CustomerAccountRegister")';
             },1000)
-        }
+         }
+         else if (birthday > getToday)
+         {
+             alertify.error("Ngày sinh không được lớn hơn ngày hiện tại");
+            window.setTimeout(function () {
+                 window.location.href = '@Url.Action("Create", "CustomerAccountRegister")';
+            },1000)
+         }
+         else if (phone.length < 7 || phone.length > 11 )
+         {
+               alertify.error("Số điện thoại có độ dài phải lơn hơn 7 và nhỏ hơn 11");
+            window.setTimeout(function () {
+                 window.location.href = '@Url.Action("Create", "CustomerAccountRegister")';
+            },1000)
+         }
         else {
             $.ajax({
             type: "POST",
