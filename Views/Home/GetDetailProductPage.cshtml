@@ -21,7 +21,7 @@
     }
 
     .wrappre_img {
-        width: 90%;
+        width: 100%;
         border: solid 1px #e5e5e5;
         border-radius: 20px;
         padding: 12px 20px;
@@ -134,11 +134,13 @@
     .add_cart_all {
         border: 1px #0f62f9 solid;
         border-radius: 10px;
-        padding: 10px 25px;
+        padding: 15px 25px;
         color: #fff;
         display: flex;
         background-color: #0f62f9;
         cursor: pointer;
+        width:300px;
+        padding-left:90px;
     }
 
     /* // wrappre_readmore */
@@ -588,11 +590,6 @@
                     <h5 class="wrappre_content_title-detail">
                         @Model.UsesFor
                     </h5>
-                    <div class="col-md-6 quantity-product" style="margin:0">
-                        <input type="button" value="-" class="btn quantity-left-minus" data-type="minus" data-field="">
-                        <input readonly="" type="number" class="num" name="quantity" value="1" id="quantity">
-                        <input type="button" value="+" class="btn quantity-right-plus" data-type="plus" data-field="" id="">
-                    </div>
 
                     <div class="wrappre_content-button">
                         @if (Model.Quantity > 0)
