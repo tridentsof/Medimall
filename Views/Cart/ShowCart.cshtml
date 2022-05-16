@@ -73,29 +73,32 @@ else
                         </div>
                         double total = Convert.ToDouble(item._shopping_product.Price.Value * item._shopping_quantity);
 
-                        <div class="left-box-2">
-                            <img src="~/Vendor/img/products/@(item._shopping_product.ProductId).png" alt="">
-                            <p class="name-product">@item._shopping_product.ProductName</p>
-                            <div class="preview-cost">
-                                <p>@item._shopping_product.Price VND</p>
-                                <p>@String.Format("{0:0,0}", item._shopping_product.Price) VND/Sản phẩm</p>
-                            </div>
+                <div class="left-box-2">
+                    <img src="~/Vendor/img/products/@(item._shopping_product.ProductId).png" alt="">
 
-                            <div class="counter">
-                                @using (Html.BeginForm("UpdateQuantity", "Cart"))
-                                {
-                                    <div class="quantity-product">
-                                        <input type="hidden" value="@item._shopping_product.ProductId" name="ProductId" />
-                                        <input type="number" class="num" name="quantity" value="@item._shopping_quantity" id="quantity" min="1" />
-                                        <div class="col-md-1 deleteone">
-                                            <input style="color:black;" id="btn-update-quantity" type="submit" value="Cập nhật" />
-                                        </div>
-                                    </div>
-                                }
-                            </div>
-                            <p>@String.Format("{0:0,0}", total)</p>
-                            <input style="color:red;  padding: 0" type="button" value="x" class="btn" onclick="myFunction2()">
+                    <a style="text-decoration:none;color:black" href="@Url.Action("GetDetailProductPage","Home",new {id=item._shopping_product.ProductId})">
+                        <p class="name-product">@item._shopping_product.ProductName</p>
+                    </a>
+                        <div class="preview-cost">
+                            <p>@item._shopping_product.Price VND</p>
+                            <p>@String.Format("{0:0,0}", item._shopping_product.Price) VND/Sản phẩm</p>
                         </div>
+
+                        <div class="counter">
+                            @using (Html.BeginForm("UpdateQuantity", "Cart"))
+                            {
+                                <div class="quantity-product">
+                                    <input type="hidden" value="@item._shopping_product.ProductId" name="ProductId" />
+                                    <input type="number" class="num" name="quantity" value="@item._shopping_quantity" id="quantity" min="1" />
+                                    <div class="col-md-1 deleteone">
+                                        <input style="color:black;" id="btn-update-quantity" type="submit" value="Cập nhật" />
+                                    </div>
+                                </div>
+                            }
+                        </div>
+                        <p>@String.Format("{0:0,0}", total)</p>
+                        <input style="color:red;  padding: 0" type="button" value="x" class="btn" onclick="myFunction2()">
+                </div>
                     }
                     <div class="wrap-preview-total-cost">
                         <p>Tạm tính:</p>
@@ -192,7 +195,7 @@ else
 
                                 <input type="hidden" id="power-point" value="@TempData["PowerPoint"]">
 
-                                <button class="btn-point" onclick="usePowerPoint()">Sử dụng điểm</button>
+                                <button class="btn-point" id="btn-point" onclick="usePowerPoint()">Sử dụng điểm</button>
                             </div>
                         </div>
                     }
@@ -229,24 +232,53 @@ else
                             <h3 class="total-money">
                                 @if (Session["DiscountPrice"] != null)
                                 {
-                                    double finalPrice = Convert.ToDouble(Session["DeliveryPrice"]) + Convert.ToDouble(Session["DiscountPrice"]);
-                                    <input type="number" hidden="hidden" id="total-money" name="total-money" value="@finalPrice" />
-                                    <span id="show-money">@String.Format("{0:0,0}", finalPrice)</span>
-                                    <span>VND</span>
+                                    if (Session["DeliveryId"] == null)
+                                    {
+                                        double finalPrice = 20000 + Convert.ToDouble(Session["DiscountPrice"]);
+                                        <input type="number" hidden="hidden" id="total-money" name="total-money" value="@finalPrice" />
+                                        <span id="show-money">@String.Format("{0:0,0}", finalPrice)</span>
+                                        <span>VND</span>
+                                    }
+                                    else
+                                    {
+                                        double finalPrice = Convert.ToDouble(Session["DeliveryPrice"]) + Convert.ToDouble(Session["DiscountPrice"]);
+                                        <input type="number" hidden="hidden" id="total-money" name="total-money" value="@finalPrice" />
+                                        <span id="show-money">@String.Format("{0:0,0}", finalPrice)</span>
+                                        <span>VND</span>
+                                    }
                                 }
                                 else
                                 {
-                                    double finalPrice = Model.TotalMoney() + Convert.ToDouble(Session["DeliveryPrice"]);
-                                    <span id="show-money">@String.Format("{0:0,0}", finalPrice)</span>
-                                    <input hidden="hidden" type="number" id="total-money" name="total-money" value="@finalPrice" />
-                                    <span>VND</span>
+
+                                    if (Session["DeliveryId"] == null)
+                                    {
+                                        double finalPrice = Model.TotalMoney() + 20000;
+                                        <span id="show-money">@String.Format("{0:0,0}", finalPrice)</span>
+                                        <input hidden="hidden" type="number" id="total-money" name="total-money" value="@finalPrice" />
+                                        <span>VND</span>
+                                    }
+                                    else
+                                    {
+                                        double finalPrice = Convert.ToDouble(Session["DeliveryPrice"]) + Model.TotalMoney();
+                                        <input type="number" hidden="hidden" id="total-money" name="total-money" value="@finalPrice" />
+                                        <span id="show-money">@String.Format("{0:0,0}", finalPrice)</span>
+                                        <span>VND</span>
+                                    }
                                 }
                             </h3>
                         </div>
                         <input id="payment-method" type="number" hidden="hidden" value="1" name="pay-id" />
                         <input id="is-use-point" type="number" hidden="hidden" name="is-use-point" value="0" />
-                        <input id="point-used" type="number" hidden="hidden" name="point-used" value="" />
-                        <input id="sales-price" type="number" hidden="hidden" name="sales-price" value="@Session["PriceSale"]" />
+                        <input id="point-used" type="number" hidden="hidden" name="point-used" value="0" />
+
+                        @if (Session["VoucherId"] == null)
+                        {
+                            <input id="sales-price" type="number" hidden="hidden" name="sales-price" value="0" />
+                        }
+                        else
+                        {
+                            <input id="sales-price" type="number" hidden="hidden" name="sales-price" value="@Session["PriceSale"]" />
+                        }
                         <div class="popup-purchase" id="popup-purchase">
                             <h4>Xác nhận mua hàng</h4>
                             <p>Bạn có xác nhận mua sản phẩm này không ?</p>

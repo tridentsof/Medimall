@@ -327,7 +327,8 @@
 .box-tooltip {
     display: none;
     position: absolute;
-    top: 0px;
+    top: 310px;
+    left:1150px;
     padding: 16px;
     background: #f2f6fe;
     box-shadow: 0 0 16px rgb(0 0 0 / 20%);
