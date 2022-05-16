@@ -7,6 +7,7 @@ using System.Web.Mvc;
 using Medimall.Infrastructure;
 using System.Configuration;
 using Medimall.Helper;
+using System.Data.Entity.Validation;
 
 namespace Medimall.Controllers
 {
@@ -173,25 +174,52 @@ namespace Medimall.Controllers
         {
             try
             {
-                var deliveryId = Convert.ToInt32(Session["DeliveryId"]);
-                var paymentMethod = int.Parse(form["pay-id"]);
+                int? CheckNullDeliveryId = Convert.ToInt32(Session["DeliveryId"]);
+
+                int deliveryId = 2;
+
+                if (CheckNullDeliveryId == 0)
+                {
+                    deliveryId = 2;
+                }
+                else
+                {
+                    deliveryId = Convert.ToInt32(Session["DeliveryId"]);
+                }
+
+                int paymentMethod = int.Parse(form["pay-id"]);
+
                 var userName = form["user-name"];
                 var phoneNumber = form["user-phone"];
                 var address = form["user-address"];
-                var userId = Session["UserId"].ToString();
-                var userInfor = db.Accounts.FirstOrDefault(x => x.AccountId.ToString() == userId);
-                var voucherId = Convert.ToInt32(Session["VoucherId"]);
+
+                int userId = Convert.ToInt32(Session["UserId"].ToString());
+                var userInfor = db.Accounts.FirstOrDefault(x => x.AccountId == userId);
+
+                int? getvoucherId = Convert.ToInt32(Session["VoucherId"]);
+
+                int? voucherId = null;
+
+                if (getvoucherId == 0)
+                {
+                    voucherId = null;
+                }
+                else
+                { voucherId = Convert.ToInt32(Session["VoucherId"]);}
+
                 var voucher = db.Vouchers.FirstOrDefault(m => m.VoucherId == voucherId);
-                var delivery = db.Deliveries.FirstOrDefault(m => m.DeliveryId == deliveryId);
+
+                decimal TotalMoney = Convert.ToDecimal(form["total-money"]);
                 var isUsePoint = int.Parse(form["is-use-point"]);
                 var pointUsed = 0; 
                 if (isUsePoint == Constants.IsUsePoint.Use)
                 {
                     pointUsed = int.Parse(form["point-used"]); ;
-                    userInfor.PowerPoint -= Convert.ToDecimal(pointUsed);
+                    userInfor.PowerPoint -= Convert.ToDecimal(pointUsed.ToString());
                     userInfor.UsedPoint += pointUsed;
                 }
-                var salePrice = Convert.ToDecimal(form["sales-price"]);
+
+                decimal? salePrice = Convert.ToDecimal(form["sales-price"]);
                 
 
                 if (paymentMethod == Constants.PaymentMethod.PayLater)
@@ -203,9 +231,9 @@ namespace Medimall.Controllers
                     billing.AccountId = userInfor.AccountId;
                     billing.PurchaseDate = DateTime.Now;
                     billing.Address = address;
-                    billing.PayId = int.Parse(form["pay-id"]);
+                    billing.PayId = paymentMethod;
                     billing.DeliveryId = deliveryId;
-                    billing.Total = int.Parse(form["total-money"]);
+                    billing.Total = TotalMoney;
                     billing.Phone = phoneNumber;
                     billing.UserName = userName;
                     billing.Status = 1;
@@ -220,8 +248,14 @@ namespace Medimall.Controllers
                         var product = db.Products.Single(x => x.ProductId == item._shopping_product.ProductId);
                         var earnPoint = item._shopping_product.Price * item._shopping_product.PercentSalePoint / 100;
 
+                        product.Ingredient = string.Empty;
                         product.QuantitySold += item._shopping_quantity;
                         product.Quantity -= item._shopping_quantity;
+
+                        db.Products.Attach(product);
+                        db.Entry(product).Property(x => x.QuantitySold).IsModified = true;
+                        db.Entry(product).Property(x => x.Quantity).IsModified = true;
+                        db.SaveChanges();
 
                         billDetail.BillId = billing.BillId;
                         billDetail.ProductId = item._shopping_product.ProductId;
@@ -229,6 +263,7 @@ namespace Medimall.Controllers
                         billDetail.Quantity = item._shopping_quantity;
                         billDetail.ProductName = item._shopping_product.ProductName;
                         billDetail.Total = item._shopping_product.Price * item._shopping_quantity;
+                        billDetail.VoucherId = voucherId;
                         userInfor.PowerPoint += earnPoint;
 
                         db.BillDetails.Add(billDetail);
@@ -258,9 +293,9 @@ namespace Medimall.Controllers
                     billing.AccountId = userInfor.AccountId;
                     billing.PurchaseDate = DateTime.Now;
                     billing.Address = address;
-                    billing.PayId = int.Parse(form["pay-id"]);
+                    billing.PayId = paymentMethod;
                     billing.DeliveryId = deliveryId;
-                    billing.Total = int.Parse(form["total-money"]);
+                    billing.Total = TotalMoney;
                     billing.Phone = phoneNumber;
                     billing.UserName = userName;
                     billing.Status = 1;
@@ -275,8 +310,14 @@ namespace Medimall.Controllers
                         var product = db.Products.Single(x => x.ProductId == item._shopping_product.ProductId);
                         var earnPoint = item._shopping_product.Price * item._shopping_product.PercentSalePoint / 100;
 
+                        product.Ingredient = string.Empty;
                         product.QuantitySold += item._shopping_quantity;
                         product.Quantity -= item._shopping_quantity;
+
+                        db.Products.Attach(product);
+                        db.Entry(product).Property(x => x.QuantitySold).IsModified = true;
+                        db.Entry(product).Property(x => x.Quantity).IsModified = true;
+                        db.SaveChanges();
 
                         billDetail.BillId = billing.BillId;
                         billDetail.ProductId = item._shopping_product.ProductId;
@@ -284,13 +325,14 @@ namespace Medimall.Controllers
                         billDetail.Quantity = item._shopping_quantity;
                         billDetail.ProductName = item._shopping_product.ProductName;
                         billDetail.Total = item._shopping_product.Price * item._shopping_quantity;
+                        billDetail.VoucherId = voucherId;
                         userInfor.PowerPoint += earnPoint;
 
                         db.BillDetails.Add(billDetail);
                     }
 
                     db.SaveChanges();
-
+                    TempData["SuccessCart"] = "Đặt hàng thành công, mời bạn vào lịch sử đơn hàng để theo dõi";
                     //Build URL for VNPay
                     string locale = "vn";
                     VnPayLibrary vnpay = new VnPayLibrary();
@@ -350,8 +392,19 @@ namespace Medimall.Controllers
                 return RedirectToAction("Index", "Home");
 
             }
-            catch (Exception)
+
+            catch (DbEntityValidationException e)
             {
+                foreach (var eve in e.EntityValidationErrors)
+                {
+                    Console.WriteLine("Entity of type \"{0}\" in state \"{1}\" has the following validation errors:",
+                        eve.Entry.Entity.GetType().Name, eve.Entry.State);
+                    foreach (var ve in eve.ValidationErrors)
+                    {
+                        Console.WriteLine("- Property: \"{0}\", Error: \"{1}\"",
+                            ve.PropertyName, ve.ErrorMessage);
+                    }
+                }
                 throw;
             }
         }

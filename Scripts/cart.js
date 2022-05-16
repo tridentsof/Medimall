@@ -1,7 +1,7 @@
 ﻿function usePowerPoint() {
-    debugger;
     var powerPoint = $('#power-point').val();
     var totalMoney = $('#total-money').val();
+   
 
     if (totalMoney < 100000) {
         alertify.error('Đơn hàng của bạn chưa đủ giá trị!')
@@ -13,7 +13,7 @@
 
             $('#show-money').empty();
             $('#total-money').val(finalMoney);
-            $('#show-money').append(finalMoney);
+            $('#show-money').append((Math.round(finalMoney * 100) / 100).toLocaleString());
 
             $('#show-powerpoint').empty();
             $('#show-powerpoint').append(pointLeft);
@@ -28,7 +28,7 @@
 
             $('#show-money').empty();
             $('#total-money').val(finalMoney);
-            $('#show-money').append(finalMoney);
+            $('#show-money').append((Math.round(finalMoney * 100) / 100).toLocaleString());
 
             $('#show-powerpoint').empty();
             $('#show-powerpoint').append(0);
@@ -38,6 +38,9 @@
             $('#point-used').val(powerPoint);
             alertify.success('Sử dụng điểm thành công!');
         }
+        $('#btn-point').html('Đã sử dụng');
+        $('#btn-point').attr('disabled', true);
+        $('#btn-point').css({ "box- shadow": "inset 0 0 0 1px gray", "cursor": "not-allowed" });
     }
     
 }
@@ -68,7 +71,6 @@
 
 
 $(document).ready(function () {
-
     var quantitiy = 1;
     $('.quantity-right-plus').click(function (e) {
         // Stop acting like a button
