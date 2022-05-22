@@ -327,6 +327,9 @@ namespace Medimall.Controllers
         {
             var accountId = int.Parse(Session["UserId"].ToString());
             var healthBook = db.HealthBooks.Where(p => p.AccountId == accountId).FirstOrDefault();
+            var account = db.Accounts.Where(P => P.AccountId == accountId).FirstOrDefault();
+
+            ViewBag.IsHealthCare = account.IsHealthCare;
 
             return PartialView(healthBook);
         } 

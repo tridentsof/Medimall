@@ -29,26 +29,34 @@
     }
 </style>
 
-<div style="display:flex;margin:15px">
+@if (ViewBag.IsHealthCare == true)
+{
+    <div style="display:flex;margin:15px">
 
-    <h5>Trạng thái:</h5>&nbsp;
+        <h5>Trạng thái:</h5>&nbsp;
 
-    @if (Model.IsValid == 0)
-    {
-        <h5 style="color: #f1c40f">Chờ xác thực <i style="font-size:17px" class="fas fa-spinner"></i> </h5>
-        <br />
-    }
-    else if (Model.IsValid == 2)
-    {
-        <h5 style="color: #e17055">Khai báo của bạn chưa chính xác <i style="font-size:17px" class="fas fa-exclamation"></i> </h5>
-        <br />
-    }
-    else
-    {
-        <h5 style="color: #4cd137">Đã xác thực <i class="fas fa-check-circle"></i></h5>
-        <br />
-    }
-</div>
+        @if (Model.IsValid == 0)
+        {
+            <h5 style="color: #f1c40f">Chờ xác thực <i style="font-size:17px" class="fas fa-spinner"></i> </h5>
+            <br />
+        }
+        else if (Model.IsValid == 2)
+        {
+            <h5 style="color: #e17055">Khai báo của bạn chưa chính xác <i style="font-size:17px" class="fas fa-exclamation"></i> </h5>
+            <br />
+        }
+        else
+        {
+            <h5 style="color: #4cd137">Đã xác thực <i class="fas fa-check-circle"></i></h5>
+            <br />
+        }
+    </div>
+}
+
+else
+{
+
+}
 
 <div class="span-declaration">
     <h5><i class="fas fa-first-aid" style="color:#5DAC46"></i>&ensp;Đã tiêm vaccin:</h5>

@@ -46,26 +46,26 @@
             for (var i = 0; i < response.Data.length; i++) {
                 var isCovid = function () {
                     if (response.Data[i].IsCovid == true)
-                        return 'Đã mắc covid'
+                        return 'Yes'
                     else
-                        return 'Chưa mắc covid'
+                        return 'No'
                 }
                 var isVaccin = function () {
                     if (response.Data[i].IsVaccinated == true)
-                        return 'Đã tiêm vaccin'
+                        return 'Yes'
                     else {
-                        return 'Chưa tiêm vacxin'
+                        return 'No'
                     }
                 }
                 var convertStatus = function () {
                     if (response.Data[i].IsValid == 1)
-                        return 'Đã xác thực'
+                        return '<i style="color: #4cd137;font-size:17px" class="fas fa-check-circle"></i'
                     else if (response.Data[i].IsValid == 2) {
-                        return 'Không chính xác'
+                        return '<i style="color: #e17055" class="fas fa-times"></i>'
                     }
                     else
                     {
-                        return 'Chờ xác thực'
+                        return '<i style="color:#f1c40f;font-size:17px" class="fas fa-spinner"></i>'
                     }
                 }
                 rowData = rowData +
@@ -74,7 +74,7 @@
                     '<td>' + isVaccin() + '</td>' +
                     '<td>' + isCovid() + '</td>' +
                     '<td>' + response.Data[i].MedicalHistory + '</td>' +
-                    '<td>' + response.Data[i].Symptoms + '</td>' +
+                    '<td style="width:200px;">' + response.Data[i].Symptoms + '</td>' +
                     '<td>' + convertStatus() + '</td>' +
                     '<td>' + '<a onclick = "ViewHealthBook(' + response.Data[i].BookId + ')" class="d-none d-sm-inline-block btn btn-sm btn btn-info">' + 'Xem chi tiết <i class="fas fa-eye"></i></a>' +
                     '<a style="margin-left:15px" onclick = "DeleteHealthBook(' + response.Data[i].BookId + ')" class="d-none d-sm-inline-block btn btn-sm btn btn-danger ">' + 'Xóa <i class="fas fa-minus-circle"></i></a>' +
