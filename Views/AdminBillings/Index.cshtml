@@ -6,6 +6,85 @@
 
 
 <h2 class="text-center">Đơn hàng</h2>
+<div class="statistics-main">
+    <div class="container-fluid statistics-tab">
+        <div class="col-xl-3 col-md-6 mb-4">
+            <div class="card border-left-primary shadow h-100 py-2 block-item">
+                <div class="card-body">
+                    <div class="row no-gutters align-items-center">
+                        <div class="col mr-2">
+                            <div class="text-xs font-weight-bold text-primary text-uppercase mb-1">
+                                Chờ xác thực
+                            </div>
+                            <div class="h5 mb-0 font-weight-bold text-gray-800">@ViewBag.Waiting</div>
+                        </div>
+                        <div class="col-auto">
+                            <i style="font-size:17px;color:blue" class="fas fa-spinner"></i>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <div class="col-xl-3 col-md-6 mb-4">
+            <div class="card border-left-warning shadow h-100 py-2 block-item">
+                <div class="card-body">
+                    <div class="row no-gutters align-items-center">
+                        <div class="col mr-2">
+                            <div class="text-xs font-weight-bold text-warning text-uppercase mb-1">
+                                Đang giao
+                            </div>
+                            <div class="row no-gutters align-items-center">
+                                <div class="col-auto">
+                                    <div class="h5 mb-0 mr-3 font-weight-bold text-gray-800">@ViewBag.Delivery</div>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="col-auto">
+                            <i style="color:orange" class="fas fa-truck"></i>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <div class="col-xl-3 col-md-6 mb-4">
+            <div class="card border-left-success shadow h-100 py-2 block-item">
+                <div class="card-body">
+                    <div class="row no-gutters align-items-center">
+                        <div class="col mr-2">
+                            <div class="text-xs font-weight-bold text-success text-uppercase mb-1">
+                                Đã giao
+                            </div>
+                            <div class="h5 mb-0 font-weight-bold text-gray-800">@ViewBag.Success</div>
+                        </div>
+                        <div class="col-auto">
+                            <i style="color:forestgreen" class="fas fa-check-circle"></i>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="col-xl-3 col-md-6 mb-4">
+            <div class="card border-left-danger shadow h-100 py-2 block-item">
+                <div class="card-body">
+                    <div class="row no-gutters align-items-center">
+                        <div class="col mr-2">
+                            <div class="text-xs font-weight-bold text-danger text-uppercase mb-1">
+                                Đã hủy
+                            </div>
+                            <div class="h5 mb-0 font-weight-bold text-gray-800">@ViewBag.Cancel</div>
+                        </div>
+                        <div class="col-auto">
+                            <i  style="color:orangered" class="fas fa-times"></i>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+ <br />
 
 <div class="d-flex align-items-center">
     <b>Tìm theo: </b>
@@ -24,7 +103,7 @@
         <tr>
             <th>@Html.DisplayNameFor(model => model.BillId)</th>
             <th>@Html.DisplayNameFor(model => model.AccountId)</th>
-             <th>@Html.DisplayNameFor(model => model.Total)</th>
+            <th>@Html.DisplayNameFor(model => model.Total)</th>
             <th>Phương thức thanh toán</th>
             <th>@Html.DisplayNameFor(model => model.Status)</th>
             <th>Chức năng</th>
