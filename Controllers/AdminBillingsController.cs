@@ -20,6 +20,14 @@ namespace MedimallAdmin.Controllers
         // GET: AdminBillings
         public ActionResult Index()
         {
+            var billingWaiting = db.Billings.Where(p=>p.Status==1).Count();
+            ViewBag.Waiting = billingWaiting;
+            var billingDelivery = db.Billings.Where(p => p.Status == 2).Count();
+            ViewBag.Delivery = billingDelivery;
+            var billingSuccess = db.Billings.Where(p => p.Status == 3).Count();
+            ViewBag.Success = billingSuccess;
+            var billingCancel = db.Billings.Where(p => p.Status == 0).Count();
+            ViewBag.Cancel = billingCancel;
             return View();
         }
 
